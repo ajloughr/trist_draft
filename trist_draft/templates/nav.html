@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+
+<nav class="navbar navbar-expand-lg navbar-light sticky-top bg-light" style="z-index: 97 !important;" >
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand mb-0 h1">TRIST Draft</a>
+        
+        <div class="collapse navbar-collapse" id="navbarNav" >
+            <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/"><strong>Home</strong></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/auction"><strong>Auction</strong></a>
+            </li>
+            {% if request.user.is_staff %}
+            <li class="nav-item">
+                <a class="nav-link" href="/admin"><strong>Admin</strong></a>
+            </li>
+            {% endif %}
+            </ul>
+        </div>
+        
+        {% if request.user.is_authenticated %}
+          {% if current_auction_user.team_name %}          
+          <!-- <h3 class="navbar-center "><strong>IT IS YOUR TURN TO BID</strong></h3> -->
+          {% comment %} <div class="container d-flex justify-content-center navbar-center pt-1"> {% endcomment %}
+            <div class="card blink-red-bg navbar-center" id="your_turn_to_bid_banner" style="display: none;" >
+                <div class="text-center pt-1">
+                        <h3>IT IS YOUR TURN</h3>
+                </div>
+            </div>
+          {% comment %} </div> {% endcomment %}
+            <div class="container-fluid d-flex justify-content-end align-items-center">
+              <div>
+                <span  class="fa-layers fa-fw " data-bs-toggle="tooltip" data-bs-placement="bottom" title="Toggle help mode. Numbered hints will appear to gude you through the player selection process for the current draft type. Hover over each numbered hint for additional details.">
+                  <i class="fa-solid fa-circle-question fa-xl me-2" style="color:rgb(243, 156, 18)" ></i>
+                </span>
+              </div>
+              <div class="form-check form-switch me-3">
+                <input class="form-check-input" type="checkbox" role="switch" id="help_mode_toggle" onclick="help_mode_toggled()">
+                <!-- <label class="form-check-label" for="bathroom_mode_toggle">Toilet Toggle</label> -->
+              </div>
+              <div>
+                <span  class="fa-layers fa-fw " data-bs-toggle="tooltip" data-bs-placement="bottom" title="Toggle bathroom mode. When enabled, it will skip your bid and player selection until disabled. Remember, if you shake it more than twice, you're playing with it.">
+                  <i class="fa-solid fa-toilet fa-xl me-2" style="color:rgb(13, 110, 253)"></i>
+                </span>
+              </div>
+              <div class="form-check form-switch me-3">
+                <input class="form-check-input" type="checkbox" role="switch" id="bathroom_mode_toggle" onclick="bathroom_mode_toggled()">
+                <!-- <label class="form-check-label" for="bathroom_mode_toggle">Toilet Toggle</label> -->
+              </div>
+            <div>
+            
+          {% endif %}  
+          <button data-bs-toggle="modal" data-bs-target="#logout_modal" class="btn btn-secondary">Log Out</button>
+        {% else %}
+            <button onclick="location.href = '/login'" class="btn btn-secondary">Log In</button>
+        {% endif %}
+        
+    </div>
+</nav>
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="logout_modal" tabindex="-1" aria-labelledby="logout_modal_Label" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="logout_modal_Label">Logout Confirmation</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to log out?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="location.href = '/logout'">Yes</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock navbar %}
+
+{% block javascript %}
+<script>
+
+  
+  //document.querySelector('#bathroom_mode_toggle').onclick = function(e) {
+  function bathroom_mode_toggled(){
+    var bathroom_mode_state = $("#bathroom_mode_toggle").is(":checked")
+
+    console.log("Bathroom mode toggled: " + bathroom_mode_state)
+    socket.send(JSON.stringify({
+        'bathroom_mode_toggled': true,
+        'bathroom_mode_state': bathroom_mode_state,
+        'team_name': $("#current_auction_user_team").val()
+    }));
+
+  };
+
+  //document.querySelector('#help_mode_toggle').onclick = function(e) {
+  function help_mode_toggled(){  
+    var bathroom_mode_state = $("#help_mode_toggle").is(":checked")
+
+    console.log("Help mode toggled: " + bathroom_mode_state);
+    request_table_refresh($("#current_auction_user_team").val())
+
+  };
+
+</script>
+{% endblock javascript %}

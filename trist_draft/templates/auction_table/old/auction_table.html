@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% if request.user.is_authenticated %}
+
+
+{% block content %}
+
+
+
+<h1>Auction Table</h1>
+<h2>Currently Bidding: {{current_auction_manager.active_bidder}}</h2>
+<table style="border: 1px solid black;border-collapse: collapse;" class="table">
+    <thead>
+        <tr style="border: 1px solid black;">
+            <th style="border: 1px solid black;">Draft Order</th>
+            <th style="border: 1px solid black;">Team Name</th>
+            <th style="border: 1px solid black;">Current Bid</th>
+            <th style="border: 1px solid black;">Still In</th>
+            <th style="border: 1px solid black;">Pass Available</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for team in auction_users_list %}
+        {% if current_auction_manager.active_bidder == team.draft_order %}
+            <tr style="background-color:red; border: 1px solid black;"> 
+        {% else %} 
+            <tr style="border: 1px solid black;">
+            {% endif %}
+                <td style="border: 1px solid black;">{{team.draft_order}}</td>
+                <td style="border: 1px solid black;">{{team.team_name}}</td>
+                <td style="border: 1px solid black;">{{team.current_bid}}</td>
+                <td style="border: 1px solid black;">{{team.still_in_auction}}</td>
+                <td style="border: 1px solid black;">{{team.pass_available}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div>
+    {% include 'auction_table/bid_menu.html' %}
+</div>
+
+
+
+{% endblock %}
+
+
+{% else %}
+
+
+{% endif %}

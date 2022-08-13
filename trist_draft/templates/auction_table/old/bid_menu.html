@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+    <h3>Submit New Bid - {{ current_auction_user.team_name }} </h3>
+    <form action="" method="POST" class="post-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" action="" name="submit_new_bid" class="save btn btn-secondary">Submit</button>
+        
+    </form>
+    
+    <form action="" method="POST" class="post-form">
+        {% csrf_token %}
+    <button type="submit" action="" name="drop_out" class="save btn btn-secondary">Drop Out</button> 
+    </form>
+
+
+    <form action="" method="POST" class="post-form">
+        {% csrf_token %}
+    <button type="submit" action="" name="pass" class="save btn btn-secondary">Pass</button> 
+    </form>
+{% endblock %}

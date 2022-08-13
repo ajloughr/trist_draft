@@ -1,0 +1,188 @@
+TODO: 
+
+FINAL TODO:
+    x flashing nav bar when its your turn
+    x add ability to refresh all
+    x space selected player search boxes
+    - add ability to quickly control users
+    x allow login from non auction user
+    x add title and legend for auction table
+    x rfa skip the Submit rfa section
+    x make help and bathroom block hidden by default on load
+    x fix layout of player search buttons
+    - add player details to rfa match_1, raise, match 2 toasts
+    - check for TODOs in code
+    x find a better way do to RFAs remaining
+    x add help toggle
+    x hide admin nav if not admin
+    x make background of toast rows solid white
+    x update the home page
+    x add toilet icon to replace draft order when in toilet mode
+    
+
+
+
+Optimization
+    move update tasks to specific html
+        separate updates to specific things to specific functions
+    pass all information needed in function
+
+Admin Panel
+    x Reset to specific user
+    - give back passes 
+    - bring people back into Bidding
+    - set people bids
+
+NFL Data
+    x Import NFL Data
+    x allow users to select player for bidding
+        x add player to top
+        
+    x manually adding player 
+    x add ability to add RFAs from team rfa list
+    x Develop incrementing through RFAs
+        x allow users to select from their RFAs
+        x skip people who have none
+    
+    IMPORT COMMAND: 
+        #OLD copy auction_table_nfl_player(team_short_name,team,team_id,position,first_name,last_name,full_name,jersey_number,age,height,weight,madden_score,total_salary,signing_bonus,birthday,years_pro) from '/home/2022_nfl_data_from_madden.csv' delimiter ',' CSV HEADER;
+        copy auction_table_nfl_player(player_id,full_name,team_short_name,team,position,drafted_by) from '/home/2022_fantasypros_data.csv' delimiter ',' CSV HEADER;
+Team budget
+    x Add budget to teams
+    check bid to see if team has money
+    update current total after win
+
+Rookie draft
+    Snake draft
+    x only draft no bidding
+
+
+Bidding
+    x Add YEARS of contract to bid
+        x Add years to table
+        x add box 
+    x Update bid input to current bid + 1
+    x add initiated auction to auction manager
+    x confirmation on at least drop out
+    
+    x bid contract years for user should sart at 1
+
+    x if you raise years you also must raise bid
+
+    x if last person drops out end bidding
+
+    x change bid submit to include user
+        x add hidden text field with username in
+    
+    x should a user be able to drop out at any time? 
+        solved by bathroom button
+    
+    x disable pass button for 2/3 users left 
+    
+    x Display results in modal?toast?
+
+    check that user has enough money
+    
+Rookie Draft 
+    x rookie is not an auction its just a draft
+
+    add confirmation if player is not found in db?
+
+    x fix search appearing on all screens 
+    
+
+
+RFA Draft
+    Bid Process
+        owner put up player
+        owner bid number of years
+            disable all but years for person who initiated rfa (if highest bid = 0)
+        all but owner bid
+        owner match y/n
+        winner raise
+            only raise money but also years?
+        owner match y/n
+        remove RFA from initial owner rfa list
+    
+    x allow same user to present rfa repeatedly if only user left
+    
+    x add team and player info to confirm toasts
+
+    x toasts need to come back on refresh
+
+    x Add modal to ask if winner for final raise
+
+    x add modal to ask original owner if they will match
+
+    x after final answer, move to next person with RFAs available
+
+    x hide search and show 
+
+    RFAs cost 1$, subtract 1$ from total budget or simply show number remaining
+        Show number of RFAs remaining to be bid for each player
+
+UFA Draft
+    Bid Process
+        x owner number of years + bid
+            x disable pass and dropout for first bid
+        x all bid
+
+    x allow same user to go repeatedly if only user left
+
+Saving bid Data
+    x Make bid results table
+        player name
+        player team
+        player position
+        what team won
+        Bid won
+        Years
+        auction type (rookie, RFA, UFA)
+    x mark player as sold
+
+
+
+
+
+
+Extras
+    Notification/sound that you are next - toast
+    honk at people
+    bid timer
+    Not allow users to submit lower bid
+
+
+Things to remove
+    UUID stuff from bids
+    Remove initiated auction from user
+
+TODD NOTES: 
+    x rookie draft get next user is broken
+    x update text on waiting for rfa to show "waiting for rasie"
+    x label years
+    x separate search from selection box
+    x rfa starts at 1, first bid is at 2
+    x add pass button for ufa selection, unlimited passes
+    x ufa initial bid broken, stuck at 0
+    x all drafted players listed as rookie
+    x add column in drafted players for is_manual
+    - highlight the next step in the process
+    x leave draft button - skips them during drafting
+        - disable bathroom toggle when it is your turn
+    - filter player list: rb(hb, fb, ), wr, te, kicker, defense, qb
+    - change defense to defense 
+
+    
+
+    
+
+    
+
+    
+
+    
+
+Useful Links: 
+
+https://channels.readthedocs.io/en/stable/tutorial/index.html
+https://www.codemag.com/article/1511031/CRUD-in-HTML-JavaScript-and-jQuery

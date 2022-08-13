@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h3>Submit New Bid - {{ current_auction_user.team_name }} </h3>
+<form action="" method="POST" class="post-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" action="" name="submit_new_bid" class="save btn btn-secondary">Submit</button>
+    
+</form>
+
+{% endblock content %}
+
+{% block javascript %}
+<!-- <script>
+    $("#id_new_bid").change(function () {
+      console.log( $(this).val() );
+    });
+</script> -->
+<script>
+    $("#id_new_bid").change(function () {
+      var bid_check = $(this).val();
+      console.log("bid_check: " + String(bid_check))
+
+      $.ajax({
+        url: '/ajax_bid_menu_check/',
+        data: {
+          'bid_check': bid_check
+        },
+        dataType: 'json',
+        success: function (data) {
+        
+            alert("Verified Bid: " + data.bid_check_data);
+        
+        }
+      });
+
+    });
+</script>
+
+
+{% endblock javascript %}

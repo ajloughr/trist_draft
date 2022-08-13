@@ -1,0 +1,442 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="card mx-auto mb-3">
+        <div class="card-header d-flex justify-content-between">
+            <span><strong>Player Selection</strong></span>
+        </div>
+        
+        <div class="container px-5 py-3" id="selected_player_div" style="display: none;">
+            <form class="pb-3">
+                <div class="container data-rookie_help" style="display: none;" >
+                    <span  class="fa-layers fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="The selected player details will be populated here. If the desired player was not found in the search, enter their details here. When ready, click Submit to draft the player.">
+                        <i  class="fa-solid fa-circle fa-lg" style="color:rgb(243, 156, 18)"></i>
+                        <i class="fa-inverse fa-solid fa-3 fa-lg" data-fa-transform="shrink-6"></i>
+                    </span>
+                </div>
+                <div class="container data-ufa_help" style="display: none;">
+                    <span  class="fa-layers fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="The selected player details will be populated here. If the desired player was not found in the search, enter their details here. When ready, click Submit select that player for auction.">
+                        <i  class="fa-solid fa-circle fa-lg" style="color:rgb(243, 156, 18)"></i>
+                        <i class="fa-inverse fa-solid fa-3 fa-lg" data-fa-transform="shrink-6"></i>
+                    </span>
+                </div>
+                <div class="row justify-content-start pb-2">
+                    <div class="col-12 text-left">
+                        <label for="contract_year_selected_radio"><strong>Selected Player</strong></label>
+                    </div>
+                </div>
+                <div class="row justify-content-between">
+                    <div class="col-9">
+                            <div class="input-group">
+                                <input type="text" id="selected_player_name" class="form-control" placeholder="Player Name">
+                                <input type="text" id="selected_player_team" class="form-control" placeholder="Team Name">
+                                <input type="text" id="selected_player_position" class="form-control" placeholder="Position">
+                            </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="btn-toolbar d-flex justify-content-between">
+                            <button id="submit_selected_player" class="btn btn-success tooltip-delay" type="button" data-bs-toggle="tooltip-delay" data-bs-placement="top" title="Submit the Selected Player for auction. If in Rookie Draft, then player will be immediately drafted.">Submit</button>
+                            <button id="drop_out_player_selection" class="btn btn-danger tooltip-delay" type="button" data-bs-toggle="tooltip-delay" data-bs-placement="top" title="Drop out of player selection. If selected, you will will no longer be able to put players up for auction">
+                                <span data-bs-toggle="modal" data-bs-target="#drop_out_of_selection_confirmation_modal">Drop Out</span>
+                            </button>
+                            <button id="pass_player_selection" class="btn btn-warning tooltip-delay" type="button" data-bs-toggle="tooltip-delay" data-bs-placement="top" title="Pass on player selection. Selection will move to the next team. Unlimited selection passes may be used.">Pass</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <hr>
+        </div>
+
+        
+        
+        <div class="container px-5 py-2" id="player_search_value_div"  style="display: none;">
+            <div class="container data-rookie_help" style="display: none;">
+                <span  class="fa-layers fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="First, enter the name of the desired player.">
+                    <i  class="fa-solid fa-circle fa-lg" style="color:rgb(243, 156, 18)"></i>
+                    <i class="fa-inverse fa-solid fa-1 fa-lg" data-fa-transform="shrink-6"></i>
+                </span>
+            </div>
+            <div class="container data-ufa_help" style="display: none;">
+                <span  class="fa-layers fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="First, enter the name of the desired player.">
+                    <i  class="fa-solid fa-circle fa-lg" style="color:rgb(243, 156, 18)"></i>
+                    <i class="fa-inverse fa-solid fa-1 fa-lg" data-fa-transform="shrink-6"></i>
+                </span>
+            </div>
+            <form>
+
+                <div class="row justify-content-start pb-2">
+                    <!-- <div class="col-1">
+                        <button type="button data-rookie_help"  class="btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
+                            <span  class="fa-layers fa-fw">
+                                <i  class="fa-solid fa-circle fa-lg" style="color:rgb(243, 156, 18)"></i>
+                                <i class="fa-inverse fa-solid fa-1 fa-lg" data-fa-transform="shrink-6"></i>
+                            </span>
+                        </button>
+                    </div> -->
+                    <div class="col-12 text-left">
+                        <label for="contract_year_selected_radio"><strong>Player Name Search</strong></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <input type="text" min="1" step="1" id="player_search_value" class="form-control" placeholder="Enter a player name">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="container px-5 py-3" id="rfa_selector_div"  style="display: none;">
+            <div class="container data-rfa_help" style="display: none;">
+                <span class="fa-layers fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="First, select a RFA from the dropdown and click Submit.">
+                    <i  class="fa-solid fa-circle fa-lg" style="color:rgb(243, 156, 18)"></i>
+                    <i class="fa-inverse fa-solid fa-1 fa-lg" data-fa-transform="shrink-6"></i>
+                </span>
+            </div>
+            <div class="row justify-content-start pb-2">
+                <div class="col-12 text-left">
+                    <label for="contract_year_selected_radio"><strong>RFA List</strong></label>
+                </div>
+            </div>
+            <form>
+                <div class="row">
+                <div class="col">
+                        <select class="form-select" id="rfa_selector" aria-label="Default select example">
+                        </select>
+                </div>
+                <div class="col-1">
+                    <button id="select_rfa_player" class="btn btn-success" type="button" onclick="rfa_player_selected()" >Submit</button>
+                </div>
+                </div>
+            </form>
+        </div>
+        
+        <div class="container px-5 py-3" id="search_results_table_div"  style="display: none;">
+            <div class="container data-ufa_help" style="display: none;">
+                <span class="fa-layers fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Next, click the + icon next to the desired player. If the desired player does not appear in the list, enter the details manually in Step 3.">
+                    <i  class="fa-solid fa-circle fa-lg" style="color:rgb(243, 156, 18)"></i>
+                    <i class="fa-inverse fa-solid fa-2 fa-lg" data-fa-transform="shrink-6"></i>
+                </span>
+            </div>
+            <div class="container data-rookie_help" style="display: none;">
+                <span class="fa-layers fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Next, click the + icon next to the desired player. If the desired player does not appear in the list, enter the details manually in Step 3.">
+                    <i  class="fa-solid fa-circle fa-lg" style="color:rgb(243, 156, 18)"></i>
+                    <i class="fa-inverse fa-solid fa-2 fa-lg" data-fa-transform="shrink-6"></i>
+                </span>
+            </div>
+            <div class="row justify-content-start pb-2">
+                <div class="col-12 text-left">
+                    <label for="contract_year_selected_radio"><strong>Player Search Results</strong></label>
+                </div>
+            </div>
+            <table class="table table-bordered" id="search_results_table">
+                <thead class="table-secondary">
+                    <tr class="text-center">
+                        <th>Player Name</th>
+                        <th>Team Name</th>
+                        <th>Position</th>
+                        <th>Drafted By</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <div class="container text-center pb-3" id="no_players_found">
+                <h3>No Players found...</h3>
+            </div>
+        </div>
+        
+        
+    </div>
+
+    <div class="modal fade" id="drop_out_of_selection_confirmation_modal" tabindex="-1" aria-labelledby="drop_out_of_selection_confirmation_modal_Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="drop_out_of_selection_confirmation_modal_Label">Drop Out Confirmation</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to drop out of player selection? If you click yes, you will will no longer be able to put players up for auction.
+            </div>
+            <div class="modal-footer d-flex justify-content-between">
+                <button type="button" class="btn btn-success" id="drop_out_of_selection_confirm" data-bs-dismiss="modal">Yes</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    
+{% endblock %}
+
+{% block javascript %}
+
+
+<script>
+    //fix me?
+    //var current_auction_type_display = $('#current_auction_type').val();
+    //
+    //if (current_auction_type_display == 'Rookie') {
+    //    document.getElementById('admin_auction_type_selected_rookie').checked = true;
+    //} else if (current_auction_type_display == 'Restricted Free Agent') {
+    //    document.getElementById('admin_auction_type_selected_ufa').checked = true;
+    //} else if (current_auction_type_display == 'Unrestricted Free Agent') {
+    //    document.getElementById('admin_auction_type_selected_rfa').checked = true;
+    //}
+
+    console.log("Attempting to connect to websocket: " + window.location.host)
+    var socket = new WebSocket('wss://' + window.location.host + '/ws/auction_table/');
+        
+    socket.onmessage = function(e) {
+        var data = JSON.parse(e.data);
+
+        console.log("AS WS Data Received: " + data.type)
+        //console.log(data);
+        if (data.type == "player_search_results"){
+            search_result_data = JSON.parse(data.search_result_data);
+            searching_team = data.searching_team;
+            //console.log("Search Result Data: " + JSON.stringify(search_result_data));
+            update_search_results_table(search_result_data,searching_team)
+        } else if (data.type == "user_rfa_results"){
+            user_rfa_results_data = JSON.parse(data.user_rfa_results_data);
+            // console.log("RFA result Data: " + JSON.stringify(user_rfa_results_data));
+            if(data.team_name == $("#current_auction_user_team").val()){
+                update_rfa_select(user_rfa_results_data)
+            }
+            
+        }
+        
+    };
+
+    function get_rfas_for_user(){
+        console.log("Get RFAs request Submitted")
+        socket.send(JSON.stringify({
+            'get_rfas_for_user': true,
+            'team_name': $("#current_auction_user_team").val(),
+            // 'admin_bid_override': $("#admin_bid_override").is(":checked")
+        }));
+
+    }
+    
+    function update_rfa_select(rfa_data) {
+        //this idea of deleting all options and rebuilding is not the most optimized
+        //but it is much less likely to produce inaccurate lists than trying to add and remove individual elements
+        var rfa_select_element = document.getElementById("rfa_selector");
+                
+        var select_options =  $("#rfa_selector option")
+
+        //remove all old rfa options
+        $(".form-select[id='rfa_selector'] option").each(function() {
+            $(this).remove();
+        });
+
+        option_data_array = ["full_name", "team","position"]
+
+        console.log("Rebuilding RFA List: " + rfa_data.length)
+
+        // //TODO: remove all rows and redraw with display name headers
+
+        if (rfa_data.length == 0) {
+            console.log("No RFAs remaining")
+            $("#rfa_selector").append('<option>No RFAs Remaining...</option>')
+        } else {
+            // document.getElementById("no_players_found").style.display = "none";
+            console.log("Some RFAs exist")
+        }
+
+        for (var i = 0; i < rfa_data.length; i++) {
+            //iterate through rows
+            //console.log("Draft Order: " + new_table_data[i].fields.draft_order )
+
+            var new_row_html = '<option>'
+            
+            new_row_html = new_row_html + rfa_data[i].fields[option_data_array[0]]
+
+            for (var j = 1; j < option_data_array.length; j++) {
+                //iterate through columns
+                new_col_value = rfa_data[i].fields[option_data_array[j]]
+                //console.log("    " + option_data_array[j] + ": " + new_col_value )
+                new_row_html = new_row_html +  " | " + new_col_value
+
+            }
+            
+            new_row_html = new_row_html + "</option>"
+
+            $("#rfa_selector").append(new_row_html)
+
+        }
+
+    }
+
+    function update_search_results_table(player_search_results,searching_team) {
+        //console.log("Received results for " + searching_team)
+        if (searching_team != $("#current_auction_user_team").val()){
+            console.log("Received results for " + searching_team + " which is not our team - " + $("#current_auction_user_team").val());
+            return;
+        }
+
+        var search_result_table = document.getElementById("search_results_table");
+        
+        var num_result_rows =  $("#search_results_table tr").length
+        //console.log("Current Table Rows: " + num_result_rows)
+        //prevent attempt to delete data if only header is showing
+        if(num_result_rows > 1) {
+            for (var row_index = 1; row_index <= num_result_rows-1; row_index++) {
+                //console.log("Removing old row: " + row_index)
+                search_result_table.deleteRow(-1)
+            }
+        }
+
+        table_columns_array = ["full_name", "team","position","drafted_by"]
+
+        console.log("Rebuilding Search Results: " + player_search_results.length)
+
+        //TODO: remove all rows and redraw with display name headers
+
+        if (player_search_results.length == 0) {
+            console.log("No players found")
+            document.getElementById("no_players_found").style.display = "block";
+        } else {
+            document.getElementById("no_players_found").style.display = "none";
+            console.log("Hiding no players found")
+        }
+
+        for (var i = 0; i < player_search_results.length; i++) {
+            //iterate through rows
+            //console.log("Draft Order: " + new_table_data[i].fields.draft_order )
+
+            var new_row_html = '<tr class="text-center">'
+
+            for (var j = 0; j < table_columns_array.length; j++) {
+                //iterate through columns
+                new_col_value = player_search_results[i].fields[table_columns_array[j]]
+                //console.log("    " + table_columns_array[j] + ": " + new_col_value )
+                new_row_html = new_row_html +  "<td>" + new_col_value + "</td>"
+
+            }
+
+            // select_player_button = '<button type="button" class="btn btn-success" onclick="search_player_selected(' + player_search_results[i].pk + ')" >+</button>'
+            
+            if (player_search_results[i].fields["drafted_by"] != "Undrafted" || searching_team.length == 0) {
+                select_player_button = '<button type="button" class="btn btn-success" disabled >+</button>' 
+            } else {
+                select_player_button = '<button type="button" class="btn btn-success" onclick="search_player_selected(' + i + ')" >+</button>' 
+            }
+            
+
+            new_row_html = new_row_html +  "<td>" + select_player_button + "</td>"
+
+
+            new_row_html = new_row_html + "</tr>"
+
+            $("#search_results_table tbody").append(new_row_html)
+
+        }
+
+    }
+
+    $('#player_search_value').bind('keyup', function(e) {
+        const player_search_text = $('#player_search_value').val();
+
+        console.log("Search Text: " + player_search_text)
+        socket.send(JSON.stringify({
+            'player_search_text': player_search_text,
+            'searching_team': $("#current_auction_user_team").val()
+        }));
+
+
+    });
+
+    function rfa_player_selected() {
+
+        var selected_rfa = $("#rfa_selector").val();
+        console.log("Player Selected: " + selected_rfa)
+
+        selected_rfa_as_list = selected_rfa.split(" | ")
+
+        //$("#selected_player_name").val(selected_rfa_as_list[0])
+        //$("#selected_player_team").val(selected_rfa_as_list[1])
+        //$("#selected_player_position").val(selected_rfa_as_list[2])
+
+        socket.send(JSON.stringify({
+            'submitted_player_name': selected_rfa_as_list[0],
+            'submitted_player_team': selected_rfa_as_list[1],
+            'submitted_player_position': selected_rfa_as_list[2],
+            'team_name': $("#current_auction_user_team").val(),
+            'admin_bid_override': $("#admin_bid_override").is(":checked")
+        }));
+
+    };
+
+    
+    function search_player_selected(player_selected_row,is_rfa) {
+
+        console.log("Player Selected: " + player_selected_row)
+
+        var search_results_table = document.getElementById("search_results_table");
+
+        $("#selected_player_name").val(search_results_table.rows[player_selected_row + 1].cells[0].textContent)
+        $("#selected_player_team").val(search_results_table.rows[player_selected_row + 1].cells[1].textContent)
+        $("#selected_player_position").val(search_results_table.rows[player_selected_row + 1].cells[2].textContent)
+
+    };
+    
+    document.querySelector('#submit_selected_player').onclick = function(e) {
+        var submitted_player_name = $('#selected_player_name').val();
+        var submitted_player_team = $('#selected_player_team').val();
+        var submitted_player_position = $('#selected_player_position').val();
+
+        console.log("Submitted New Player for Auction: " + submitted_player_name)
+
+        if(submitted_player_name && submitted_player_team && submitted_player_position) {
+            
+            $("#selected_player_name").val("")
+            $("#selected_player_team").val("")
+            $("#selected_player_position").val("")
+            $("#player_search_value").val("")
+            $("#player_search_value").trigger('keyup');
+            
+            socket.send(JSON.stringify({
+                'submitted_player_name': submitted_player_name,
+                'submitted_player_team': submitted_player_team,
+                'submitted_player_position': submitted_player_position,
+                'team_name': $("#current_auction_user_team").val(),
+                'admin_bid_override': $("#admin_bid_override").is(":checked")
+            }));
+        } else {
+            console.log("Invalid player data submitted...")
+        }
+
+    
+
+
+    };
+
+    document.querySelector('#drop_out_of_selection_confirm').onclick = function(e) {
+
+        console.log("Team Dropped out of Player Selection: " + $("#current_auction_user_team").val())
+
+        socket.send(JSON.stringify({
+            'drop_out_player_selection': true,
+            'team_name': $("#current_auction_user_team").val(),
+            'admin_bid_override': $("#admin_bid_override").is(":checked")
+        }));
+
+    };
+
+    document.querySelector('#pass_player_selection').onclick = function(e) {
+
+        console.log("Team Passed Player Selection: " + $("#current_auction_user_team").val())
+
+        socket.send(JSON.stringify({
+            'pass_player_selection': true,
+            'team_name': $("#current_auction_user_team").val(),
+            'admin_bid_override': $("#admin_bid_override").is(":checked")
+        }));
+
+    };
+
+</script>
+
+{% endblock javascript %}

@@ -1,0 +1,43 @@
+version: "3.8"
+services:
+
+  django_postgres:
+    image: postgres
+    container_name: django_postgres
+    ports:
+      - "5434:5432"
+    volumes:
+      - /mnt/user/docker/django/django_postgres:/var/lib/postgresql/data
+    # environment:
+    #   - POSTGRES_NAME=postgres
+    #   - POSTGRES_USER=${POSTGRES_USER}
+    #   - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    env_file:
+      - ./django.env
+
+  django:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    container_name: django
+    volumes:
+      - /mnt/user/docker/django:/code
+    ports:
+      - "8000:8000"
+    # environment:
+    #   - POSTGRES_NAME=postgres
+    #   - POSTGRES_PORT=5434
+    #   - POSTGRES_USER=${POSTGRES_USER}
+    #   - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    depends_on:
+      - django_postgres
+    env_file:
+      - ./django.env
+
+  redis:
+    image: redis:5
+    container_name: django_redis
+    ports:
+     - "6379:6379"
+    volumes:
+      - /mnt/user/docker/django/django_redis:/var/lib/redis
+      - /mnt/user/docker/django/django_redis/redis.conf:/usr/local/etc/redis/redis.conf

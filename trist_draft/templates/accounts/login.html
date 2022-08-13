@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Trist Draft Login{% endblock %}
+
+{% block content %}
+<!-- <h1>Trist Draft Login</h1> -->
+<!-- <div style='margin-top:30px;'>
+    <form method='POST'> {% csrf_token %}
+        {% if error %}
+            <p style='color:red'>{{error}}</p>
+        {% endif %}
+        <div>
+            <input type='text' name='username' placeholder='username' />
+        </div>
+        <div>
+            <input type='password' name='password' placeholder='password' />
+        </div>
+        <button type='submit'>Login</button>
+    </form>
+</div> -->
+
+
+<section class="vh-100" style="background-color: #5A1414;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card shadow-2-strong" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+  
+              <h3 class="mb-5">Sign in</h3>
+              <form method='POST'> {% csrf_token %}
+                {% if error %}
+                    <div class="alert alert-danger" role="alert">
+                        {{error}}
+                    </div>
+                    <!-- <p style='color:red'>{{error}}</p> -->
+                {% endif %}
+                <div class="form-outline mb-4">
+                    <input type="text" id="username" name='username' class="form-control form-control-lg" placeholder='username' />
+                </div>
+    
+                <div class="form-outline mb-4">
+                    <input type="password" id="password"  name='password' class="form-control form-control-lg" placeholder='password' />
+                </div>
+    
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+                </form>
+              <hr class="my-4">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+{% endblock %}

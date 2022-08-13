@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="d-flex mx-2 justify-content-center mb-3">
+    <div class="card" id="bid_menu_card" style="display:none;">
+        <!-- <div class="card-header d-flex justify-content-between"> -->
+        <div class="card-header d-flex justify-content-start">
+            <span><strong>Submit New Bid</strong></span>
+            <!-- <span>{{ current_auction_user.team_name }}</span> -->
+        </div>
+        
+        <div class="container">
+            <div class="row justify-content-center pt-3">
+                <div class="col-4 text-center">
+                    <div class="container data-rfa_help" style="display: none;">
+                        <span class="fa-layers fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Next, select the number of contract years.">
+                            <i  class="fa-solid fa-circle fa-lg" style="color:rgb(243, 156, 18)"></i>
+                            <i class="fa-inverse fa-solid fa-2 fa-lg" data-fa-transform="shrink-6"></i>
+                        </span>
+                    </div>
+                    <div class="container data-ufa_help" style="display: none;">
+                        <span class="fa-layers fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Next, select the number of contract years.">
+                            <i  class="fa-solid fa-circle fa-lg" style="color:rgb(243, 156, 18)"></i>
+                            <i class="fa-inverse fa-solid fa-4 fa-lg" data-fa-transform="shrink-6"></i>
+                        </span>
+                    </div>
+                    <label for="contract_year_selected_radio"><strong>Contract Years</strong></label>
+                </div>
+                <div class="col-6 text-center">
+                    <div class="container data-rfa_help" style="display: none;">
+                        <span class="fa-layers fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Finally, click Submit to start the bidding. Your initial bid is locked in at $1 for RFA player selection.">
+                            <i  class="fa-solid fa-circle fa-lg" style="color:rgb(243, 156, 18)"></i>
+                            <i class="fa-inverse fa-solid fa-3 fa-lg" data-fa-transform="shrink-6"></i>
+                        </span>
+                    </div>
+                    <div class="container data-ufa_help" style="display: none;">
+                        <span class="fa-layers fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Finally, enter the contract price and click Submit to start the bidding.">
+                            <i  class="fa-solid fa-circle fa-lg" style="color:rgb(243, 156, 18)"></i>
+                            <i class="fa-inverse fa-solid fa-5 fa-lg" data-fa-transform="shrink-6"></i>
+                        </span>
+                    </div>
+                    <label for="new_bid_input_group"><strong>Contract Price</strong></label>
+                </div>
+            </div>
+            <div class="row text-center justify-content-center">
+                <div class="col-4">
+                    <!-- <div class="btn-toolbar" role="toolbar" id="contract_years_selected_button_toolbar"> -->
+                        
+                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group" id="contract_year_selected_radio">
+                            <input type="radio" class="btn-check" name="contract_year_selected" id="contract_year_selected_1" autocomplete="off" value="1">
+                            <label class="btn btn-outline-primary" for="contract_year_selected_1"><strong>1</strong></label>
+                        
+                            <input type="radio" class="btn-check" name="contract_year_selected" id="contract_year_selected_2" autocomplete="off" value="2">
+                            <label class="btn btn-outline-primary" for="contract_year_selected_2"><strong>2</strong></label>
+                        
+                            <input type="radio" class="btn-check" name="contract_year_selected" id="contract_year_selected_3" autocomplete="off" value="3">
+                            <label class="btn btn-outline-primary" for="contract_year_selected_3"><strong>3</strong></label>
+                        </div>
+
+                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group" id="contract_year_selected_radio_disabled" disabled>
+                            <input type="radio" class="btn-check" name="contract_year_selected_disabled" id="contract_year_selected_1_disabled" autocomplete="off" value="1" disabled>
+                            <label class="btn btn-outline-primary" for="contract_year_selected_1_disabled"><strong>1</strong></label>
+                        
+                            <input type="radio" class="btn-check" name="contract_year_selected_disabled" id="contract_year_selected_2_disabled" autocomplete="off" value="2" disabled>
+                            <label class="btn btn-outline-primary" for="contract_year_selected_2_disabled"><strong>2</strong></label>
+                        
+                            <input type="radio" class="btn-check" name="contract_year_selected_disabled" id="contract_year_selected_3_disabled" autocomplete="off" value="3" disabled>
+                            <label class="btn btn-outline-primary" for="contract_year_selected_3_disabled"><strong>3</strong></label>
+                        </div>
+                    <!-- </div> -->
+                </div>    
+                <!-- px-5 pt-3 pb-2 -->
+                <div class="col-6">
+                    <div class="input-group" role="group" id="new_bid_input_group"> 
+                        <input type="number" min="1" step="1" id="id_new_bid" class="form-control" placeholder="New Bid" >
+                        <button id="submit_new_bid_button" class="btn btn-success tooltip-delay" type="button" data-bs-toggle="tooltip-delay" data-bs-placement="top"  title="Submit a bid for the currently selected Contract Years and Contract Price">Submit</button>
+                    </div>
+                </div>
+
+                
+            </div>
+                    
+            <div class="row text-center justify-content-center pb-3 pt-3">
+                <!-- <div class="btn-toolbar justify-content-evenly px-5 pt-2 pb-3"> -->
+                    <div class="col-4">
+                        <button type="button" id="pass_button" name="pass" class="btn btn-warning btn-lg tooltip-delay" data-bs-toggle="tooltip-delay" data-bs-placement="bottom"  title="Pass for the current round of bidding. Each team only gets one pass per player auction.">Pass</button>
+                    </div>
+                    <div class="col-4">
+                        <button type="button" id="drop_out_confirmation_button" class="btn btn-danger btn-lg tooltip-delay" data-bs-toggle="tooltip-delay" data-bs-placement="bottom"  title="Drop out of the auction for the current player. If confirmed, you will no longer be able to bid on the currently auctioned player." >
+                            <span data-bs-toggle="modal" data-bs-target="#drop_out_confirmation_modal">Drop Out</span>
+                        </button>
+                    </div>
+                <!-- </div> -->
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="drop_out_confirmation_modal" tabindex="-1" aria-labelledby="drop_out_confirmation_modal_Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="drop_out_confirmation_modal_Label">Drop Out Confirmation</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to drop out of the current auction?
+            </div>
+            <div class="modal-footer d-flex justify-content-between">
+                <button type="button" class="btn btn-success" id="drop_out_button" data-bs-dismiss="modal">Yes</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    
+                <!-- <button type="button" id="drop_out_button" name="drop_out" class="btn btn-danger btn-lg">Drop Out</button> -->
+{% endblock %}

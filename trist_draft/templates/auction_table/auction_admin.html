@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="card mx-auto my-3" style="width: 30rem;">
+        <div class="card-header d-flex justify-content-between">
+            <span><strong>Auction Admin Panel</strong></span>
+        </div>
+        <div class="btn-group px-5 py-3" role="group" aria-label="Basic radio toggle button group" id="admin_auction_type_selected_radio">
+            <input type="radio" class="btn-check" name="admin_auction_type_selected" id="admin_auction_type_selected_rookie" autocomplete="off" value="rookie">
+            <label class="btn btn-outline-primary" for="admin_auction_type_selected_rookie"><strong>Rookie</strong></label>
+        
+            <input type="radio" class="btn-check" name="admin_auction_type_selected" id="admin_auction_type_selected_rfa" autocomplete="off" value="rfa">
+            <label class="btn btn-outline-primary" for="admin_auction_type_selected_rfa"><strong>RFA</strong></label>
+        
+            <input type="radio" class="btn-check" name="admin_auction_type_selected" id="admin_auction_type_selected_ufa" autocomplete="off" value="ufa">
+            <label class="btn btn-outline-primary" for="admin_auction_type_selected_ufa"><strong>UFA</strong></label>
+        </div>
+        <div class="input-group px-5 py-3" >
+            <input type="number" min="1" step="1" id="new_bid_start_num" class="form-control" placeholder="New Bid Start" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <button id="start_new_bid_button" class="btn btn-success btn-lg" type="button" >Start</button>
+        </div>
+
+
+        <div class="btn-toolbar justify-content-evenly px-5 py-2">
+            <button type="button" id="reset_users_button" name="reset" class="btn btn-danger btn-lg">Reset Users</button>
+            <button type="button" id="reset_manager_button" name="reset" class="btn btn-danger btn-lg">Reset Manager</button>
+        </div>
+
+        <div class="btn-toolbar justify-content-evenly px-5 py-2">
+            <button type="button" id="reset_drop_outs" name="reset" class="btn btn-danger btn-lg">Reset Drop Outs</button>
+            <button type="button" id="admin_refresh_all" name="reset" class="btn btn-secondary btn-lg" onclick="admin_send_refresh('all')">Refresh All</button>
+        </div>
+
+        <div class="btn-toolbar justify-content-evenly px-5 py-2">
+            <button type="button" id="admin_refresh_all" name="reset" class="btn btn-secondary btn-lg" onclick="update_rfas_remaining()">Fix RFAs Remaining</button>
+        </div>
+
+        <div class="input-group justify-content-evenly px-5 py-2" >
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="admin_bid_override">
+                <label class="form-check-label" for="admin_bid_override">Bid Override</label>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}
+
+{% block javascript %}
+
+<script>
+    
+    $("#start_new_bid_button").val(1)
+    document.getElementById('admin_auction_type_selected_rookie').checked = true;
+    //fix me?
+    //var current_auction_type_display = $('#current_auction_type').val();
+    //
+    //if (current_auction_type_display == 'Rookie') {
+    //    document.getElementById('admin_auction_type_selected_rookie').checked = true;
+    //} else if (current_auction_type_display == 'Restricted Free Agent') {
+    //    document.getElementById('admin_auction_type_selected_ufa').checked = true;
+    //} else if (current_auction_type_display == 'Unrestricted Free Agent') {
+    //    document.getElementById('admin_auction_type_selected_rfa').checked = true;
+    //}
+
+
+    document.querySelector('#start_new_bid_button').onclick = function(e) {
+        const new_start_input = document.querySelector('#new_bid_start_num');
+        const new_start_num = new_start_input.value;
+
+        const new_bid_type = $('input[name=admin_auction_type_selected]:checked').val();
+
+        console.log("Request start new bid at: " + new_start_num)
+        socket.send(JSON.stringify({
+            'new_bid_start': new_start_num,
+            'new_bid_type' : new_bid_type
+        }));
+
+    };
+
+    document.querySelector('#reset_users_button').onclick = function(e) {
+        console.log("Reset Users Submitted")
+        socket.send(JSON.stringify({
+            'reset_users': true
+        }));
+    };
+
+    document.querySelector('#reset_manager_button').onclick = function(e) {
+        console.log("Reset Manager Submitted")
+        socket.send(JSON.stringify({
+            'reset_manager': true
+        }));
+    };
+
+    document.querySelector('#reset_drop_outs').onclick = function(e) {
+        console.log("Reset Drop Outs Submitted")
+        socket.send(JSON.stringify({
+            'reset_drop_outs': true
+        }));
+    };
+
+    function admin_send_refresh(refresh_target){
+        console.log("Refresh Submitted")
+        socket.send(JSON.stringify({
+            'refresh': true,
+            'target':refresh_target
+        }));
+    }
+
+    function update_rfas_remaining(){
+        console.log("Refresh Submitted")
+        socket.send(JSON.stringify({
+            'update_rfas_remaining': true
+        }));
+    }
+
+</script>
+
+{% endblock javascript %}
