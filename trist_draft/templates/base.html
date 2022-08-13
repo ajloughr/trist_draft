@@ -22,12 +22,7 @@
     <link href="{% static 'css/custom.css' %}" rel="stylesheet">
     <!-- <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet"> -->
     
-    <script>
-        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-          return new bootstrap.Tooltip(tooltipTriggerEl)
-        })
-    </script>
+
 
     
     
@@ -63,7 +58,7 @@
             
             // Showing and hiding tooltip with different speed
             $(".tooltip-delay").tooltip({
-                delay: {show: 1000, hide: 200}
+                //delay: {show: 1000, hide: 200}
                 
             }); 
 
@@ -71,6 +66,9 @@
                 sanitize: false
                 //filter: alpha(opacity=100)
                 //tooltip-opacity: 1 
+            }); 
+            $(document).ready(function() {
+                $('[data-bs-toggle=tooltip]').tooltip();
             }); 
         });
     </script>

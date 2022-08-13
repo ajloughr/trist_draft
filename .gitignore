@@ -1,1 +1,14 @@
 django.env
+django_postgres/PG_VERSION
+django_postgres/base/
+django_postgres/global/
+django_postgres/pg_ident.conf
+django_postgres/pg_logical/
+django_postgres/pg_multixact/
+django_postgres/pg_stat_tmp/
+django_postgres/pg_subtrans/
+django_postgres/pg_wal/
+django_postgres/pg_xact/
+django_postgres/postgresql.auto.conf
+django_postgres/postmaster.opts
+django_postgres/postmaster.pid

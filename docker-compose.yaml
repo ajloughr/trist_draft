@@ -7,7 +7,7 @@ services:
     ports:
       - "5434:5432"
     volumes:
-      - /mnt/user/docker/django/django_postgres:/var/lib/postgresql/data
+      - /mnt/user/docker/trist_draft/django_postgres:/var/lib/postgresql/data
     # environment:
     #   - POSTGRES_NAME=postgres
     #   - POSTGRES_USER=${POSTGRES_USER}
@@ -20,7 +20,7 @@ services:
     command: python manage.py runserver 0.0.0.0:8000
     container_name: django
     volumes:
-      - /mnt/user/docker/django:/code
+      - /mnt/user/docker/trist_draft:/code
     ports:
       - "8000:8000"
     # environment:
@@ -39,5 +39,5 @@ services:
     ports:
      - "6379:6379"
     volumes:
-      - /mnt/user/docker/django/django_redis:/var/lib/redis
-      - /mnt/user/docker/django/django_redis/redis.conf:/usr/local/etc/redis/redis.conf
+      - /mnt/user/docker/trist_draft/django_redis:/var/lib/redis
+      - /mnt/user/docker/trist_draft/django_redis/redis.conf:/usr/local/etc/redis/redis.conf
