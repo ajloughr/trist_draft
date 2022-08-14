@@ -1,6 +1,7 @@
 TODO: 
 
 FINAL TODO:
+    
     x flashing nav bar when its your turn
     x add ability to refresh all
     x space selected player search boxes
@@ -18,6 +19,7 @@ FINAL TODO:
     x make background of toast rows solid white
     x update the home page
     x add toilet icon to replace draft order when in toilet mode
+    - show all rfas and disable ones already selected
     
 
 
