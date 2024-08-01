@@ -58,6 +58,8 @@ class AuctionConsumer(WebsocketConsumer):
             # 'source_user_id': source_user_id
         }))
 
+    
+
     # Receive player search results
     def player_search_results(self, event):
         # source_user_id = self.scope["user"].id
@@ -66,6 +68,7 @@ class AuctionConsumer(WebsocketConsumer):
             'type': 'player_search_results',
             'search_result_data': event['search_result_data'],
             'searching_team': event['searching_team'],
+            'auction_manager_data': event['auction_manager_data'],
             # 'source_user_id': source_user_id
         }))
 
@@ -77,6 +80,13 @@ class AuctionConsumer(WebsocketConsumer):
             'user_rfa_results_data': event['user_rfa_results_data'],
         }))
 
+    # Receive rfa results
+    def draft_history_response(self, event):
+        self.send(text_data=json.dumps({
+            'type': 'draft_history_response',
+            'draft_history_data': event['draft_history_data'],
+            'team_requested': event['team_requested'],
+        }))
 
     # Receive end of auction info
     def auction_end_confirmation(self, event):
@@ -160,6 +170,55 @@ class AuctionConsumer(WebsocketConsumer):
         elif "update_rfas_remaining" in text_data_json:
             print("Consumer update rfas remaining")
             update_rfas_remaining()
+        elif "draft_history_request" in text_data_json:
+            print("Draft history requested")
+            send_draft_history(text_data_json['team_requested'])
+        elif "get_player_info" in text_data_json:
+            print("Player info requested")
+            get_player_info(text_data_json['player_info'])
+
+
+def send_draft_history(team_requested):
+    print("Auction Manager Update Received!")
+    
+    channel_layer = channels.layers.get_channel_layer()
+    group_name = settings.AUCTION_UPDATE_GROUP
+
+    draft_history = reversed(drafted_player.objects.all().order_by('pk'))
+    draft_history_s = serializers.serialize('json', draft_history)
+
+    async_to_sync(channel_layer.group_send)(
+        group_name,
+        {
+            'type': 'draft_history_response',
+            'draft_history_data': draft_history_s,
+            'team_requested' : team_requested
+        }
+    )
+
+def get_player_info(player_info):
+    print(f"Getting player data: {player_info}")
+    
+    channel_layer = channels.layers.get_channel_layer()
+    group_name = settings.AUCTION_UPDATE_GROUP
+
+    if "player_id" in player_info:
+        player_data = get_object_or_404(nfl_player,player_id=player_info["player_id"])
+    elif "player_name" in player_info:
+        player_data = get_object_or_404(nfl_player,full_name=player_info["player_name"])
+
+    if player_info:
+
+        async_to_sync(channel_layer.group_send)(
+            group_name,
+            {
+                'type': 'player_data_response',
+                'player_data': player_data,
+            }
+        )
+    else:
+        print("No player with provided data found")
+
 
 def toggle_bathroom_mode(toggle_team_name,bathroom_mode_state):
     user_team_model = get_object_or_404(auction_user,team_name=toggle_team_name)
@@ -177,8 +236,6 @@ def update_rfas_remaining():
     for this_auction_user in all_auction_users:
         this_auction_user.rfas_remaining = len(this_auction_user.current_rfa_list)
         this_auction_user.save()
-    
-
 
 def update_auction_table(refresh_target):
     print("Auction Manager Update Received!")
@@ -192,6 +249,9 @@ def update_auction_table(refresh_target):
     new_auction_manager = auction_manager.objects.filter(pk=1)
     new_auction_manager_s = serializers.serialize('json', new_auction_manager)
 
+    if refresh_target == 'all':
+        update_aution_user_current_roster_size()
+
     async_to_sync(channel_layer.group_send)(
         group_name,
         {
@@ -201,6 +261,23 @@ def update_auction_table(refresh_target):
             'update_target':refresh_target
         }
     )
+
+def update_aution_user_current_roster_size():
+    print("Updating auction users roster size")
+
+    new_auction_user_list = auction_user.objects.all()
+    
+
+    for this_auction_user in new_auction_user_list:
+
+        num_players = nfl_player.objects.filter(drafted_by=this_auction_user.team_name).count()
+        # print("  " + str(this_auction_user.team_name) + " - " + str(num_players))
+
+        this_auction_user.current_roster_size = num_players
+        this_auction_user.save()
+
+        
+
 
 def get_rfas_for_user(get_rfa_for_user_data):
     print("Getting rfas for user: " + get_rfa_for_user_data['team_name'])
@@ -269,8 +346,8 @@ def receive_auction_results_response(results_response_data):
         current_auction_manager.save()
 
         winning_player_name = current_auction_manager.player_for_auction_name
-        winning_contract_years = current_auction_manager.highest_bid
-        winning_contract_cost = current_auction_manager.highest_contract_years
+        winning_contract_years = current_auction_manager.highest_contract_years
+        winning_contract_cost = current_auction_manager.highest_bid
 
         channel_layer = channels.layers.get_channel_layer()
         group_name = settings.AUCTION_UPDATE_GROUP
@@ -287,6 +364,54 @@ def receive_auction_results_response(results_response_data):
                 'winning_contract_cost':winning_contract_cost
             }
         )
+    elif results_response_type == 'rfa_no_bid_winner_raised':
+        print("Last player offered chance to bid")
+        
+        raised_bid = int(results_response_data["raise_bid"])
+        print("Raised bid: " + str(raised_bid))
+
+        active_bidder_user = get_object_or_404(auction_user,draft_order=results_response_data['bid_draft_order'])
+
+        active_bidder_user.current_bid = results_response_data['raise_bid']
+        active_bidder_user.save()
+        
+        current_auction_manager.highest_bid = results_response_data['raise_bid']
+        current_auction_manager.team_with_highest_bid = active_bidder_user.draft_order
+        
+        current_auction_manager.save()
+
+        #update the highest bid with the raised number
+        # draft_winner_object.current_bid = raised_bid
+        # current_auction_manager.highest_bid = raised_bid
+        # current_auction_manager.auction_state = 'rfa_owner_match_request_2'
+
+        # draft_winner_object.save()
+        # current_auction_manager.save()
+
+        # winning_player_name = current_auction_manager.player_for_auction_name
+        # winning_contract_years = current_auction_manager.highest_bid
+        # winning_contract_cost = current_auction_manager.highest_contract_years
+
+        send_rfa_auction_bidding_end(active_bidder_user.team_name,initiated_auction_user_object.team_name)
+
+        # channel_layer = channels.layers.get_channel_layer()
+        # group_name = settings.AUCTION_UPDATE_GROUP
+
+        # async_to_sync(channel_layer.group_send)(
+        #     group_name,
+        #     {
+        #         'type': 'auction_end_confirmation',
+        #         'confirmation_step': 'rfa_owner_match_request_2',
+        #         'auction_winner':draft_winner_object.team_name,
+        #         'initiated_auction':initiated_auction_user_object.team_name,
+        #         'winning_player_name':winning_player_name,
+        #         'winning_contract_years':winning_contract_years,
+        #         'winning_contract_cost':winning_contract_cost
+        #     }
+        # )
+
+        refresh_auction_table("all")
+    
     elif results_response_type == 'rfa_bid_winner_raised':
         print("RFA winner raised, offering owner chance to match")
         
@@ -401,7 +526,7 @@ def send_ufa_auction_end(bid_winner,initiated_auction):
         }
     )
 
-#this seems unneccisary, probably can move into function or move all sends to this function
+# this seems unneccisary, probably can move into function or move all sends to this function
 def send_rfa_auction_end(bid_winner,initiated_auction):
     print("RFA Auction is ending")
 
@@ -614,6 +739,9 @@ def reset_auction_manager():
     current_auction_manager.highest_contract_years = 1
     current_auction_manager.initiated_auction = 0
     current_auction_manager.team_with_highest_bid = 0
+
+    current_auction_manager.initial_bid = 0
+    current_auction_manager.initial_bid_years = 0
     
     #current_auction_manager.rookie_draft_current_position = 0
 
@@ -684,6 +812,29 @@ def send_rfa_auction_bidding_end(bid_winner,initiated_auction):
         }
     )
 
+def send_no_bid_last_auction_user(bid_winner,initiated_auction):
+    print("RFA Auction bidding is ending with no bids")
+
+    current_auction_manager = get_object_or_404(auction_manager,pk=1) 
+    current_auction_manager.auction_state = 'no_bid_last_auction_user'
+    current_auction_manager.save()
+
+    channel_layer = channels.layers.get_channel_layer()
+    group_name = settings.AUCTION_UPDATE_GROUP
+
+    async_to_sync(channel_layer.group_send)(
+        group_name,
+        {
+            'type': 'auction_end_confirmation',
+            'confirmation_step': 'no_bid_last_auction_user',
+            'auction_winner':bid_winner,
+            'initiated_auction':initiated_auction,
+            'winning_player_name':None,
+            'winning_contract_years':None,
+            'winning_contract_cost':None
+        }
+    )
+
 def submit_new_bid(new_bid_data):
     all_auction_users = auction_user.objects.all()
     current_auction_manager = get_object_or_404(auction_manager,pk=1)
@@ -707,6 +858,10 @@ def submit_new_bid(new_bid_data):
             source_auction_user.current_bid = new_bid_data['new_bid']
             source_auction_user.contract_years_bid = new_bid_data['new_bid_contract_years']
             source_auction_user.save()
+            
+            if current_auction_manager.initial_bid == 0 and current_auction_manager.initial_bid_years == 0:
+                current_auction_manager.initial_bid = new_bid_data['new_bid']
+                current_auction_manager.initial_bid_years = new_bid_data['new_bid_contract_years']
             
             current_auction_manager.highest_bid = new_bid_data['new_bid']
             current_auction_manager.highest_contract_years = new_bid_data['new_bid_contract_years']
@@ -789,17 +944,49 @@ def drop_out_user(drop_out_data):
 
             auction_users_still_in = auction_user.objects.filter(still_in_auction=True,bathroom_mode_enabled=False) #only filter all user still in and not in bathroom mode
             num_auction_users_still_in = auction_user.objects.filter(still_in_auction=True,bathroom_mode_enabled=False).count() #only filter all user still in and not in bathroom mode
-            if current_auction_manager.auction_type == "rfa" and num_auction_users_still_in == 2:
-                print("Auction is RFA and only 2 auction users left")
-                #need to determine which of the two users is the original owner
-                #if first index has the same draft order as initiated auction, must be other
-                if (auction_users_still_in[0].draft_order == current_auction_manager.initiated_auction):
-                    bid_winner = auction_users_still_in[1].team_name
-                else:
-                    #if 0 not the same as initiated auction, must be 0
-                    bid_winner = auction_users_still_in[0].team_name
+            if current_auction_manager.auction_type == "rfa" and num_auction_users_still_in <= 2:
                 
-                send_rfa_auction_bidding_end(bid_winner,get_object_or_404(auction_user,draft_order=current_auction_manager.initiated_auction).team_name)
+                # if highest bid is still 1, it means no one has bid 
+                ### THIS DOESNT SEEM TO WORK????
+                if num_auction_users_still_in == 2 and current_auction_manager.initial_bid == current_auction_manager.highest_bid and current_auction_manager.highest_contract_years == current_auction_manager.initial_bid_years:
+                    print("No one has bid, skipping to raise of RFA")
+                    
+                    last_auction_user = auction_users_still_in.exclude(draft_order=current_auction_manager.initiated_auction)
+                    
+                    current_auction_manager.team_with_highest_bid = last_auction_user[0].draft_order
+                    current_auction_manager.save()
+                    receive_auction_results_response( {'results_response':"rfa_owner_match_1_matched"})
+                    return
+
+                
+                if num_auction_users_still_in == 2:
+                    print("Auction is RFA and only 2 auction users left")
+                    # need to determine which of the two users is the original owner
+                    # if first index has the same draft order as initiated auction, must be other
+                    if (auction_users_still_in[0].draft_order == current_auction_manager.initiated_auction):
+                        bid_winner = auction_users_still_in[1].team_name
+                    else:
+                        #if 0 not the same as initiated auction, must be 0
+                        bid_winner = auction_users_still_in[0].team_name
+                    
+                    #if no one has bid, send special confirmation
+                    if current_auction_manager.highest_bid == 1:
+                        send_no_bid_last_auction_user(bid_winner,get_object_or_404(auction_user,draft_order=current_auction_manager.initiated_auction).team_name)
+                    else:
+                        send_rfa_auction_bidding_end(bid_winner,get_object_or_404(auction_user,draft_order=current_auction_manager.initiated_auction).team_name)
+
+                elif num_auction_users_still_in == 1:
+                    bid_winner = auction_users_still_in[0].team_name
+
+                    results_response_data = {
+                        'results_response' :     'rfa_owner_match_2_matched'
+
+                    }
+
+                    receive_auction_results_response(results_response_data)
+                    
+                
+                
             elif current_auction_manager.auction_type == "ufa" and num_auction_users_still_in == 1:
                 print("Auction is UFA and only 1 auction users left")
                 send_ufa_auction_bidding_end(auction_users_still_in[0].team_name,get_object_or_404(auction_user,draft_order=current_auction_manager.initiated_auction).team_name )
@@ -895,7 +1082,7 @@ def get_next_bidder(active_bidder_draft_order,initiated_auction_draft_order,auct
     
     #didnt find any viable next bidders/initiator so draft must be over
     print("No vible next team found...")
-    return 0
+    return active_bidder_draft_order
 
 def get_player_search_results(player_search_text_data):
     #print("Search Text: " + str(player_search_text_data['player_search_text']))
@@ -910,6 +1097,9 @@ def get_player_search_results(player_search_text_data):
         first_5_players_from_search_final = list(chain(first_5_players_from_search_undrafted,first_5_players_from_search_drafted))[:5]
 
         first_5_players_from_search_s = serializers.serialize('json', first_5_players_from_search_final)
+    
+    current_auction_manager = auction_manager.objects.filter(pk=1)
+    current_auction_manager_s = serializers.serialize('json', current_auction_manager)
 
     # for player in first_5_players_from_search:
     #     print("Player Name: " + player.full_name)
@@ -922,7 +1112,8 @@ def get_player_search_results(player_search_text_data):
         {
             'type': 'player_search_results',
             'search_result_data': first_5_players_from_search_s,
-            'searching_team': str(player_search_text_data['searching_team'])
+            'searching_team': str(player_search_text_data['searching_team']),
+            'auction_manager_data': str(current_auction_manager_s),
         }
     )
     

@@ -1,0 +1,181 @@
+TODO: 
+
+New issues: 
+    - database missed rookies
+    - during rfa back and forth, set current bidder to 0
+    - add current status to all toasts (bids and years)
+    - REMOVE CONFIRMATION STEP FROM SELECTION
+    - Add bye to all screens
+    - add some stats to players
+    
+    - unknwon bug (see note 5)
+    - add a "you are up in X picks"
+        - return next X teams in order
+    - add ability to pin searched players so they are always on your search screen
+    - add a view roster button to see someone's roster
+        - summary of how many of each player type they have
+        - something special for your team info on your screen
+    - weird bug where it skipped #8 after a no bid rfa
+    X no bid rfa goes to owner to match when it should go to bid winner to raise
+        - added toast, doesnt work on refresh, text entry doesnt show up, not linked correctly
+    X does draft history not update between rounds? 
+    - names into table next ot team name
+    - updating rfas not working for some reason (set to update on refresh all?)
+    - clicking update rfas caused a bid to end to 0 
+    - rfas not getting removed somehow 
+
+DESIREMENTS
+- add a last drafted player
+- search results not vertically centered 
+
+
+
+Last years TODO:
+
+    X RFA – when no one bids on a player offered up the system needs to handle that cleaner (have the owner just “confirm the $1 win)
+    - Add time reporting for each section of the draft (the Rookie draft took x minutes, and the RFA was XX minutes….)
+    - Clean up the pop up boxes so they stop popping after you have acknowledged them
+    - Build in a roster count for each team showing where they are in relation to the 26 Player limit.
+    - Add the list of players drafted and on rosters  as the draft goes on  (we may need to look at how this can work)
+    - Change the color for “Out of Bid”  to make it more noticeable (like Red)
+    - Need to update the status of a player that and owner pre-selects, so if that player is drafted before the owners turn, they can’t put up the same play for bidding a second time.
+    X Submit Button should be disabled for player selection until it is that Owner’s turn. (can pre-select but not submit players till it is time) 
+    - Need to add the ability for teams to trade rookie draft picks  (hopefully before and during the draft)
+
+FINAL TODO:
+    
+    - add ability to quickly control users
+    - add player details to rfa match_1, raise, match 2 toasts
+    - check for TODOs in code
+    - show all rfas and disable ones already selected
+    
+
+
+
+Optimization
+    move update tasks to specific html
+        separate updates to specific things to specific functions
+    pass all information needed in function
+
+Admin Panel
+    - give back passes 
+    - bring people back into Bidding
+    - set people bids
+
+NFL Data
+    IMPORT COMMAND: 
+        #OLD copy auction_table_nfl_player(team_short_name,team,team_id,position,first_name,last_name,full_name,jersey_number,age,height,weight,madden_score,total_salary,signing_bonus,birthday,years_pro) from '/home/2022_nfl_data_from_madden.csv' delimiter ',' CSV HEADER;
+        copy auction_table_nfl_player(player_id,full_name,team_short_name,team,position,drafted_by) from '/home/2022_fantasypros_data.csv' delimiter ',' CSV HEADER;
+        copy auction_table_nfl_player(player_id,full_name,position,team,team_short_name,drafted_by) from '/tmp/Madden24_Players_raw.csv' delimiter ',' CSV HEADER;
+        COPY auction_table_nfl_player(player_id, full_name, team_short_name, team, bye, position, fg_k, fga_k, xpt_k, fpts_k, att_qb, cmp_qb, yds_qb, tds_qb, ints_qb, fl_qb, fpts_qb, att_rb, yds_rb, tds_rb, rec_rb, fl_rb, fpts_rb, rec_te, yds_te, tds_te, fl_te, fpts_te, rec_wr, yds_wr, tds_wr, att_wr, fl_wr, fpts_wr, sack_dst, int_dst, fr_dst, ff_dst, td_dst, safety_dst, pa_dst, yds_agn_dst, fpts_dst, att_flx, yds_flx, tds_flx, rec_flx, fl_flx, fpts_flx, drafted_by) FROM '/tmp/Final_Cleaned_Fantasy_Football_Projections_v13.csv' DELIMITER ',' CSV HEADER;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Team budget
+    check bid to see if team has money
+    update current total after win
+
+Rookie draft
+    Snake draft
+
+
+Bidding
+    check that user has enough money
+    
+Rookie Draft 
+    add confirmation if player is not found in db?
+
+
+RFA Draft
+    Bid Process
+        owner put up player
+        owner bid number of years
+            disable all but years for person who initiated rfa (if highest bid = 0)
+        all but owner bid
+        owner match y/n
+        winner raise
+            only raise money but also years?
+        owner match y/n
+        remove RFA from initial owner rfa list
+    
+    RFAs cost 1$, subtract 1$ from total budget or simply show number remaining
+        Show number of RFAs remaining to be bid for each player
+
+UFA Draft
+    Bid Process
+        x owner number of years + bid
+            x disable pass and dropout for first bid
+        x all bid
+
+    x allow same user to go repeatedly if only user left
+
+Saving bid Data
+
+
+
+
+
+Extras
+    Notification/sound that you are next - toast
+    honk at people
+    bid timer
+    Not allow users to submit lower bid
+
+
+Things to remove
+    UUID stuff from bids
+    Remove initiated auction from user
+
+TODD NOTES: 
+    - highlight the next step in the process
+    - disable bathroom toggle when it is your turn
+    - filter player list: rb(hb, fb, ), wr, te, kicker, defense, qb
+    - change defense to defense 
+
+    
+
+Useful Links: 
+
+https://channels.readthedocs.io/en/stable/tutorial/index.html
+https://www.codemag.com/article/1511031/CRUD-in-HTML-JavaScript-and-jQuery
+
+
+
+NOTE 5: 
+
+toast.js:114 Uncaught TypeError: Cannot read properties of null (reading 'classList')
+    at toast.js:114:21
+    at g (index.js:226:51)
+    at HTMLDivElement.a (index.js:247:5)
+    at s (index.js:71:11)
+    at index.js:253:7
+(anonymous) @ toast.js:114
+g @ index.js:226
+a @ index.js:247
+s @ index.js:71
+(anonymous) @ index.js:253
+setTimeout
+_ @ index.js:251
+_queueCallback @ base-component.js:49
+hide @ toast.js:120
+(anonymous) @ component-functions.js:29
+n @ event-handler.js:118
+toast.js:89 Uncaught TypeError: Cannot read properties of null (reading 'classList')
+    at toast.js:89:21
+    at g (index.js:226:51)
+    at HTMLDivElement.a (index.js:247:5)
+    at s (index.js:71:11)
+    at index.js:253:7

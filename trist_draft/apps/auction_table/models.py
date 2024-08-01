@@ -17,11 +17,14 @@ class auction_user(models.Model):
     dropped_out_of_selection    = models.BooleanField(default=False)
     bathroom_mode_enabled       = models.BooleanField(default=False)
 
+    current_roster_size         = models.IntegerField(default=0) 
+
     starting_budget     = models.IntegerField(default=0) 
     budget_remaining    = models.IntegerField(default=0)
 
     initial_rfa_list    = ArrayField( models.IntegerField(), blank=True, default=list )
     current_rfa_list    = ArrayField( models.IntegerField(), blank=True, default=list )
+    rfas_remaining      = models.IntegerField(default=0)
     rfas_remaining      = models.IntegerField(default=0)
     
     def __str__(self):
@@ -36,6 +39,8 @@ class auction_manager(models.Model):
     highest_contract_years          = models.IntegerField(default=0)
     team_with_highest_bid           = models.IntegerField(default=0)
     initiated_auction               = models.IntegerField(default=0)
+    initial_bid                     = models.IntegerField(default=0)
+    initial_bid_years               = models.IntegerField(default=0)
     auction_is_rookie               = models.BooleanField(default=False)
     auction_is_rfa                  = models.BooleanField(default=False)
     auction_is_ufa                  = models.BooleanField(default=False)
@@ -66,24 +71,58 @@ class auction_manager(models.Model):
     )
 
 class nfl_player(models.Model):
-    player_id           = models.PositiveSmallIntegerField(default=0)
-    team_short_name     = models.CharField(max_length=3)
-    team                = models.CharField(max_length=50)
-    #team_id             = models.PositiveSmallIntegerField()
-    position            = models.CharField(max_length=5)
-    #first_name          = models.CharField(max_length=50)
-    #last_name           = models.CharField(max_length=50)
-    full_name           = models.CharField(max_length=100)
+    player_id = models.PositiveSmallIntegerField(default=0)  # This maps to 'Rank'
+    team_short_name = models.CharField(max_length=3)  # This maps to 'team_short_name'
+    team = models.CharField(max_length=50)  # This maps to 'team'
+    position = models.CharField(max_length=5)  # This maps to 'POS'
+    full_name = models.CharField(max_length=100)  # This maps to 'Player'
+    bye = models.PositiveSmallIntegerField(default=0)  # This maps to 'Bye'
 
-    #jersey_number       = models.PositiveSmallIntegerField(blank=True, null=True)
-    #age                 = models.PositiveSmallIntegerField(blank=True, null=True)
-    #height              = models.PositiveSmallIntegerField(blank=True, null=True)
-    #weight              = models.PositiveSmallIntegerField(blank=True, null=True)
-    #madden_score        = models.PositiveSmallIntegerField(blank=True, null=True)
-    #total_salary        = models.PositiveIntegerField(blank=True, null=True)
-    #signing_bonus       = models.PositiveIntegerField(blank=True, null=True)
-    #birthday            = models.PositiveIntegerField(blank=True, null=True)
-    #years_pro           = models.PositiveSmallIntegerField(blank=True, null=True)
+    # Other fields from the dataset as PositiveSmallIntegerField
+    fg = models.FloatField(null=True)
+    fga = models.FloatField(null=True)
+    xpt = models.FloatField(null=True)
+    fpts = models.FloatField(null=True)
+    att = models.FloatField(null=True)
+    cmp = models.FloatField(null=True)
+    yds = models.FloatField(null=True)
+    tds = models.FloatField(null=True)
+    ints = models.FloatField(null=True)
+    fl = models.FloatField(null=True)
+    fpts_qb = models.FloatField(null=True)
+    att_rb = models.FloatField(null=True)
+    yds_rb = models.FloatField(null=True)
+    tds_rb = models.FloatField(null=True)
+    rec = models.FloatField(null=True)
+    fl_rb = models.FloatField(null=True)
+    fpts_rb = models.FloatField(null=True)
+    rec_te = models.FloatField(null=True)
+    yds_te = models.FloatField(null=True)
+    tds_te = models.FloatField(null=True)
+    fl_te = models.FloatField(null=True)
+    fpts_te = models.FloatField(null=True)
+    rec_wr = models.FloatField(null=True)
+    yds_wr = models.FloatField(null=True)
+    tds_wr = models.FloatField(null=True)
+    att_wr = models.FloatField(null=True)
+    fl_wr = models.FloatField(null=True)
+    fpts_wr = models.FloatField(null=True)
+    sack = models.FloatField(null=True)
+    int = models.FloatField(null=True)
+    fr = models.FloatField(null=True)
+    ff = models.FloatField(null=True)
+    td = models.FloatField(null=True)
+    safety = models.FloatField(null=True)
+    pa = models.FloatField(null=True)
+    yds_agn = models.FloatField(null=True)
+    fpts_dst = models.FloatField(null=True)
+    att_flx = models.FloatField(null=True)
+    yds_flx = models.FloatField(null=True)
+    tds_flx = models.FloatField(null=True)
+    rec_flx = models.FloatField(null=True)
+    fl_flx = models.FloatField(null=True)
+    fpts_flx = models.FloatField(null=True)
+
 
     drafted_by          = models.CharField(max_length=50,default="Undrafted")
 

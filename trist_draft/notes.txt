@@ -1,5 +1,19 @@
 TODO: 
 
+Last years TODO:
+
+    x RFA – when no one bids on a player offered up the system needs to handle that cleaner (have the owner just “confirm the $1 win)
+        - fix if last wants bid
+    - Clean up the pop up boxes so they stop popping after you have acknowledged them
+    x Build in a roster count for each team showing where they are in relation to the 26 Player limit.
+        - block after limit?
+    x Add the list of players drafted and on rosters  as the draft goes on  (we may need to look at how this can work)
+    x Change the color for “Out of Bid”  to make it more noticeable (like Red)
+    x Need to update the status of a player that and owner pre-selects, so if that player is drafted before the owners turn, they can’t put up the same play for bidding a second time.
+    X Submit Button should be disabled for player selection until it is that Owner’s turn. (can pre-select but not submit players till it is time) 
+    - Need to add the ability for teams to trade rookie draft picks  (hopefully before and during the draft)
+    - Add time reporting for each section of the draft (the Rookie draft took x minutes, and the RFA was XX minutes….)
+
 FINAL TODO:
     
     x flashing nav bar when its your turn
@@ -47,7 +61,7 @@ NFL Data
         x skip people who have none
     
     IMPORT COMMAND: 
-        #OLD copy auction_table_nfl_player(team_short_name,team,team_id,position,first_name,last_name,full_name,jersey_number,age,height,weight,madden_score,total_salary,signing_bonus,birthday,years_pro) from '/home/2022_nfl_data_from_madden.csv' delimiter ',' CSV HEADER;
+        #OLD copy auction_table_nfl_player(team_short_name,team,team_id,position,first_name,last_name,full_name,jersey_number,age,height,weight,madden_score,total_salary,signing_bonus,birthday,years_pro) from '/home/2022_nfl_ data_from_madden.csv' delimiter ',' CSV HEADER;
         copy auction_table_nfl_player(player_id,full_name,team_short_name,team,position,drafted_by) from '/home/2022_fantasypros_data.csv' delimiter ',' CSV HEADER;
 Team budget
     x Add budget to teams

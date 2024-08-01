@@ -96,8 +96,8 @@ DATABASES = {
         'NAME': os.environ.get('POSTGRES_NAME'),
         'USER': os.environ.get('POSTGRES_USER'),
         'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-        'HOST': 'django_postgres',
-        'PORT': 5432,
+        'HOST': "192.168.1.100",
+        'PORT': 5434,
     }
 }
 

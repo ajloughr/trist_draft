@@ -10,20 +10,20 @@
         <div class="container px-5 py-3" id="selected_player_div" style="display: none;">
             <form class="pb-3">
                 <div class="container data-rookie_help" style="display: none;" >
-                    <span  class="fa-layers fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="The selected player details will be populated here. If the desired player was not found in the search, enter their details here. When ready, click Submit to draft the player.">
+                    <span  class="fa-layers fa-fw man-tooltip" data-bs-toggle="man-tooltip" data-bs-placement="top" title="The selected player details will be populated here. If the desired player was not found in the search, enter their details here. When ready, click Submit to draft the player.">
                         <i  class="fa-solid fa-circle fa-lg" style="color:rgb(243, 156, 18)"></i>
                         <i class="fa-inverse fa-solid fa-3 fa-lg" data-fa-transform="shrink-6"></i>
                     </span>
                 </div>
                 <div class="container data-ufa_help" style="display: none;">
-                    <span  class="fa-layers fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="The selected player details will be populated here. If the desired player was not found in the search, enter their details here. When ready, click Submit select that player for auction.">
+                    <span  class="fa-layers fa-fw man-tooltip" data-bs-toggle="man-tooltip" data-bs-placement="top" title="The selected player details will be populated here. If the desired player was not found in the search, enter their details here. When ready, click Submit select that player for auction.">
                         <i  class="fa-solid fa-circle fa-lg" style="color:rgb(243, 156, 18)"></i>
                         <i class="fa-inverse fa-solid fa-3 fa-lg" data-fa-transform="shrink-6"></i>
                     </span>
                 </div>
                 <div class="row justify-content-start pb-2">
                     <div class="col-12 text-left">
-                        <label for="contract_year_selected_radio"><strong>Selected Player</strong></label>
+                        <label for="contract_year_selected_radio"><strong>Manual Player</strong></label>
                     </div>
                 </div>
                 <div class="row justify-content-between">
@@ -36,11 +36,11 @@
                     </div>
                     <div class="col-4">
                         <div class="btn-toolbar d-flex justify-content-between">
-                            <button id="submit_selected_player" class="btn btn-success tooltip-delay" type="button" data-bs-toggle="tooltip-delay" data-bs-placement="top" title="Submit the Selected Player for auction. If in Rookie Draft, then player will be immediately drafted.">Submit</button>
-                            <button id="drop_out_player_selection" class="btn btn-danger tooltip-delay" type="button" data-bs-toggle="tooltip-delay" data-bs-placement="top" title="Drop out of player selection. If selected, you will will no longer be able to put players up for auction">
+                            <button id="submit_selected_player" class="btn btn-success man-tooltip" type="button" data-bs-toggle="man-tooltip" data-bs-placement="top" title="Submit the Selected Player for auction. If in Rookie Draft, then player will be immediately drafted.">Submit</button>
+                            <button id="drop_out_player_selection" class="btn btn-danger man-tooltip" type="button" data-bs-toggle="man-tooltip" data-bs-placement="top" title="Drop out of player selection. If selected, you will will no longer be able to put players up for auction">
                                 <span data-bs-toggle="modal" data-bs-target="#drop_out_of_selection_confirmation_modal">Drop Out</span>
                             </button>
-                            <button id="pass_player_selection" class="btn btn-warning tooltip-delay" type="button" data-bs-toggle="tooltip-delay" data-bs-placement="top" title="Pass on player selection. Selection will move to the next team. Unlimited selection passes may be used.">Pass</button>
+                            <button id="pass_player_selection" class="btn btn-warning man-tooltip" type="button" data-bs-toggle="man-tooltip" data-bs-placement="top" title="Pass on player selection. Selection will move to the next team. Unlimited selection passes may be used.">Pass</button>
                         </div>
                     </div>
                 </div>
@@ -52,13 +52,13 @@
         
         <div class="container px-5 py-2" id="player_search_value_div"  style="display: none;">
             <div class="container data-rookie_help" style="display: none;">
-                <span  class="fa-layers fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="First, enter the name of the desired player.">
+                <span  class="fa-layers fa-fw man-tooltip" data-bs-toggle="man-tooltip" data-bs-placement="top" title="First, enter the name of the desired player.">
                     <i  class="fa-solid fa-circle fa-lg" style="color:rgb(243, 156, 18)"></i>
                     <i class="fa-inverse fa-solid fa-1 fa-lg" data-fa-transform="shrink-6"></i>
                 </span>
             </div>
             <div class="container data-ufa_help" style="display: none;">
-                <span  class="fa-layers fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="First, enter the name of the desired player.">
+                <span  class="fa-layers fa-fw man-tooltip" data-bs-toggle="man-tooltip" data-bs-placement="top" title="First, enter the name of the desired player.">
                     <i  class="fa-solid fa-circle fa-lg" style="color:rgb(243, 156, 18)"></i>
                     <i class="fa-inverse fa-solid fa-1 fa-lg" data-fa-transform="shrink-6"></i>
                 </span>
@@ -67,7 +67,7 @@
 
                 <div class="row justify-content-start pb-2">
                     <!-- <div class="col-1">
-                        <button type="button data-rookie_help"  class="btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
+                        <button type="button data-rookie_help man-tooltip"  class="btn" data-bs-toggle="man-tooltip" data-bs-placement="top" title="Tooltip on top">
                             <span  class="fa-layers fa-fw">
                                 <i  class="fa-solid fa-circle fa-lg" style="color:rgb(243, 156, 18)"></i>
                                 <i class="fa-inverse fa-solid fa-1 fa-lg" data-fa-transform="shrink-6"></i>
@@ -88,7 +88,7 @@
 
         <div class="container px-5 py-3" id="rfa_selector_div"  style="display: none;">
             <div class="container data-rfa_help" style="display: none;">
-                <span class="fa-layers fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="First, select a RFA from the dropdown and click Submit.">
+                <span class="fa-layers fa-fw man-tooltip" data-bs-toggle="man-tooltip" data-bs-placement="top" title="First, select a RFA from the dropdown and click Submit.">
                     <i  class="fa-solid fa-circle fa-lg" style="color:rgb(243, 156, 18)"></i>
                     <i class="fa-inverse fa-solid fa-1 fa-lg" data-fa-transform="shrink-6"></i>
                 </span>
@@ -113,13 +113,13 @@
         
         <div class="container px-5 py-3" id="search_results_table_div"  style="display: none;">
             <div class="container data-ufa_help" style="display: none;">
-                <span class="fa-layers fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Next, click the + icon next to the desired player. If the desired player does not appear in the list, enter the details manually in Step 3.">
+                <span class="fa-layers fa-fw man-tooltip" data-bs-toggle="man-tooltip" data-bs-placement="top" title="Next, click the + icon next to the desired player. If the desired player does not appear in the list, enter the details manually in Step 3.">
                     <i  class="fa-solid fa-circle fa-lg" style="color:rgb(243, 156, 18)"></i>
                     <i class="fa-inverse fa-solid fa-2 fa-lg" data-fa-transform="shrink-6"></i>
                 </span>
             </div>
             <div class="container data-rookie_help" style="display: none;">
-                <span class="fa-layers fa-fw" data-bs-toggle="tooltip" data-bs-placement="top" title="Next, click the + icon next to the desired player. If the desired player does not appear in the list, enter the details manually in Step 3.">
+                <span class="fa-layers fa-fw man-tooltip" data-bs-toggle="man-tooltip" data-bs-placement="top" title="Next, click the + icon next to the desired player. If the desired player does not appear in the list, enter the details manually in Step 3.">
                     <i  class="fa-solid fa-circle fa-lg" style="color:rgb(243, 156, 18)"></i>
                     <i class="fa-inverse fa-solid fa-2 fa-lg" data-fa-transform="shrink-6"></i>
                 </span>
@@ -187,6 +187,7 @@
 
     console.log("Attempting to connect to websocket: " + window.location.host)
     var socket = new WebSocket('wss://' + window.location.host + '/ws/auction_table/');
+    //var socket = new WebSocket('ws://' + window.location.host + '/ws/auction_table/');
         
     socket.onmessage = function(e) {
         var data = JSON.parse(e.data);
@@ -196,8 +197,10 @@
         if (data.type == "player_search_results"){
             search_result_data = JSON.parse(data.search_result_data);
             searching_team = data.searching_team;
+            aution_manager_data_parsed = JSON.parse(data.auction_manager_data);
+            aution_manager_data_trimmed = aution_manager_data_parsed[0].fields
             //console.log("Search Result Data: " + JSON.stringify(search_result_data));
-            update_search_results_table(search_result_data,searching_team)
+            update_search_results_table(search_result_data,searching_team,aution_manager_data_trimmed)
         } else if (data.type == "user_rfa_results"){
             user_rfa_results_data = JSON.parse(data.user_rfa_results_data);
             // console.log("RFA result Data: " + JSON.stringify(user_rfa_results_data));
@@ -222,15 +225,16 @@
     function update_rfa_select(rfa_data) {
         //this idea of deleting all options and rebuilding is not the most optimized
         //but it is much less likely to produce inaccurate lists than trying to add and remove individual elements
+        console.log("1 here?")
         var rfa_select_element = document.getElementById("rfa_selector");
-                
+        console.log("1 here?")
         var select_options =  $("#rfa_selector option")
-
+        console.log("1 here?")
         //remove all old rfa options
         $(".form-select[id='rfa_selector'] option").each(function() {
             $(this).remove();
         });
-
+        console.log("1 here?")
         option_data_array = ["full_name", "team","position"]
 
         console.log("Rebuilding RFA List: " + rfa_data.length)
@@ -269,7 +273,7 @@
 
     }
 
-    function update_search_results_table(player_search_results,searching_team) {
+    function update_search_results_table(player_search_results,searching_team,aution_manager_data_parsed) {
         //console.log("Received results for " + searching_team)
         if (searching_team != $("#current_auction_user_team").val()){
             console.log("Received results for " + searching_team + " which is not our team - " + $("#current_auction_user_team").val());
@@ -318,7 +322,7 @@
 
             // select_player_button = '<button type="button" class="btn btn-success" onclick="search_player_selected(' + player_search_results[i].pk + ')" >+</button>'
             
-            if (player_search_results[i].fields["drafted_by"] != "Undrafted" || searching_team.length == 0) {
+            if (player_search_results[i].fields["drafted_by"] != "Undrafted" || searching_team.length == 0 || aution_manager_data_trimmed.initiated_auction != parseInt($("#current_auction_user_draft_order").val())) {
                 select_player_button = '<button type="button" class="btn btn-success" disabled >+</button>' 
             } else {
                 select_player_button = '<button type="button" class="btn btn-success" onclick="search_player_selected(' + i + ')" >+</button>' 
@@ -337,6 +341,12 @@
     }
 
     $('#player_search_value').bind('keyup', function(e) {
+        send_player_search()
+
+
+    });
+
+    function send_player_search() {
         const player_search_text = $('#player_search_value').val();
 
         console.log("Search Text: " + player_search_text)
@@ -344,9 +354,7 @@
             'player_search_text': player_search_text,
             'searching_team': $("#current_auction_user_team").val()
         }));
-
-
-    });
+    }
 
     function rfa_player_selected() {
 
