@@ -12,3 +12,6 @@ django_postgres/pg_xact/
 django_postgres/postgresql.auto.conf
 django_postgres/postmaster.opts
 django_postgres/postmaster.pid
+draft_data
+data_to_combine/*.csv
+django_postgres/pg_stat

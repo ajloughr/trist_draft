@@ -16,6 +16,7 @@ class auction_user(models.Model):
     pass_available              = models.BooleanField(default=True)
     dropped_out_of_selection    = models.BooleanField(default=False)
     bathroom_mode_enabled       = models.BooleanField(default=False)
+    
 
     current_roster_size         = models.IntegerField(default=0) 
 
@@ -54,6 +55,7 @@ class auction_manager(models.Model):
     player_for_auction_name         = models.CharField(max_length=50,blank=True, null=True)
     player_for_auction_team         = models.CharField(max_length=50,blank=True, null=True)
     player_for_auction_position     = models.CharField(max_length=50,blank=True, null=True)
+    player_for_auction_bye          = models.IntegerField(blank=True, null=True)
 
     
     ROOKIE = 'rookie'
@@ -76,7 +78,7 @@ class nfl_player(models.Model):
     team = models.CharField(max_length=50)  # This maps to 'team'
     position = models.CharField(max_length=5)  # This maps to 'POS'
     full_name = models.CharField(max_length=100)  # This maps to 'Player'
-    bye = models.PositiveSmallIntegerField(default=0)  # This maps to 'Bye'
+    bye = models.PositiveSmallIntegerField(blank=True, null=True)  # This maps to 'Bye'
 
     # Other fields from the dataset as PositiveSmallIntegerField
     fg = models.FloatField(null=True)

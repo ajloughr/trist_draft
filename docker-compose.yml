@@ -7,6 +7,7 @@ services:
       - "5434:5432"
     volumes:
       - /mnt/user/docker/trist_draft/django_postgres:/var/lib/postgresql/data
+      - /mnt/user/docker/trist_draft/draft_data:/home/draft_data
     environment:
       - POSTGRES_DB=postgres
     #   - POSTGRES_USER=${POSTGRES_USER}
@@ -15,6 +16,11 @@ services:
       - ./django.env
     labels:
       - "com.centurylinklabs.watchtower.enable=false"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 120s
+      timeout: 10s
+      retries: 5
 
   django:
     build: .
@@ -32,15 +38,23 @@ services:
     #   - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     depends_on:
       - django_postgres
+      - redis
     env_file:
       - ./django.env
     labels:
       - "com.centurylinklabs.watchtower.enable=false"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000"]
+      interval: 120s
+      timeout: 10s
+      retries: 5
 
   redis:
     image: redis:5
     container_name: django_redis
     restart: unless-stopped
+    depends_on:
+      - django_postgres
     ports:
      - "6379:6379"
     volumes:
@@ -48,3 +62,8 @@ services:
       - /mnt/user/docker/trist_draft/django_redis/redis.conf:/usr/local/etc/redis/redis.conf
     labels:
       - "com.centurylinklabs.watchtower.enable=false"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 120s
+      timeout: 10s
+      retries: 5

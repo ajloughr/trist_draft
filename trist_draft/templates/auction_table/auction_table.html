@@ -61,7 +61,7 @@
                         <tr>
                             <th scope="row"></th>
                             <td><strong>Bye</strong></td>
-                            <td id="nfl_player_for_auction_position"></td>
+                            <td id="nfl_player_for_auction_bye"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -472,8 +472,16 @@
             // console.log(data.auction_manager_data)
             auction_manager_data = JSON.parse(data.auction_manager_data)
 
+            try{
+                user_data = JSON.parse(data.user_list)
+            } catch (err) {
+                user_data = {}
+                console.log(data.user_list)
+            }
+            
+
             if(data.update_target == $("#current_auction_user_team").val() || data.update_target == 'all'){
-                update_auction_table(auction_table_data,auction_manager_data)
+                update_auction_table(auction_table_data,auction_manager_data,user_data)
                 request_draft_history()
             }
             
@@ -502,11 +510,13 @@
         console.log("Handling auction end type: " + confirmation_type);
         console.log("initiated_auction: " + initiated_auction)
         console.log("auction_winner: " + auction_winner)
-        
+
+        dispose_all_toasts();
+
         if (confirmation_type == 'ufa_confirmation_request' ){
             show_ufa_end_confirmation_toast(auction_winner,winning_player_name,winning_contract_years,winning_contract_cost)
         } else if (confirmation_type == 'ufa_auction_end' ){
-            hide_toast('ufa_end_waiting_toast')
+            //hide_toast('ufa_end_waiting_toast')
 
         } else if (confirmation_type == 'rfa_owner_match_request_1' ){
             show_rfa_owner_match_request_1_toast(initiated_auction)
@@ -521,7 +531,7 @@
             show_rfa_owner_match_request_2_toast(initiated_auction)
 
         } else if (confirmation_type == 'rfa_auction_end' ){
-            hide_toast('rfa_end_waiting_toast')
+            //hide_toast('rfa_end_waiting_toast')
         } 
 
     }
@@ -558,7 +568,7 @@
         //console.log("Initiated Auction: " + initiated_auction)
         if(auction_winner == $("#current_auction_user_team").val()){
             
-            hide_toast("rfa_end_waiting_toast")
+            //hide_toast("rfa_end_waiting_toast")
 
             var rfa_bid_winner_offer_raise_toast = document.getElementById("rfa_bid_winner_offer_raise_toast");
             var toast = new bootstrap.Toast(rfa_bid_winner_offer_raise_toast)
@@ -581,16 +591,11 @@
         
     }
 
-
-    function show_toast() {
-        
-    }
-
     function show_rfa_owner_match_request_1_toast(initiated_auction) {
         console.log("Showing first RFA match toast")
         console.log("Initiated Auction: " + initiated_auction)
         if(initiated_auction == $("#current_auction_user_team").val()){
-            // hide_toast('rfa_end_waiting_toast')
+            hide_toast('rfa_end_waiting_toast')
             var rfa_end_confirmation_toast = document.getElementById("rfa_owner_match_request_1_toast");
             var toast = new bootstrap.Toast(rfa_end_confirmation_toast)
             toast.show()
@@ -650,9 +655,9 @@
         var toast_element = document.getElementById(toast_id)
         var toast = bootstrap.Toast.getInstance(toast_element)
 
-        //if(toast) {
-          //  toast.dispose()
-        //}
+        if(toast) {
+            toast.dispose()
+        }
     }
 
     function send_auction_results_response(confirmation_type) {
@@ -747,7 +752,18 @@
         }
     }
 
-    function update_auction_table(new_table_data,new_auction_manager_data) {
+    function dispose_all_toasts() {
+        $(".toast.show").each(function() {
+            var toastInstance = bootstrap.Toast.getInstance(this);
+            if (toastInstance) {
+                console.log("Disposing of toast" + toastInstance)
+                toastInstance.dispose();
+            }
+            $(this).removeClass('show');
+        });
+    }
+
+    function update_auction_table(new_table_data,new_auction_manager_data,user_data) {
         $(".man-tooltip").tooltip("hide");
         
         var auction_table = document.getElementById("auction_table");
@@ -783,6 +799,7 @@
         document.getElementById("nfl_player_for_auction_name").innerText = new_auction_manager_data[0].fields.player_for_auction_name
         document.getElementById("nfl_player_for_auction_team").innerText = new_auction_manager_data[0].fields.player_for_auction_team
         document.getElementById("nfl_player_for_auction_position").innerText = new_auction_manager_data[0].fields.player_for_auction_position
+        document.getElementById("nfl_player_for_auction_bye").innerText = new_auction_manager_data[0].fields.player_for_auction_bye
 
         if (current_auction_type_value == 'rookie') {
             current_auction_type_display.innerText = "Rookie";
@@ -794,7 +811,7 @@
 
         
         // if updating for UFA, trigger update of search to check if player is taken 
-        if (current_auction_type_value == 'ufa') {
+        if (current_auction_type_value == 'ufa' || current_auction_type_value == 'rookie') {
             current_search = $("#player_search_value").val()
             $("#player_search_value").val("")
             send_player_search()
@@ -841,6 +858,7 @@
                     
                     if (new_auction_manager_data[0].fields.auction_type == "rfa"){
                         $(this_user_bid_button).prop("disabled", false);
+                        $('#submit_new_bid_button_spinner').show();
                         this_user_bid_button.classList.remove("data-disabled_from_update");
                         $(this_user_pass_button).prop("disabled", true);
                         $(this_user_drop_out_button).prop("disabled", true);
@@ -848,6 +866,7 @@
                         $(this_user_bid_input).prop("disabled", true);
                     } else if (new_auction_manager_data[0].fields.auction_type == "ufa"){
                         $(this_user_bid_button).prop("disabled", false);
+                        $('#submit_new_bid_button_spinner').show();
                         this_user_bid_button.classList.remove("data-disabled_from_update");
                         $(this_user_pass_button).prop("disabled", true);
                         $(this_user_drop_out_button).prop("disabled", true);
@@ -861,6 +880,7 @@
                 } else {
                     //this is the "normal" function of the bid menu
                     $(this_user_bid_button).prop("disabled", false);
+                    $('#submit_new_bid_button_spinner').show();
                     this_user_bid_button.classList.remove("data-disabled_from_update");
                     $(this_user_bid_input).prop("disabled", false);
                     $(this_user_drop_out_button).prop("disabled", false);
@@ -891,12 +911,16 @@
             } else {
                 // console.log("I am not in or its not my turn")
                 $(this_user_bid_button).prop("disabled", true);
+                $('#submit_new_bid_button_spinner').hide();
                 this_user_bid_button.classList.add("data-disabled_from_update");
                 $(this_user_bid_input).prop("disabled", true);
                 $(this_user_pass_button).prop("disabled", true);
                 $(this_user_drop_out_button).prop("disabled", true);
                 $(this_user_submit_player_button).prop("disabled", true);
+                $('#player_name_search_spinner').hide();
+                $('#manual_player_spinner').hide();
                 $(this_user_submit_rfa_player_button).prop("disabled", true);
+                $('#select_rfa_player_spinner').hide();
                 $(this_user_drop_out_player_selection).prop("disabled", true);
                 $(this_user_pass_player_selection).prop("disabled", true);
             }
@@ -955,12 +979,18 @@
             if( ( $("#admin_bid_override").is(":checked") || parseInt(this_user_object.fields.draft_order) == parseInt(new_auction_manager_data[0].fields.initiated_auction) ) && 
                 ( current_auction_type_value == "rookie" || !($('#nfl_player_for_auction_name').text()) ) ){
                 $(this_user_submit_player_button).prop("disabled", false);
+                $('#player_name_search_spinner').show();
+                $('#manual_player_spinner').show();
                 $(this_user_submit_rfa_player_button).prop("disabled", false);
+                $('#select_rfa_player_spinner').show();
                 $(this_user_drop_out_player_selection).prop("disabled", false);
                 $(this_user_pass_player_selection).prop("disabled", false);
             } else {
                 $(this_user_submit_player_button).prop("disabled", true);
+                $('#player_name_search_spinner').hide();
+                $('#manual_player_spinner').hide();
                 $(this_user_submit_rfa_player_button).prop("disabled", true);
+                $('#select_rfa_player_spinner').hide();
                 $(this_user_drop_out_player_selection).prop("disabled", true);
                 $(this_user_pass_player_selection).prop("disabled", true);
             }
@@ -1069,7 +1099,7 @@
             
             }else if(new_table_data[i].fields.bathroom_mode_enabled == true) {
                 var new_row_html = '<tr class="table-dark text-center">'
-
+            
             }else if(current_auction_type_value == 'rfa' && new_auction_manager_data[0].fields.initiated_auction == new_table_data[i].fields.draft_order) {
                 var new_row_html = '<tr class="table-success text-center">'
                     current_auction_type_value
@@ -1087,6 +1117,16 @@
                     new_col_value = '<i class="fa-solid fa-circle-check fa-xl" size="10x" style="color:rgb(0,176,29)"></i>'
                 } else if (new_col_value === false){
                     new_col_value = '<i class="fa-solid fa-circle-xmark fa-xl" size="10x" style="color:rgb(207,20,43)"></i>'
+                } else if (table_columns_array[j] == "team_name22"){
+                    try{
+                        user_index = new_table_data[i].fields["user"]
+                        first_name = user_data[user_index].fields["first_name"]
+                        new_col_value = new_col_value + " (" + first_name + ")"
+                    } catch (err){
+                        console.log(new_table_data[i].fields["user"])
+                        console.log(user_data)
+                    }
+
                 } else if (table_columns_array[j] == "budget_remaining"){
                     budget_including_rfas = new_col_value - new_table_data[i].fields["rfas_remaining"]
                     new_col_value = new_col_value + " (" + budget_including_rfas + ")"
@@ -1104,14 +1144,7 @@
         }
         
         // dispose of all toast intances
-        $(".toast.show").each(function() {
-            var toastInstance = bootstrap.Toast.getInstance(this);
-            if (toastInstance) {
-                console.log("Disposing of toast" + toastInstance)
-                toastInstance.dispose();
-            }
-            $(this).removeClass('show');
-        });
+        dispose_all_toasts();
 
         //check for confirmation toasts
         if(new_auction_manager_data[0].fields.auction_state != 'bidding' ){
@@ -1276,6 +1309,7 @@
                 //$(submit_new_bid_button).prop("disabled", true);
             } else {
                 $(submit_new_bid_button).prop("disabled", false);
+                $('#submit_new_bid_button_spinner').show();
             }
 
             
@@ -1287,6 +1321,7 @@
 
             var submit_new_bid_button = document.getElementById('submit_new_bid_button');
             $(submit_new_bid_button).prop("disabled", true);
+            $('#submit_new_bid_button_spinner').hide();
         }
         
     });

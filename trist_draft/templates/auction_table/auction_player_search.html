@@ -5,51 +5,14 @@
     <div class="card mx-auto mb-3">
         <div class="card-header d-flex justify-content-between">
             <span><strong>Player Selection</strong></span>
+            
+            <span>
+                <button id="pass_player_selection" class="btn btn-warning man-tooltip" type="button" data-bs-toggle="man-tooltip" data-bs-placement="top" title="Pass on player selection. Selection will move to the next team. Unlimited selection passes may be used.">Pass Player Selection</button>
+                <button id="drop_out_player_selection" class="btn btn-danger man-tooltip" type="button" data-bs-toggle="man-tooltip" data-bs-placement="top" title="Drop out of player selection. If selected, you will will no longer be able to put players up for auction">
+                    <span data-bs-toggle="modal" data-bs-target="#drop_out_of_selection_confirmation_modal">Drop Out of Player Selection</span>
+                </button>
+            </span>
         </div>
-        
-        <div class="container px-5 py-3" id="selected_player_div" style="display: none;">
-            <form class="pb-3">
-                <div class="container data-rookie_help" style="display: none;" >
-                    <span  class="fa-layers fa-fw man-tooltip" data-bs-toggle="man-tooltip" data-bs-placement="top" title="The selected player details will be populated here. If the desired player was not found in the search, enter their details here. When ready, click Submit to draft the player.">
-                        <i  class="fa-solid fa-circle fa-lg" style="color:rgb(243, 156, 18)"></i>
-                        <i class="fa-inverse fa-solid fa-3 fa-lg" data-fa-transform="shrink-6"></i>
-                    </span>
-                </div>
-                <div class="container data-ufa_help" style="display: none;">
-                    <span  class="fa-layers fa-fw man-tooltip" data-bs-toggle="man-tooltip" data-bs-placement="top" title="The selected player details will be populated here. If the desired player was not found in the search, enter their details here. When ready, click Submit select that player for auction.">
-                        <i  class="fa-solid fa-circle fa-lg" style="color:rgb(243, 156, 18)"></i>
-                        <i class="fa-inverse fa-solid fa-3 fa-lg" data-fa-transform="shrink-6"></i>
-                    </span>
-                </div>
-                <div class="row justify-content-start pb-2">
-                    <div class="col-12 text-left">
-                        <label for="contract_year_selected_radio"><strong>Manual Player</strong></label>
-                    </div>
-                </div>
-                <div class="row justify-content-between">
-                    <div class="col-8">
-                            <div class="input-group">
-                                <input type="text" id="selected_player_name" class="form-control" placeholder="Player Name">
-                                <input type="text" id="selected_player_team" class="form-control" placeholder="Team Name">
-                                <input type="text" id="selected_player_position" class="form-control" placeholder="Position">
-                            </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="btn-toolbar d-flex justify-content-between">
-                            <button id="submit_selected_player" class="btn btn-success man-tooltip" type="button" data-bs-toggle="man-tooltip" data-bs-placement="top" title="Submit the Selected Player for auction. If in Rookie Draft, then player will be immediately drafted.">Submit</button>
-                            <button id="drop_out_player_selection" class="btn btn-danger man-tooltip" type="button" data-bs-toggle="man-tooltip" data-bs-placement="top" title="Drop out of player selection. If selected, you will will no longer be able to put players up for auction">
-                                <span data-bs-toggle="modal" data-bs-target="#drop_out_of_selection_confirmation_modal">Drop Out</span>
-                            </button>
-                            <button id="pass_player_selection" class="btn btn-warning man-tooltip" type="button" data-bs-toggle="man-tooltip" data-bs-placement="top" title="Pass on player selection. Selection will move to the next team. Unlimited selection passes may be used.">Pass</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-            <hr>
-        </div>
-
-        
-        
         <div class="container px-5 py-2" id="player_search_value_div"  style="display: none;">
             <div class="container data-rookie_help" style="display: none;">
                 <span  class="fa-layers fa-fw man-tooltip" data-bs-toggle="man-tooltip" data-bs-placement="top" title="First, enter the name of the desired player.">
@@ -75,12 +38,21 @@
                         </button>
                     </div> -->
                     <div class="col-12 text-left">
-                        <label for="contract_year_selected_radio"><strong>Player Name Search</strong></label>
+                        <label>
+                            <span class="spinner-grow spinner-grow-sm text-success" id="player_name_search_spinner" aria-hidden="true"></span>
+                            <span role="status"><strong>Player Name Search</strong></span>
+                        </label>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12">
-                        <input type="text" min="1" step="1" id="player_search_value" class="form-control" placeholder="Enter a player name">
+                    <div class="col">
+                        <div class="input-group">
+                            <input type="text" id="player_search_value" class="form-control col-6 player-search-field" placeholder="Player Name">
+                            <input type="text" id="player_search_value_team" class="form-control col-2 player-search-field" placeholder="Team Name">
+                            <input type="text" id="player_search_value_pos" class="form-control col-2 player-search-field" placeholder="Position">
+                            <input type="text" id="player_search_value_bye" class="form-control col-2 player-search-field" placeholder="Bye">
+                        </div>
+                        {% comment %} <input type="text" min="1" step="1" id="player_search_value" class="form-control" placeholder="Enter a player name"> {% endcomment %}
                     </div>
                 </div>
             </form>
@@ -94,18 +66,21 @@
                 </span>
             </div>
             <div class="row justify-content-start pb-2">
-                <div class="col-12 text-left">
-                    <label for="contract_year_selected_radio"><strong>RFA List</strong></label>
+                <div class="col-10 text-left">
+                    <label><strong>RFA List</strong></label>
                 </div>
             </div>
             <form>
                 <div class="row">
-                <div class="col">
+                <div class="col-9">
                         <select class="form-select" id="rfa_selector" aria-label="Default select example">
                         </select>
                 </div>
-                <div class="col-1">
-                    <button id="select_rfa_player" class="btn btn-success" type="button" onclick="rfa_player_selected()" >Submit</button>
+                <div class="col d-flex justify-content-center">
+                    <button id="select_rfa_player" class="btn btn-success" type="button" onclick="rfa_player_selected()" >
+                        <span class="spinner-grow spinner-grow-sm" id="select_rfa_player_spinner" aria-hidden="true"></span>
+                        <span role="status">Submit Player</span>
+                    </button>
                 </div>
                 </div>
             </form>
@@ -125,9 +100,9 @@
                 </span>
             </div>
             <div class="row justify-content-start pb-2">
-                <div class="col-12 text-left">
-                    <label for="contract_year_selected_radio"><strong>Player Search Results</strong></label>
-                </div>
+                {% comment %} <div class="col-12 text-left">
+                    <label><strong>Player Search Results</strong></label>
+                </div> {% endcomment %}
             </div>
             <table class="table table-bordered" id="search_results_table">
                 <thead class="table-secondary">
@@ -135,6 +110,7 @@
                         <th>Player Name</th>
                         <th>Team Name</th>
                         <th>Position</th>
+                        <th>Bye</th>
                         <th>Drafted By</th>
                         <th>Select</th>
                     </tr>
@@ -145,9 +121,47 @@
             <div class="container text-center pb-3" id="no_players_found">
                 <h3>No Players found...</h3>
             </div>
+            
         </div>
         
-        
+        <div class="container px-5 py-3" id="selected_player_div" style="display: none;">
+            <hr>
+            <form class="pb-3">
+                <div class="container data-rookie_help" style="display: none;" >
+                    <span  class="fa-layers fa-fw man-tooltip" data-bs-toggle="man-tooltip" data-bs-placement="top" title="The selected player details will be populated here. If the desired player was not found in the search, enter their details here. When ready, click Submit to draft the player.">
+                        <i  class="fa-solid fa-circle fa-lg" style="color:rgb(243, 156, 18)"></i>
+                        <i class="fa-inverse fa-solid fa-3 fa-lg" data-fa-transform="shrink-6"></i>
+                    </span>
+                </div>
+                <div class="container data-ufa_help" style="display: none;">
+                    <span  class="fa-layers fa-fw man-tooltip" data-bs-toggle="man-tooltip" data-bs-placement="top" title="The selected player details will be populated here. If the desired player was not found in the search, enter their details here. When ready, click Submit select that player for auction.">
+                        <i  class="fa-solid fa-circle fa-lg" style="color:rgb(243, 156, 18)"></i>
+                        <i class="fa-inverse fa-solid fa-3 fa-lg" data-fa-transform="shrink-6"></i>
+                    </span>
+                </div>
+                <div class="row justify-content-start pb-2">
+                    <div class="col-12 text-left">
+                        <span class="spinner-grow spinner-grow-sm text-success" id="manual_player_spinner" aria-hidden="true"></span>
+                        <span role="status"><strong>Manual Player Entry</strong></span>
+                    </div>
+                </div>
+                <div class="row justify-content-between">
+                    <div class="col-8">
+                            <div class="input-group">
+                                <input type="text" id="selected_player_name" class="form-control" placeholder="Player Name">
+                                <input type="text" id="selected_player_team" class="form-control" placeholder="Team Name">
+                                <input type="text" id="selected_player_position" class="form-control" placeholder="Position">
+                            </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="btn-toolbar d-flex justify-content-between">
+                            <button id="submit_selected_player" class="btn btn-success man-tooltip" type="button" data-bs-toggle="man-tooltip" data-bs-placement="top" title="Submit the entered manual player for auction. If in Rookie Draft, then player will be immediately drafted.">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            
+        </div>
     </div>
 
     <div class="modal fade" id="drop_out_of_selection_confirmation_modal" tabindex="-1" aria-labelledby="drop_out_of_selection_confirmation_modal_Label" aria-hidden="true">
@@ -162,6 +176,48 @@
             </div>
             <div class="modal-footer d-flex justify-content-between">
                 <button type="button" class="btn btn-success" id="drop_out_of_selection_confirm" data-bs-dismiss="modal">Yes</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="select_player_confirmation_modal" tabindex="-1" aria-labelledby="select_player_confirmation_modal_Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="select_player_confirmation_modal_Label">Select Player Confirmation</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you would like to select this player?
+            </div>
+            <table class="table mt-2">
+                <thead>
+                    <tr class="text-center">
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-light">
+                        <th scope="row"></th>
+                        <td><strong>Player Name</strong></td>
+                        <td id="selected_player_name_confirm">A</td>
+                    </tr>
+                    <tr class="table-light">
+                        <th scope="row"></th>
+                        <td><strong>Team</strong></td>
+                        <td id="selected_player_team_confirm">B</td>
+                    </tr>
+                    <tr class="table-light">
+                        <th scope="row"></th>
+                        <td><strong>Position</strong></td>
+                        <td id="selected_player_position_confirm">C</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="modal-footer d-flex justify-content-between">
+                <button type="button" class="btn btn-success" id="select_player_confirmed" data-bs-dismiss="modal">Yes</button>
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
             </div>
         </div>
@@ -225,16 +281,12 @@
     function update_rfa_select(rfa_data) {
         //this idea of deleting all options and rebuilding is not the most optimized
         //but it is much less likely to produce inaccurate lists than trying to add and remove individual elements
-        console.log("1 here?")
         var rfa_select_element = document.getElementById("rfa_selector");
-        console.log("1 here?")
         var select_options =  $("#rfa_selector option")
-        console.log("1 here?")
         //remove all old rfa options
         $(".form-select[id='rfa_selector'] option").each(function() {
             $(this).remove();
         });
-        console.log("1 here?")
         option_data_array = ["full_name", "team","position"]
 
         console.log("Rebuilding RFA List: " + rfa_data.length)
@@ -281,18 +333,11 @@
         }
 
         var search_result_table = document.getElementById("search_results_table");
-        
-        var num_result_rows =  $("#search_results_table tr").length
-        //console.log("Current Table Rows: " + num_result_rows)
-        //prevent attempt to delete data if only header is showing
-        if(num_result_rows > 1) {
-            for (var row_index = 1; row_index <= num_result_rows-1; row_index++) {
-                //console.log("Removing old row: " + row_index)
-                search_result_table.deleteRow(-1)
-            }
-        }
 
-        table_columns_array = ["full_name", "team","position","drafted_by"]
+        $("#search_results_table tbody").empty();
+
+
+        table_columns_array = ["full_name", "team","position","bye","drafted_by"]
 
         console.log("Rebuilding Search Results: " + player_search_results.length)
 
@@ -301,8 +346,10 @@
         if (player_search_results.length == 0) {
             console.log("No players found")
             document.getElementById("no_players_found").style.display = "block";
+            $("#search_results_table").hide();
         } else {
             document.getElementById("no_players_found").style.display = "none";
+            $("#search_results_table").show();
             console.log("Hiding no players found")
         }
 
@@ -323,9 +370,9 @@
             // select_player_button = '<button type="button" class="btn btn-success" onclick="search_player_selected(' + player_search_results[i].pk + ')" >+</button>'
             
             if (player_search_results[i].fields["drafted_by"] != "Undrafted" || searching_team.length == 0 || aution_manager_data_trimmed.initiated_auction != parseInt($("#current_auction_user_draft_order").val())) {
-                select_player_button = '<button type="button" class="btn btn-success" disabled >+</button>' 
+                select_player_button = '<button type="button" class="btn btn-success fw-bolder" disabled >+</button>' 
             } else {
-                select_player_button = '<button type="button" class="btn btn-success" onclick="search_player_selected(' + i + ')" >+</button>' 
+                select_player_button = '<button type="button" class="btn btn-success fw-bolder" onclick="show_player_select_confirmation_modal(' + i + ')" >+</button>' 
             }
             
 
@@ -340,18 +387,43 @@
 
     }
 
-    $('#player_search_value').bind('keyup', function(e) {
-        send_player_search()
+    //$('#player_search_value').bind('keyup', function(e) {
+    //    send_player_search()
+    //});
 
-
+    $('.player-search-field').bind('keyup', function(e) {
+        send_player_search();
     });
 
+    function show_player_select_confirmation_modal(player_selected_row) {
+        console.log("Showing player select confirm modal")
+        $('#select_player_confirmation_modal').modal('hide');
+        var search_results_table = document.getElementById("search_results_table");
+
+        selected_player_name = search_results_table.rows[player_selected_row + 1].cells[0].textContent
+        selected_player_team = search_results_table.rows[player_selected_row + 1].cells[1].textContent
+        selected_player_position = search_results_table.rows[player_selected_row + 1].cells[2].textContent
+        
+        $("#selected_player_name_confirm").text(selected_player_name)
+        $("#selected_player_team_confirm").text(selected_player_team)
+        $("#selected_player_position_confirm").text(selected_player_position)
+
+        $('#select_player_confirmation_modal').modal('show');
+        
+    }
+
     function send_player_search() {
-        const player_search_text = $('#player_search_value').val();
+        var player_search_text = $('#player_search_value').val();
+        var player_search_text_team = $('#player_search_value_team').val();
+        var player_search_text_pos = $('#player_search_value_pos').val();
+        var player_search_text_bye = $('#player_search_value_bye').val();
 
         console.log("Search Text: " + player_search_text)
         socket.send(JSON.stringify({
             'player_search_text': player_search_text,
+            'player_search_text_team': player_search_text_team,
+            'player_search_text_pos': player_search_text_pos,
+            'player_search_text_bye': player_search_text_bye,
             'searching_team': $("#current_auction_user_team").val()
         }));
     }
@@ -390,11 +462,16 @@
 
     };
     
-    document.querySelector('#submit_selected_player').onclick = function(e) {
-        var submitted_player_name = $('#selected_player_name').val();
-        var submitted_player_team = $('#selected_player_team').val();
-        var submitted_player_position = $('#selected_player_position').val();
+    document.querySelector('#select_player_confirmed').onclick = function(e) {
+        var submitted_player_name = $('#selected_player_name_confirm').text();
+        var submitted_player_team = $('#selected_player_team_confirm').text();
+        var submitted_player_position = $('#selected_player_position_confirm').text();
+    
+        submit_selected_player(submitted_player_name,submitted_player_team,submitted_player_position)
 
+    };
+
+    function submit_selected_player(submitted_player_name,submitted_player_team,submitted_player_position) {
         console.log("Submitted New Player for Auction: " + submitted_player_name)
 
         if(submitted_player_name && submitted_player_team && submitted_player_position) {
@@ -416,6 +493,15 @@
             console.log("Invalid player data submitted...")
         }
 
+    }
+
+    document.querySelector('#submit_selected_player').onclick = function(e) {
+        var submitted_player_name = $('#selected_player_name').val();
+        var submitted_player_team = $('#selected_player_team').val();
+        var submitted_player_position = $('#selected_player_position').val();
+
+        submit_selected_player(submitted_player_name,submitted_player_team,submitted_player_position)
+        
     
 
 

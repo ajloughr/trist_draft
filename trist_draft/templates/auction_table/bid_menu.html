@@ -74,8 +74,12 @@
                 <!-- px-5 pt-3 pb-2 -->
                 <div class="col-6">
                     <div class="input-group" role="group" id="new_bid_input_group"> 
+                        <span class="input-group-text">$</span>
                         <input type="number" min="1" step="1" id="id_new_bid" class="form-control" placeholder="New Bid" >
-                        <button id="submit_new_bid_button" class="btn btn-success man-tooltip" type="button" data-bs-toggle="man-tooltip" data-bs-placement="top"  title="Submit a bid for the currently selected Contract Years and Contract Price">Submit</button>
+                        <button id="submit_new_bid_button" class="btn btn-success man-tooltip" type="button" data-bs-toggle="man-tooltip" data-bs-placement="top"  title="Submit a bid for the currently selected Contract Years and Contract Price">
+                            <span class="spinner-grow spinner-grow-sm" id="submit_new_bid_button_spinner" aria-hidden="true"></span>
+                            <span role="status">Submit Bid</span>
+                        </button>
                     </div>
                 </div>
 

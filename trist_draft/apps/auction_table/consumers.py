@@ -54,6 +54,7 @@ class AuctionConsumer(WebsocketConsumer):
             'type': 'active_bidder_update',
             'auction_table_data': event['auction_table_data'],
             'auction_manager_data': event['auction_manager_data'],
+            'user_list': event['user_list'],
             'update_target':event['update_target']
             # 'source_user_id': source_user_id
         }))
@@ -249,6 +250,12 @@ def update_auction_table(refresh_target):
     new_auction_manager = auction_manager.objects.filter(pk=1)
     new_auction_manager_s = serializers.serialize('json', new_auction_manager)
 
+    new_user_list = User.objects.all()
+    # print("Users: " + str(new_user_list))
+    new_user_list_s = serializers.serialize('json', new_user_list)
+    # print("Users: " + str(new_user_list_s))
+
+
     if refresh_target == 'all':
         update_aution_user_current_roster_size()
 
@@ -258,6 +265,7 @@ def update_auction_table(refresh_target):
             'type': 'active_bidder_update',
             'auction_table_data': new_auction_user_list_s,
             'auction_manager_data' : new_auction_manager_s,
+            'user_list' : new_user_list_s,
             'update_target':refresh_target
         }
     )
@@ -636,21 +644,25 @@ def submit_auction_player(submitted_player_data):
     else:
         source_auction_user = get_object_or_404(auction_user,team_name=submitted_player_data['team_name'])
 
+    # current_auction_manager = get_object_or_404(auction_manager,pk=1)
+    
+    #check to see if this player is manually entered
+    nfl_player_check = nfl_player.objects.filter(full_name=submitted_player_data['submitted_player_name'],team=submitted_player_data['submitted_player_team'],position=submitted_player_data['submitted_player_position'])
+    # print("nfl_player_check: " + str(nfl_player_check))
+    if len(nfl_player_check) > 0:
+        drafted_player_is_manual = False
+        current_auction_manager.player_for_auction_bye = nfl_player_check[0].bye
+        # print(f"Bye: {nfl_player_check[0].bye}")
+    else:
+        drafted_player_is_manual = True
+
     current_auction_manager.player_for_auction_name = submitted_player_data['submitted_player_name']
     current_auction_manager.player_for_auction_team = submitted_player_data['submitted_player_team']
     current_auction_manager.player_for_auction_position = submitted_player_data['submitted_player_position']
     
+    
     current_auction_manager.save()
 
-    current_auction_manager = get_object_or_404(auction_manager,pk=1)
-
-    #check to see if this player is manually entered
-    nfl_player_check = nfl_player.objects.filter(full_name=current_auction_manager.player_for_auction_name,team=current_auction_manager.player_for_auction_team,position=current_auction_manager.player_for_auction_position)
-    #print("nfl_player_check: " + str(nfl_player_check))
-    if len(nfl_player_check) > 0:
-        drafted_player_is_manual = False
-    else:
-        drafted_player_is_manual = True
 
     if current_auction_manager.auction_type == "rookie":
         
@@ -709,10 +721,11 @@ def start_new_auction_at_bidder(new_start_data,is_manual):
     current_auction_manager.player_for_auction_name = ""
     current_auction_manager.player_for_auction_team = ""
     current_auction_manager.player_for_auction_position = ""
+    current_auction_manager.player_for_auction_bye = None
 
     current_auction_manager.save()
 
-    update_auction_table('all')
+    update_auction_table('all') 
 
 def reset_auction_table():
     all_auction_users = auction_user.objects.all()
@@ -748,6 +761,7 @@ def reset_auction_manager():
     current_auction_manager.player_for_auction_name = ""
     current_auction_manager.player_for_auction_team = ""
     current_auction_manager.player_for_auction_position = ""
+    current_auction_manager.player_for_auction_bye = None
 
     current_auction_manager.save()
 
@@ -1088,13 +1102,44 @@ def get_player_search_results(player_search_text_data):
     #print("Search Text: " + str(player_search_text_data['player_search_text']))
     #print("Search Team: " + str(player_search_text_data['searching_team']))
 
+    
+    try: 
+        if player_search_text_data['player_search_text_bye'] != "":
+            player_search_text_data['player_search_text_bye'] = int(player_search_text_data['player_search_text_bye']) 
+        
+
+    except Exception as errMsg:
+        print(errMsg)
+        player_search_text_data['player_search_text_bye'] = "BAD"
+
     #if search string is empty, clear results
-    if player_search_text_data['player_search_text'] == "":
+    if (
+        player_search_text_data['player_search_text'] == "" and 
+        player_search_text_data['player_search_text_team'] == "" and 
+        player_search_text_data['player_search_text_pos'] == "" and 
+        player_search_text_data['player_search_text_bye'] == "" 
+    ) or player_search_text_data['player_search_text_bye'] == "BAD":
         first_5_players_from_search_s = serializers.serialize('json', [])
+    
     else:
-        first_5_players_from_search_undrafted = nfl_player.objects.filter(full_name__icontains=str(player_search_text_data['player_search_text']),drafted_by='Undrafted')[:5]
-        first_5_players_from_search_drafted = nfl_player.objects.filter(full_name__icontains=str(player_search_text_data['player_search_text'])).exclude(drafted_by='Undrafted')[:5]
-        first_5_players_from_search_final = list(chain(first_5_players_from_search_undrafted,first_5_players_from_search_drafted))[:5]
+        # first_5_players_from_search_undrafted = nfl_player.objects.filter(full_name__icontains=str(player_search_text_data['player_search_text']),drafted_by='Undrafted')[:5]
+        # first_5_players_from_search_drafted = nfl_player.objects.filter(full_name__icontains=str(player_search_text_data['player_search_text'])).exclude(drafted_by='Undrafted')[:5]
+        # first_5_players_from_search_final = list(chain(first_5_players_from_search_undrafted,first_5_players_from_search_drafted))[:5]
+
+        if player_search_text_data['player_search_text_bye'] == "":
+            first_5_players_from_search_final = nfl_player.objects.filter(
+                full_name__icontains=str(player_search_text_data['player_search_text']),
+                team__icontains=str(player_search_text_data['player_search_text_team']),
+                position__icontains=str(player_search_text_data['player_search_text_pos'])
+            )[:5]
+        else:
+            first_5_players_from_search_final = nfl_player.objects.filter(
+                full_name__icontains=str(player_search_text_data['player_search_text']),
+                team__icontains=str(player_search_text_data['player_search_text_team']),
+                position__icontains=str(player_search_text_data['player_search_text_pos']),
+                bye=int(player_search_text_data['player_search_text_bye'])
+            )[:5]
+
 
         first_5_players_from_search_s = serializers.serialize('json', first_5_players_from_search_final)
     
