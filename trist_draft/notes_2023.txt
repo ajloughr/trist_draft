@@ -5,14 +5,18 @@ New issues:
     - during rfa back and forth, set current bidder to 0
     
     - add current status to all toasts (bids and years)
+    - ability to drop out early - dont show everyone else
     
     - Add bye to all screens
-    - add some stats to players
+    
     - bold team currently winning the auction
     - some sort of confirmation on what happened last round
-    - ability to drop out early - dont show everyone else
+    
     - allow draft history for admins with no teams
+
     - remove pass and drop out of player selection from admin screen
+
+    - add some stats to players
 
     x REMOVE CONFIRMATION STEP FROM SELECTION
     - unknown bug (see note 5)
@@ -71,6 +75,9 @@ NFL Data
         copy auction_table_nfl_player(player_id,full_name,team_short_name,team,position,drafted_by) from '/home/2022_fantasypros_data.csv' delimiter ',' CSV HEADER;
         copy auction_table_nfl_player(player_id,full_name,position,team,team_short_name,drafted_by) from '/tmp/Madden24_Players_raw.csv' delimiter ',' CSV HEADER;
         COPY auction_table_nfl_player(player_id, full_name, team_short_name, team, bye, position, fg, fga, xpt, fpts, att, cmp, yds, tds, ints, fl, fpts_qb, att_rb, yds_rb, tds_rb, rec, fl_rb, fpts_rb, rec_te, yds_te, tds_te, fl_te, fpts_te, rec_wr, yds_wr, tds_wr, att_wr, fl_wr, fpts_wr, sack, int, fr, ff, td, safety, pa, yds_agn, fpts_dst, att_flx, yds_flx, tds_flx, rec_flx, fl_flx, fpts_flx, drafted_by) FROM '/tmp/Final_Updated_Fantasy_Football_Projections_FINAL.csv' DELIMITER ',' CSV HEADER;
+        
+        ---2025---
+        COPY auction_table_nfl_player(player_id,full_name,team_short_name,team,bye,position,salary,final_year,drafted_by) FROM '/home/draft_data/TRIST_Database_2025_v2.csv' DELIMITER ',' CSV HEADER;
 
 
 

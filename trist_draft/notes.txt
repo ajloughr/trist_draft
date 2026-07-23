@@ -62,7 +62,8 @@ NFL Data
     
     IMPORT COMMAND: 
         #OLD copy auction_table_nfl_player(team_short_name,team,team_id,position,first_name,last_name,full_name,jersey_number,age,height,weight,madden_score,total_salary,signing_bonus,birthday,years_pro) from '/home/2022_nfl_ data_from_madden.csv' delimiter ',' CSV HEADER;
-        copy auction_table_nfl_player(player_id,full_name,team_short_name,team,position,drafted_by) from '/home/2022_fantasypros_data.csv' delimiter ',' CSV HEADER;
+        copy auction_table_nfl_player(player_id,full_name,team_short_name,team,position,drafted_by) from '/home/2022_fantasypros_data.csv' delimiter ',' CSV HEADER;Your work days are brighter here.
+
 Team budget
     x Add budget to teams
     check bid to see if team has money

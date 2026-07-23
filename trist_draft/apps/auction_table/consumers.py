@@ -11,6 +11,7 @@ from django.db.models.signals import post_save
 from django.core import serializers
 import channels.layers
 from itertools import chain
+import time
 
 class AuctionConsumer(WebsocketConsumer):
 
@@ -131,7 +132,7 @@ class AuctionConsumer(WebsocketConsumer):
             pass_user(text_data_json)
         elif "refresh" in text_data_json:
             print("Consumer received refresh request")
-            refresh_auction_table(text_data_json['target'])
+            update_auction_table(text_data_json['target'])
         elif "reset_users" in text_data_json:
             print("Consumer received reset users request")
             reset_auction_table()
@@ -227,7 +228,7 @@ def toggle_bathroom_mode(toggle_team_name,bathroom_mode_state):
 
     user_team_model.save()
 
-    refresh_auction_table('all')
+    update_auction_table('all')
 
 
 def update_rfas_remaining():
@@ -269,6 +270,28 @@ def update_auction_table(refresh_target):
             'update_target':refresh_target
         }
     )
+    
+    # this is probably not the best place for this, but easier than putting it after every potential action which could lead to a new bidder
+    if refresh_target == 'all':
+        check_if_next_bidder_early_dropped_out()
+    
+def check_if_next_bidder_early_dropped_out():
+    print("Checking if current bidder dropped out early")
+    current_auction_manager = get_object_or_404(auction_manager, pk=1)
+    current_bidder = get_object_or_404(auction_user,draft_order=current_auction_manager.active_bidder)
+    if current_bidder.dropped_out_of_bid_early: 
+        
+        drop_out_user(
+            {   
+                'drop_out': True,
+                'team_name': current_bidder.team_name,
+                'admin_bid_override': False
+            }
+        )
+        
+        # time.sleep(2)
+        
+    
 
 def update_aution_user_current_roster_size():
     print("Updating auction users roster size")
@@ -292,7 +315,7 @@ def get_rfas_for_user(get_rfa_for_user_data):
 
     user_team_model = get_object_or_404(auction_user,team_name=get_rfa_for_user_data['team_name'])
     user_rfa_index_list = user_team_model.current_rfa_list
-    #print("User RFA Index List: " + str(user_rfa_index_list))
+    # print("User RFA Index List: " + str(user_rfa_index_list))
     
     user_rfas = nfl_player.objects.filter(player_id__in=user_rfa_index_list)
     
@@ -418,7 +441,7 @@ def receive_auction_results_response(results_response_data):
         #     }
         # )
 
-        refresh_auction_table("all")
+        update_auction_table("all")
     
     elif results_response_type == 'rfa_bid_winner_raised':
         print("RFA winner raised, offering owner chance to match")
@@ -453,7 +476,7 @@ def receive_auction_results_response(results_response_data):
             }
         )
 
-        refresh_auction_table("all")
+        update_auction_table("all")
 
     elif results_response_type == 'rfa_bid_winner_dropped_out' or results_response_type == 'rfa_owner_match_2_matched':
         print(results_response_type + ", giving player to owner for highest bid")
@@ -717,6 +740,7 @@ def start_new_auction_at_bidder(new_start_data,is_manual):
 
     current_auction_manager.highest_contract_years = 1
     current_auction_manager.highest_bid = 0
+    current_auction_manager.team_with_highest_bid = 0
 
     current_auction_manager.player_for_auction_name = ""
     current_auction_manager.player_for_auction_team = ""
@@ -735,6 +759,7 @@ def reset_auction_table():
         a_user.contract_years_bid = 1
         a_user.pass_available = True
         a_user.still_in_auction = True
+        a_user.dropped_out_of_bid_early = False
         a_user.save()
 
 def reset_drop_outs():
@@ -767,11 +792,11 @@ def reset_auction_manager():
 
     update_auction_table('all')
 
-def refresh_auction_table(refresh_target):
-    print("Triggering Update of Auction Table")
-    # dummy_instance = auction_manager(pk=1)
-    # post_save.send(auction_manager, instance=dummy_instance)
-    update_auction_table(refresh_target)
+# def refresh_auction_table(refresh_target):
+#     print("Triggering Update of Auction Table")
+#     # dummy_instance = auction_manager(pk=1)
+#     # post_save.send(auction_manager, instance=dummy_instance)
+#     update_auction_table(refresh_target)
 
 def send_ufa_auction_bidding_end(auction_winner,initiated_auction):
     print("UFA Auction is ending")
@@ -1004,10 +1029,21 @@ def drop_out_user(drop_out_data):
             elif current_auction_manager.auction_type == "ufa" and num_auction_users_still_in == 1:
                 print("Auction is UFA and only 1 auction users left")
                 send_ufa_auction_bidding_end(auction_users_still_in[0].team_name,get_object_or_404(auction_user,draft_order=current_auction_manager.initiated_auction).team_name )
+                update_auction_table('all')
         else:
             print("Current user already dropped out")
     else:
-        print("Current user can not pass, it is not their turn")
+        
+        if drop_out_data['admin_bid_override']:
+            source_auction_user = get_object_or_404(auction_user,draft_order=current_auction_manager.active_bidder)
+        else:
+            source_auction_user = get_object_or_404(auction_user,team_name=drop_out_data['team_name'])
+            
+        source_auction_user.dropped_out_of_bid_early = True
+        source_auction_user.save()
+        update_auction_table(drop_out_data['team_name'])
+        
+        print("Current user can not drop out, it is not their turn")
 
 def get_next_bidder(active_bidder_draft_order,initiated_auction_draft_order,auction_type,is_player_selection):
     all_auction_users = auction_user.objects.all().order_by('draft_order')
@@ -1038,6 +1074,9 @@ def get_next_bidder(active_bidder_draft_order,initiated_auction_draft_order,auct
         print("Next Rookie Draft position is: " + str(next_rookie_draft_position))
 
         if next_rookie_draft_position > (len(rookie_draft_order) - 1):
+            current_auction_manager.rookie_draft_current_position = next_rookie_draft_position
+            current_auction_manager.active_bidder = 0
+            current_auction_manager.save()
             print("Rookie Draft is over!")
             return 0
         else:
