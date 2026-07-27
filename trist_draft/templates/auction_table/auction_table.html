@@ -501,21 +501,20 @@
     
     //console.log("Current User: " + $("#current_auction_user_team").val())
     
-    console.log("Attempting to connect to websocket: " + window.location.host)
-    var socket = new WebSocket('wss://' + window.location.host + '/ws/auction_table/');
-    //var socket = new WebSocket('ws://' + window.location.host + '/ws/auction_table/');
+    var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
+    var ws_url = ws_scheme + '://' + window.location.host + '/ws/auction_table/';
+    var socket = new WebSocket(ws_url);
   
+    socket.onerror = function(error) {
+        console.error("Websocket error occurred: ", error);
+    };
+
     socket.onopen = function() {
         console.log("Websocket connection done!");
         socket.send(JSON.stringify({
             'refresh': true,
             'target': $("#current_auction_user_team").val()
         }));
-    //   if (socket.readyState == WebSocket.OPEN) {
-    //     setInterval(function() {
-    //       socket.send('Websocket Connected!!!');
-    //     }, 10000);
-    //   }
     };
 
     function connect_websocket() {

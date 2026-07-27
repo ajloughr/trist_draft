@@ -15,11 +15,7 @@ import time
 
 class AuctionConsumer(WebsocketConsumer):
 
-    def websocket_connect(self, event):
-        # self.accept({
-        #     'type': 'websocket.accept'
-        # })
-
+    def connect(self):
         # Join group
         async_to_sync(self.channel_layer.group_add)(
             settings.AUCTION_UPDATE_GROUP,
@@ -35,7 +31,7 @@ class AuctionConsumer(WebsocketConsumer):
 
 
 
-    def websocket_disconnect(self, event):
+    def disconnect(self, close_code):
         # Leave group
         async_to_sync(self.channel_layer.group_discard)(
             settings.AUCTION_UPDATE_GROUP,
@@ -110,9 +106,9 @@ class AuctionConsumer(WebsocketConsumer):
         # source_user_id = self.scope["user"].id
         # print("Current User Id: " + str(source_user_id))
         # source_auction_user = get_object_or_404(auction_user,user=source_user_id)
-        # print("Current User: " + str(source_auction_user))
+        # print("Current User Draft Order: " + str(source_auction_user.draft_order))
 
-
+        
         try:
             text_data_json = json.loads(text_data)
             #print("Success: " + str(text_data_json))
@@ -224,6 +220,7 @@ def get_player_info(player_info):
 
 def toggle_bathroom_mode(toggle_team_name,bathroom_mode_state):
     user_team_model = get_object_or_404(auction_user,team_name=toggle_team_name)
+    # TODO: Disable bathroom mode if this user is the one who put up the current player (initiated_auction).
     user_team_model.bathroom_mode_enabled = bathroom_mode_state
 
     user_team_model.save()
@@ -278,6 +275,8 @@ def update_auction_table(refresh_target):
 def check_if_next_bidder_early_dropped_out():
     print("Checking if current bidder dropped out early")
     current_auction_manager = get_object_or_404(auction_manager, pk=1)
+    if current_auction_manager.active_bidder == 0:
+        return
     current_bidder = get_object_or_404(auction_user,draft_order=current_auction_manager.active_bidder)
     if current_bidder.dropped_out_of_bid_early: 
         
@@ -875,6 +874,7 @@ def send_no_bid_last_auction_user(bid_winner,initiated_auction):
     )
 
 def submit_new_bid(new_bid_data):
+    # TODO: Add backend validation to ensure the user has enough budget_remaining to make this bid, and that contract_years <= max allowed.
     all_auction_users = auction_user.objects.all()
     current_auction_manager = get_object_or_404(auction_manager,pk=1)
 
@@ -986,7 +986,9 @@ def drop_out_user(drop_out_data):
             if current_auction_manager.auction_type == "rfa" and num_auction_users_still_in <= 2:
                 
                 # if highest bid is still 1, it means no one has bid 
-                ### THIS DOESNT SEEM TO WORK????
+                # TODO: This logic currently forces the original owner to match if a remaining user (who passed earlier) is still in the auction.
+                # In the future, this should be rewritten so the remaining user is forced to take their normal turn (bid or drop out). 
+                # If they bid, they instantly become the bid winner and the normal match phase begins.
                 if num_auction_users_still_in == 2 and current_auction_manager.initial_bid == current_auction_manager.highest_bid and current_auction_manager.highest_contract_years == current_auction_manager.initial_bid_years:
                     print("No one has bid, skipping to raise of RFA")
                     
@@ -1135,6 +1137,8 @@ def get_next_bidder(active_bidder_draft_order,initiated_auction_draft_order,auct
     
     #didnt find any viable next bidders/initiator so draft must be over
     print("No vible next team found...")
+    if is_player_selection:
+        return 0
     return active_bidder_draft_order
 
 def get_player_search_results(player_search_text_data):

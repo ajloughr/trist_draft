@@ -242,8 +242,8 @@
     //}
 
     console.log("Attempting to connect to websocket: " + window.location.host)
-    var socket = new WebSocket('wss://' + window.location.host + '/ws/auction_table/');
-    //var socket = new WebSocket('ws://' + window.location.host + '/ws/auction_table/');
+    var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
+    var socket = new WebSocket(ws_scheme + '://' + window.location.host + '/ws/auction_table/');
         
     socket.onmessage = function(e) {
         var data = JSON.parse(e.data);

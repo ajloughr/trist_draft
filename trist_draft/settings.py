@@ -82,7 +82,7 @@ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [("192.168.1.100", 6379)],
+            "hosts": [(os.environ.get('REDIS_HOST', 'redis'), 6379)],
         },
     },
 }
@@ -96,8 +96,8 @@ DATABASES = {
         'NAME': os.environ.get('POSTGRES_NAME'),
         'USER': os.environ.get('POSTGRES_USER'),
         'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-        'HOST': "192.168.1.100",
-        'PORT': 5434,
+        'HOST': os.environ.get('POSTGRES_HOST', 'django-postgres'),
+        'PORT': int(os.environ.get('POSTGRES_PORT', 5432)),
     }
 }
 
@@ -139,6 +139,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = '/vol/web/static'
 
 STATICFILES_DIRS = [
     os.path.join(PROJECT_DIR,"static"),

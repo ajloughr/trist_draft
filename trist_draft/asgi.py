@@ -9,19 +9,26 @@ https://docs.djangoproject.com/en/3.2/howto/deployment/asgi/
 
 import os
 
+from django.core.asgi import get_asgi_application
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'trist_draft.settings')
+django_asgi_app = get_asgi_application()
+
 from channels.auth import AuthMiddlewareStack
 from channels.routing import ProtocolTypeRouter, URLRouter
-from django.core.asgi import get_asgi_application
 import trist_draft.apps.auction_table.routing
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'trist_draft.settings')
 
 application = ProtocolTypeRouter({
-    "http": get_asgi_application(),
+    "http": django_asgi_app,
     "websocket": AuthMiddlewareStack(
         URLRouter(
             trist_draft.apps.auction_table.routing.websocket_urlpatterns
-        ) 
+        )
     ),
-    # Just HTTP for now. (We can add other protocols later.)
 })
+
+# Serve static files in development/testing via Daphne
+from channels.staticfiles import StaticFilesWrapper
+from django.conf import settings
+if settings.DEBUG:
+    application = StaticFilesWrapper(application)

@@ -1,0 +1,8102 @@
+[
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10026,
+  "fields": {
+    "player_id": 1,
+    "team_short_name": "CIN",
+    "team": "Bengals",
+    "position": "WR",
+    "full_name": "Ja'Marr Chase",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10027,
+  "fields": {
+    "player_id": 2,
+    "team_short_name": "PHI",
+    "team": "Eagles",
+    "position": "RB",
+    "full_name": "Saquon Barkley",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10028,
+  "fields": {
+    "player_id": 3,
+    "team_short_name": "ATL",
+    "team": "Falcons",
+    "position": "RB",
+    "full_name": "Bijan Robinson",
+    "bye": 5,
+    "salary": 1,
+    "final_year": 2026,
+    "drafted_by": "Easy Marks"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10029,
+  "fields": {
+    "player_id": 4,
+    "team_short_name": "MIN",
+    "team": "Vikings",
+    "position": "WR",
+    "full_name": "Justin Jefferson",
+    "bye": 6,
+    "salary": 20,
+    "final_year": 2026,
+    "drafted_by": "Dark Energy"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10030,
+  "fields": {
+    "player_id": 5,
+    "team_short_name": "DET",
+    "team": "Lions",
+    "position": "RB",
+    "full_name": "Jahmyr Gibbs",
+    "bye": 8,
+    "salary": 1,
+    "final_year": 2026,
+    "drafted_by": "Show Me the Money"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10031,
+  "fields": {
+    "player_id": 6,
+    "team_short_name": "DAL",
+    "team": "Cowboys",
+    "position": "WR",
+    "full_name": "CeeDee Lamb",
+    "bye": 10,
+    "salary": 19,
+    "final_year": 2026,
+    "drafted_by": "Dirt Dogs"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10032,
+  "fields": {
+    "player_id": 7,
+    "team_short_name": "LAR",
+    "team": "Rams",
+    "position": "WR",
+    "full_name": "Puka Nacua",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10033,
+  "fields": {
+    "player_id": 8,
+    "team_short_name": "BAL",
+    "team": "Ravens",
+    "position": "RB",
+    "full_name": "Derrick Henry",
+    "bye": 7,
+    "salary": 20,
+    "final_year": 2025,
+    "drafted_by": "Dark Energy"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10034,
+  "fields": {
+    "player_id": 9,
+    "team_short_name": "HOU",
+    "team": "Texans",
+    "position": "WR",
+    "full_name": "Nico Collins",
+    "bye": 6,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10035,
+  "fields": {
+    "player_id": 10,
+    "team_short_name": "NYG",
+    "team": "Giants",
+    "position": "WR",
+    "full_name": "Malik Nabers",
+    "bye": 14,
+    "salary": 1,
+    "final_year": 2027,
+    "drafted_by": "Always Next Year"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10036,
+  "fields": {
+    "player_id": 11,
+    "team_short_name": "JAC",
+    "team": "Jaguars",
+    "position": "WR",
+    "full_name": "Brian Thomas Jr.",
+    "bye": 8,
+    "salary": 1,
+    "final_year": 2027,
+    "drafted_by": "Dark Energy"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10037,
+  "fields": {
+    "player_id": 12,
+    "team_short_name": "LV",
+    "team": "Raiders",
+    "position": "RB",
+    "full_name": "Ashton Jeanty",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10038,
+  "fields": {
+    "player_id": 13,
+    "team_short_name": "DET",
+    "team": "Lions",
+    "position": "WR",
+    "full_name": "Amon-Ra St. Brown",
+    "bye": 8,
+    "salary": 25,
+    "final_year": 2026,
+    "drafted_by": "Show Me the Money"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10039,
+  "fields": {
+    "player_id": 14,
+    "team_short_name": "IND",
+    "team": "Colts",
+    "position": "RB",
+    "full_name": "Jonathan Taylor",
+    "bye": 11,
+    "salary": 19,
+    "final_year": 2025,
+    "drafted_by": "Always Next Year"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10040,
+  "fields": {
+    "player_id": 15,
+    "team_short_name": "GB",
+    "team": "Packers",
+    "position": "RB",
+    "full_name": "Josh Jacobs",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10041,
+  "fields": {
+    "player_id": 16,
+    "team_short_name": "PHI",
+    "team": "Eagles",
+    "position": "WR",
+    "full_name": "A.J. Brown",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10042,
+  "fields": {
+    "player_id": 17,
+    "team_short_name": "SF",
+    "team": "49ers",
+    "position": "RB",
+    "full_name": "Christian McCaffrey",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10043,
+  "fields": {
+    "player_id": 18,
+    "team_short_name": "ATL",
+    "team": "Falcons",
+    "position": "WR",
+    "full_name": "Drake London",
+    "bye": 5,
+    "salary": 1,
+    "final_year": 2025,
+    "drafted_by": "Show Me the Money"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10044,
+  "fields": {
+    "player_id": 19,
+    "team_short_name": "SF",
+    "team": "49ers",
+    "position": "TE",
+    "full_name": "George Kittle",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10045,
+  "fields": {
+    "player_id": 20,
+    "team_short_name": "MIA",
+    "team": "Dolphins",
+    "position": "RB",
+    "full_name": "De'Von Achane",
+    "bye": 12,
+    "salary": 1,
+    "final_year": 2026,
+    "drafted_by": "Dark Energy"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10046,
+  "fields": {
+    "player_id": 21,
+    "team_short_name": "TB",
+    "team": "Buccaneers",
+    "position": "RB",
+    "full_name": "Bucky Irving",
+    "bye": 9,
+    "salary": 2,
+    "final_year": 2026,
+    "drafted_by": "Show Me the Money"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10047,
+  "fields": {
+    "player_id": 22,
+    "team_short_name": "LAC",
+    "team": "Chargers",
+    "position": "WR",
+    "full_name": "Ladd McConkey",
+    "bye": 12,
+    "salary": 1,
+    "final_year": 2027,
+    "drafted_by": "Show Me the Money"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10048,
+  "fields": {
+    "player_id": 23,
+    "team_short_name": "LV",
+    "team": "Raiders",
+    "position": "TE",
+    "full_name": "Brock Bowers",
+    "bye": 8,
+    "salary": 1,
+    "final_year": 2027,
+    "drafted_by": "Show Me the Money"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10049,
+  "fields": {
+    "player_id": 24,
+    "team_short_name": "LAR",
+    "team": "Rams",
+    "position": "RB",
+    "full_name": "Kyren Williams",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10050,
+  "fields": {
+    "player_id": 25,
+    "team_short_name": "BUF",
+    "team": "Bills",
+    "position": "QB",
+    "full_name": "Josh Allen",
+    "bye": 7,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10051,
+  "fields": {
+    "player_id": 26,
+    "team_short_name": "BAL",
+    "team": "Ravens",
+    "position": "QB",
+    "full_name": "Lamar Jackson",
+    "bye": 7,
+    "salary": 11,
+    "final_year": 2025,
+    "drafted_by": "What Dats"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10052,
+  "fields": {
+    "player_id": 27,
+    "team_short_name": "CIN",
+    "team": "Bengals",
+    "position": "WR",
+    "full_name": "Tee Higgins",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10053,
+  "fields": {
+    "player_id": 28,
+    "team_short_name": "BUF",
+    "team": "Bills",
+    "position": "RB",
+    "full_name": "James Cook",
+    "bye": 7,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10054,
+  "fields": {
+    "player_id": 29,
+    "team_short_name": "TB",
+    "team": "Buccaneers",
+    "position": "WR",
+    "full_name": "Mike Evans",
+    "bye": 9,
+    "salary": 11,
+    "final_year": 2025,
+    "drafted_by": "Russ Riders"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10055,
+  "fields": {
+    "player_id": 30,
+    "team_short_name": "WAS",
+    "team": "Commanders",
+    "position": "QB",
+    "full_name": "Jayden Daniels",
+    "bye": 12,
+    "salary": 1,
+    "final_year": 2027,
+    "drafted_by": "Hokie High"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10056,
+  "fields": {
+    "player_id": 31,
+    "team_short_name": "ARI",
+    "team": "Cardinals",
+    "position": "TE",
+    "full_name": "Trey McBride",
+    "bye": 8,
+    "salary": 1,
+    "final_year": 2025,
+    "drafted_by": "Russ Riders"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10057,
+  "fields": {
+    "player_id": 32,
+    "team_short_name": "MIA",
+    "team": "Dolphins",
+    "position": "WR",
+    "full_name": "Tyreek Hill",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10058,
+  "fields": {
+    "player_id": 33,
+    "team_short_name": "CIN",
+    "team": "Bengals",
+    "position": "RB",
+    "full_name": "Chase Brown",
+    "bye": 10,
+    "salary": 4,
+    "final_year": 2025,
+    "drafted_by": "What Dats"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10059,
+  "fields": {
+    "player_id": 34,
+    "team_short_name": "LAR",
+    "team": "Rams",
+    "position": "WR",
+    "full_name": "Davante Adams",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10060,
+  "fields": {
+    "player_id": 35,
+    "team_short_name": "WAS",
+    "team": "Commanders",
+    "position": "WR",
+    "full_name": "Terry McLaurin",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10061,
+  "fields": {
+    "player_id": 36,
+    "team_short_name": "SEA",
+    "team": "Seahawks",
+    "position": "WR",
+    "full_name": "Jaxon Smith-Njigba",
+    "bye": 8,
+    "salary": 1,
+    "final_year": 2026,
+    "drafted_by": "Sentinels"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10062,
+  "fields": {
+    "player_id": 37,
+    "team_short_name": "PHI",
+    "team": "Eagles",
+    "position": "QB",
+    "full_name": "Jalen Hurts",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10063,
+  "fields": {
+    "player_id": 38,
+    "team_short_name": "NYJ",
+    "team": "Jets",
+    "position": "RB",
+    "full_name": "Breece Hall",
+    "bye": 9,
+    "salary": 1,
+    "final_year": 2025,
+    "drafted_by": "Easy Marks"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10064,
+  "fields": {
+    "player_id": 39,
+    "team_short_name": "NYJ",
+    "team": "Jets",
+    "position": "WR",
+    "full_name": "Garrett Wilson",
+    "bye": 9,
+    "salary": 1,
+    "final_year": 2025,
+    "drafted_by": "What Dats"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10065,
+  "fields": {
+    "player_id": 40,
+    "team_short_name": "ARI",
+    "team": "Cardinals",
+    "position": "WR",
+    "full_name": "Marvin Harrison Jr.",
+    "bye": 8,
+    "salary": 1,
+    "final_year": 2027,
+    "drafted_by": "Easy Marks"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10066,
+  "fields": {
+    "player_id": 41,
+    "team_short_name": "SEA",
+    "team": "Seahawks",
+    "position": "RB",
+    "full_name": "Kenneth Walker III",
+    "bye": 8,
+    "salary": 1,
+    "final_year": 2025,
+    "drafted_by": "Show Me the Money"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10067,
+  "fields": {
+    "player_id": 42,
+    "team_short_name": "CAR",
+    "team": "Panthers",
+    "position": "RB",
+    "full_name": "Chuba Hubbard",
+    "bye": 14,
+    "salary": 5,
+    "final_year": 2025,
+    "drafted_by": "Sentinels"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10068,
+  "fields": {
+    "player_id": 43,
+    "team_short_name": "KC",
+    "team": "Chiefs",
+    "position": "WR",
+    "full_name": "Rashee Rice",
+    "bye": 10,
+    "salary": 1,
+    "final_year": 2025,
+    "drafted_by": "Show Me the Money"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10069,
+  "fields": {
+    "player_id": 44,
+    "team_short_name": "ARI",
+    "team": "Cardinals",
+    "position": "RB",
+    "full_name": "James Conner",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10070,
+  "fields": {
+    "player_id": 45,
+    "team_short_name": "PIT",
+    "team": "Steelers",
+    "position": "WR",
+    "full_name": "DK Metcalf",
+    "bye": 5,
+    "salary": 10,
+    "final_year": 2026,
+    "drafted_by": "Hokie High"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10071,
+  "fields": {
+    "player_id": 46,
+    "team_short_name": "HOU",
+    "team": "Texans",
+    "position": "RB",
+    "full_name": "Joe Mixon",
+    "bye": 6,
+    "salary": 11,
+    "final_year": 2025,
+    "drafted_by": "Russ Riders"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10072,
+  "fields": {
+    "player_id": 47,
+    "team_short_name": "DET",
+    "team": "Lions",
+    "position": "WR",
+    "full_name": "Jameson Williams",
+    "bye": 8,
+    "salary": 1,
+    "final_year": 2025,
+    "drafted_by": "Hokie High"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10073,
+  "fields": {
+    "player_id": 48,
+    "team_short_name": "CIN",
+    "team": "Bengals",
+    "position": "QB",
+    "full_name": "Joe Burrow",
+    "bye": 10,
+    "salary": 10,
+    "final_year": 2026,
+    "drafted_by": "Always Next Year"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10074,
+  "fields": {
+    "player_id": 49,
+    "team_short_name": "NO",
+    "team": "Saints",
+    "position": "RB",
+    "full_name": "Alvin Kamara",
+    "bye": 11,
+    "salary": 10,
+    "final_year": 2025,
+    "drafted_by": "Sentinels"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10075,
+  "fields": {
+    "player_id": 50,
+    "team_short_name": "CHI",
+    "team": "Bears",
+    "position": "WR",
+    "full_name": "DJ Moore",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10076,
+  "fields": {
+    "player_id": 51,
+    "team_short_name": "DEN",
+    "team": "Broncos",
+    "position": "WR",
+    "full_name": "Courtland Sutton",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10077,
+  "fields": {
+    "player_id": 52,
+    "team_short_name": "BAL",
+    "team": "Ravens",
+    "position": "WR",
+    "full_name": "Zay Flowers",
+    "bye": 7,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10078,
+  "fields": {
+    "player_id": 53,
+    "team_short_name": "LAC",
+    "team": "Chargers",
+    "position": "RB",
+    "full_name": "Omarion Hampton",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10079,
+  "fields": {
+    "player_id": 54,
+    "team_short_name": "DET",
+    "team": "Lions",
+    "position": "TE",
+    "full_name": "Sam LaPorta",
+    "bye": 8,
+    "salary": 1,
+    "final_year": 2026,
+    "drafted_by": "Easy Marks"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10080,
+  "fields": {
+    "player_id": 55,
+    "team_short_name": "DET",
+    "team": "Lions",
+    "position": "RB",
+    "full_name": "David Montgomery",
+    "bye": 8,
+    "salary": 8,
+    "final_year": 2025,
+    "drafted_by": "Dark Energy"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10081,
+  "fields": {
+    "player_id": 56,
+    "team_short_name": "KC",
+    "team": "Chiefs",
+    "position": "WR",
+    "full_name": "Xavier Worthy",
+    "bye": 10,
+    "salary": 1,
+    "final_year": 2027,
+    "drafted_by": "Sentinels"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10082,
+  "fields": {
+    "player_id": 57,
+    "team_short_name": "PHI",
+    "team": "Eagles",
+    "position": "WR",
+    "full_name": "DeVonta Smith",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10083,
+  "fields": {
+    "player_id": 58,
+    "team_short_name": "CHI",
+    "team": "Bears",
+    "position": "RB",
+    "full_name": "D'Andre Swift",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10084,
+  "fields": {
+    "player_id": 59,
+    "team_short_name": "TEN",
+    "team": "Titans",
+    "position": "WR",
+    "full_name": "Calvin Ridley",
+    "bye": 10,
+    "salary": 10,
+    "final_year": 2025,
+    "drafted_by": "Sentinels"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10085,
+  "fields": {
+    "player_id": 60,
+    "team_short_name": "KC",
+    "team": "Chiefs",
+    "position": "QB",
+    "full_name": "Patrick Mahomes II",
+    "bye": 10,
+    "salary": 22,
+    "final_year": 2025,
+    "drafted_by": "Show Me the Money"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10086,
+  "fields": {
+    "player_id": 61,
+    "team_short_name": "DEN",
+    "team": "Broncos",
+    "position": "RB",
+    "full_name": "RJ Harvey",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10087,
+  "fields": {
+    "player_id": 62,
+    "team_short_name": "NE",
+    "team": "Patriots",
+    "position": "RB",
+    "full_name": "TreVeyon Henderson",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10088,
+  "fields": {
+    "player_id": 63,
+    "team_short_name": "PIT",
+    "team": "Steelers",
+    "position": "RB",
+    "full_name": "Kaleb Johnson",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10089,
+  "fields": {
+    "player_id": 64,
+    "team_short_name": "MIN",
+    "team": "Vikings",
+    "position": "RB",
+    "full_name": "Aaron Jones Sr.",
+    "bye": 6,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10090,
+  "fields": {
+    "player_id": 65,
+    "team_short_name": "TB",
+    "team": "Buccaneers",
+    "position": "QB",
+    "full_name": "Baker Mayfield",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10091,
+  "fields": {
+    "player_id": 66,
+    "team_short_name": "DAL",
+    "team": "Cowboys",
+    "position": "WR",
+    "full_name": "George Pickens",
+    "bye": 10,
+    "salary": 1,
+    "final_year": 2025,
+    "drafted_by": "Dark Energy"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10092,
+  "fields": {
+    "player_id": 67,
+    "team_short_name": "TEN",
+    "team": "Titans",
+    "position": "RB",
+    "full_name": "Tony Pollard",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10093,
+  "fields": {
+    "player_id": 68,
+    "team_short_name": "KC",
+    "team": "Chiefs",
+    "position": "RB",
+    "full_name": "Isiah Pacheco",
+    "bye": 10,
+    "salary": 5,
+    "final_year": 2025,
+    "drafted_by": "Show Me the Money"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10094,
+  "fields": {
+    "player_id": 69,
+    "team_short_name": "BAL",
+    "team": "Ravens",
+    "position": "TE",
+    "full_name": "Mark Andrews",
+    "bye": 7,
+    "salary": 17,
+    "final_year": 2025,
+    "drafted_by": "Dark Energy"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10095,
+  "fields": {
+    "player_id": 70,
+    "team_short_name": "CAR",
+    "team": "Panthers",
+    "position": "WR",
+    "full_name": "Tetairoa McMillan",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10096,
+  "fields": {
+    "player_id": 71,
+    "team_short_name": "MIA",
+    "team": "Dolphins",
+    "position": "WR",
+    "full_name": "Jaylen Waddle",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10097,
+  "fields": {
+    "player_id": 72,
+    "team_short_name": "WAS",
+    "team": "Commanders",
+    "position": "RB",
+    "full_name": "Brian Robinson Jr.",
+    "bye": 12,
+    "salary": 1,
+    "final_year": 2025,
+    "drafted_by": "Dirt Dogs"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10098,
+  "fields": {
+    "player_id": 73,
+    "team_short_name": "JAC",
+    "team": "Jaguars",
+    "position": "WR",
+    "full_name": "Travis Hunter",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10099,
+  "fields": {
+    "player_id": 74,
+    "team_short_name": "MIN",
+    "team": "Vikings",
+    "position": "WR",
+    "full_name": "Jordan Addison",
+    "bye": 6,
+    "salary": 1,
+    "final_year": 2026,
+    "drafted_by": "Hokie High"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10100,
+  "fields": {
+    "player_id": 75,
+    "team_short_name": "DEN",
+    "team": "Broncos",
+    "position": "QB",
+    "full_name": "Bo Nix",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10101,
+  "fields": {
+    "player_id": 76,
+    "team_short_name": "ARI",
+    "team": "Cardinals",
+    "position": "QB",
+    "full_name": "Kyler Murray",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10102,
+  "fields": {
+    "player_id": 77,
+    "team_short_name": "MIN",
+    "team": "Vikings",
+    "position": "TE",
+    "full_name": "T.J. Hockenson",
+    "bye": 6,
+    "salary": 14,
+    "final_year": 2025,
+    "drafted_by": "Hokie High"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10103,
+  "fields": {
+    "player_id": 78,
+    "team_short_name": "TB",
+    "team": "Buccaneers",
+    "position": "WR",
+    "full_name": "Chris Godwin",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10104,
+  "fields": {
+    "player_id": 79,
+    "team_short_name": "NO",
+    "team": "Saints",
+    "position": "WR",
+    "full_name": "Chris Olave",
+    "bye": 11,
+    "salary": 1,
+    "final_year": 2025,
+    "drafted_by": "What Dats"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10105,
+  "fields": {
+    "player_id": 80,
+    "team_short_name": "CHI",
+    "team": "Bears",
+    "position": "WR",
+    "full_name": "Rome Odunze",
+    "bye": 5,
+    "salary": 1,
+    "final_year": 2027,
+    "drafted_by": "Dirt Dogs"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10106,
+  "fields": {
+    "player_id": 81,
+    "team_short_name": "CLE",
+    "team": "Browns",
+    "position": "RB",
+    "full_name": "Quinshon Judkins",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10107,
+  "fields": {
+    "player_id": 82,
+    "team_short_name": "CLE",
+    "team": "Browns",
+    "position": "WR",
+    "full_name": "Jerry Jeudy",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10108,
+  "fields": {
+    "player_id": 83,
+    "team_short_name": "NYG",
+    "team": "Giants",
+    "position": "RB",
+    "full_name": "Tyrone Tracy Jr.",
+    "bye": 14,
+    "salary": 1,
+    "final_year": 2026,
+    "drafted_by": "Show Me the Money"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10109,
+  "fields": {
+    "player_id": 84,
+    "team_short_name": "KC",
+    "team": "Chiefs",
+    "position": "TE",
+    "full_name": "Travis Kelce",
+    "bye": 10,
+    "salary": 18,
+    "final_year": 2026,
+    "drafted_by": "Always Next Year"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10110,
+  "fields": {
+    "player_id": 85,
+    "team_short_name": "LAC",
+    "team": "Chargers",
+    "position": "RB",
+    "full_name": "Najee Harris",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10111,
+  "fields": {
+    "player_id": 86,
+    "team_short_name": "GB",
+    "team": "Packers",
+    "position": "WR",
+    "full_name": "Jayden Reed",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10112,
+  "fields": {
+    "player_id": 87,
+    "team_short_name": "NYJ",
+    "team": "Jets",
+    "position": "QB",
+    "full_name": "Justin Fields",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10113,
+  "fields": {
+    "player_id": 88,
+    "team_short_name": "GB",
+    "team": "Packers",
+    "position": "TE",
+    "full_name": "Tucker Kraft",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10114,
+  "fields": {
+    "player_id": 89,
+    "team_short_name": "SF",
+    "team": "49ers",
+    "position": "WR",
+    "full_name": "Jauan Jennings",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10115,
+  "fields": {
+    "player_id": 90,
+    "team_short_name": "WAS",
+    "team": "Commanders",
+    "position": "WR",
+    "full_name": "Deebo Samuel Sr.",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10116,
+  "fields": {
+    "player_id": 91,
+    "team_short_name": "CLE",
+    "team": "Browns",
+    "position": "TE",
+    "full_name": "David Njoku",
+    "bye": 9,
+    "salary": 6,
+    "final_year": 2025,
+    "drafted_by": "Easy Marks"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10117,
+  "fields": {
+    "player_id": 92,
+    "team_short_name": "SF",
+    "team": "49ers",
+    "position": "QB",
+    "full_name": "Brock Purdy",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10118,
+  "fields": {
+    "player_id": 93,
+    "team_short_name": "CHI",
+    "team": "Bears",
+    "position": "QB",
+    "full_name": "Caleb Williams",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10119,
+  "fields": {
+    "player_id": 94,
+    "team_short_name": "JAC",
+    "team": "Jaguars",
+    "position": "RB",
+    "full_name": "Travis Etienne Jr.",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10120,
+  "fields": {
+    "player_id": 95,
+    "team_short_name": "PIT",
+    "team": "Steelers",
+    "position": "RB",
+    "full_name": "Jaylen Warren",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10121,
+  "fields": {
+    "player_id": 96,
+    "team_short_name": "LAC",
+    "team": "Chargers",
+    "position": "QB",
+    "full_name": "Justin Herbert",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10122,
+  "fields": {
+    "player_id": 97,
+    "team_short_name": "DAL",
+    "team": "Cowboys",
+    "position": "QB",
+    "full_name": "Dak Prescott",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10123,
+  "fields": {
+    "player_id": 98,
+    "team_short_name": "DET",
+    "team": "Lions",
+    "position": "QB",
+    "full_name": "Jared Goff",
+    "bye": 8,
+    "salary": 5,
+    "final_year": 2025,
+    "drafted_by": "Show Me the Money"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10124,
+  "fields": {
+    "player_id": 99,
+    "team_short_name": "DEN",
+    "team": "Broncos",
+    "position": "TE",
+    "full_name": "Evan Engram",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10125,
+  "fields": {
+    "player_id": 100,
+    "team_short_name": "MIN",
+    "team": "Vikings",
+    "position": "RB",
+    "full_name": "Jordan Mason",
+    "bye": 6,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10126,
+  "fields": {
+    "player_id": 101,
+    "team_short_name": "LV",
+    "team": "Raiders",
+    "position": "WR",
+    "full_name": "Jakobi Meyers",
+    "bye": 8,
+    "salary": 4,
+    "final_year": 2025,
+    "drafted_by": "Russ Riders"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10127,
+  "fields": {
+    "player_id": 102,
+    "team_short_name": "BUF",
+    "team": "Bills",
+    "position": "WR",
+    "full_name": "Khalil Shakir",
+    "bye": 7,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10128,
+  "fields": {
+    "player_id": 103,
+    "team_short_name": "SF",
+    "team": "49ers",
+    "position": "WR",
+    "full_name": "Ricky Pearsall",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10129,
+  "fields": {
+    "player_id": 104,
+    "team_short_name": "NE",
+    "team": "Patriots",
+    "position": "RB",
+    "full_name": "Rhamondre Stevenson",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10130,
+  "fields": {
+    "player_id": 105,
+    "team_short_name": "SEA",
+    "team": "Seahawks",
+    "position": "RB",
+    "full_name": "Zach Charbonnet",
+    "bye": 8,
+    "salary": 1,
+    "final_year": 2026,
+    "drafted_by": "Show Me the Money"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10131,
+  "fields": {
+    "player_id": 106,
+    "team_short_name": "DAL",
+    "team": "Cowboys",
+    "position": "RB",
+    "full_name": "Javonte Williams",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10132,
+  "fields": {
+    "player_id": 107,
+    "team_short_name": "NE",
+    "team": "Patriots",
+    "position": "QB",
+    "full_name": "Drake Maye",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10133,
+  "fields": {
+    "player_id": 108,
+    "team_short_name": "GB",
+    "team": "Packers",
+    "position": "QB",
+    "full_name": "Jordan Love",
+    "bye": 5,
+    "salary": 2,
+    "final_year": 2025,
+    "drafted_by": "What Dats"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10134,
+  "fields": {
+    "player_id": 109,
+    "team_short_name": "SF",
+    "team": "49ers",
+    "position": "WR",
+    "full_name": "Brandon Aiyuk",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10135,
+  "fields": {
+    "player_id": 110,
+    "team_short_name": "JAC",
+    "team": "Jaguars",
+    "position": "RB",
+    "full_name": "Tank Bigsby",
+    "bye": 8,
+    "salary": 1,
+    "final_year": 2026,
+    "drafted_by": "Always Next Year"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10136,
+  "fields": {
+    "player_id": 111,
+    "team_short_name": "IND",
+    "team": "Colts",
+    "position": "TE",
+    "full_name": "Tyler Warren",
+    "bye": 11,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10137,
+  "fields": {
+    "player_id": 112,
+    "team_short_name": "BUF",
+    "team": "Bills",
+    "position": "TE",
+    "full_name": "Dalton Kincaid",
+    "bye": 7,
+    "salary": 1,
+    "final_year": 2026,
+    "drafted_by": "Always Next Year"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10138,
+  "fields": {
+    "player_id": 113,
+    "team_short_name": "NE",
+    "team": "Patriots",
+    "position": "WR",
+    "full_name": "Stefon Diggs",
+    "bye": 14,
+    "salary": 31,
+    "final_year": 2025,
+    "drafted_by": "Easy Marks"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10139,
+  "fields": {
+    "player_id": 114,
+    "team_short_name": "NYG",
+    "team": "Giants",
+    "position": "RB",
+    "full_name": "Cam Skattebo",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10140,
+  "fields": {
+    "player_id": 115,
+    "team_short_name": "IND",
+    "team": "Colts",
+    "position": "WR",
+    "full_name": "Josh Downs",
+    "bye": 11,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10141,
+  "fields": {
+    "player_id": 116,
+    "team_short_name": "JAC",
+    "team": "Jaguars",
+    "position": "QB",
+    "full_name": "Trevor Lawrence",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10142,
+  "fields": {
+    "player_id": 117,
+    "team_short_name": "ATL",
+    "team": "Falcons",
+    "position": "WR",
+    "full_name": "Darnell Mooney",
+    "bye": 5,
+    "salary": 1,
+    "final_year": 2025,
+    "drafted_by": "What Dats"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10143,
+  "fields": {
+    "player_id": 118,
+    "team_short_name": "HOU",
+    "team": "Texans",
+    "position": "QB",
+    "full_name": "C.J. Stroud",
+    "bye": 6,
+    "salary": 1,
+    "final_year": 2026,
+    "drafted_by": "Russ Riders"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10144,
+  "fields": {
+    "player_id": 119,
+    "team_short_name": "BUF",
+    "team": "Bills",
+    "position": "WR",
+    "full_name": "Keon Coleman",
+    "bye": 7,
+    "salary": 1,
+    "final_year": 2027,
+    "drafted_by": "Russ Riders"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10145,
+  "fields": {
+    "player_id": 120,
+    "team_short_name": "TEN",
+    "team": "Titans",
+    "position": "RB",
+    "full_name": "Tyjae Spears",
+    "bye": 10,
+    "salary": 1,
+    "final_year": 2026,
+    "drafted_by": "What Dats"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10146,
+  "fields": {
+    "player_id": 121,
+    "team_short_name": "PHI",
+    "team": "Eagles",
+    "position": "TE",
+    "full_name": "Dallas Goedert",
+    "bye": 9,
+    "salary": 9,
+    "final_year": 2025,
+    "drafted_by": "Always Next Year"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10147,
+  "fields": {
+    "player_id": 122,
+    "team_short_name": "BUF",
+    "team": "Bills",
+    "position": "RB",
+    "full_name": "Ray Davis",
+    "bye": 7,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10148,
+  "fields": {
+    "player_id": 123,
+    "team_short_name": "SEA",
+    "team": "Seahawks",
+    "position": "WR",
+    "full_name": "Cooper Kupp",
+    "bye": 8,
+    "salary": 12,
+    "final_year": 2026,
+    "drafted_by": "Sentinels"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10149,
+  "fields": {
+    "player_id": 124,
+    "team_short_name": "TB",
+    "team": "Buccaneers",
+    "position": "RB",
+    "full_name": "Rachaad White",
+    "bye": 9,
+    "salary": 1,
+    "final_year": 2025,
+    "drafted_by": "Dirt Dogs"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10150,
+  "fields": {
+    "player_id": 125,
+    "team_short_name": "PIT",
+    "team": "Steelers",
+    "position": "TE",
+    "full_name": "Jonnu Smith",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10151,
+  "fields": {
+    "player_id": 126,
+    "team_short_name": "IND",
+    "team": "Colts",
+    "position": "WR",
+    "full_name": "Michael Pittman Jr.",
+    "bye": 11,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10152,
+  "fields": {
+    "player_id": 127,
+    "team_short_name": "ARI",
+    "team": "Cardinals",
+    "position": "RB",
+    "full_name": "Trey Benson",
+    "bye": 8,
+    "salary": 1,
+    "final_year": 2027,
+    "drafted_by": "Easy Marks"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10153,
+  "fields": {
+    "player_id": 128,
+    "team_short_name": "MIN",
+    "team": "Vikings",
+    "position": "QB",
+    "full_name": "J.J. McCarthy",
+    "bye": 6,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10154,
+  "fields": {
+    "player_id": 129,
+    "team_short_name": "NO",
+    "team": "Saints",
+    "position": "WR",
+    "full_name": "Rashid Shaheed",
+    "bye": 11,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10155,
+  "fields": {
+    "player_id": 130,
+    "team_short_name": "LAR",
+    "team": "Rams",
+    "position": "QB",
+    "full_name": "Matthew Stafford",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10156,
+  "fields": {
+    "player_id": 131,
+    "team_short_name": "ATL",
+    "team": "Falcons",
+    "position": "TE",
+    "full_name": "Kyle Pitts",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10157,
+  "fields": {
+    "player_id": 132,
+    "team_short_name": "ATL",
+    "team": "Falcons",
+    "position": "RB",
+    "full_name": "Tyler Allgeier",
+    "bye": 5,
+    "salary": 1,
+    "final_year": 2025,
+    "drafted_by": "Sentinels"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10158,
+  "fields": {
+    "player_id": 133,
+    "team_short_name": "GB",
+    "team": "Packers",
+    "position": "WR",
+    "full_name": "Matthew Golden",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10159,
+  "fields": {
+    "player_id": 134,
+    "team_short_name": "MIA",
+    "team": "Dolphins",
+    "position": "QB",
+    "full_name": "Tua Tagovailoa",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10160,
+  "fields": {
+    "player_id": 135,
+    "team_short_name": "BAL",
+    "team": "Ravens",
+    "position": "WR",
+    "full_name": "Rashod Bateman",
+    "bye": 7,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10161,
+  "fields": {
+    "player_id": 136,
+    "team_short_name": "BAL",
+    "team": "Ravens",
+    "position": "TE",
+    "full_name": "Isaiah Likely",
+    "bye": 7,
+    "salary": 3,
+    "final_year": 2026,
+    "drafted_by": "What Dats"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10162,
+  "fields": {
+    "player_id": 137,
+    "team_short_name": "DEN",
+    "team": "Broncos",
+    "position": "RB",
+    "full_name": "J.K. Dobbins",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10163,
+  "fields": {
+    "player_id": 138,
+    "team_short_name": "TB",
+    "team": "Buccaneers",
+    "position": "WR",
+    "full_name": "Emeka Egbuka",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10164,
+  "fields": {
+    "player_id": 139,
+    "team_short_name": "SF",
+    "team": "49ers",
+    "position": "RB",
+    "full_name": "Isaac Guerendo",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10165,
+  "fields": {
+    "player_id": 140,
+    "team_short_name": "CHI",
+    "team": "Bears",
+    "position": "TE",
+    "full_name": "Colston Loveland",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10166,
+  "fields": {
+    "player_id": 141,
+    "team_short_name": "HOU",
+    "team": "Texans",
+    "position": "WR",
+    "full_name": "Christian Kirk",
+    "bye": 6,
+    "salary": 6,
+    "final_year": 2025,
+    "drafted_by": "Easy Marks"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10167,
+  "fields": {
+    "player_id": 142,
+    "team_short_name": "MIA",
+    "team": "Dolphins",
+    "position": "RB",
+    "full_name": "Jaylen Wright",
+    "bye": 12,
+    "salary": 1,
+    "final_year": 2027,
+    "drafted_by": "Hokie High"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10168,
+  "fields": {
+    "player_id": 143,
+    "team_short_name": "DEN",
+    "team": "Broncos",
+    "position": "WR",
+    "full_name": "Marvin Mims Jr.",
+    "bye": 12,
+    "salary": 1,
+    "final_year": 2026,
+    "drafted_by": "Sentinels"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10169,
+  "fields": {
+    "player_id": 144,
+    "team_short_name": "CAR",
+    "team": "Panthers",
+    "position": "RB",
+    "full_name": "Rico Dowdle",
+    "bye": 14,
+    "salary": 1,
+    "final_year": 2026,
+    "drafted_by": "Sentinels"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10170,
+  "fields": {
+    "player_id": 145,
+    "team_short_name": "WAS",
+    "team": "Commanders",
+    "position": "RB",
+    "full_name": "Austin Ekeler",
+    "bye": 12,
+    "salary": 17,
+    "final_year": 2025,
+    "drafted_by": "Hokie High"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10171,
+  "fields": {
+    "player_id": 146,
+    "team_short_name": "CAR",
+    "team": "Panthers",
+    "position": "QB",
+    "full_name": "Bryce Young",
+    "bye": 14,
+    "salary": 1,
+    "final_year": 2026,
+    "drafted_by": "Russ Riders"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10172,
+  "fields": {
+    "player_id": 147,
+    "team_short_name": "DAL",
+    "team": "Cowboys",
+    "position": "TE",
+    "full_name": "Jake Ferguson",
+    "bye": 10,
+    "salary": 1,
+    "final_year": 2025,
+    "drafted_by": "Show Me the Money"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10173,
+  "fields": {
+    "player_id": 148,
+    "team_short_name": "NE",
+    "team": "Patriots",
+    "position": "TE",
+    "full_name": "Hunter Henry",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10174,
+  "fields": {
+    "player_id": 149,
+    "team_short_name": "CHI",
+    "team": "Bears",
+    "position": "WR",
+    "full_name": "Luther Burden III",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10175,
+  "fields": {
+    "player_id": 150,
+    "team_short_name": "JAC",
+    "team": "Jaguars",
+    "position": "RB",
+    "full_name": "Bhayshul Tuten",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10176,
+  "fields": {
+    "player_id": 151,
+    "team_short_name": "ATL",
+    "team": "Falcons",
+    "position": "QB",
+    "full_name": "Michael Penix Jr.",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10177,
+  "fields": {
+    "player_id": 152,
+    "team_short_name": "NYJ",
+    "team": "Jets",
+    "position": "RB",
+    "full_name": "Braelon Allen",
+    "bye": 9,
+    "salary": 1,
+    "final_year": 2027,
+    "drafted_by": "Russ Riders"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10178,
+  "fields": {
+    "player_id": 153,
+    "team_short_name": "DAL",
+    "team": "Cowboys",
+    "position": "RB",
+    "full_name": "Jaydon Blue",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10179,
+  "fields": {
+    "player_id": 154,
+    "team_short_name": "TB",
+    "team": "Buccaneers",
+    "position": "WR",
+    "full_name": "Jalen McMillan",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10180,
+  "fields": {
+    "player_id": 155,
+    "team_short_name": "GB",
+    "team": "Packers",
+    "position": "WR",
+    "full_name": "Romeo Doubs",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10181,
+  "fields": {
+    "player_id": 156,
+    "team_short_name": "CLE",
+    "team": "Browns",
+    "position": "WR",
+    "full_name": "Cedric Tillman",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10182,
+  "fields": {
+    "player_id": 157,
+    "team_short_name": "LAR",
+    "team": "Rams",
+    "position": "RB",
+    "full_name": "Blake Corum",
+    "bye": 8,
+    "salary": 1,
+    "final_year": 2027,
+    "drafted_by": "Dirt Dogs"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10183,
+  "fields": {
+    "player_id": 158,
+    "team_short_name": "LV",
+    "team": "Raiders",
+    "position": "QB",
+    "full_name": "Geno Smith",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10184,
+  "fields": {
+    "player_id": 159,
+    "team_short_name": "DEN",
+    "team": "Broncos",
+    "position": "DST",
+    "full_name": "Denver Broncos",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10185,
+  "fields": {
+    "player_id": 160,
+    "team_short_name": "LAC",
+    "team": "Chargers",
+    "position": "WR",
+    "full_name": "Tre Harris",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10186,
+  "fields": {
+    "player_id": 161,
+    "team_short_name": "WAS",
+    "team": "Commanders",
+    "position": "TE",
+    "full_name": "Zach Ertz",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10187,
+  "fields": {
+    "player_id": 162,
+    "team_short_name": "KC",
+    "team": "Chiefs",
+    "position": "WR",
+    "full_name": "Marquise Brown",
+    "bye": 10,
+    "salary": 11,
+    "final_year": 2025,
+    "drafted_by": "Always Next Year"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10188,
+  "fields": {
+    "player_id": 163,
+    "team_short_name": "HOU",
+    "team": "Texans",
+    "position": "RB",
+    "full_name": "Nick Chubb",
+    "bye": 6,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10189,
+  "fields": {
+    "player_id": 164,
+    "team_short_name": "CHI",
+    "team": "Bears",
+    "position": "RB",
+    "full_name": "Roschon Johnson",
+    "bye": 5,
+    "salary": 1,
+    "final_year": 2026,
+    "drafted_by": "Dark Energy"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10190,
+  "fields": {
+    "player_id": 165,
+    "team_short_name": "GB",
+    "team": "Packers",
+    "position": "RB",
+    "full_name": "MarShawn Lloyd",
+    "bye": 5,
+    "salary": 1,
+    "final_year": 2027,
+    "drafted_by": "Dark Energy"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10191,
+  "fields": {
+    "player_id": 166,
+    "team_short_name": "LAC",
+    "team": "Chargers",
+    "position": "WR",
+    "full_name": "Quentin Johnston",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10192,
+  "fields": {
+    "player_id": 167,
+    "team_short_name": "PHI",
+    "team": "Eagles",
+    "position": "DST",
+    "full_name": "Philadelphia Eagles",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10193,
+  "fields": {
+    "player_id": 168,
+    "team_short_name": "CLE",
+    "team": "Browns",
+    "position": "RB",
+    "full_name": "Jerome Ford",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10194,
+  "fields": {
+    "player_id": 169,
+    "team_short_name": "NE",
+    "team": "Patriots",
+    "position": "WR",
+    "full_name": "Kyle Williams",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10195,
+  "fields": {
+    "player_id": 170,
+    "team_short_name": "CAR",
+    "team": "Panthers",
+    "position": "WR",
+    "full_name": "Adam Thielen",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10196,
+  "fields": {
+    "player_id": 171,
+    "team_short_name": "PIT",
+    "team": "Steelers",
+    "position": "DST",
+    "full_name": "Pittsburgh Steelers",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10197,
+  "fields": {
+    "player_id": 172,
+    "team_short_name": "BAL",
+    "team": "Ravens",
+    "position": "DST",
+    "full_name": "Baltimore Ravens",
+    "bye": 7,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10198,
+  "fields": {
+    "player_id": 173,
+    "team_short_name": "BAL",
+    "team": "Ravens",
+    "position": "WR",
+    "full_name": "DeAndre Hopkins",
+    "bye": 7,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10199,
+  "fields": {
+    "player_id": 174,
+    "team_short_name": "HOU",
+    "team": "Texans",
+    "position": "WR",
+    "full_name": "Jayden Higgins",
+    "bye": 6,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10200,
+  "fields": {
+    "player_id": 175,
+    "team_short_name": "MIN",
+    "team": "Vikings",
+    "position": "DST",
+    "full_name": "Minnesota Vikings",
+    "bye": 6,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10201,
+  "fields": {
+    "player_id": 176,
+    "team_short_name": "IND",
+    "team": "Colts",
+    "position": "WR",
+    "full_name": "Alec Pierce",
+    "bye": 11,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10202,
+  "fields": {
+    "player_id": 177,
+    "team_short_name": "BUF",
+    "team": "Bills",
+    "position": "WR",
+    "full_name": "Joshua Palmer",
+    "bye": 7,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10203,
+  "fields": {
+    "player_id": 178,
+    "team_short_name": "CAR",
+    "team": "Panthers",
+    "position": "WR",
+    "full_name": "Xavier Legette",
+    "bye": 14,
+    "salary": 1,
+    "final_year": 2027,
+    "drafted_by": "Sentinels"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10204,
+  "fields": {
+    "player_id": 179,
+    "team_short_name": "CLE",
+    "team": "Browns",
+    "position": "RB",
+    "full_name": "Dylan Sampson",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10205,
+  "fields": {
+    "player_id": 180,
+    "team_short_name": "PIT",
+    "team": "Steelers",
+    "position": "TE",
+    "full_name": "Pat Freiermuth",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10206,
+  "fields": {
+    "player_id": 181,
+    "team_short_name": "SEA",
+    "team": "Seahawks",
+    "position": "QB",
+    "full_name": "Sam Darnold",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10207,
+  "fields": {
+    "player_id": 182,
+    "team_short_name": "HOU",
+    "team": "Texans",
+    "position": "DST",
+    "full_name": "Houston Texans",
+    "bye": 6,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10208,
+  "fields": {
+    "player_id": 183,
+    "team_short_name": "KC",
+    "team": "Chiefs",
+    "position": "DST",
+    "full_name": "Kansas City Chiefs",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10209,
+  "fields": {
+    "player_id": 184,
+    "team_short_name": "BUF",
+    "team": "Bills",
+    "position": "DST",
+    "full_name": "Buffalo Bills",
+    "bye": 7,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10210,
+  "fields": {
+    "player_id": 185,
+    "team_short_name": "CIN",
+    "team": "Bengals",
+    "position": "TE",
+    "full_name": "Mike Gesicki",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10211,
+  "fields": {
+    "player_id": 186,
+    "team_short_name": "DAL",
+    "team": "Cowboys",
+    "position": "K",
+    "full_name": "Brandon Aubrey",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10212,
+  "fields": {
+    "player_id": 187,
+    "team_short_name": "TB",
+    "team": "Buccaneers",
+    "position": "TE",
+    "full_name": "Cade Otton",
+    "bye": 9,
+    "salary": 1,
+    "final_year": 2025,
+    "drafted_by": "Easy Marks"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10213,
+  "fields": {
+    "player_id": 188,
+    "team_short_name": "KC",
+    "team": "Chiefs",
+    "position": "RB",
+    "full_name": "Kareem Hunt",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10214,
+  "fields": {
+    "player_id": 189,
+    "team_short_name": "TEN",
+    "team": "Titans",
+    "position": "QB",
+    "full_name": "Cameron Ward",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10215,
+  "fields": {
+    "player_id": 190,
+    "team_short_name": "DET",
+    "team": "Lions",
+    "position": "K",
+    "full_name": "Jake Bates",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10216,
+  "fields": {
+    "player_id": 191,
+    "team_short_name": "DET",
+    "team": "Lions",
+    "position": "DST",
+    "full_name": "Detroit Lions",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10217,
+  "fields": {
+    "player_id": 192,
+    "team_short_name": "NYG",
+    "team": "Giants",
+    "position": "WR",
+    "full_name": "Wan'Dale Robinson",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10218,
+  "fields": {
+    "player_id": 193,
+    "team_short_name": "LAC",
+    "team": "Chargers",
+    "position": "K",
+    "full_name": "Cameron Dicker",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10219,
+  "fields": {
+    "player_id": 194,
+    "team_short_name": "NO",
+    "team": "Saints",
+    "position": "RB",
+    "full_name": "Kendre Miller",
+    "bye": 11,
+    "salary": 1,
+    "final_year": 2026,
+    "drafted_by": "What Dats"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10220,
+  "fields": {
+    "player_id": 195,
+    "team_short_name": "IND",
+    "team": "Colts",
+    "position": "RB",
+    "full_name": "DJ Giddens",
+    "bye": 11,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10221,
+  "fields": {
+    "player_id": 196,
+    "team_short_name": "CAR",
+    "team": "Panthers",
+    "position": "WR",
+    "full_name": "Jalen Coker",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10222,
+  "fields": {
+    "player_id": 197,
+    "team_short_name": "NE",
+    "team": "Patriots",
+    "position": "WR",
+    "full_name": "DeMario Douglas",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10223,
+  "fields": {
+    "player_id": 198,
+    "team_short_name": "LAC",
+    "team": "Chargers",
+    "position": "DST",
+    "full_name": "Los Angeles Chargers",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10224,
+  "fields": {
+    "player_id": 199,
+    "team_short_name": "DEN",
+    "team": "Broncos",
+    "position": "K",
+    "full_name": "Wil Lutz",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10225,
+  "fields": {
+    "player_id": 200,
+    "team_short_name": "LAR",
+    "team": "Rams",
+    "position": "DST",
+    "full_name": "Los Angeles Rams",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10226,
+  "fields": {
+    "player_id": 201,
+    "team_short_name": "JAC",
+    "team": "Jaguars",
+    "position": "TE",
+    "full_name": "Brenton Strange",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10227,
+  "fields": {
+    "player_id": 202,
+    "team_short_name": "ARI",
+    "team": "Cardinals",
+    "position": "WR",
+    "full_name": "Michael Wilson",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10228,
+  "fields": {
+    "player_id": 203,
+    "team_short_name": "GB",
+    "team": "Packers",
+    "position": "DST",
+    "full_name": "Green Bay Packers",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10229,
+  "fields": {
+    "player_id": 204,
+    "team_short_name": "LV",
+    "team": "Raiders",
+    "position": "WR",
+    "full_name": "Jack Bech",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10230,
+  "fields": {
+    "player_id": 205,
+    "team_short_name": "TB",
+    "team": "Buccaneers",
+    "position": "K",
+    "full_name": "Chase McLaughlin",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10231,
+  "fields": {
+    "player_id": 206,
+    "team_short_name": "PIT",
+    "team": "Steelers",
+    "position": "K",
+    "full_name": "Chris Boswell",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10232,
+  "fields": {
+    "player_id": 207,
+    "team_short_name": "SEA",
+    "team": "Seahawks",
+    "position": "DST",
+    "full_name": "Seattle Seahawks",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10233,
+  "fields": {
+    "player_id": 208,
+    "team_short_name": "HOU",
+    "team": "Texans",
+    "position": "K",
+    "full_name": "Ka'imi Fairbairn",
+    "bye": 6,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10234,
+  "fields": {
+    "player_id": 209,
+    "team_short_name": "IND",
+    "team": "Colts",
+    "position": "WR",
+    "full_name": "Adonai Mitchell",
+    "bye": 11,
+    "salary": 1,
+    "final_year": 2027,
+    "drafted_by": "What Dats"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10235,
+  "fields": {
+    "player_id": 210,
+    "team_short_name": "GB",
+    "team": "Packers",
+    "position": "WR",
+    "full_name": "Dontayvion Wicks",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10236,
+  "fields": {
+    "player_id": 211,
+    "team_short_name": "NO",
+    "team": "Saints",
+    "position": "RB",
+    "full_name": "Devin Neal",
+    "bye": 11,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10237,
+  "fields": {
+    "player_id": 212,
+    "team_short_name": "PIT",
+    "team": "Steelers",
+    "position": "QB",
+    "full_name": "Aaron Rodgers",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10238,
+  "fields": {
+    "player_id": 213,
+    "team_short_name": "CIN",
+    "team": "Bengals",
+    "position": "K",
+    "full_name": "Evan McPherson",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10239,
+  "fields": {
+    "player_id": 214,
+    "team_short_name": "TEN",
+    "team": "Titans",
+    "position": "TE",
+    "full_name": "Chig Okonkwo",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10240,
+  "fields": {
+    "player_id": 215,
+    "team_short_name": "KC",
+    "team": "Chiefs",
+    "position": "K",
+    "full_name": "Harrison Butker",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10241,
+  "fields": {
+    "player_id": 216,
+    "team_short_name": "NYJ",
+    "team": "Jets",
+    "position": "DST",
+    "full_name": "New York Jets",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10242,
+  "fields": {
+    "player_id": 217,
+    "team_short_name": "CIN",
+    "team": "Bengals",
+    "position": "WR",
+    "full_name": "Andrei Iosivas",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10243,
+  "fields": {
+    "player_id": 218,
+    "team_short_name": "HOU",
+    "team": "Texans",
+    "position": "TE",
+    "full_name": "Dalton Schultz",
+    "bye": 6,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10244,
+  "fields": {
+    "player_id": 219,
+    "team_short_name": "NYG",
+    "team": "Giants",
+    "position": "WR",
+    "full_name": "Darius Slayton",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10245,
+  "fields": {
+    "player_id": 220,
+    "team_short_name": "BUF",
+    "team": "Bills",
+    "position": "K",
+    "full_name": "Tyler Bass",
+    "bye": 7,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10246,
+  "fields": {
+    "player_id": 221,
+    "team_short_name": "BAL",
+    "team": "Ravens",
+    "position": "RB",
+    "full_name": "Justice Hill",
+    "bye": 7,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10247,
+  "fields": {
+    "player_id": 222,
+    "team_short_name": "NYJ",
+    "team": "Jets",
+    "position": "TE",
+    "full_name": "Mason Taylor",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10248,
+  "fields": {
+    "player_id": 223,
+    "team_short_name": "PHI",
+    "team": "Eagles",
+    "position": "K",
+    "full_name": "Jake Elliott",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10249,
+  "fields": {
+    "player_id": 224,
+    "team_short_name": "SF",
+    "team": "49ers",
+    "position": "DST",
+    "full_name": "San Francisco 49ers",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10250,
+  "fields": {
+    "player_id": 225,
+    "team_short_name": "PHI",
+    "team": "Eagles",
+    "position": "RB",
+    "full_name": "Will Shipley",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10251,
+  "fields": {
+    "player_id": 226,
+    "team_short_name": "PIT",
+    "team": "Steelers",
+    "position": "WR",
+    "full_name": "Calvin Austin III",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10252,
+  "fields": {
+    "player_id": 227,
+    "team_short_name": "DAL",
+    "team": "Cowboys",
+    "position": "RB",
+    "full_name": "Miles Sanders",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10253,
+  "fields": {
+    "player_id": 228,
+    "team_short_name": "DEN",
+    "team": "Broncos",
+    "position": "RB",
+    "full_name": "Audric Estime",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10254,
+  "fields": {
+    "player_id": 229,
+    "team_short_name": "HOU",
+    "team": "Texans",
+    "position": "WR",
+    "full_name": "Jaylin Noel",
+    "bye": 6,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10255,
+  "fields": {
+    "player_id": 230,
+    "team_short_name": "MIA",
+    "team": "Dolphins",
+    "position": "K",
+    "full_name": "Jason Sanders",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10256,
+  "fields": {
+    "player_id": 231,
+    "team_short_name": "CHI",
+    "team": "Bears",
+    "position": "RB",
+    "full_name": "Kyle Monangai",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10257,
+  "fields": {
+    "player_id": 232,
+    "team_short_name": "DEN",
+    "team": "Broncos",
+    "position": "RB",
+    "full_name": "Jaleel McLaughlin",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10258,
+  "fields": {
+    "player_id": 233,
+    "team_short_name": "CHI",
+    "team": "Bears",
+    "position": "TE",
+    "full_name": "Cole Kmet",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10259,
+  "fields": {
+    "player_id": 234,
+    "team_short_name": "ATL",
+    "team": "Falcons",
+    "position": "K",
+    "full_name": "Younghoe Koo",
+    "bye": 5,
+    "salary": 1,
+    "final_year": 2025,
+    "drafted_by": "Dark Energy"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10260,
+  "fields": {
+    "player_id": 235,
+    "team_short_name": "BAL",
+    "team": "Ravens",
+    "position": "RB",
+    "full_name": "Keaton Mitchell",
+    "bye": 7,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10261,
+  "fields": {
+    "player_id": 236,
+    "team_short_name": "KC",
+    "team": "Chiefs",
+    "position": "RB",
+    "full_name": "Elijah Mitchell",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10262,
+  "fields": {
+    "player_id": 237,
+    "team_short_name": "CAR",
+    "team": "Panthers",
+    "position": "TE",
+    "full_name": "Ja'Tavion Sanders",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10263,
+  "fields": {
+    "player_id": 238,
+    "team_short_name": "NO",
+    "team": "Saints",
+    "position": "TE",
+    "full_name": "Juwan Johnson",
+    "bye": 11,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10264,
+  "fields": {
+    "player_id": 239,
+    "team_short_name": "DAL",
+    "team": "Cowboys",
+    "position": "WR",
+    "full_name": "Jalen Tolbert",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10265,
+  "fields": {
+    "player_id": 240,
+    "team_short_name": "LV",
+    "team": "Raiders",
+    "position": "RB",
+    "full_name": "Raheem Mostert",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10266,
+  "fields": {
+    "player_id": 241,
+    "team_short_name": "DEN",
+    "team": "Broncos",
+    "position": "WR",
+    "full_name": "Devaughn Vele",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10267,
+  "fields": {
+    "player_id": 242,
+    "team_short_name": "TEN",
+    "team": "Titans",
+    "position": "WR",
+    "full_name": "Tyler Lockett",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10268,
+  "fields": {
+    "player_id": 243,
+    "team_short_name": "FA",
+    "team": "Free Agent",
+    "position": "WR",
+    "full_name": "Keenan Allen",
+    "bye": 0,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10269,
+  "fields": {
+    "player_id": 244,
+    "team_short_name": "TEN",
+    "team": "Titans",
+    "position": "WR",
+    "full_name": "Elic Ayomanor",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10270,
+  "fields": {
+    "player_id": 245,
+    "team_short_name": "DAL",
+    "team": "Cowboys",
+    "position": "DST",
+    "full_name": "Dallas Cowboys",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10271,
+  "fields": {
+    "player_id": 246,
+    "team_short_name": "IND",
+    "team": "Colts",
+    "position": "QB",
+    "full_name": "Anthony Richardson Sr.",
+    "bye": 11,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10272,
+  "fields": {
+    "player_id": 247,
+    "team_short_name": "DEN",
+    "team": "Broncos",
+    "position": "WR",
+    "full_name": "Pat Bryant",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10273,
+  "fields": {
+    "player_id": 248,
+    "team_short_name": "MIA",
+    "team": "Dolphins",
+    "position": "WR",
+    "full_name": "Nick Westbrook-Ikhine",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10274,
+  "fields": {
+    "player_id": 249,
+    "team_short_name": "LAR",
+    "team": "Rams",
+    "position": "RB",
+    "full_name": "Jarquez Hunter",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10275,
+  "fields": {
+    "player_id": 250,
+    "team_short_name": "NYG",
+    "team": "Giants",
+    "position": "QB",
+    "full_name": "Russell Wilson",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10276,
+  "fields": {
+    "player_id": 251,
+    "team_short_name": "LAR",
+    "team": "Rams",
+    "position": "K",
+    "full_name": "Joshua Karty",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10277,
+  "fields": {
+    "player_id": 252,
+    "team_short_name": "TB",
+    "team": "Buccaneers",
+    "position": "DST",
+    "full_name": "Tampa Bay Buccaneers",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10278,
+  "fields": {
+    "player_id": 253,
+    "team_short_name": "WAS",
+    "team": "Commanders",
+    "position": "K",
+    "full_name": "Matt Gay",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10279,
+  "fields": {
+    "player_id": 254,
+    "team_short_name": "NYG",
+    "team": "Giants",
+    "position": "RB",
+    "full_name": "Devin Singletary",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10280,
+  "fields": {
+    "player_id": 255,
+    "team_short_name": "NO",
+    "team": "Saints",
+    "position": "WR",
+    "full_name": "Brandin Cooks",
+    "bye": 11,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10281,
+  "fields": {
+    "player_id": 256,
+    "team_short_name": "NE",
+    "team": "Patriots",
+    "position": "WR",
+    "full_name": "Kayshon Boutte",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10282,
+  "fields": {
+    "player_id": 257,
+    "team_short_name": "CLE",
+    "team": "Browns",
+    "position": "WR",
+    "full_name": "Diontae Johnson",
+    "bye": 9,
+    "salary": 2,
+    "final_year": 2025,
+    "drafted_by": "Sentinels"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10283,
+  "fields": {
+    "player_id": 258,
+    "team_short_name": "SEA",
+    "team": "Seahawks",
+    "position": "TE",
+    "full_name": "Elijah Arroyo",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10284,
+  "fields": {
+    "player_id": 259,
+    "team_short_name": "CAR",
+    "team": "Panthers",
+    "position": "RB",
+    "full_name": "Trevor Etienne",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10285,
+  "fields": {
+    "player_id": 260,
+    "team_short_name": "MIA",
+    "team": "Dolphins",
+    "position": "RB",
+    "full_name": "Ollie Gordon II",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10286,
+  "fields": {
+    "player_id": 261,
+    "team_short_name": "JAC",
+    "team": "Jaguars",
+    "position": "WR",
+    "full_name": "Dyami Brown",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10287,
+  "fields": {
+    "player_id": 262,
+    "team_short_name": "NE",
+    "team": "Patriots",
+    "position": "RB",
+    "full_name": "Antonio Gibson",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10288,
+  "fields": {
+    "player_id": 263,
+    "team_short_name": "PIT",
+    "team": "Steelers",
+    "position": "RB",
+    "full_name": "Kenneth Gainwell",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10289,
+  "fields": {
+    "player_id": 264,
+    "team_short_name": "CIN",
+    "team": "Bengals",
+    "position": "RB",
+    "full_name": "Tahj Brooks",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10290,
+  "fields": {
+    "player_id": 265,
+    "team_short_name": "PIT",
+    "team": "Steelers",
+    "position": "WR",
+    "full_name": "Roman Wilson",
+    "bye": 5,
+    "salary": 1,
+    "final_year": 2026,
+    "drafted_by": "Show Me the Money"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10291,
+  "fields": {
+    "player_id": 266,
+    "team_short_name": "KC",
+    "team": "Chiefs",
+    "position": "RB",
+    "full_name": "Brashard Smith",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10292,
+  "fields": {
+    "player_id": 267,
+    "team_short_name": "KC",
+    "team": "Chiefs",
+    "position": "TE",
+    "full_name": "Noah Gray",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10293,
+  "fields": {
+    "player_id": 268,
+    "team_short_name": "BUF",
+    "team": "Bills",
+    "position": "WR",
+    "full_name": "Elijah Moore",
+    "bye": 7,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10294,
+  "fields": {
+    "player_id": 269,
+    "team_short_name": "IND",
+    "team": "Colts",
+    "position": "QB",
+    "full_name": "Daniel Jones",
+    "bye": 11,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10295,
+  "fields": {
+    "player_id": 270,
+    "team_short_name": "KC",
+    "team": "Chiefs",
+    "position": "WR",
+    "full_name": "Jalen Royals",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10296,
+  "fields": {
+    "player_id": 271,
+    "team_short_name": "TB",
+    "team": "Buccaneers",
+    "position": "RB",
+    "full_name": "Sean Tucker",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10297,
+  "fields": {
+    "player_id": 272,
+    "team_short_name": "CLE",
+    "team": "Browns",
+    "position": "DST",
+    "full_name": "Cleveland Browns",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10298,
+  "fields": {
+    "player_id": 273,
+    "team_short_name": "FA",
+    "team": "Free Agent",
+    "position": "WR",
+    "full_name": "Amari Cooper",
+    "bye": 0,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10299,
+  "fields": {
+    "player_id": 274,
+    "team_short_name": "CLE",
+    "team": "Browns",
+    "position": "TE",
+    "full_name": "Harold Fannin Jr.",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10300,
+  "fields": {
+    "player_id": 275,
+    "team_short_name": "MIA",
+    "team": "Dolphins",
+    "position": "WR",
+    "full_name": "Malik Washington",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10301,
+  "fields": {
+    "player_id": 276,
+    "team_short_name": "IND",
+    "team": "Colts",
+    "position": "RB",
+    "full_name": "Khalil Herbert",
+    "bye": 11,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10302,
+  "fields": {
+    "player_id": 277,
+    "team_short_name": "SEA",
+    "team": "Seahawks",
+    "position": "TE",
+    "full_name": "Noah Fant",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10303,
+  "fields": {
+    "player_id": 278,
+    "team_short_name": "SF",
+    "team": "49ers",
+    "position": "RB",
+    "full_name": "Jordan James",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10304,
+  "fields": {
+    "player_id": 279,
+    "team_short_name": "NO",
+    "team": "Saints",
+    "position": "TE",
+    "full_name": "Taysom Hill",
+    "bye": 11,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10305,
+  "fields": {
+    "player_id": 280,
+    "team_short_name": "BUF",
+    "team": "Bills",
+    "position": "RB",
+    "full_name": "Ty Johnson",
+    "bye": 7,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10306,
+  "fields": {
+    "player_id": 281,
+    "team_short_name": "DET",
+    "team": "Lions",
+    "position": "WR",
+    "full_name": "Tim Patrick",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10307,
+  "fields": {
+    "player_id": 282,
+    "team_short_name": "CIN",
+    "team": "Bengals",
+    "position": "RB",
+    "full_name": "Zack Moss",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10308,
+  "fields": {
+    "player_id": 283,
+    "team_short_name": "NYJ",
+    "team": "Jets",
+    "position": "RB",
+    "full_name": "Isaiah Davis",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10309,
+  "fields": {
+    "player_id": 284,
+    "team_short_name": "MIA",
+    "team": "Dolphins",
+    "position": "RB",
+    "full_name": "Alexander Mattison",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10310,
+  "fields": {
+    "player_id": 285,
+    "team_short_name": "LV",
+    "team": "Raiders",
+    "position": "WR",
+    "full_name": "Tre Tucker",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10311,
+  "fields": {
+    "player_id": 286,
+    "team_short_name": "CHI",
+    "team": "Bears",
+    "position": "DST",
+    "full_name": "Chicago Bears",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10312,
+  "fields": {
+    "player_id": 287,
+    "team_short_name": "HOU",
+    "team": "Texans",
+    "position": "RB",
+    "full_name": "Woody Marks",
+    "bye": 6,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10313,
+  "fields": {
+    "player_id": 288,
+    "team_short_name": "NO",
+    "team": "Saints",
+    "position": "QB",
+    "full_name": "Tyler Shough",
+    "bye": 11,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10314,
+  "fields": {
+    "player_id": 289,
+    "team_short_name": "FA",
+    "team": "Free Agent",
+    "position": "WR",
+    "full_name": "Mike Williams",
+    "bye": 0,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10315,
+  "fields": {
+    "player_id": 290,
+    "team_short_name": "LV",
+    "team": "Raiders",
+    "position": "K",
+    "full_name": "Daniel Carlson",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10316,
+  "fields": {
+    "player_id": 291,
+    "team_short_name": "TEN",
+    "team": "Titans",
+    "position": "WR",
+    "full_name": "Xavier Restrepo",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10317,
+  "fields": {
+    "player_id": 292,
+    "team_short_name": "MIN",
+    "team": "Vikings",
+    "position": "WR",
+    "full_name": "Jalen Nailor",
+    "bye": 6,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10318,
+  "fields": {
+    "player_id": 293,
+    "team_short_name": "GB",
+    "team": "Packers",
+    "position": "WR",
+    "full_name": "Christian Watson",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10319,
+  "fields": {
+    "player_id": 294,
+    "team_short_name": "HOU",
+    "team": "Texans",
+    "position": "RB",
+    "full_name": "Dameon Pierce",
+    "bye": 6,
+    "salary": 1,
+    "final_year": 2025,
+    "drafted_by": "Always Next Year"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10320,
+  "fields": {
+    "player_id": 295,
+    "team_short_name": "NYG",
+    "team": "Giants",
+    "position": "TE",
+    "full_name": "Theo Johnson",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10321,
+  "fields": {
+    "player_id": 296,
+    "team_short_name": "LV",
+    "team": "Raiders",
+    "position": "RB",
+    "full_name": "Sincere McCormick",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10322,
+  "fields": {
+    "player_id": 297,
+    "team_short_name": "CLE",
+    "team": "Browns",
+    "position": "QB",
+    "full_name": "Joe Flacco",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10323,
+  "fields": {
+    "player_id": 298,
+    "team_short_name": "JAC",
+    "team": "Jaguars",
+    "position": "WR",
+    "full_name": "Parker Washington",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10324,
+  "fields": {
+    "player_id": 299,
+    "team_short_name": "LAC",
+    "team": "Chargers",
+    "position": "RB",
+    "full_name": "Kimani Vidal",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10325,
+  "fields": {
+    "player_id": 300,
+    "team_short_name": "LAR",
+    "team": "Rams",
+    "position": "TE",
+    "full_name": "Terrance Ferguson",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10326,
+  "fields": {
+    "player_id": 301,
+    "team_short_name": "NYG",
+    "team": "Giants",
+    "position": "QB",
+    "full_name": "Jaxson Dart",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10327,
+  "fields": {
+    "player_id": 302,
+    "team_short_name": "SEA",
+    "team": "Seahawks",
+    "position": "WR",
+    "full_name": "Tory Horton",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10328,
+  "fields": {
+    "player_id": 303,
+    "team_short_name": "WAS",
+    "team": "Commanders",
+    "position": "WR",
+    "full_name": "Luke McCaffrey",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10329,
+  "fields": {
+    "player_id": 304,
+    "team_short_name": "FA",
+    "team": "Free Agent",
+    "position": "WR",
+    "full_name": "Gabe Davis",
+    "bye": 0,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10330,
+  "fields": {
+    "player_id": 305,
+    "team_short_name": "SEA",
+    "team": "Seahawks",
+    "position": "RB",
+    "full_name": "Damien Martinez",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10331,
+  "fields": {
+    "player_id": 306,
+    "team_short_name": "GB",
+    "team": "Packers",
+    "position": "RB",
+    "full_name": "Emanuel Wilson",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10332,
+  "fields": {
+    "player_id": 307,
+    "team_short_name": "MIA",
+    "team": "Dolphins",
+    "position": "TE",
+    "full_name": "Darren Waller",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10333,
+  "fields": {
+    "player_id": 308,
+    "team_short_name": "DET",
+    "team": "Lions",
+    "position": "WR",
+    "full_name": "Isaac TeSlaa",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10334,
+  "fields": {
+    "player_id": 309,
+    "team_short_name": "SEA",
+    "team": "Seahawks",
+    "position": "K",
+    "full_name": "Jason Myers",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10335,
+  "fields": {
+    "player_id": 310,
+    "team_short_name": "CIN",
+    "team": "Bengals",
+    "position": "WR",
+    "full_name": "Jermaine Burton",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10336,
+  "fields": {
+    "player_id": 311,
+    "team_short_name": "MIN",
+    "team": "Vikings",
+    "position": "RB",
+    "full_name": "Ty Chandler",
+    "bye": 6,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10337,
+  "fields": {
+    "player_id": 312,
+    "team_short_name": "DAL",
+    "team": "Cowboys",
+    "position": "RB",
+    "full_name": "Phil Mafah",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10338,
+  "fields": {
+    "player_id": 313,
+    "team_short_name": "TB",
+    "team": "Buccaneers",
+    "position": "WR",
+    "full_name": "Tez Johnson",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10339,
+  "fields": {
+    "player_id": 314,
+    "team_short_name": "LAC",
+    "team": "Chargers",
+    "position": "TE",
+    "full_name": "Oronde Gadsden II",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10340,
+  "fields": {
+    "player_id": 315,
+    "team_short_name": "NE",
+    "team": "Patriots",
+    "position": "DST",
+    "full_name": "New England Patriots",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10341,
+  "fields": {
+    "player_id": 316,
+    "team_short_name": "WAS",
+    "team": "Commanders",
+    "position": "RB",
+    "full_name": "Chris Rodriguez Jr.",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10342,
+  "fields": {
+    "player_id": 317,
+    "team_short_name": "GB",
+    "team": "Packers",
+    "position": "RB",
+    "full_name": "Chris Brooks",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10343,
+  "fields": {
+    "player_id": 318,
+    "team_short_name": "MIN",
+    "team": "Vikings",
+    "position": "K",
+    "full_name": "Will Reichard",
+    "bye": 6,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10344,
+  "fields": {
+    "player_id": 319,
+    "team_short_name": "CLE",
+    "team": "Browns",
+    "position": "QB",
+    "full_name": "Shedeur Sanders",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10345,
+  "fields": {
+    "player_id": 320,
+    "team_short_name": "LAR",
+    "team": "Rams",
+    "position": "TE",
+    "full_name": "Tyler Higbee",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10346,
+  "fields": {
+    "player_id": 321,
+    "team_short_name": "LAC",
+    "team": "Chargers",
+    "position": "RB",
+    "full_name": "Raheim Sanders",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10347,
+  "fields": {
+    "player_id": 322,
+    "team_short_name": "LAC",
+    "team": "Chargers",
+    "position": "TE",
+    "full_name": "Will Dissly",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10348,
+  "fields": {
+    "player_id": 323,
+    "team_short_name": "LV",
+    "team": "Raiders",
+    "position": "WR",
+    "full_name": "Dont'e Thornton Jr.",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10349,
+  "fields": {
+    "player_id": 324,
+    "team_short_name": "WAS",
+    "team": "Commanders",
+    "position": "TE",
+    "full_name": "Ben Sinnott",
+    "bye": 12,
+    "salary": 1,
+    "final_year": 2027,
+    "drafted_by": "Always Next Year"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10350,
+  "fields": {
+    "player_id": 325,
+    "team_short_name": "BAL",
+    "team": "Ravens",
+    "position": "K",
+    "full_name": "Tyler Loop",
+    "bye": 7,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10351,
+  "fields": {
+    "player_id": 326,
+    "team_short_name": "LAR",
+    "team": "Rams",
+    "position": "WR",
+    "full_name": "Tutu Atwell",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10352,
+  "fields": {
+    "player_id": 327,
+    "team_short_name": "MIA",
+    "team": "Dolphins",
+    "position": "DST",
+    "full_name": "Miami Dolphins",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10353,
+  "fields": {
+    "player_id": 328,
+    "team_short_name": "FA",
+    "team": "Free Agent",
+    "position": "RB",
+    "full_name": "Gus Edwards",
+    "bye": 0,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10354,
+  "fields": {
+    "player_id": 329,
+    "team_short_name": "MIN",
+    "team": "Vikings",
+    "position": "WR",
+    "full_name": "Tai Felton",
+    "bye": 6,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10355,
+  "fields": {
+    "player_id": 330,
+    "team_short_name": "WAS",
+    "team": "Commanders",
+    "position": "RB",
+    "full_name": "Jacory Croskey-Merritt",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10356,
+  "fields": {
+    "player_id": 331,
+    "team_short_name": "LAC",
+    "team": "Chargers",
+    "position": "TE",
+    "full_name": "Tyler Conklin",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10357,
+  "fields": {
+    "player_id": 332,
+    "team_short_name": "LAR",
+    "team": "Rams",
+    "position": "WR",
+    "full_name": "Jordan Whittington",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10358,
+  "fields": {
+    "player_id": 333,
+    "team_short_name": "LV",
+    "team": "Raiders",
+    "position": "RB",
+    "full_name": "Zamir White",
+    "bye": 8,
+    "salary": 1,
+    "final_year": 2025,
+    "drafted_by": "Always Next Year"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10359,
+  "fields": {
+    "player_id": 334,
+    "team_short_name": "ARI",
+    "team": "Cardinals",
+    "position": "DST",
+    "full_name": "Arizona Cardinals",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10360,
+  "fields": {
+    "player_id": 335,
+    "team_short_name": "ATL",
+    "team": "Falcons",
+    "position": "WR",
+    "full_name": "Ray-Ray McCloud III",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10361,
+  "fields": {
+    "player_id": 336,
+    "team_short_name": "SF",
+    "team": "49ers",
+    "position": "WR",
+    "full_name": "Demarcus Robinson",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10362,
+  "fields": {
+    "player_id": 337,
+    "team_short_name": "HOU",
+    "team": "Texans",
+    "position": "WR",
+    "full_name": "John Metchie III",
+    "bye": 6,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10363,
+  "fields": {
+    "player_id": 338,
+    "team_short_name": "SEA",
+    "team": "Seahawks",
+    "position": "QB",
+    "full_name": "Jalen Milroe",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10364,
+  "fields": {
+    "player_id": 339,
+    "team_short_name": "NO",
+    "team": "Saints",
+    "position": "RB",
+    "full_name": "Cam Akers",
+    "bye": 11,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10365,
+  "fields": {
+    "player_id": 340,
+    "team_short_name": "NYG",
+    "team": "Giants",
+    "position": "DST",
+    "full_name": "New York Giants",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10366,
+  "fields": {
+    "player_id": 341,
+    "team_short_name": "SEA",
+    "team": "Seahawks",
+    "position": "WR",
+    "full_name": "Marquez Valdes-Scantling",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10367,
+  "fields": {
+    "player_id": 342,
+    "team_short_name": "DEN",
+    "team": "Broncos",
+    "position": "WR",
+    "full_name": "Troy Franklin",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10368,
+  "fields": {
+    "player_id": 343,
+    "team_short_name": "PHI",
+    "team": "Eagles",
+    "position": "RB",
+    "full_name": "A.J. Dillon",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10369,
+  "fields": {
+    "player_id": 344,
+    "team_short_name": "GB",
+    "team": "Packers",
+    "position": "WR",
+    "full_name": "Savion Williams",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10370,
+  "fields": {
+    "player_id": 345,
+    "team_short_name": "BUF",
+    "team": "Bills",
+    "position": "TE",
+    "full_name": "Dawson Knox",
+    "bye": 7,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10371,
+  "fields": {
+    "player_id": 346,
+    "team_short_name": "FA",
+    "team": "Free Agent",
+    "position": "K",
+    "full_name": "Justin Tucker",
+    "bye": 0,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10372,
+  "fields": {
+    "player_id": 347,
+    "team_short_name": "CIN",
+    "team": "Bengals",
+    "position": "RB",
+    "full_name": "Samaje Perine",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10373,
+  "fields": {
+    "player_id": 348,
+    "team_short_name": "NYJ",
+    "team": "Jets",
+    "position": "WR",
+    "full_name": "Josh Reynolds",
+    "bye": 9,
+    "salary": 5,
+    "final_year": 2025,
+    "drafted_by": "Russ Riders"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10374,
+  "fields": {
+    "player_id": 349,
+    "team_short_name": "WAS",
+    "team": "Commanders",
+    "position": "WR",
+    "full_name": "Noah Brown",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10375,
+  "fields": {
+    "player_id": 350,
+    "team_short_name": "SF",
+    "team": "49ers",
+    "position": "K",
+    "full_name": "Jake Moody",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10376,
+  "fields": {
+    "player_id": 351,
+    "team_short_name": "DAL",
+    "team": "Cowboys",
+    "position": "WR",
+    "full_name": "KaVontae Turpin",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10377,
+  "fields": {
+    "player_id": 352,
+    "team_short_name": "LV",
+    "team": "Raiders",
+    "position": "TE",
+    "full_name": "Michael Mayer",
+    "bye": 8,
+    "salary": 1,
+    "final_year": 2026,
+    "drafted_by": "Hokie High"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10378,
+  "fields": {
+    "player_id": 353,
+    "team_short_name": "TEN",
+    "team": "Titans",
+    "position": "WR",
+    "full_name": "Chimere Dike",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10379,
+  "fields": {
+    "player_id": 354,
+    "team_short_name": "GB",
+    "team": "Packers",
+    "position": "K",
+    "full_name": "Brandon McManus",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10380,
+  "fields": {
+    "player_id": 355,
+    "team_short_name": "HOU",
+    "team": "Texans",
+    "position": "WR",
+    "full_name": "Tank Dell",
+    "bye": 6,
+    "salary": 7,
+    "final_year": 2026,
+    "drafted_by": "Dirt Dogs"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10381,
+  "fields": {
+    "player_id": 356,
+    "team_short_name": "NYJ",
+    "team": "Jets",
+    "position": "RB",
+    "full_name": "Donovan Edwards",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10382,
+  "fields": {
+    "player_id": 357,
+    "team_short_name": "ATL",
+    "team": "Falcons",
+    "position": "QB",
+    "full_name": "Kirk Cousins",
+    "bye": 5,
+    "salary": 5,
+    "final_year": 2025,
+    "drafted_by": "Easy Marks"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10383,
+  "fields": {
+    "player_id": 358,
+    "team_short_name": "NE",
+    "team": "Patriots",
+    "position": "WR",
+    "full_name": "Mack Hollins",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10384,
+  "fields": {
+    "player_id": 359,
+    "team_short_name": "WAS",
+    "team": "Commanders",
+    "position": "DST",
+    "full_name": "Washington Commanders",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10385,
+  "fields": {
+    "player_id": 360,
+    "team_short_name": "GB",
+    "team": "Packers",
+    "position": "TE",
+    "full_name": "Luke Musgrave",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10386,
+  "fields": {
+    "player_id": 361,
+    "team_short_name": "FA",
+    "team": "Free Agent",
+    "position": "WR",
+    "full_name": "Isaiah Bond",
+    "bye": 0,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10387,
+  "fields": {
+    "player_id": 362,
+    "team_short_name": "JAC",
+    "team": "Jaguars",
+    "position": "K",
+    "full_name": "Cam Little",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10388,
+  "fields": {
+    "player_id": 363,
+    "team_short_name": "NYJ",
+    "team": "Jets",
+    "position": "WR",
+    "full_name": "Allen Lazard",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10389,
+  "fields": {
+    "player_id": 364,
+    "team_short_name": "NO",
+    "team": "Saints",
+    "position": "QB",
+    "full_name": "Spencer Rattler",
+    "bye": 11,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10390,
+  "fields": {
+    "player_id": 365,
+    "team_short_name": "NYG",
+    "team": "Giants",
+    "position": "QB",
+    "full_name": "Jameis Winston",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10391,
+  "fields": {
+    "player_id": 366,
+    "team_short_name": "CLE",
+    "team": "Browns",
+    "position": "QB",
+    "full_name": "Kenny Pickett",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10392,
+  "fields": {
+    "player_id": 367,
+    "team_short_name": "BUF",
+    "team": "Bills",
+    "position": "WR",
+    "full_name": "Curtis Samuel",
+    "bye": 7,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10393,
+  "fields": {
+    "player_id": 368,
+    "team_short_name": "ATL",
+    "team": "Falcons",
+    "position": "DST",
+    "full_name": "Atlanta Falcons",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10394,
+  "fields": {
+    "player_id": 369,
+    "team_short_name": "ARI",
+    "team": "Cardinals",
+    "position": "WR",
+    "full_name": "Greg Dortch",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10395,
+  "fields": {
+    "player_id": 370,
+    "team_short_name": "PIT",
+    "team": "Steelers",
+    "position": "RB",
+    "full_name": "Trey Sermon",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10396,
+  "fields": {
+    "player_id": 371,
+    "team_short_name": "NE",
+    "team": "Patriots",
+    "position": "TE",
+    "full_name": "Austin Hooper",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10397,
+  "fields": {
+    "player_id": 372,
+    "team_short_name": "TEN",
+    "team": "Titans",
+    "position": "TE",
+    "full_name": "Gunnar Helm",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10398,
+  "fields": {
+    "player_id": 373,
+    "team_short_name": "JAC",
+    "team": "Jaguars",
+    "position": "RB",
+    "full_name": "LeQuint Allen Jr.",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10399,
+  "fields": {
+    "player_id": 374,
+    "team_short_name": "TEN",
+    "team": "Titans",
+    "position": "QB",
+    "full_name": "Will Levis",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10400,
+  "fields": {
+    "player_id": 375,
+    "team_short_name": "WAS",
+    "team": "Commanders",
+    "position": "WR",
+    "full_name": "Jaylin Lane",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10401,
+  "fields": {
+    "player_id": 376,
+    "team_short_name": "ARI",
+    "team": "Cardinals",
+    "position": "RB",
+    "full_name": "Emari Demercado",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10402,
+  "fields": {
+    "player_id": 377,
+    "team_short_name": "FA",
+    "team": "Free Agent",
+    "position": "RB",
+    "full_name": "Ameer Abdullah",
+    "bye": 0,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10403,
+  "fields": {
+    "player_id": 378,
+    "team_short_name": "CHI",
+    "team": "Bears",
+    "position": "K",
+    "full_name": "Cairo Santos",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10404,
+  "fields": {
+    "player_id": 379,
+    "team_short_name": "PIT",
+    "team": "Steelers",
+    "position": "WR",
+    "full_name": "Robert Woods",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10405,
+  "fields": {
+    "player_id": 380,
+    "team_short_name": "FA",
+    "team": "Free Agent",
+    "position": "K",
+    "full_name": "Eddy Pineiro",
+    "bye": 0,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10406,
+  "fields": {
+    "player_id": 381,
+    "team_short_name": "TEN",
+    "team": "Titans",
+    "position": "WR",
+    "full_name": "Van Jefferson",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10407,
+  "fields": {
+    "player_id": 382,
+    "team_short_name": "FA",
+    "team": "Free Agent",
+    "position": "K",
+    "full_name": "Matt Prater",
+    "bye": 0,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10408,
+  "fields": {
+    "player_id": 383,
+    "team_short_name": "WAS",
+    "team": "Commanders",
+    "position": "RB",
+    "full_name": "Jeremy McNichols",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10409,
+  "fields": {
+    "player_id": 384,
+    "team_short_name": "NO",
+    "team": "Saints",
+    "position": "TE",
+    "full_name": "Foster Moreau",
+    "bye": 11,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10410,
+  "fields": {
+    "player_id": 385,
+    "team_short_name": "PHI",
+    "team": "Eagles",
+    "position": "WR",
+    "full_name": "Jahan Dotson",
+    "bye": 9,
+    "salary": 1,
+    "final_year": 2025,
+    "drafted_by": "Russ Riders"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10411,
+  "fields": {
+    "player_id": 386,
+    "team_short_name": "CAR",
+    "team": "Panthers",
+    "position": "TE",
+    "full_name": "Tommy Tremble",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10412,
+  "fields": {
+    "player_id": 387,
+    "team_short_name": "JAC",
+    "team": "Jaguars",
+    "position": "RB",
+    "full_name": "Ja'Quinden Jackson",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10413,
+  "fields": {
+    "player_id": 388,
+    "team_short_name": "NO",
+    "team": "Saints",
+    "position": "K",
+    "full_name": "Blake Grupe",
+    "bye": 11,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10414,
+  "fields": {
+    "player_id": 389,
+    "team_short_name": "MIA",
+    "team": "Dolphins",
+    "position": "WR",
+    "full_name": "Theo Wease Jr.",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10415,
+  "fields": {
+    "player_id": 390,
+    "team_short_name": "PIT",
+    "team": "Steelers",
+    "position": "QB",
+    "full_name": "Mason Rudolph",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10416,
+  "fields": {
+    "player_id": 391,
+    "team_short_name": "NYG",
+    "team": "Giants",
+    "position": "WR",
+    "full_name": "Antwane Wells Jr.",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10417,
+  "fields": {
+    "player_id": 392,
+    "team_short_name": "CAR",
+    "team": "Panthers",
+    "position": "RB",
+    "full_name": "Jonathon Brooks",
+    "bye": 14,
+    "salary": 1,
+    "final_year": 2027,
+    "drafted_by": "What Dats"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10418,
+  "fields": {
+    "player_id": 393,
+    "team_short_name": "IND",
+    "team": "Colts",
+    "position": "DST",
+    "full_name": "Indianapolis Colts",
+    "bye": 11,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10419,
+  "fields": {
+    "player_id": 394,
+    "team_short_name": "TEN",
+    "team": "Titans",
+    "position": "RB",
+    "full_name": "Kalel Mullings",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10420,
+  "fields": {
+    "player_id": 395,
+    "team_short_name": "ARI",
+    "team": "Cardinals",
+    "position": "K",
+    "full_name": "Chad Ryland",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10421,
+  "fields": {
+    "player_id": 396,
+    "team_short_name": "CIN",
+    "team": "Bengals",
+    "position": "DST",
+    "full_name": "Cincinnati Bengals",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10422,
+  "fields": {
+    "player_id": 397,
+    "team_short_name": "CLE",
+    "team": "Browns",
+    "position": "QB",
+    "full_name": "Dillon Gabriel",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10423,
+  "fields": {
+    "player_id": 398,
+    "team_short_name": "NO",
+    "team": "Saints",
+    "position": "DST",
+    "full_name": "New Orleans Saints",
+    "bye": 11,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10424,
+  "fields": {
+    "player_id": 399,
+    "team_short_name": "FA",
+    "team": "Free Agent",
+    "position": "RB",
+    "full_name": "D'Ernest Johnson",
+    "bye": 0,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10425,
+  "fields": {
+    "player_id": 400,
+    "team_short_name": "CHI",
+    "team": "Bears",
+    "position": "WR",
+    "full_name": "Olamide Zaccheaus",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10426,
+  "fields": {
+    "player_id": 401,
+    "team_short_name": "DAL",
+    "team": "Cowboys",
+    "position": "TE",
+    "full_name": "Luke Schoonmaker",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10427,
+  "fields": {
+    "player_id": 402,
+    "team_short_name": "NYG",
+    "team": "Giants",
+    "position": "WR",
+    "full_name": "Jalin Hyatt",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10428,
+  "fields": {
+    "player_id": 403,
+    "team_short_name": "NYJ",
+    "team": "Jets",
+    "position": "WR",
+    "full_name": "Arian Smith",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10429,
+  "fields": {
+    "player_id": 404,
+    "team_short_name": "NE",
+    "team": "Patriots",
+    "position": "WR",
+    "full_name": "Kendrick Bourne",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10430,
+  "fields": {
+    "player_id": 405,
+    "team_short_name": "DET",
+    "team": "Lions",
+    "position": "RB",
+    "full_name": "Craig Reynolds",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10431,
+  "fields": {
+    "player_id": 406,
+    "team_short_name": "NE",
+    "team": "Patriots",
+    "position": "WR",
+    "full_name": "Ja'Lynn Polk",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10432,
+  "fields": {
+    "player_id": 407,
+    "team_short_name": "NYG",
+    "team": "Giants",
+    "position": "K",
+    "full_name": "Graham Gano",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10433,
+  "fields": {
+    "player_id": 408,
+    "team_short_name": "PIT",
+    "team": "Steelers",
+    "position": "RB",
+    "full_name": "Cordarrelle Patterson",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10434,
+  "fields": {
+    "player_id": 409,
+    "team_short_name": "DAL",
+    "team": "Cowboys",
+    "position": "RB",
+    "full_name": "Hunter Luepke",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10435,
+  "fields": {
+    "player_id": 410,
+    "team_short_name": "MIN",
+    "team": "Vikings",
+    "position": "TE",
+    "full_name": "Josh Oliver",
+    "bye": 6,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10436,
+  "fields": {
+    "player_id": 411,
+    "team_short_name": "LV",
+    "team": "Raiders",
+    "position": "QB",
+    "full_name": "Aidan O'Connell",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10437,
+  "fields": {
+    "player_id": 412,
+    "team_short_name": "NO",
+    "team": "Saints",
+    "position": "RB",
+    "full_name": "Clyde Edwards-Helaire",
+    "bye": 11,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10438,
+  "fields": {
+    "player_id": 413,
+    "team_short_name": "SF",
+    "team": "49ers",
+    "position": "RB",
+    "full_name": "Kyle Juszczyk",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10439,
+  "fields": {
+    "player_id": 414,
+    "team_short_name": "FA",
+    "team": "Free Agent",
+    "position": "K",
+    "full_name": "Nick Folk",
+    "bye": 0,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10440,
+  "fields": {
+    "player_id": 415,
+    "team_short_name": "HOU",
+    "team": "Texans",
+    "position": "TE",
+    "full_name": "Cade Stover",
+    "bye": 6,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10441,
+  "fields": {
+    "player_id": 416,
+    "team_short_name": "LV",
+    "team": "Raiders",
+    "position": "DST",
+    "full_name": "Las Vegas Raiders",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10442,
+  "fields": {
+    "player_id": 417,
+    "team_short_name": "IND",
+    "team": "Colts",
+    "position": "RB",
+    "full_name": "Tyler Goodson",
+    "bye": 11,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10443,
+  "fields": {
+    "player_id": 418,
+    "team_short_name": "SF",
+    "team": "49ers",
+    "position": "WR",
+    "full_name": "Jacob Cowing",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10444,
+  "fields": {
+    "player_id": 419,
+    "team_short_name": "DET",
+    "team": "Lions",
+    "position": "WR",
+    "full_name": "Kalif Raymond",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10445,
+  "fields": {
+    "player_id": 420,
+    "team_short_name": "PIT",
+    "team": "Steelers",
+    "position": "QB",
+    "full_name": "Will Howard",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10446,
+  "fields": {
+    "player_id": 421,
+    "team_short_name": "PHI",
+    "team": "Eagles",
+    "position": "TE",
+    "full_name": "Grant Calcaterra",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10447,
+  "fields": {
+    "player_id": 422,
+    "team_short_name": "TEN",
+    "team": "Titans",
+    "position": "WR",
+    "full_name": "Treylon Burks",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10448,
+  "fields": {
+    "player_id": 423,
+    "team_short_name": "KC",
+    "team": "Chiefs",
+    "position": "WR",
+    "full_name": "JuJu Smith-Schuster",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10449,
+  "fields": {
+    "player_id": 424,
+    "team_short_name": "NO",
+    "team": "Saints",
+    "position": "RB",
+    "full_name": "Chris Tyree",
+    "bye": 11,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10450,
+  "fields": {
+    "player_id": 425,
+    "team_short_name": "NYJ",
+    "team": "Jets",
+    "position": "TE",
+    "full_name": "Stone Smartt",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10451,
+  "fields": {
+    "player_id": 426,
+    "team_short_name": "NYJ",
+    "team": "Jets",
+    "position": "WR",
+    "full_name": "Malachi Corley",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10452,
+  "fields": {
+    "player_id": 427,
+    "team_short_name": "SEA",
+    "team": "Seahawks",
+    "position": "TE",
+    "full_name": "AJ Barner",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10453,
+  "fields": {
+    "player_id": 428,
+    "team_short_name": "DAL",
+    "team": "Cowboys",
+    "position": "RB",
+    "full_name": "Deuce Vaughn",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10454,
+  "fields": {
+    "player_id": 429,
+    "team_short_name": "TEN",
+    "team": "Titans",
+    "position": "RB",
+    "full_name": "Julius Chestnut",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10455,
+  "fields": {
+    "player_id": 430,
+    "team_short_name": "MIA",
+    "team": "Dolphins",
+    "position": "RB",
+    "full_name": "Alec Ingold",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10456,
+  "fields": {
+    "player_id": 431,
+    "team_short_name": "LAC",
+    "team": "Chargers",
+    "position": "WR",
+    "full_name": "KeAndre Lambert-Smith",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10457,
+  "fields": {
+    "player_id": 432,
+    "team_short_name": "MIA",
+    "team": "Dolphins",
+    "position": "TE",
+    "full_name": "Julian Hill",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10458,
+  "fields": {
+    "player_id": 433,
+    "team_short_name": "ATL",
+    "team": "Falcons",
+    "position": "WR",
+    "full_name": "KhaDarel Hodge",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10459,
+  "fields": {
+    "player_id": 434,
+    "team_short_name": "SEA",
+    "team": "Seahawks",
+    "position": "RB",
+    "full_name": "Kenny McIntosh",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10460,
+  "fields": {
+    "player_id": 435,
+    "team_short_name": "WAS",
+    "team": "Commanders",
+    "position": "QB",
+    "full_name": "Marcus Mariota",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10461,
+  "fields": {
+    "player_id": 436,
+    "team_short_name": "ARI",
+    "team": "Cardinals",
+    "position": "RB",
+    "full_name": "Michael Carter",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10462,
+  "fields": {
+    "player_id": 437,
+    "team_short_name": "CAR",
+    "team": "Panthers",
+    "position": "TE",
+    "full_name": "Mitchell Evans",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10463,
+  "fields": {
+    "player_id": 438,
+    "team_short_name": "MIN",
+    "team": "Vikings",
+    "position": "RB",
+    "full_name": "C.J. Ham",
+    "bye": 6,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10464,
+  "fields": {
+    "player_id": 439,
+    "team_short_name": "NE",
+    "team": "Patriots",
+    "position": "WR",
+    "full_name": "Javon Baker",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10465,
+  "fields": {
+    "player_id": 440,
+    "team_short_name": "PIT",
+    "team": "Steelers",
+    "position": "TE",
+    "full_name": "Darnell Washington",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10466,
+  "fields": {
+    "player_id": 441,
+    "team_short_name": "ARI",
+    "team": "Cardinals",
+    "position": "WR",
+    "full_name": "Zay Jones",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10467,
+  "fields": {
+    "player_id": 442,
+    "team_short_name": "DAL",
+    "team": "Cowboys",
+    "position": "QB",
+    "full_name": "Joe Milton III",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10468,
+  "fields": {
+    "player_id": 443,
+    "team_short_name": "NE",
+    "team": "Patriots",
+    "position": "WR",
+    "full_name": "Efton Chism III",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10469,
+  "fields": {
+    "player_id": 444,
+    "team_short_name": "ARI",
+    "team": "Cardinals",
+    "position": "TE",
+    "full_name": "Elijah Higgins",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10470,
+  "fields": {
+    "player_id": 445,
+    "team_short_name": "MIA",
+    "team": "Dolphins",
+    "position": "QB",
+    "full_name": "Zach Wilson",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10471,
+  "fields": {
+    "player_id": 446,
+    "team_short_name": "SEA",
+    "team": "Seahawks",
+    "position": "WR",
+    "full_name": "Jake Bobo",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10472,
+  "fields": {
+    "player_id": 447,
+    "team_short_name": "BUF",
+    "team": "Bills",
+    "position": "WR",
+    "full_name": "Kaden Prather",
+    "bye": 7,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10473,
+  "fields": {
+    "player_id": 448,
+    "team_short_name": "TEN",
+    "team": "Titans",
+    "position": "TE",
+    "full_name": "Josh Whyle",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10474,
+  "fields": {
+    "player_id": 449,
+    "team_short_name": "DEN",
+    "team": "Broncos",
+    "position": "RB",
+    "full_name": "Tyler Badie",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10475,
+  "fields": {
+    "player_id": 450,
+    "team_short_name": "BAL",
+    "team": "Ravens",
+    "position": "RB",
+    "full_name": "Rasheen Ali",
+    "bye": 7,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10476,
+  "fields": {
+    "player_id": 451,
+    "team_short_name": "BAL",
+    "team": "Ravens",
+    "position": "WR",
+    "full_name": "Devontez Walker",
+    "bye": 7,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10477,
+  "fields": {
+    "player_id": 452,
+    "team_short_name": "NO",
+    "team": "Saints",
+    "position": "WR",
+    "full_name": "Bub Means",
+    "bye": 11,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10478,
+  "fields": {
+    "player_id": 453,
+    "team_short_name": "CAR",
+    "team": "Panthers",
+    "position": "WR",
+    "full_name": "Hunter Renfrow",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10479,
+  "fields": {
+    "player_id": 454,
+    "team_short_name": "NO",
+    "team": "Saints",
+    "position": "RB",
+    "full_name": "Marcus Yarns",
+    "bye": 11,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10480,
+  "fields": {
+    "player_id": 455,
+    "team_short_name": "FA",
+    "team": "Free Agent",
+    "position": "RB",
+    "full_name": "Ezekiel Elliott",
+    "bye": 0,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10481,
+  "fields": {
+    "player_id": 456,
+    "team_short_name": "KC",
+    "team": "Chiefs",
+    "position": "RB",
+    "full_name": "Carson Steele",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10482,
+  "fields": {
+    "player_id": 457,
+    "team_short_name": "DAL",
+    "team": "Cowboys",
+    "position": "WR",
+    "full_name": "Jonathan Mingo",
+    "bye": 10,
+    "salary": 1,
+    "final_year": 2026,
+    "drafted_by": "Dirt Dogs"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10483,
+  "fields": {
+    "player_id": 458,
+    "team_short_name": "HOU",
+    "team": "Texans",
+    "position": "TE",
+    "full_name": "Luke Lachey",
+    "bye": 6,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10484,
+  "fields": {
+    "player_id": 459,
+    "team_short_name": "MIA",
+    "team": "Dolphins",
+    "position": "TE",
+    "full_name": "Pharaoh Brown",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10485,
+  "fields": {
+    "player_id": 460,
+    "team_short_name": "MIN",
+    "team": "Vikings",
+    "position": "QB",
+    "full_name": "Sam Howell",
+    "bye": 6,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10486,
+  "fields": {
+    "player_id": 461,
+    "team_short_name": "NYJ",
+    "team": "Jets",
+    "position": "WR",
+    "full_name": "Tyler Johnson",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10487,
+  "fields": {
+    "player_id": 462,
+    "team_short_name": "NYG",
+    "team": "Giants",
+    "position": "TE",
+    "full_name": "Greg Dulcich",
+    "bye": 14,
+    "salary": 3,
+    "final_year": 2025,
+    "drafted_by": "Show Me the Money"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10488,
+  "fields": {
+    "player_id": 463,
+    "team_short_name": "NYJ",
+    "team": "Jets",
+    "position": "TE",
+    "full_name": "Jeremy Ruckert",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10489,
+  "fields": {
+    "player_id": 464,
+    "team_short_name": "LAC",
+    "team": "Chargers",
+    "position": "RB",
+    "full_name": "Hassan Haskins",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10490,
+  "fields": {
+    "player_id": 465,
+    "team_short_name": "FA",
+    "team": "Free Agent",
+    "position": "RB",
+    "full_name": "Jaydn Ott",
+    "bye": 0,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10491,
+  "fields": {
+    "player_id": 466,
+    "team_short_name": "LV",
+    "team": "Raiders",
+    "position": "RB",
+    "full_name": "Dylan Laube",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10492,
+  "fields": {
+    "player_id": 467,
+    "team_short_name": "WAS",
+    "team": "Commanders",
+    "position": "WR",
+    "full_name": "Michael Gallup",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10493,
+  "fields": {
+    "player_id": 468,
+    "team_short_name": "NE",
+    "team": "Patriots",
+    "position": "RB",
+    "full_name": "Lan Larison",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10494,
+  "fields": {
+    "player_id": 469,
+    "team_short_name": "BUF",
+    "team": "Bills",
+    "position": "RB",
+    "full_name": "Frank Gore Jr.",
+    "bye": 7,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10495,
+  "fields": {
+    "player_id": 470,
+    "team_short_name": "HOU",
+    "team": "Texans",
+    "position": "RB",
+    "full_name": "Dare Ogunbowale",
+    "bye": 6,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10496,
+  "fields": {
+    "player_id": 471,
+    "team_short_name": "LAR",
+    "team": "Rams",
+    "position": "RB",
+    "full_name": "Ronnie Rivers",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10497,
+  "fields": {
+    "player_id": 472,
+    "team_short_name": "LAC",
+    "team": "Chargers",
+    "position": "WR",
+    "full_name": "Derius Davis",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10498,
+  "fields": {
+    "player_id": 473,
+    "team_short_name": "CLE",
+    "team": "Browns",
+    "position": "RB",
+    "full_name": "Pierre Strong Jr.",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10499,
+  "fields": {
+    "player_id": 474,
+    "team_short_name": "GB",
+    "team": "Packers",
+    "position": "QB",
+    "full_name": "Malik Willis",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10500,
+  "fields": {
+    "player_id": 475,
+    "team_short_name": "HOU",
+    "team": "Texans",
+    "position": "TE",
+    "full_name": "Brevin Jordan",
+    "bye": 6,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10501,
+  "fields": {
+    "player_id": 476,
+    "team_short_name": "NYG",
+    "team": "Giants",
+    "position": "TE",
+    "full_name": "Daniel Bellinger",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10502,
+  "fields": {
+    "player_id": 477,
+    "team_short_name": "SF",
+    "team": "49ers",
+    "position": "RB",
+    "full_name": "Patrick Taylor Jr.",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10503,
+  "fields": {
+    "player_id": 478,
+    "team_short_name": "LAR",
+    "team": "Rams",
+    "position": "TE",
+    "full_name": "Colby Parkinson",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10504,
+  "fields": {
+    "player_id": 479,
+    "team_short_name": "SF",
+    "team": "49ers",
+    "position": "WR",
+    "full_name": "Jordan Watkins",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10505,
+  "fields": {
+    "player_id": 480,
+    "team_short_name": "DEN",
+    "team": "Broncos",
+    "position": "TE",
+    "full_name": "Adam Trautman",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10506,
+  "fields": {
+    "player_id": 481,
+    "team_short_name": "IND",
+    "team": "Colts",
+    "position": "TE",
+    "full_name": "Mo Alie-Cox",
+    "bye": 11,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10507,
+  "fields": {
+    "player_id": 482,
+    "team_short_name": "SF",
+    "team": "49ers",
+    "position": "QB",
+    "full_name": "Mac Jones",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10508,
+  "fields": {
+    "player_id": 483,
+    "team_short_name": "MIN",
+    "team": "Vikings",
+    "position": "WR",
+    "full_name": "Rondale Moore",
+    "bye": 6,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10509,
+  "fields": {
+    "player_id": 484,
+    "team_short_name": "DET",
+    "team": "Lions",
+    "position": "TE",
+    "full_name": "Brock Wright",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10510,
+  "fields": {
+    "player_id": 485,
+    "team_short_name": "NYJ",
+    "team": "Jets",
+    "position": "QB",
+    "full_name": "Tyrod Taylor",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10511,
+  "fields": {
+    "player_id": 486,
+    "team_short_name": "GB",
+    "team": "Packers",
+    "position": "WR",
+    "full_name": "Mecole Hardman Jr.",
+    "bye": 5,
+    "salary": 2,
+    "final_year": 2025,
+    "drafted_by": "Show Me the Money"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10512,
+  "fields": {
+    "player_id": 487,
+    "team_short_name": "IND",
+    "team": "Colts",
+    "position": "TE",
+    "full_name": "Jelani Woods",
+    "bye": 11,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10513,
+  "fields": {
+    "player_id": 488,
+    "team_short_name": "NO",
+    "team": "Saints",
+    "position": "WR",
+    "full_name": "Cedrick Wilson Jr.",
+    "bye": 11,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10514,
+  "fields": {
+    "player_id": 489,
+    "team_short_name": "CAR",
+    "team": "Panthers",
+    "position": "WR",
+    "full_name": "David Moore",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10515,
+  "fields": {
+    "player_id": 490,
+    "team_short_name": "TB",
+    "team": "Buccaneers",
+    "position": "TE",
+    "full_name": "Payne Durham",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10516,
+  "fields": {
+    "player_id": 491,
+    "team_short_name": "CAR",
+    "team": "Panthers",
+    "position": "WR",
+    "full_name": "Jimmy Horn Jr.",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10517,
+  "fields": {
+    "player_id": 492,
+    "team_short_name": "DET",
+    "team": "Lions",
+    "position": "RB",
+    "full_name": "Sione Vaki",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10518,
+  "fields": {
+    "player_id": 493,
+    "team_short_name": "LAC",
+    "team": "Chargers",
+    "position": "QB",
+    "full_name": "Taylor Heinicke",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10519,
+  "fields": {
+    "player_id": 494,
+    "team_short_name": "PHI",
+    "team": "Eagles",
+    "position": "TE",
+    "full_name": "Harrison Bryant",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10520,
+  "fields": {
+    "player_id": 495,
+    "team_short_name": "WAS",
+    "team": "Commanders",
+    "position": "TE",
+    "full_name": "John Bates",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10521,
+  "fields": {
+    "player_id": 496,
+    "team_short_name": "BAL",
+    "team": "Ravens",
+    "position": "QB",
+    "full_name": "Cooper Rush",
+    "bye": 7,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10522,
+  "fields": {
+    "player_id": 497,
+    "team_short_name": "SF",
+    "team": "49ers",
+    "position": "RB",
+    "full_name": "Israel Abanikanda",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10523,
+  "fields": {
+    "player_id": 498,
+    "team_short_name": "GB",
+    "team": "Packers",
+    "position": "RB",
+    "full_name": "Amar Johnson",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10524,
+  "fields": {
+    "player_id": 499,
+    "team_short_name": "PHI",
+    "team": "Eagles",
+    "position": "TE",
+    "full_name": "Kylen Granson",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10525,
+  "fields": {
+    "player_id": 500,
+    "team_short_name": "TB",
+    "team": "Buccaneers",
+    "position": "QB",
+    "full_name": "Kyle Trask",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10526,
+  "fields": {
+    "player_id": 501,
+    "team_short_name": "CIN",
+    "team": "Bengals",
+    "position": "QB",
+    "full_name": "Jake Browning",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10527,
+  "fields": {
+    "player_id": 502,
+    "team_short_name": "ARI",
+    "team": "Cardinals",
+    "position": "RB",
+    "full_name": "DeeJay Dallas",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10528,
+  "fields": {
+    "player_id": 503,
+    "team_short_name": "HOU",
+    "team": "Texans",
+    "position": "WR",
+    "full_name": "Justin Watson",
+    "bye": 6,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10529,
+  "fields": {
+    "player_id": 504,
+    "team_short_name": "ARI",
+    "team": "Cardinals",
+    "position": "DEF",
+    "full_name": "Cardinals Defense",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10530,
+  "fields": {
+    "player_id": 505,
+    "team_short_name": "ATL",
+    "team": "Falcons",
+    "position": "DEF",
+    "full_name": "Falcons Defense",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10531,
+  "fields": {
+    "player_id": 506,
+    "team_short_name": "BAL",
+    "team": "Ravens",
+    "position": "DEF",
+    "full_name": "Ravens Defense",
+    "bye": 7,
+    "salary": 4,
+    "final_year": 2026,
+    "drafted_by": "Show Me the Money"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10532,
+  "fields": {
+    "player_id": 507,
+    "team_short_name": "BUF",
+    "team": "Bills",
+    "position": "DEF",
+    "full_name": "Bills Defense",
+    "bye": 7,
+    "salary": 3,
+    "final_year": 2025,
+    "drafted_by": "Always Next Year"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10533,
+  "fields": {
+    "player_id": 508,
+    "team_short_name": "CAR",
+    "team": "Panthers",
+    "position": "DEF",
+    "full_name": "Panthers Defense",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10534,
+  "fields": {
+    "player_id": 509,
+    "team_short_name": "CHI",
+    "team": "Bears",
+    "position": "DEF",
+    "full_name": "Bears Defense",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10535,
+  "fields": {
+    "player_id": 510,
+    "team_short_name": "CIN",
+    "team": "Bengals",
+    "position": "DEF",
+    "full_name": "Bengals Defense",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10536,
+  "fields": {
+    "player_id": 511,
+    "team_short_name": "CLE",
+    "team": "Browns",
+    "position": "DEF",
+    "full_name": "Browns Defense",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10537,
+  "fields": {
+    "player_id": 512,
+    "team_short_name": "DAL",
+    "team": "Cowboys",
+    "position": "DEF",
+    "full_name": "Cowboys Defense",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10538,
+  "fields": {
+    "player_id": 513,
+    "team_short_name": "DEN",
+    "team": "Broncos",
+    "position": "DEF",
+    "full_name": "Broncos Defense",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10539,
+  "fields": {
+    "player_id": 514,
+    "team_short_name": "DET",
+    "team": "Lions",
+    "position": "DEF",
+    "full_name": "Lions Defense",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10540,
+  "fields": {
+    "player_id": 515,
+    "team_short_name": "GB",
+    "team": "Packers",
+    "position": "DEF",
+    "full_name": "Packers Defense",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10541,
+  "fields": {
+    "player_id": 516,
+    "team_short_name": "HOU",
+    "team": "Texans",
+    "position": "DEF",
+    "full_name": "Texans Defense",
+    "bye": 6,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10542,
+  "fields": {
+    "player_id": 517,
+    "team_short_name": "IND",
+    "team": "Colts",
+    "position": "DEF",
+    "full_name": "Colts Defense",
+    "bye": 11,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10543,
+  "fields": {
+    "player_id": 518,
+    "team_short_name": "JAC",
+    "team": "Jaguars",
+    "position": "DEF",
+    "full_name": "Jaguars Defense",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10544,
+  "fields": {
+    "player_id": 519,
+    "team_short_name": "KC",
+    "team": "Chiefs",
+    "position": "DEF",
+    "full_name": "Chiefs Defense",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10545,
+  "fields": {
+    "player_id": 520,
+    "team_short_name": "LAC",
+    "team": "Chargers",
+    "position": "DEF",
+    "full_name": "Chargers Defense",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10546,
+  "fields": {
+    "player_id": 521,
+    "team_short_name": "LAR",
+    "team": "Rams",
+    "position": "DEF",
+    "full_name": "Rams Defense",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10547,
+  "fields": {
+    "player_id": 522,
+    "team_short_name": "LV",
+    "team": "Raiders",
+    "position": "DEF",
+    "full_name": "Raiders Defense",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10548,
+  "fields": {
+    "player_id": 523,
+    "team_short_name": "MIA",
+    "team": "Dolphins",
+    "position": "DEF",
+    "full_name": "Dolphins Defense",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10549,
+  "fields": {
+    "player_id": 524,
+    "team_short_name": "MIN",
+    "team": "Vikings",
+    "position": "DEF",
+    "full_name": "Vikings Defense",
+    "bye": 6,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10550,
+  "fields": {
+    "player_id": 525,
+    "team_short_name": "NE",
+    "team": "Patriots",
+    "position": "DEF",
+    "full_name": "Patriots Defense",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10551,
+  "fields": {
+    "player_id": 526,
+    "team_short_name": "NO",
+    "team": "Saints",
+    "position": "DEF",
+    "full_name": "Saints Defense",
+    "bye": 11,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10552,
+  "fields": {
+    "player_id": 527,
+    "team_short_name": "NYG",
+    "team": "Giants",
+    "position": "DEF",
+    "full_name": "Giants Defense",
+    "bye": 14,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10553,
+  "fields": {
+    "player_id": 528,
+    "team_short_name": "NYJ",
+    "team": "Jets",
+    "position": "DEF",
+    "full_name": "Jets Defense",
+    "bye": 9,
+    "salary": 1,
+    "final_year": 2025,
+    "drafted_by": "Dark Energy"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10554,
+  "fields": {
+    "player_id": 529,
+    "team_short_name": "PHI",
+    "team": "Eagles",
+    "position": "DEF",
+    "full_name": "Eagles Defense",
+    "bye": 9,
+    "salary": 4,
+    "final_year": 2025,
+    "drafted_by": "What Dats"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10555,
+  "fields": {
+    "player_id": 530,
+    "team_short_name": "PIT",
+    "team": "Steelers",
+    "position": "DEF",
+    "full_name": "Steelers Defense",
+    "bye": 5,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10556,
+  "fields": {
+    "player_id": 531,
+    "team_short_name": "SEA",
+    "team": "Seahawks",
+    "position": "DEF",
+    "full_name": "Seahawks Defense",
+    "bye": 8,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10557,
+  "fields": {
+    "player_id": 532,
+    "team_short_name": "SF",
+    "team": "49ers",
+    "position": "DEF",
+    "full_name": "49ers Defense",
+    "bye": 14,
+    "salary": 4,
+    "final_year": 2025,
+    "drafted_by": "Hokie High"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10558,
+  "fields": {
+    "player_id": 533,
+    "team_short_name": "TB",
+    "team": "Buccaneers",
+    "position": "DEF",
+    "full_name": "Buccaneers Defense",
+    "bye": 9,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10559,
+  "fields": {
+    "player_id": 534,
+    "team_short_name": "TEN",
+    "team": "Titans",
+    "position": "DEF",
+    "full_name": "Titans Defense",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10560,
+  "fields": {
+    "player_id": 535,
+    "team_short_name": "WAS",
+    "team": "Commanders",
+    "position": "DEF",
+    "full_name": "Commanders Defense",
+    "bye": 12,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10561,
+  "fields": {
+    "player_id": 536,
+    "team_short_name": "KC",
+    "team": "Chiefs",
+    "position": "RB",
+    "full_name": "Jerick McKinnon",
+    "bye": 10,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10562,
+  "fields": {
+    "player_id": 537,
+    "team_short_name": "FA",
+    "team": "Free Agent",
+    "position": "WR",
+    "full_name": "Tyler Boyd",
+    "bye": 0,
+    "salary": null,
+    "final_year": null,
+    "drafted_by": "Undrafted"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10563,
+  "fields": {
+    "player_id": 538,
+    "team_short_name": "KC",
+    "team": "Chiefs",
+    "position": "WR",
+    "full_name": "Skyy Moore",
+    "bye": 10,
+    "salary": 1,
+    "final_year": 2025,
+    "drafted_by": "Hokie High"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10564,
+  "fields": {
+    "player_id": 539,
+    "team_short_name": "FA",
+    "team": "Free Agent",
+    "position": "TE",
+    "full_name": "Gerald Everett",
+    "bye": 0,
+    "salary": 1,
+    "final_year": 2025,
+    "drafted_by": "Hokie High"
+  }
+},
+{
+  "model": "auction_table.nfl_player",
+  "pk": 10565,
+  "fields": {
+    "player_id": 540,
+    "team_short_name": "LAC",
+    "team": "Chargers",
+    "position": "RB",
+    "full_name": "Isaiah Spiller",
+    "bye": 12,
+    "salary": 1,
+    "final_year": 2025,
+    "drafted_by": "Dark Energy"
+  }
+}
+]

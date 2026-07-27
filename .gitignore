@@ -1,4 +1,5 @@
 django.env
+django-test.env
 django_postgres/PG_VERSION
 django_postgres/base/
 django_postgres/global/
@@ -12,6 +13,20 @@ django_postgres/pg_xact/
 django_postgres/postgresql.auto.conf
 django_postgres/postmaster.opts
 django_postgres/postmaster.pid
+django_postgres_test/PG_VERSION
+django_postgres_test/base/
+django_postgres_test/global/
+django_postgres_test/pg_ident.conf
+django_postgres_test/pg_logical/
+django_postgres_test/pg_multixact/
+django_postgres_test/pg_stat_tmp/
+django_postgres_test/pg_subtrans/
+django_postgres_test/pg_wal/
+django_postgres_test/pg_xact/
+django_postgres_test/postgres_testql.auto.conf
+django_postgres_test/postmaster.opts
+django_postgres_test/postmaster.pid
 draft_data
 data_to_combine/*.csv
 django_postgres/pg_stat
+django_postgres_test/pg_stat

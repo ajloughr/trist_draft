@@ -1,19 +1,15 @@
 services:
-  django-postgres:
+  django-postgres-test:
     image: postgres@sha256:f1341c01408dc7278e9d365ed4f860cd3f87dd16b4464ac326fc0f422083a579
-    container_name: django-postgres
+    container_name: django-postgres-test
     restart: unless-stopped
     ports:
-      - "5434:5432"
+      - "5435:5432"
     volumes:
-      - /mnt/user/docker/trist_draft/django_postgres:/var/lib/postgresql/data
+      - /mnt/user/docker/trist_draft/django_postgres_test:/var/lib/postgresql/data
       - /mnt/user/docker/trist_draft/draft_data:/home/draft_data
-    environment:
-      - POSTGRES_DB=postgres
-    #   - POSTGRES_USER=${POSTGRES_USER}
-    #   - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     env_file:
-      - ./django.env
+      - ./django-test.env
     labels:
       - "com.centurylinklabs.watchtower.enable=false"
     healthcheck:
@@ -22,25 +18,22 @@ services:
       timeout: 10s
       retries: 5
 
-  django:
-    build: .
+  django-test:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
     command: python manage.py runserver 0.0.0.0:8000
-    container_name: django
+    container_name: django-test
     restart: unless-stopped
     volumes:
       - /mnt/user/docker/trist_draft:/code
     ports:
-      - "8000:8000"
-    # environment:
-    #   - POSTGRES_NAME=postgres
-    #   - POSTGRES_PORT=5434
-    #   - POSTGRES_USER=${POSTGRES_USER}
-    #   - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - "8002:8000"
     depends_on:
-      - django-postgres
-      - redis
+      - django-postgres-test
+      - redis-test
     env_file:
-      - ./django.env
+      - ./django-test.env
     labels:
       - "com.centurylinklabs.watchtower.enable=false"
     healthcheck:
@@ -49,17 +42,19 @@ services:
       timeout: 10s
       retries: 5
 
-  redis:
+  redis-test:
     image: redis:5
-    container_name: django_redis
+    container_name: django_redis_test
     restart: unless-stopped
     depends_on:
-      - django-postgres
+      - django-postgres-test
     ports:
-     - "6379:6379"
+     - "6380:6379"
     volumes:
-      - /mnt/user/docker/trist_draft/django_redis:/var/lib/redis
-      - /mnt/user/docker/trist_draft/django_redis/redis.conf:/usr/local/etc/redis/redis.conf
+      - /mnt/user/docker/trist_draft/django_redis_test:/var/lib/redis
+      # Fallback to local redis.conf if exists, but we probably shouldn't mount the same config 
+      # file unless it's read only. However, redis doesn't modify its config.
+      # Let's omit the custom redis.conf for testing unless needed.
     labels:
       - "com.centurylinklabs.watchtower.enable=false"
     healthcheck:
