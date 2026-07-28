@@ -248,14 +248,18 @@ def update_auction_table(refresh_target):
     new_auction_manager = auction_manager.objects.filter(pk=1)
     new_auction_manager_s = serializers.serialize('json', new_auction_manager)
 
-    new_user_list = User.objects.all()
-    # print("Users: " + str(new_user_list))
-    new_user_list_s = serializers.serialize('json', new_user_list)
-    # print("Users: " + str(new_user_list_s))
-
-
-    if refresh_target == 'all':
-        update_aution_user_current_roster_size()
+    new_user_list = User.objects.values('pk', 'first_name')
+    safe_user_list = [
+        {
+            "model": "auth.user",
+            "pk": user['pk'],
+            "fields": {
+                "first_name": user['first_name']
+            }
+        }
+        for user in new_user_list
+    ]
+    new_user_list_s = json.dumps(safe_user_list)
 
     async_to_sync(channel_layer.group_send)(
         group_name,
@@ -655,6 +659,7 @@ def save_drafted_player(winning_team,drafted_player_full_name,drafted_player_tea
     
     winning_team_object = get_object_or_404(auction_user,team_name=winning_team)
     print("winning_team_object.budget_remaining: " + str(winning_team_object.budget_remaining))
+    update_aution_user_current_roster_size()
 
 def submit_auction_player(submitted_player_data):
     reset_auction_table()

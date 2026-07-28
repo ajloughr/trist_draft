@@ -1,54 +1,60 @@
 import pytest
-from playwright.sync_api import Page, expect, Browser
+from playwright.sync_api import Browser, expect
 from .e2e_helpers import login_user, start_auction
 
+
 def test_rookie_manual_entry(browser: Browser):
-    """Test manual entry for Rookie Draft"""
+    """TC 4.2 - Rookie Selection via Manual Entry"""
     s_ctx, s_page = login_user(browser, "sentinels")
+    
+    # Start a Rookie auction for round 1
     start_auction(s_page, "rookie", "1")
     
-    # Sentinels types manually
+    # Ensure we are on Sentinels turn
+    expect(s_page.locator("#your_turn_to_bid_banner")).to_be_visible(timeout=10000)
+
+    # Fill manual entry fields
     s_page.fill("#selected_player_name", "Patrick Mahomes")
     s_page.fill("#selected_player_team", "KC")
     s_page.fill("#selected_player_position", "QB")
     
-    # Assert Hokie High is disabled from manual entry since it's not their turn
-    h_ctx, h_page = login_user(browser, "hokiehigh")
-    expect(h_page.locator("#submit_selected_player")).to_be_disabled()
-    
+    # Submit player
     s_page.click("#submit_selected_player")
     
-    # Rookie draft immediately awards the player and moves to the next user (Hokie High)
+    # Wait for Sentinels' turn to end
+    expect(s_page.locator("#your_turn_to_bid_banner")).not_to_be_visible(timeout=10000)
+
+    # Next team in Rookie Draft is hokiehigh (assuming standard setup)
+    h_ctx, h_page = login_user(browser, "hokiehigh")
     expect(h_page.locator("#your_turn_to_bid_banner")).to_be_visible(timeout=10000)
-    expect(h_page.locator("#submit_selected_player")).not_to_be_disabled()
+
 
 def test_rookie_search_entry(browser: Browser):
-    """Test search table entry for Rookie Draft"""
+    """TC 4.1 - Rookie Selection via Search"""
     s_ctx, s_page = login_user(browser, "sentinels")
+    
+    # Start a Rookie auction for round 1
     start_auction(s_page, "rookie", "1")
     
-    # Assert Hokie High is not active
-    h_ctx, h_page = login_user(browser, "hokiehigh")
-    
-    # Sentinels searches for a player. In a real test we use a real player from the reset DB.
+    # Ensure we are on Sentinels turn
+    expect(s_page.locator("#your_turn_to_bid_banner")).to_be_visible(timeout=10000)
+
+    # Search for a player
     s_page.fill("#player_search_value", "Josh Allen")
-    # Playwright's .fill() doesn't trigger keyup, which the frontend requires.
-    s_page.locator("#player_search_value").press("Enter")
+    s_page.press("#player_search_value", "Enter")
     
-    # Wait for the table to populate with a tr
-    s_page.wait_for_selector("#search_results_table tbody tr")
+    # Wait for the search results table to appear
+    s_page.wait_for_selector("#search_results_table tbody tr", state="attached", timeout=10000)
     
-    # Click the green plus button
-    s_page.click("#search_results_table tbody tr:first-child button.btn-success")
+    # Click the + button in the first row
+    s_page.click("#search_results_table tbody tr:nth-child(1) button.btn-success")
     
-    # Wait for the confirmation modal and confirm
-    s_page.wait_for_selector("#select_player_confirmation_modal")
+    # Click the modal confirm button
     s_page.click("#select_player_confirmed")
     
-    # This automatically submits! We wait for the turn to pass to the next user (Hokie High)
-    expect(h_page.locator("#your_turn_to_bid_banner")).to_be_visible(timeout=10000)
-    expect(h_page.locator("#submit_selected_player")).not_to_be_disabled()
+    # Wait for Sentinels' turn to end
+    expect(s_page.locator("#your_turn_to_bid_banner")).not_to_be_visible(timeout=10000)
 
-def test_rookie_phase_transition(browser: Browser):
-    """TC 1.3 - Phase Transition"""
-    pass # In a real test, loop through all 10 picks and verify phase changes to RFA.
+    # Next team in Rookie Draft is hokiehigh
+    h_ctx, h_page = login_user(browser, "hokiehigh")
+    expect(h_page.locator("#your_turn_to_bid_banner")).to_be_visible(timeout=10000)

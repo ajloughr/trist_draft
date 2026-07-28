@@ -35,4 +35,6 @@ def drop_out_all_except(browser: Browser, current_price: str, exceptions: list[s
             # Assert they can't bid if it's not their turn, unless they are dropping out when it IS their turn
             # But they can drop out early!
             page.click("#drop_out_confirmation_button")
+            page.wait_for_selector("#drop_out_confirmation_modal")
+            page.click("#drop_out_button")
             ctx.close()

@@ -47,10 +47,10 @@ def test_rfa_owner_declines_match(browser: Browser):
     drop_out_all_except(browser, "10", exceptions=["sentinels", "hokiehigh"])
     
     # Wait for the Owner Match prompt for Sentinels
-    expect(s_page.locator(".toast-body")).to_contain_text("Waiting on Owner Match", timeout=10000)
+    expect(s_page.locator("#rfa_owner_match_request_1_toast")).to_be_visible(timeout=10000)
     
     # Sentinels declines
-    s_page.click("#decline_rfa_match_button")
+    s_page.click("#rfa_owner_confirm_match_1_reject")
     
     # Hokie High wins
     # Next turn goes to Hokie High
@@ -73,13 +73,13 @@ def test_rfa_owner_matches_winner_declines(browser: Browser):
     drop_out_all_except(browser, "10", exceptions=["sentinels", "hokiehigh"])
     
     # Sentinels matches
-    s_page.click("#accept_rfa_match_button")
+    s_page.click("#rfa_owner_confirm_match_1_match")
     
-    # Hokie High gets single raise opportunity
-    expect(h_page.locator(".toast-body")).to_contain_text("Owner Matched! Submit your one allowed raise.", timeout=10000)
+    # Hokie High is prompted to submit their one allowed raise
+    expect(h_page.locator("#rfa_bid_winner_offer_raise_toast")).to_be_visible(timeout=10000)
     
     # Hokie High declines to raise (drops out)
-    h_page.click("#drop_out_confirmation_button")
+    h_page.click("#rfa_winner_drop_out")
     
     # Sentinels wins
     expect(h_page.locator("#your_turn_to_bid_banner")).to_be_visible(timeout=10000)
@@ -100,12 +100,12 @@ def test_rfa_full_exhaustion(browser: Browser):
     
     drop_out_all_except(browser, "10", exceptions=["sentinels", "hokiehigh"])
     
-    s_page.click("#accept_rfa_match_button")
+    s_page.click("#rfa_owner_confirm_match_1_match")
     
-    h_page.fill("#id_new_bid", "15")
-    h_page.click("#submit_new_bid_button")
+    h_page.fill("#rfa_raise_bid", "15")
+    h_page.click("#rfa_winner_raise")
     
-    # Sentinels gets final match opportunity
-    s_page.click("#accept_rfa_match_button")
+    # Sentinels gets one last chance to match
+    s_page.click("#rfa_owner_confirm_match_2_match")
     
     expect(h_page.locator("#your_turn_to_bid_banner")).to_be_visible(timeout=10000)
