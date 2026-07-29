@@ -45,6 +45,7 @@
                                 <button class="btn btn-info btn-sm text-dark fw-bold" id="btn_force_pass_selection" onclick="forcePassSelection()" {% if current_auction_manager.auction_type != 'ufa' or current_auction_manager.player_for_auction_name %}disabled{% endif %}>Force Pass Player Selection</button>
                                 <button class="btn btn-secondary btn-sm fw-bold" id="btn_force_dropout_selection" onclick="forceDropoutSelection()" {% if current_auction_manager.auction_type != 'ufa' or current_auction_manager.player_for_auction_name %}disabled{% endif %}>Force Drop Out of Selection</button>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -112,7 +113,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">Team Budgets & Bathroom Mode</h5>
+                    <h5 class="mb-0">Team Budgets & Controls</h5>
                 </div>
                 <div class="card-body p-0">
                     <div class="table-responsive">
@@ -124,6 +125,9 @@
                                     <th>Roster Size</th>
                                     <th>RFAs Remaining</th>
                                     <th>Budget Remaining ($)</th>
+                                    <th>Pass Available</th>
+                                    <th>Bidding Status</th>
+                                    <th>Selection Status</th>
                                     <th>Bathroom Mode</th>
                                     <th>Update Budget</th>
                                 </tr>
@@ -138,9 +142,32 @@
                                     <td id="budget_remaining_{{ user.draft_order }}"><strong>${{ user.budget_remaining }}</strong></td>
                                     <td>
                                         <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="pass_available_toggle_{{ user.draft_order }}" 
+                                                {% if user.pass_available %}checked{% endif %} 
+                                                onchange="togglePassAvailable('{{ user.team_name|escapejs }}', this.checked)">
+                                        </div>
+                                    </td>
+                                    <td id="bidding_status_col_{{ user.draft_order }}">
+                                        {% if not user.still_in_auction or user.dropped_out_of_bid_early %}
+                                            <span class="badge bg-danger mb-1">Dropped Out</span><br>
+                                            <button class="btn btn-xs btn-outline-success py-0 px-1" style="font-size: 0.75rem;" onclick="undropoutBidding('{{ user.team_name|escapejs }}')">Un-drop Out</button>
+                                        {% else %}
+                                            <span class="badge bg-success">Active</span>
+                                        {% endif %}
+                                    </td>
+                                    <td id="selection_status_col_{{ user.draft_order }}">
+                                        {% if user.dropped_out_of_selection %}
+                                            <span class="badge bg-danger mb-1">Dropped Out</span><br>
+                                            <button class="btn btn-xs btn-outline-success py-0 px-1" style="font-size: 0.75rem;" onclick="undropoutSelection('{{ user.team_name|escapejs }}')">Un-drop Out</button>
+                                        {% else %}
+                                            <span class="badge bg-success">Active</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <div class="form-check form-switch">
                                             <input class="form-check-input" type="checkbox" role="switch" id="bm_toggle_{{ user.draft_order }}" 
                                                 {% if user.bathroom_mode_enabled %}checked{% endif %} 
-                                                onchange="toggleBathroomMode('{{ user.team_name }}', this.checked)">
+                                                onchange="toggleBathroomMode('{{ user.team_name|escapejs }}', this.checked)">
                                         </div>
                                     </td>
                                     <td>
@@ -158,6 +185,7 @@
             </div>
         </div>
     </div>
+
 </div>
 
 <!-- Admin Action Confirmation Modal -->
@@ -279,6 +307,26 @@
                 $("#roster_size_" + fields.draft_order).text(fields.current_roster_size);
                 $("#rfas_remaining_" + fields.draft_order).text(fields.rfas_remaining);
                 $("#bm_toggle_" + fields.draft_order).prop("checked", fields.bathroom_mode_enabled);
+                $("#pass_available_toggle_" + fields.draft_order).prop("checked", fields.pass_available);
+
+                var isBiddingDropped = (!fields.still_in_auction || fields.dropped_out_of_bid_early);
+                if (isBiddingDropped) {
+                    $("#bidding_status_col_" + fields.draft_order).html(
+                        '<span class="badge bg-danger mb-1">Dropped Out</span><br>' +
+                        '<button class="btn btn-xs btn-outline-success py-0 px-1" style="font-size: 0.75rem;" onclick="undropoutBidding(\'' + fields.team_name.replace(/'/g, "\\'") + '\')">Un-drop Out</button>'
+                    );
+                } else {
+                    $("#bidding_status_col_" + fields.draft_order).html('<span class="badge bg-success">Active</span>');
+                }
+
+                if (fields.dropped_out_of_selection) {
+                    $("#selection_status_col_" + fields.draft_order).html(
+                        '<span class="badge bg-danger mb-1">Dropped Out</span><br>' +
+                        '<button class="btn btn-xs btn-outline-success py-0 px-1" style="font-size: 0.75rem;" onclick="undropoutSelection(\'' + fields.team_name.replace(/'/g, "\\'") + '\')">Un-drop Out</button>'
+                    );
+                } else {
+                    $("#selection_status_col_" + fields.draft_order).html('<span class="badge bg-success">Active</span>');
+                }
             });
         }
     };
@@ -305,6 +353,18 @@
 
     function toggleBathroomMode(teamName, isChecked) {
         socket.send(JSON.stringify({'admin_toggle_bathroom_mode': true, 'target_team': teamName, 'state': isChecked}));
+    }
+
+    function togglePassAvailable(teamName, isChecked) {
+        socket.send(JSON.stringify({'admin_toggle_pass_available': true, 'target_team': teamName, 'state': isChecked}));
+    }
+
+    function undropoutBidding(teamName) {
+        socket.send(JSON.stringify({'admin_undropout_bidding': true, 'target_team': teamName}));
+    }
+
+    function undropoutSelection(teamName) {
+        socket.send(JSON.stringify({'admin_undropout_selection': true, 'target_team': teamName}));
     }
 
     function startPhase() {

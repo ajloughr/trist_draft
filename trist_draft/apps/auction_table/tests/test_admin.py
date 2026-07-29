@@ -11,6 +11,9 @@ from trist_draft.apps.auction_table.consumers import (
     admin_start_phase,
     admin_pass_player_selection,
     admin_dropout_player_selection,
+    admin_toggle_pass_available,
+    admin_undropout_bidding,
+    admin_undropout_selection,
 )
 
 pytestmark = pytest.mark.django_db
@@ -67,6 +70,47 @@ def test_admin_dropout_player_selection(mock_update, ten_team_league):
     manager.refresh_from_db()
     assert team_1.dropped_out_of_selection is True
     assert manager.active_bidder == 2
+
+
+@patch('trist_draft.apps.auction_table.consumers.update_auction_table')
+def test_admin_toggle_pass_available(mock_update, ten_team_league):
+    """Test admin can toggle pass available state for a team."""
+    team_1 = ten_team_league['users'][0]
+    assert team_1.pass_available is True
+
+    admin_toggle_pass_available({'target_team': team_1.team_name, 'state': False})
+    team_1.refresh_from_db()
+    assert team_1.pass_available is False
+
+    admin_toggle_pass_available({'target_team': team_1.team_name, 'state': True})
+    team_1.refresh_from_db()
+    assert team_1.pass_available is True
+
+
+@patch('trist_draft.apps.auction_table.consumers.update_auction_table')
+def test_admin_undropout_bidding(mock_update, ten_team_league):
+    """Test admin can restore a dropped out team back to active bidding."""
+    team_1 = ten_team_league['users'][0]
+    team_1.still_in_auction = False
+    team_1.dropped_out_of_bid_early = True
+    team_1.save()
+
+    admin_undropout_bidding({'target_team': team_1.team_name})
+    team_1.refresh_from_db()
+    assert team_1.still_in_auction is True
+    assert team_1.dropped_out_of_bid_early is False
+
+
+@patch('trist_draft.apps.auction_table.consumers.update_auction_table')
+def test_admin_undropout_selection(mock_update, ten_team_league):
+    """Test admin can restore a team dropped out of selection back to active selection."""
+    team_1 = ten_team_league['users'][0]
+    team_1.dropped_out_of_selection = True
+    team_1.save()
+
+    admin_undropout_selection({'target_team': team_1.team_name})
+    team_1.refresh_from_db()
+    assert team_1.dropped_out_of_selection is False
 
 
 @patch('trist_draft.apps.auction_table.consumers.update_auction_table')

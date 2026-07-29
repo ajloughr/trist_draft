@@ -221,6 +221,18 @@ class AuctionConsumer(WebsocketConsumer):
             if self.scope.get('user') and self.scope['user'].is_staff:
                 print("Admin received dropout player selection")
                 admin_dropout_player_selection(text_data_json)
+        elif "admin_toggle_pass_available" in text_data_json:
+            if self.scope.get('user') and self.scope['user'].is_staff:
+                print("Admin received toggle pass available")
+                admin_toggle_pass_available(text_data_json)
+        elif "admin_undropout_bidding" in text_data_json:
+            if self.scope.get('user') and self.scope['user'].is_staff:
+                print("Admin received undropout bidding")
+                admin_undropout_bidding(text_data_json)
+        elif "admin_undropout_selection" in text_data_json:
+            if self.scope.get('user') and self.scope['user'].is_staff:
+                print("Admin received undropout selection")
+                admin_undropout_selection(text_data_json)
 
 
 
@@ -1409,6 +1421,44 @@ def admin_dropout_player_selection(data):
             print("Admin dropout player selection error:", e)
     else:
         drop_out_of_or_pass_player_selection({'admin_bid_override': True}, True)
+
+
+def admin_toggle_pass_available(data):
+    target_team = data.get('target_team')
+    state = data.get('state', True)
+    if target_team:
+        try:
+            target_user = auction_user.objects.get(team_name=target_team)
+            target_user.pass_available = bool(state)
+            target_user.save()
+            update_auction_table('all')
+        except Exception as e:
+            print("Admin toggle pass available error:", e)
+
+
+def admin_undropout_bidding(data):
+    target_team = data.get('target_team')
+    if target_team:
+        try:
+            target_user = auction_user.objects.get(team_name=target_team)
+            target_user.still_in_auction = True
+            target_user.dropped_out_of_bid_early = False
+            target_user.save()
+            update_auction_table('all')
+        except Exception as e:
+            print("Admin undropout bidding error:", e)
+
+
+def admin_undropout_selection(data):
+    target_team = data.get('target_team')
+    if target_team:
+        try:
+            target_user = auction_user.objects.get(team_name=target_team)
+            target_user.dropped_out_of_selection = False
+            target_user.save()
+            update_auction_table('all')
+        except Exception as e:
+            print("Admin undropout selection error:", e)
 
 
 
