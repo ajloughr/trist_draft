@@ -19,7 +19,7 @@
             </li>
             {% if request.user.is_staff %}
             <li class="nav-item">
-                <a class="nav-link" href="/admin"><strong>Admin</strong></a>
+                <a class="nav-link" href="/draft-admin"><strong>Admin</strong></a>
             </li>
             {% endif %}
             </ul>
@@ -35,43 +35,40 @@
                 </div>
             </div>
 
-          {% comment %} </div> {% endcomment %}
-            <div class="container-fluid d-flex justify-content-end align-items-center">
-              <div>
-                <span  class="fa-layers fa-fw " data-bs-toggle="tooltip" data-bs-placement="bottom" title="Toggle help mode. Numbered hints will appear to gude you through the player selection process for the current draft type. Hover over each numbered hint for additional details.">
-                  <i class="fa-solid fa-circle-question fa-xl me-2" style="color:rgb(243, 156, 18)" ></i>
-                </span>
-              </div>
-              <div class="form-check form-switch me-3">
-                <input class="form-check-input" type="checkbox" role="switch" id="help_mode_toggle" onclick="help_mode_toggled()">
-                <!-- <label class="form-check-label" for="bathroom_mode_toggle">Toilet Toggle</label> -->
-              </div>
-              <div>
-                <span  class="fa-layers fa-fw " data-bs-toggle="tooltip" data-bs-placement="bottom" title="Toggle bathroom mode. When enabled, it will skip your bid and player selection until disabled. Remember, if you shake it more than twice, you're playing with it.">
-                  <i class="fa-solid fa-toilet fa-xl me-2" style="color:rgb(13, 110, 253)"></i>
-                </span>
-              </div>
-              <div class="form-check form-switch me-3">
-                <input class="form-check-input" type="checkbox" role="switch" id="bathroom_mode_toggle" onclick="bathroom_mode_toggled()">
-                <!-- <label class="form-check-label" for="bathroom_mode_toggle">Toilet Toggle</label> -->
-              </div>
+            <div class="d-flex align-items-center ms-auto">
+              {% if '/draft-admin' not in request.path %}
+                <div>
+                  <span class="fa-layers fa-fw " data-bs-toggle="tooltip" data-bs-placement="bottom" title="Toggle help mode. Numbered hints will appear to gude you through the player selection process for the current draft type. Hover over each numbered hint for additional details.">
+                    <i class="fa-solid fa-circle-question fa-xl me-2" style="color:rgb(243, 156, 18)" ></i>
+                  </span>
+                </div>
+                <div class="form-check form-switch me-3">
+                  <input class="form-check-input" type="checkbox" role="switch" id="help_mode_toggle" onclick="help_mode_toggled()">
+                </div>
+                <div>
+                  <span class="fa-layers fa-fw " data-bs-toggle="tooltip" data-bs-placement="bottom" title="Toggle bathroom mode. When enabled, it will skip your bid and player selection until disabled. Remember, if you shake it more than twice, you're playing with it.">
+                    <i class="fa-solid fa-toilet fa-xl me-2" style="color:rgb(13, 110, 253)"></i>
+                  </span>
+                </div>
+                <div class="form-check form-switch me-3">
+                  <input class="form-check-input" type="checkbox" role="switch" id="bathroom_mode_toggle" onclick="bathroom_mode_toggled()">
+                </div>
 
-              <div>
-                <span  class="fa-layers fa-fw " data-bs-toggle="tooltip" data-bs-placement="bottom" title="Toggle drafted player history.">
-                  <i class="fa-solid fa-clock-rotate-left fa-xl me-2" style="color:rgb(25, 135, 84)"></i>
-                </span>
-              </div>
-              <div class="form-check form-switch me-3">
-                <input class="form-check-input" type="checkbox" role="switch" id="draft_history_toggle" onclick="draft_history_toggled()">
-                <!-- <label class="form-check-label" for="bathroom_mode_toggle">Toilet Toggle</label> -->
-              </div>
-
-            <div>
-            
+                <div>
+                  <span class="fa-layers fa-fw " data-bs-toggle="tooltip" data-bs-placement="bottom" title="Toggle drafted player history.">
+                    <i class="fa-solid fa-clock-rotate-left fa-xl me-2" style="color:rgb(25, 135, 84)"></i>
+                  </span>
+                </div>
+                <div class="form-check form-switch me-3">
+                  <input class="form-check-input" type="checkbox" role="switch" id="draft_history_toggle" onclick="draft_history_toggled()">
+                </div>
+              {% endif %}
+              
+              <button data-bs-toggle="modal" data-bs-target="#logout_modal" class="btn btn-secondary text-nowrap ms-2">Log Out</button>
+            </div>
           {% endif %}  
-          <button data-bs-toggle="modal" data-bs-target="#logout_modal" class="btn btn-secondary">Log Out</button>
         {% else %}
-            <button onclick="location.href = '/login'" class="btn btn-secondary">Log In</button>
+            <button onclick="location.href = '/login'" class="btn btn-secondary text-nowrap ms-auto">Log In</button>
         {% endif %}
         
     </div>

@@ -13,7 +13,8 @@ def test_rookie_manual_entry(browser: Browser):
     # Ensure we are on Sentinels turn
     expect(s_page.locator("#your_turn_to_bid_banner")).to_be_visible(timeout=10000)
 
-    # Fill manual entry fields
+    # Switch to manual entry tab and fill fields
+    s_page.click("#tab_manual_entry")
     s_page.fill("#selected_player_name", "Patrick Mahomes")
     s_page.fill("#selected_player_team", "KC")
     s_page.fill("#selected_player_position", "QB")
@@ -44,7 +45,7 @@ def test_rookie_search_entry(browser: Browser):
     s_page.press("#player_search_value", "Enter")
     
     # Wait for the search results table to appear
-    s_page.wait_for_selector("#search_results_table tbody tr", state="attached", timeout=10000)
+    s_page.wait_for_selector("#search_results_table tbody tr button:not([disabled])", timeout=10000)
     
     # Click the + button in the first row
     s_page.click("#search_results_table tbody tr:nth-child(1) button.btn-success")

@@ -10,11 +10,12 @@ def test_ufa_bidding(browser: Browser):
     # Start a UFA auction for round 1
     start_auction(s_page, "ufa", "1")
     
-    # Sentinels puts up Josh Allen
-    s_page.fill("#player_search_value", "Josh Allen")
+    # Sentinels puts up Patrick Mahomes
+    expect(s_page.locator("#your_turn_to_bid_banner")).to_be_visible(timeout=10000)
+    s_page.fill("#player_search_value", "Patrick Mahomes")
     s_page.press("#player_search_value", "Enter")
-    s_page.wait_for_selector("#search_results_table tbody tr", state="attached", timeout=10000)
-    s_page.click("#search_results_table tbody tr:nth-child(1) button.btn-success")
+    s_page.wait_for_selector("#search_results_table tbody tr button.btn-success:not([disabled])", timeout=10000)
+    s_page.click("#search_results_table tbody tr button.btn-success:not([disabled])")
     s_page.click("#select_player_confirmed")
     
     # Everyone should see the bidding UI enabled
@@ -58,10 +59,10 @@ def test_ufa_pass_mechanic(browser: Browser):
     # Now it is Hokie High's turn! (Since they are ufa_order=2)
     h_ctx, h_page = login_user(browser, "hokiehigh")
     expect(h_page.locator("#your_turn_to_bid_banner")).to_be_visible(timeout=10000)
-    h_page.fill("#player_search_value", "Patrick Mahomes")
+    h_page.fill("#player_search_value", "Lamar Jackson")
     h_page.press("#player_search_value", "Enter")
-    h_page.wait_for_selector("#search_results_table tbody tr", state="attached", timeout=10000)
-    h_page.click("#search_results_table tbody tr:nth-child(1) button.btn-success")
+    h_page.wait_for_selector("#search_results_table tbody tr button.btn-success:not([disabled])", timeout=10000)
+    h_page.click("#search_results_table tbody tr button.btn-success:not([disabled])")
     h_page.click("#select_player_confirmed")
     
     # Hokie High must place the initial bid

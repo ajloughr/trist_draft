@@ -26,6 +26,7 @@ from trist_draft.apps.auction_table.views import (
     # ajax_new_bid_view,
     # check_ajax_stuff,
     auction_table_view,
+    draft_admin_view,
 )
 from trist_draft.apps.accounts.views import login_view, logout_view
 
@@ -43,6 +44,7 @@ urlpatterns = [
     # url('ajax_bid_menu_check/', check_ajax_stuff, name='check_ajax_stuff'),
 
     path('auction/',auction_table_view, name="auction"),
+    path('draft-admin/', draft_admin_view, name="draft-admin"),
 
     path('', include('trist_draft.apps.public.urls'))
        

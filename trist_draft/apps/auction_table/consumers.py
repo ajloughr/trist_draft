@@ -52,9 +52,10 @@ class AuctionConsumer(WebsocketConsumer):
             'auction_table_data': event['auction_table_data'],
             'auction_manager_data': event['auction_manager_data'],
             'user_list': event['user_list'],
-            'update_target':event['update_target']
-            # 'source_user_id': source_user_id
+            'update_target': event['update_target'],
+            'last_drafted_data': event.get('last_drafted_data', '[]')
         }))
+
 
     
 
@@ -100,6 +101,12 @@ class AuctionConsumer(WebsocketConsumer):
             'winning_contract_cost':event['winning_contract_cost']
             # 'source_user_id': source_user_id
         }))
+
+    def force_page_reload(self, event):
+        self.send(text_data=json.dumps({
+            'type': 'force_page_reload'
+        }))
+
 
     # Receive message from WebSocket
     def receive(self, text_data):
@@ -174,6 +181,49 @@ class AuctionConsumer(WebsocketConsumer):
         elif "get_player_info" in text_data_json:
             print("Player info requested")
             get_player_info(text_data_json['player_info'])
+        elif "admin_force_pass" in text_data_json:
+            if self.scope.get('user') and self.scope['user'].is_staff:
+                print("Admin received force pass")
+                admin_force_pass(text_data_json)
+        elif "admin_force_dropout" in text_data_json:
+            if self.scope.get('user') and self.scope['user'].is_staff:
+                print("Admin received force dropout")
+                admin_force_dropout(text_data_json)
+        elif "admin_toggle_bathroom_mode" in text_data_json:
+            if self.scope.get('user') and self.scope['user'].is_staff:
+                print("Admin received toggle bathroom mode")
+                admin_toggle_bathroom_mode(text_data_json)
+        elif "admin_undo_draft" in text_data_json:
+            if self.scope.get('user') and self.scope['user'].is_staff:
+                print("Admin received undo draft")
+                admin_undo_draft()
+        elif "admin_update_budget" in text_data_json:
+            if self.scope.get('user') and self.scope['user'].is_staff:
+                print("Admin received update budget")
+                admin_update_budget(text_data_json)
+        elif "admin_resync_roster" in text_data_json:
+            if self.scope.get('user') and self.scope['user'].is_staff:
+                print("Admin received resync roster")
+                admin_resync_roster()
+        elif "admin_start_phase" in text_data_json:
+            if self.scope.get('user') and self.scope['user'].is_staff:
+                print("Admin received start phase")
+                admin_start_phase(text_data_json)
+        elif "admin_force_reload" in text_data_json:
+            if self.scope.get('user') and self.scope['user'].is_staff:
+                print("Admin received force reload")
+                admin_force_reload()
+        elif "admin_pass_player_selection" in text_data_json:
+            if self.scope.get('user') and self.scope['user'].is_staff:
+                print("Admin received pass player selection")
+                admin_pass_player_selection(text_data_json)
+        elif "admin_dropout_player_selection" in text_data_json:
+            if self.scope.get('user') and self.scope['user'].is_staff:
+                print("Admin received dropout player selection")
+                admin_dropout_player_selection(text_data_json)
+
+
+
 
 
 def send_draft_history(team_requested):
@@ -238,6 +288,7 @@ def update_rfas_remaining():
 
 def update_auction_table(refresh_target):
     print("Auction Manager Update Received!")
+    update_aution_user_current_roster_size()
     
     channel_layer = channels.layers.get_channel_layer()
     group_name = settings.AUCTION_UPDATE_GROUP
@@ -261,6 +312,12 @@ def update_auction_table(refresh_target):
     ]
     new_user_list_s = json.dumps(safe_user_list)
 
+    last_dp = drafted_player.objects.last()
+    if last_dp:
+        last_drafted_data_s = serializers.serialize('json', [last_dp])
+    else:
+        last_drafted_data_s = json.dumps([])
+
     async_to_sync(channel_layer.group_send)(
         group_name,
         {
@@ -268,7 +325,8 @@ def update_auction_table(refresh_target):
             'auction_table_data': new_auction_user_list_s,
             'auction_manager_data' : new_auction_manager_s,
             'user_list' : new_user_list_s,
-            'update_target':refresh_target
+            'update_target': refresh_target,
+            'last_drafted_data': last_drafted_data_s
         }
     )
     
@@ -1209,4 +1267,149 @@ def get_player_search_results(player_search_text_data):
             'auction_manager_data': str(current_auction_manager_s),
         }
     )
+
+
+def admin_force_pass(data):
+    target_team = data.get('target_team')
+    if target_team:
+        try:
+            target_user = auction_user.objects.get(team_name=target_team)
+            pass_user({'team_name': target_user.team_name, 'draft_order': target_user.draft_order, 'admin_bid_override': False})
+        except Exception as e:
+            print("Admin force pass error:", e)
+    else:
+        pass_user({'admin_bid_override': True})
+
+
+def admin_force_dropout(data):
+    target_team = data.get('target_team')
+    if target_team:
+        try:
+            target_user = auction_user.objects.get(team_name=target_team)
+            drop_out_user({'team_name': target_user.team_name, 'draft_order': target_user.draft_order, 'admin_bid_override': False, 'drop_out': True})
+        except Exception as e:
+            print("Admin force dropout error:", e)
+    else:
+        drop_out_user({'admin_bid_override': True, 'drop_out': True})
+
+
+
+def admin_toggle_bathroom_mode(data):
+    target_team = data.get('target_team')
+    state = data.get('state', False)
+    if target_team:
+        toggle_bathroom_mode(target_team, state)
+
+
+def admin_undo_draft():
+    last_dp = drafted_player.objects.last()
+    if not last_dp:
+        print("No drafted player to undo.")
+        return
+
+    print(f"Undoing drafted player: {last_dp.full_name} for team {last_dp.team_drafted_by}")
+    
+    try:
+        drafting_user = auction_user.objects.get(team_name=last_dp.team_drafted_by)
+        drafting_user.budget_remaining += int(last_dp.contract_price)
+        if drafting_user.current_roster_size > 0:
+            drafting_user.current_roster_size -= 1
+        drafting_user.save()
+    except Exception as e:
+        print("Error refunding drafting team:", e)
+
+    try:
+        nfl_p = nfl_player.objects.filter(
+            full_name=last_dp.full_name,
+            position=last_dp.position,
+            team=last_dp.team
+        ).first()
+        if not nfl_p:
+            nfl_p = nfl_player.objects.filter(full_name=last_dp.full_name).first()
+
+        if nfl_p:
+            nfl_p.drafted_by = "Undrafted"
+            nfl_p.save()
+
+            if last_dp.draft_type == 'rfa':
+                for a_user in auction_user.objects.all():
+                    if nfl_p.player_id in a_user.initial_rfa_list:
+                        if nfl_p.player_id not in a_user.current_rfa_list:
+                            a_user.current_rfa_list.append(nfl_p.player_id)
+                            a_user.rfas_remaining = len(a_user.current_rfa_list)
+                            a_user.save()
+                        break
+    except Exception as e:
+        print("Error updating nfl_player on undo:", e)
+
+    last_dp.delete()
+
+    update_aution_user_current_roster_size()
+    update_rfas_remaining()
+    update_auction_table('all')
+
+
+def admin_update_budget(data):
+    target_team = data.get('target_team')
+    new_budget = data.get('new_budget')
+    if target_team and new_budget is not None:
+        try:
+            target_user = auction_user.objects.get(team_name=target_team)
+            target_user.budget_remaining = int(new_budget)
+            target_user.save()
+            update_auction_table('all')
+        except Exception as e:
+            print("Error updating budget:", e)
+
+
+def admin_resync_roster():
+    update_aution_user_current_roster_size()
+    update_rfas_remaining()
+    update_auction_table('all')
+
+
+def admin_start_phase(data):
+    phase = data.get('phase', 'rookie')
+    start_bidder = int(data.get('start_bidder', 1))
+    start_new_auction_at_bidder({
+        'new_bid_start': start_bidder,
+        'new_bid_type': phase
+    }, is_manual=True)
+
+
+def admin_force_reload():
+    channel_layer = channels.layers.get_channel_layer()
+    async_to_sync(channel_layer.group_send)(
+        settings.AUCTION_UPDATE_GROUP,
+        {
+            'type': 'force_page_reload'
+        }
+    )
+
+
+def admin_pass_player_selection(data):
+    target_team = data.get('target_team')
+    if target_team:
+        try:
+            target_user = auction_user.objects.get(team_name=target_team)
+            drop_out_of_or_pass_player_selection({'team_name': target_user.team_name, 'admin_bid_override': False}, False)
+        except Exception as e:
+            print("Admin pass player selection error:", e)
+    else:
+        drop_out_of_or_pass_player_selection({'admin_bid_override': True}, False)
+
+
+def admin_dropout_player_selection(data):
+    target_team = data.get('target_team')
+    if target_team:
+        try:
+            target_user = auction_user.objects.get(team_name=target_team)
+            drop_out_of_or_pass_player_selection({'team_name': target_user.team_name, 'admin_bid_override': False}, True)
+        except Exception as e:
+            print("Admin dropout player selection error:", e)
+    else:
+        drop_out_of_or_pass_player_selection({'admin_bid_override': True}, True)
+
+
+
     

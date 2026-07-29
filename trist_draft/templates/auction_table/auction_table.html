@@ -33,9 +33,9 @@
 
 
 <div class="container">
-    <div class="d-flex flex-row mt-3 justify-content-center">
-        <div class="d-flex mx-2 align-items-start">
-            <div class="card" >
+    <div class="d-flex flex-row mt-3 justify-content-center flex-wrap">
+        <div class="mx-2 align-items-start mb-2 {% if not current_auction_manager.player_for_auction_name or current_auction_manager.player_for_auction_name == '' or current_auction_manager.player_for_auction_name == 'None' or current_auction_manager.auction_type|lower == 'rookie' %}d-none{% else %}d-flex{% endif %}" id="current_player_card_container">
+            <div class="card">
                 <div class="card-header">
                     <span><strong>Current Player for Auction</strong></span>
                 </div>
@@ -67,8 +67,8 @@
                 </table>
             </div>
         </div>
-        <div class="d-flex mx-2">
-            <div class="card" >
+        <div class="d-flex mx-2 align-items-start mb-2">
+            <div class="card">
                 <div class="card-header">
                     <span><strong>Auction Info</strong></span>
                 </div>
@@ -100,6 +100,39 @@
                             <th scope="row"></th>
                             <td><strong>Current Contract Years</strong></td>
                             <td id="current_contract_years"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="d-flex mx-2 align-items-start mb-2" id="last_player_sold_card_container">
+            <div class="card">
+                <div class="card-header">
+                    <span><strong>Last Player Sold</strong></span>
+                </div>
+                <table class="table mb-0">
+                    <thead>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row"></th>
+                            <td><strong>Name</strong></td>
+                            <td id="last_sold_name">{% if last_drafted %}{{ last_drafted.full_name }}{% else %}-{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"></th>
+                            <td><strong>Team / Pos</strong></td>
+                            <td id="last_sold_team_pos">{% if last_drafted %}{{ last_drafted.team }} - {{ last_drafted.position }}{% else %}-{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"></th>
+                            <td><strong>Winning Team</strong></td>
+                            <td id="last_sold_winning_team">{% if last_drafted %}{{ last_drafted.team_drafted_by }}{% else %}-{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"></th>
+                            <td><strong>Winning Bid</strong></td>
+                            <td id="last_sold_price">{% if last_drafted %}${{ last_drafted.contract_price }} ({{ last_drafted.years_drafted }} yrs){% else %}-{% endif %}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -203,7 +236,7 @@
 </div>
 
 {% if request.user.is_staff %}
-<div class="container">
+<div class="container" id="old_admin_panel_container" style="display: none !important;">
     {% include 'auction_table/auction_admin.html' %}
 </div>
 {% endif %}
@@ -492,12 +525,41 @@
             </div>
         </div>
     </div>
+<!-- Winner Celebration Modal -->
+<div class="modal fade" id="winner_celebration_modal" tabindex="-1" aria-labelledby="winnerCelebrationModalLabel" aria-hidden="true" style="z-index: 1060 !important;">
+    <div class="modal-dialog modal-dialog-centered" style="z-index: 1065 !important;">
+        <div class="modal-content border-warning shadow-lg text-center" style="border-width: 3px; background: linear-gradient(135deg, #ffffff 0%, #fffde7 100%);">
+            <div class="modal-header bg-warning text-dark justify-content-center border-0 py-3">
+                <h2 class="modal-title fw-bold m-0" id="winnerCelebrationModalLabel">🏆 WINNER! 🏆</h2>
+            </div>
+            <div class="modal-body py-4">
+                <h3 class="fw-bold text-primary mb-2" id="winner_modal_player_name"></h3>
+                <p class="text-muted fs-5 mb-3" id="winner_modal_team_pos"></p>
+                <hr class="my-3">
+                <div class="row text-center my-3">
+                    <div class="col-6 border-end">
+                        <small class="text-uppercase text-muted fw-bold d-block">Winning Team</small>
+                        <span class="fs-4 fw-bolder text-dark" id="winner_modal_winning_team"></span>
+                    </div>
+                    <div class="col-6">
+                        <small class="text-uppercase text-muted fw-bold d-block">Winning Bid</small>
+                        <span class="fs-4 fw-bolder text-success" id="winner_modal_bid_details"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-center border-0 pb-4">
+                <button type="button" class="btn btn-warning btn-lg fw-bold px-4 shadow-sm" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}
 
 {% block javascript %}
 <script>
+    window.last_seen_drafted_pk = parseInt("{{ last_drafted.pk|default:'0' }}") || 0;
+    window.last_seen_drafted_pk_initialized = false;
     
     //console.log("Current User: " + $("#current_auction_user_team").val())
     
@@ -534,7 +596,6 @@
         var disconnected_banner = document.getElementById('disconnected_banner');
         $(disconnected_banner).show();
 
-
         setTimeout(connect_websocket,3000)
 
     //   if (socket.readyState == WebSocket.OPEN) {
@@ -546,19 +607,109 @@
     
     $("#id_new_bid").focus();
 
+    function triggerThreeConfettiBursts() {
+        if (typeof confetti === 'function') {
+            confetti({
+                particleCount: 65,
+                angle: 60 + Math.floor(Math.random() * 30),
+                spread: 60,
+                origin: { x: 0.25, y: 0.5 },
+                zIndex: 2000
+            });
+
+            confetti({
+                particleCount: 65,
+                angle: 120 - Math.floor(Math.random() * 30),
+                spread: 60,
+                origin: { x: 0.75, y: 0.5 },
+                zIndex: 2000
+            });
+
+            setTimeout(function() {
+                confetti({
+                    particleCount: 100,
+                    angle: 90,
+                    spread: 100,
+                    origin: { x: 0.5, y: 0.4 },
+                    zIndex: 2000
+                });
+            }, 200);
+        }
+    }
+
+    function showWinnerCelebrationModal(f) {
+        $("#winner_modal_player_name").text(f.full_name);
+        $("#winner_modal_team_pos").text(f.team + " - " + f.position);
+        $("#winner_modal_winning_team").text(f.team_drafted_by);
+        $("#winner_modal_bid_details").text("$" + f.contract_price + " (" + f.years_drafted + " yrs)");
+
+        var $modal = $("#winner_celebration_modal");
+        if ($modal.length) {
+            $modal.appendTo("body");
+            var winnerModal = bootstrap.Modal.getOrCreateInstance($modal[0]);
+            winnerModal.show();
+
+            triggerThreeConfettiBursts();
+
+            setTimeout(function() {
+                winnerModal.hide();
+            }, 10000);
+        }
+    }
+
     socket.onmessage = function(e) {
         var data = JSON.parse(e.data);
 
+        if (data.type == "force_page_reload") {
+            console.log("Force page reload received from admin");
+            location.reload();
+            return;
+        }
+
         console.log("WS Data Received: " + data.type)
-        //console.log(data);
-        // console.log("Auction Table: ")
-        // console.log(data.auction_table_data)
         if (data.type == "active_bidder_update") {
             auction_table_data = JSON.parse(data.auction_table_data)
             
             //console.log("Auction Manager: ")
             // console.log(data.auction_manager_data)
             auction_manager_data = JSON.parse(data.auction_manager_data)
+
+            if (data.last_drafted_data) {
+                try {
+                    var last_dp_list = JSON.parse(data.last_drafted_data);
+                    if (last_dp_list && last_dp_list.length > 0) {
+                        var f = last_dp_list[0].fields;
+                        var current_pk = last_dp_list[0].pk;
+
+                        $("#last_sold_name").text(f.full_name);
+                        $("#last_sold_team_pos").text(f.team + " - " + f.position);
+                        $("#last_sold_winning_team").text(f.team_drafted_by);
+                        $("#last_sold_price").text("$" + f.contract_price + " (" + f.years_drafted + " yrs)");
+
+                        if (window.last_seen_drafted_pk_initialized) {
+                            if (current_pk > window.last_seen_drafted_pk) {
+                                showWinnerCelebrationModal(f);
+                            }
+                        } else {
+                            if (window.last_seen_drafted_pk !== 0 && current_pk > window.last_seen_drafted_pk) {
+                                showWinnerCelebrationModal(f);
+                            } else if (window.last_seen_drafted_pk === 0 && current_pk > 0) {
+                                showWinnerCelebrationModal(f);
+                            }
+                            window.last_seen_drafted_pk_initialized = true;
+                        }
+                        window.last_seen_drafted_pk = current_pk;
+                    } else {
+                        $("#last_sold_name").text("-");
+                        $("#last_sold_team_pos").text("-");
+                        $("#last_sold_winning_team").text("-");
+                        $("#last_sold_price").text("-");
+                        window.last_seen_drafted_pk = 0;
+                    }
+                } catch(err) {
+                    console.log("Error parsing last_drafted_data:", err);
+                }
+            }
 
             try{
                 user_data = JSON.parse(data.user_list)
@@ -753,11 +904,14 @@
     }
 
     function hide_toast(toast_id) {
-        var toast_element = document.getElementById(toast_id)
-        var toast = bootstrap.Toast.getInstance(toast_element)
-
-        if(toast) {
-            toast.dispose()
+        var toast_element = document.getElementById(toast_id);
+        if (toast_element) {
+            var toast = bootstrap.Toast.getInstance(toast_element);
+            if (toast) {
+                toast.hide();
+            } else {
+                $(toast_element).removeClass('show');
+            }
         }
     }
 
@@ -857,8 +1011,8 @@
         $(".toast.show").each(function() {
             var toastInstance = bootstrap.Toast.getInstance(this);
             if (toastInstance) {
-                console.log("Disposing of toast" + toastInstance)
-                toastInstance.dispose();
+                console.log("Hiding toast:", toastInstance);
+                toastInstance.hide();
             }
             $(this).removeClass('show');
         });
@@ -913,6 +1067,15 @@
         document.getElementById("nfl_player_for_auction_position").innerText = new_auction_manager_data[0].fields.player_for_auction_position
         document.getElementById("nfl_player_for_auction_bye").innerText = new_auction_manager_data[0].fields.player_for_auction_bye
 
+        var pName = new_auction_manager_data[0].fields.player_for_auction_name;
+        var pType = (current_auction_type_value || "").toLowerCase();
+
+        if (!pName || pName.trim() === "" || pName.trim() === "None" || pType === 'rookie') {
+            $("#current_player_card_container").addClass("d-none").removeClass("d-flex");
+        } else {
+            $("#current_player_card_container").removeClass("d-none").addClass("d-flex");
+        }
+
         if (current_auction_type_value == 'rookie') {
             current_auction_type_display.innerText = "Rookie";
         } else if (current_auction_type_value == 'rfa') {
@@ -922,13 +1085,8 @@
         }
 
         
-        // if updating for UFA, trigger update of search to check if player is taken 
-        if (current_auction_type_value == 'ufa' || current_auction_type_value == 'rookie') {
-            current_search = $("#player_search_value").val()
-            $("#player_search_value").val("")
-            send_player_search()
-            $("#player_search_value").val(current_search)
-            send_player_search()
+        if ($("#player_search_value").val().trim() !== "") {
+            send_player_search();
         }
 
 
@@ -1072,20 +1230,28 @@
 
             //hide the search bar if RFA
             if (current_auction_type_value == "rfa") {
-                
-                document.getElementById("player_search_value_div").style.display = "none";
-                document.getElementById("selected_player_div").style.display = "none";
-                document.getElementById("search_results_table_div").style.display = "none";
-                document.getElementById("no_players_found").style.display = "none";
-                
-                
+                if (document.getElementById("player_selection_tab_list")) {
+                    document.getElementById("player_selection_tab_list").style.display = "none";
+                }
+                if (document.getElementById("player_search_tab_content")) {
+                    document.getElementById("player_search_tab_content").style.display = "none";
+                }
+                if (document.getElementById("rfa_header_title")) {
+                    document.getElementById("rfa_header_title").style.display = "inline-block";
+                }
                 document.getElementById("rfa_selector_div").style.display = "block";
             } else {
+                if (document.getElementById("player_selection_tab_list")) {
+                    document.getElementById("player_selection_tab_list").style.display = "flex";
+                }
+                if (document.getElementById("player_search_tab_content")) {
+                    document.getElementById("player_search_tab_content").style.display = "block";
+                }
+                if (document.getElementById("rfa_header_title")) {
+                    document.getElementById("rfa_header_title").style.display = "none";
+                }
                 document.getElementById("player_search_value_div").style.display = "block";
                 document.getElementById("selected_player_div").style.display = "block";
-                document.getElementById("search_results_table_div").style.display = "table";
-                document.getElementById("no_players_found").style.display = "block";
-
                 document.getElementById("rfa_selector_div").style.display = "none";
             }
 

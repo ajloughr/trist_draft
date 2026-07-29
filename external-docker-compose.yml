@@ -1,0 +1,704 @@
+services:
+
+
+###############################################################################
+
+  npm:
+    container_name: npm
+    image: 'jc21/nginx-proxy-manager:latest'
+    restart: always
+    ports:
+      - '80:80'
+      - '81:81'
+      - '443:443'
+    environment:
+      DB_MYSQL_HOST: "npm_db"
+      DB_MYSQL_PORT: 3306
+      DB_MYSQL_USER: "npm"
+      DB_MYSQL_PASSWORD: "npm"
+      DB_MYSQL_NAME: "npm"
+    volumes:
+      - /mnt/user/docker/npm/data:/data
+      - /mnt/user/docker/npm/letsencrypt:/etc/letsencrypt
+    networks:
+      - default
+
+###############################################################################
+
+  npm_db:
+    container_name: npm_db
+    image: 'jc21/mariadb-aria:latest'
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 'npm'
+      MYSQL_DATABASE: 'npm'
+      MYSQL_USER: 'npm'
+      MYSQL_PASSWORD: 'npm'
+    volumes:
+      - /mnt/user/docker/npm_db/mysql:/var/lib/mysql
+    networks:
+      - default
+      
+###############################################################################
+
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: always
+    command: -H unix:///var/run/docker.sock
+    ports:
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /mnt/user/docker/portainer/data:/data
+      - /mnt/user/docker/shared:/shared
+    environment:
+      - TZ=America/New_York
+    networks:
+      - default
+
+
+############################################################################### 
+
+  homeassistant:
+    container_name: homeassistant
+    restart: unless-stopped
+    image: "ghcr.io/home-assistant/home-assistant:stable"
+    #devices:
+    #  - /dev/ttyUSB0:/dev/ttyUSB0
+    #  - /dev/ttyUSB1:/dev/ttyUSB1
+    #  - /dev/hidraw1:/dev/hidraw1
+    #  - /dev/ttyACM0:/dev/ttyACM0
+    # depends_on:
+    #   - postgres
+    volumes:
+      - /mnt/user/docker/homeassistant:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /run/dbus:/run/dbus:ro
+    ports:
+      - "8123:8123"
+    privileged: true
+    environment:
+      - PUID=1000
+      - PGID=100
+      - TZ=America/New_York
+    networks:
+      - default
+      
+###############################################################################    
+
+  mosquitto:
+    image: eclipse-mosquitto
+    container_name: mosquitto
+    ports:
+      - "1883:1883"
+    volumes:
+      - /mnt/user/docker/mosquitto/config:/mosquitto/config
+      - /mnt/user/docker/mosquitto/mosquitto_data:/mosquitto/data
+      - /mnt/user/docker/mosquitto/mosquitto_log:/mosquitto/log
+    environment:
+      - TZ=America/New_York
+    restart: unless-stopped
+
+###############################################################################
+
+  node-red:
+    container_name: node-red
+    image: nodered/node-red:latest
+    environment:
+      - TZ=America/New_York
+    ports:
+      - "1880:1880"
+    volumes:
+      - /mnt/user/docker/node-red:/data
+
+  # postgres:
+    # container_name: postgres
+    # image: postgres
+    # environment:
+      # - POSTGRES_DB=default_db
+      # - POSTGRES_PASSWORD=191678Fglvvb4!
+      # - POSTGRES_USER=admin
+    # networks:
+      # - guacamole_network
+      # - npm_internal
+    # restart: always
+    # ports:
+      # - "5432:5432"
+    # volumes:
+      # - /mnt/user/docker/postgres/init:/docker-entrypoint-initdb.d:ro
+      # - /mnt/user/docker/postgres/data:/var/lib/postgresql/data:rw
+
+
+###############################################################################
+
+  nanit:
+    image: indiefan/nanit
+    container_name: nanit
+    restart: unless-stopped
+    ports:
+      - "1935:1935"
+    volumes:
+      - /mnt/user/docker/nanit:/data
+    environment:
+      - NANIT_RTMP_ADDR=192.168.1.100:1935
+      - NANIT_LOG_LEVEL=trace
+
+###############################################################################
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    # links:
+      # - postgres
+    # depends_on:
+      # - postgres
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=super.seahawk2011@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=191678Fglvvb4!
+#      - PGADMIN_LISTEN_PORT=5050
+#      - PGADMIN_LISTEN_ADDRESS=172.19.0.2
+    volumes:
+      - /mnt/user/docker/pgadmin:/root/.pgadmin
+    ports:
+      - "5050:80"
+#    expose:
+#      - 5050    
+    networks:
+      - default
+
+###############################################################################
+
+
+  guacamole:
+    container_name: guacamole
+    image: guacamole/guacamole
+    restart: always
+    depends_on:
+      - guacd
+      - postgres_guac
+    environment:
+      - GUACD_HOSTNAME=guacd
+      - GUACD_PORT=4822
+      - POSTGRESQL_HOSTNAME=192.168.1.100
+      - POSTGRESQL_PORT=5433
+      - POSTGRESQL_DATABASE=guacamole_db
+      - POSTGRESQL_USER=guacamole_user
+      - POSTGRESQL_PASSWORD=191678
+    ports:
+      - "8082:8080"
+    volumes:
+      - /mnt/user/docker/guacamole:/etc/guacamole-home:ro
+    networks:
+      - default
+
+#-----------------------------------------------------------------------------#
+
+  guacd:
+    container_name: guacd
+    image: guacamole/guacd
+    restart: always
+    environment:
+      - GUACD_LOG_LEVEL=warning
+    volumes:
+      - /mnt/user/docker/guacd/drive:/drive:rw
+      - /mnt/user/docker/guacd/record:/record:rw
+    networks:
+      - default
+
+
+#-----------------------------------------------------------------------------#
+
+  postgres_guac:
+    container_name: postgres_guac
+    image: postgres:14.6
+    environment:
+      - POSTGRES_DB=guacamole_db
+      - POSTGRES_PASSWORD=191678Fglvvb4!
+      - POSTGRES_USER=admin
+#      - POSTGRES_HOST_AUTH_METHOD=md5
+    networks:
+      - default
+    restart: always
+    ports:
+      - "5433:5432"
+    volumes:
+      - /mnt/user/docker/postgres_guac/init:/docker-entrypoint-initdb.d:ro
+      - /mnt/user/docker/postgres_guac/data:/var/lib/postgresql/data:rw
+      - /mnt/user/docker/postgres_guac/schema:/schema
+
+##############################################################################################
+
+  # grafana:
+    # container_name: grafana
+    # image: grafana/grafana
+    # restart: always
+    # environment:
+# #     - "GF_SERVER_ROOT_URL=http://grafana.alsquared.duckdns.org"
+     # - "GF_SECURITY_ADMIN_PASSWORD=191678Fglvvb4!"
+    # user: "104"
+    # ports:
+      # - 3000:3000
+    # networks:
+      # - npm_internal
+
+##############################################################################################
+
+  netdata:
+    container_name: netdata
+    image: netdata/netdata
+    hostname: netdata.alsquared.duckdns.org # set to fqdn of host
+    ports:
+      - 19999:19999
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - apparmor:unconfined
+    volumes:
+      - /mnt/user/docker/netdata/config:/etc/netdata
+      - /mnt/user/docker/netdata/lib:/var/lib/netdata
+      - /mnt/user/docker/netdata/cache:/var/cache/netdata
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /etc/passwd:/host/etc/passwd:ro
+      - /etc/group:/host/etc/group:ro
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /etc/os-release:/host/etc/os-release:ro
+    restart: always
+    networks:
+      - default
+
+##############################################################################################
+
+  # appdaemon:
+    # container_name: appdaemon
+# #    image: acockburn/appdaemon:latest
+    # build:
+      # context: .
+      # dockerfile: appdaemon_dockerfile
+    # environment:
+      # - HA_URL="https://hass.alsquared.duckdns.org"
+      # - TOKEN="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJlNDY4NjlhYWY2ZjY0MTYzODY1ZjgwMmZlZmMwYmM4NCIsImlhdCI6MTU4NjY2MzUzNiwiZXhwIjoxOTAyMDIzNTM2fQ.o8d2_sziHh5C429ASNluNtNkoNFPTeQn4wjVLp3knmc"
+# #      - DASH_URL="https://appdaemon.alsquared.duckdns.org"
+    # ports:
+      # - 5051:5051
+    # volumes:
+      # - /mnt/user/docker/appdaemon/config:/conf
+# #      - /etc/localtime:/etc/localtime:ro
+    # restart: always
+    # depends_on:
+      # - homeassistant
+    # networks:
+      # - npm_internal
+      # - default
+
+############################################################################### 
+
+  transmission:
+    container_name: transmission
+    image: haugene/transmission-openvpn:latest
+    environment:
+      - TRANSMISSION_WATCH_DIR=/data/downloads/watch
+      - TRANSMISSION_INCOMPLETE_DIR=/data/downloads/incomplete
+      - TRANSMISSION_DOWNLOAD_DIR=/data/downloads/completed
+      - TRANSMISSION_HOME=/data/docker/transmission
+      - TRANSMISSION_ENCRYPTION=1
+      - OPENVPN_PROVIDER=PIA
+      - OPENVPN_CONFIG=ca_toronto
+      - OPENVPN_USERNAME=p3818008
+      - OPENVPN_PASSWORD=Andrew!23
+      - LOCAL_NETWORK=192.168.1.0/24
+      - PGID=100
+      - PUID=1000
+      - WEBPROXY_ENABLED=true
+      - TRANSMISSION_WEB_UI=transmission-web-control
+      - TRANSMISSION_RPC_USERNAME=ajloughr
+      - TRANSMISSION_RPC_PASSWORD=191678Fglvvb4!
+      - TRANSMISSION_RPC_AUTHENTICATION_REQUIRED=true
+#      - DISABLE_PORT_UPDATER=true
+      - TRANSMISSION_PORT_FORWARDING_ENABLED=true
+#      - TRANSMISSION_PEER_PORT_RANDOM_ON_START=false
+#      - TRANSMISSION_PEER_PORT=51413
+#      - PEERPORT=50003
+#      - TRANSMISSION_WEB_HOME=
+    ports:
+#      - 51413:51413
+#      - 51413:51413/udp
+#      - 8888:8888/tcp
+      - 9091:9091
+    #hostname: openmediavault
+    #ipc: shareable
+    networks:
+      - default
+    #network_mode: "host"
+    privileged: true
+    restart: always
+    volumes:
+      - /mnt/user:/data:rw
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/user/docker/transmission:/config:rw
+      
+############################################################################### 
+     
+      
+  radarr:
+    image: linuxserver/radarr
+    container_name: radarr
+    depends_on:
+      - transmission
+    environment:
+      - PUID=1000
+      - PGID=100
+      - TZ=America/New_York
+#      - UMASK_SET=022 #optional
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/user/docker/radarr:/config
+      - /mnt/user/media/Movies:/movies
+      - /mnt/user/downloads:/downloads
+      - /mnt/user:/data
+    networks:
+      - default
+    ports:
+      - 7878:7878
+    restart: always
+
+###############################################################################
+     
+      
+  sonarr:
+    image: linuxserver/sonarr
+    container_name: sonarr
+    depends_on:
+      - transmission
+    environment:
+      - PUID=1000
+      - PGID=100
+      - TZ=America/New_York
+#      - UMASK_SET=022 #optional
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/user/docker/sonarr:/config
+      - /mnt/user/media/TV:/tv
+      - /mnt/user/downloads:/downloads
+      - /mnt/user:/data
+    networks:
+      - default
+    ports:
+      - 8989:8989
+    restart: always
+
+###############################################################################
+
+  tdarr:
+    container_name: tdarr
+    image: ghcr.io/haveagitgat/tdarr:latest
+    restart: unless-stopped
+    networks:
+      - default
+    ports:
+      - 8265:8265 # webUI port
+      - 8266:8266 # server port
+      - 8267:8267 # Internal node port
+      - 8268:8268 # Example extra node port
+    environment:
+      - TZ=America/New_York
+      - PUID=1000
+      - PGID=100
+      - UMASK_SET=002
+      - serverIP=192.168.1.100
+      - serverPort=8266
+      - webUIPort=8265
+      - internalNode=true
+      - nodeName=ALInternalNode
+    volumes:
+      - /mnt/user/docker/tdarr/server:/app/server
+      - /mnt/user/docker/tdarr/configs:/app/configs
+      - /mnt/user/docker/tdarr/logs:/app/logs
+      - /mnt/user/media:/media
+      - /mnt/user/docker/tdarr/transcode_cache:/temp
+      
+###############################################################################
+
+
+  ombi:
+    image: linuxserver/ombi
+    container_name: ombi
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/New_York
+    #  - BASE_URL=/ombi #optional
+    volumes:
+      - /mnt/user/docker/ombi:/config
+    ports:
+      - 3579:3579
+    restart: always
+
+###############################################################################  
+
+  # owncloud_server:
+    # image: owncloud/server:latest
+    # container_name: owncloud_server
+    # restart: always
+    # ports:
+      # - 8085:8080
+    # depends_on:
+      # - owncloud_db
+      # - owncloud_redis
+    # environment:
+      # #- HTTP_PORT=8085
+      # - OWNCLOUD_DOMAIN=localhost:8085
+      # - OWNCLOUD_DB_TYPE=mysql
+      # - OWNCLOUD_DB_NAME=owncloud
+      # - OWNCLOUD_DB_USERNAME=owncloud
+      # - OWNCLOUD_DB_PASSWORD=owncloud
+      # - OWNCLOUD_DB_HOST=owncloud_db
+      # - OWNCLOUD_ADMIN_USERNAME=ajloughr
+      # - OWNCLOUD_ADMIN_PASSWORD=191678Fglvvb4!
+      # - OWNCLOUD_MYSQL_UTF8MB4=true
+      # - OWNCLOUD_REDIS_ENABLED=true
+      # - OWNCLOUD_REDIS_HOST=owncloud_redis
+    # healthcheck:
+      # test: ["CMD", "/usr/bin/healthcheck"]
+      # interval: 30s
+      # timeout: 10s
+      # retries: 5
+    # volumes:
+      # - /mnt/user/docker/owncloud_server:/mnt/data
+      
+# #-----------------------------------------------------------------------------#
+
+  # owncloud_db:
+    # image: mariadb
+    # container_name: owncloud_db
+    # restart: always
+    # environment:
+      # - MYSQL_ROOT_PASSWORD=owncloud
+      # - MYSQL_USER=owncloud
+      # - MYSQL_PASSWORD=owncloud
+      # - MYSQL_DATABASE=owncloud
+    # command: ["--max-allowed-packet=128M", "--innodb-log-file-size=64M"]
+    # healthcheck:
+      # test: ["CMD", "mysqladmin", "ping", "-u", "root", "--password=owncloud"]
+      # interval: 10s
+      # timeout: 5s
+      # retries: 5
+    # volumes:
+      # - /mnt/user/docker/owncloud_db:/var/lib/mysql
+      
+# #-----------------------------------------------------------------------------#
+
+  # owncloud_redis:
+    # image: redis
+    # container_name: owncloud_redis
+    # restart: always
+    # command: ["--databases", "1"]
+    # healthcheck:
+      # test: ["CMD", "redis-cli", "ping"]
+      # interval: 10s
+      # timeout: 5s
+      # retries: 5
+    # volumes:
+      # - /mnt/user/docker/owncloud_redis:/data
+
+############################################################################### 
+  
+  jackett:
+    image: linuxserver/jackett
+    container_name: jackett
+    environment:
+      - PUID=1000
+      - PGID=100
+      - TZ=America/New_York
+      - AUTO_UPDATE=true #optional
+#      - RUN_OPTS=run options here #optional
+    volumes:
+      - /mnt/user/docker/jackett:/config
+      - /mnt/user/downloads:/downloads
+    ports:
+      - 9117:9117
+    restart: always
+
+
+############################################################################### 
+
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/New_York
+    volumes:
+      - /mnt/user/docker/prowlarr:/config
+    ports:
+      - 9696:9696
+    restart: unless-stopped
+
+###############################################################################
+
+  flaresolverr:
+    # DockerHub mirror flaresolverr/flaresolverr:latest
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    environment:
+      - LOG_LEVEL=info
+      # - LOG_HTML=${LOG_HTML:-false}
+      # - CAPTCHA_SOLVER=${CAPTCHA_SOLVER:-none}
+      - TZ=America/New_York
+    ports:
+      - 8191:8191
+    restart: unless-stopped
+      
+############################################################################### 
+
+  wud:
+    container_name: wud
+    image: getwud/wud:latest
+    restart: always
+    ports:
+      - "3002:3000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /mnt/user/docker/wud/store:/store
+    environment:
+      - TZ=America/New_York
+      - WUD_WATCHER_LOCAL_CRON=0 3 * * * # Runs at 3:00 AM daily
+      - WUD_TRIGGER_DOCKER_autoupdate_PRUNE=true
+
+############################################################################### 
+
+  filebrowser:
+    container_name: filebrowser
+    image: filebrowser/filebrowser
+    restart: always
+    volumes:
+      - /mnt/user/downloads/filebrowser:/srv
+      - /mnt/user/docker/filebrowser/filebrowser.db:/database/filebrowser.db
+      - /mnt/user/docker/filebrowser/settings.json:/config/settings.json
+    ports:
+      - 8083:80
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/New_York
+
+
+############################################################################### 
+
+  qdirstat:
+    container_name: qdirstat
+    image: lscr.io/linuxserver/qdirstat:latest
+    restart: always
+    volumes:
+      - /mnt/user/docker/qdirstat/config:/config
+      - /mnt/user:/data
+    ports:
+      - 3000:3000
+      - 3001:3001
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/New_York
+
+############################################################################### 
+
+  huntarr:
+    image: huntarr/huntarr:latest
+    container_name: huntarr
+    restart: always
+    ports:
+      - "9705:9705"
+    volumes:
+      - /mnt/user/docker/huntarr:/config
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/New_York
+
+
+##############################################################################################
+
+  code-server:
+    image: lscr.io/linuxserver/code-server:latest
+    container_name: code-server
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/New_York
+      - PASSWORD=191678Fglvvb4! #optional
+      #- HASHED_PASSWORD= #optional
+      - SUDO_PASSWORD=191678 #optional
+      #- SUDO_PASSWORD_HASH= #optional
+      - PROXY_DOMAIN=code.alsquared.duckdns.org #optional
+      - DEFAULT_WORKSPACE=/home/docker #optional
+    volumes:
+      - /mnt/user/docker/code-server/config:/config
+      - /mnt/user/docker:/home/docker
+    ports:
+      - 8444:8443
+    restart: unless-stopped
+
+###############################################################################
+  reclaimerr:
+    image: ghcr.io/jessielw/reclaimerr:latest
+    container_name: reclaimerr
+    restart: unless-stopped
+    env_file: "./reclaimerr/.env"
+    volumes:
+      # persist app data
+      - ./data:/app/data
+
+      # bind mount for media files (adjust the host path as needed) - this is needed for
+      # Reclaimerr to clean up additional files on delete when deleting via the main media server
+      # directly
+      - /mnt/user/media:/media
+
+      # optional volume for moved files (adjust the host path as needed)
+      # - /moved_files:/moved_files
+    ports:
+      - "8001:8000"
+
+
+###############################################################################
+      
+#   mc_server:
+#     image: itzg/minecraft-server
+#     container_name: mc_server
+#     ports:
+#       - 25565:25565
+# #      - 25575:25575
+#       - 19132:19132/udp
+#     environment:
+#       - EULA=TRUE
+#       - TZ=America/New_York
+#       - TYPE=PURPUR
+#       - MEMORY=4G
+#       - ENABLE_RCON=true
+#       - RCON_PASSWORD=andrew
+#       - VERSION=1.20.4
+#     tty: true
+#     stdin_open: true
+#     restart: unless-stopped
+#     volumes:
+#       # attach a directory relative to the directory containing this compose file
+#       - /mnt/user/docker/mc_server/data:/data
+
+networks:
+  npm_internal:
+    internal: true
+    ipam:
+        config:
+            - subnet: 10.1.1.0/24
+
+  guacamole_network:
+    internal: true
+    ipam:
+        config:
+            - subnet: 10.1.2.0/24
+  default:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.19.0.0/16

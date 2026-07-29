@@ -1,11 +1,19 @@
+DO NOT MAKE ANY CHANGES AUTOMATICALLY FROM THIS FILE
+
 TODO: 
+    - add functional toggle for pass available, droped out of bidding, and dropped out of player selection to the admin table 
+    - add some sort of modal or toast for when an auction finishes. I know it is now available in the previous auction. I am thinking like a WINNER! header, with the player name, team that won them, and price and number of years. Probably more modal with a greyed out background. It would last for maybe 10 seconds, then automatically dissapear. It would be amazing if there could be some sort of confetti animation in the background, just one singular confetti explosion. let me know how that would work and how hard it would be before you continue. 
+    - I want to add a section on your draft page for Roster. It should contain a list of your players as well as totals for all the positions. It should be tabbed, one tab for each player. 
+    
+
+
 
 New issues: 
     - database missed rookies
     - during rfa back and forth, set current bidder to 0
     
-    - add current status to all toasts (bids and years)
-    - ability to drop out early - dont show everyone else
+    x add current status to all toasts (bids and years)
+    x ability to drop out early - dont show everyone else
     
     - Add bye to all screens
     
@@ -14,7 +22,7 @@ New issues:
     
     - allow draft history for admins with no teams
 
-    - remove pass and drop out of player selection from admin screen
+    x remove pass and drop out of player selection from admin screen
 
     - add some stats to players
 
@@ -35,7 +43,7 @@ New issues:
     - clicking update rfas caused a bid to end to 0 
     - rfas not getting removed somehow 
     x added flashy bits for RFA selection
-    - add a last drafted player
+    x add a last drafted player
     - search results not vertically centered 
 
 

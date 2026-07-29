@@ -19,9 +19,12 @@ def login_user(browser: Browser, username: str, password: str = "Password!23") -
     return context, page
 
 def start_auction(admin_page: Page, auction_type: str, draft_order: str):
-    admin_page.locator(f"label[for='admin_auction_type_selected_{auction_type}']").click()
-    admin_page.fill("#new_bid_start_num", str(draft_order))
-    admin_page.click("#start_new_bid_button")
+    admin_page.goto("http://localhost:8000/draft-admin")
+    admin_page.select_option("#select_phase", auction_type)
+    admin_page.select_option("#select_start_bidder", str(draft_order))
+    admin_page.click("#btn_start_phase")
+    admin_page.click("#admin_confirm_modal_btn")
+    admin_page.goto("http://localhost:8000/auction/")
     # Wait for the UI to sync via websocket and announce it is this user's turn
     expect(admin_page.locator("#your_turn_to_bid_banner")).to_be_visible(timeout=10000)
 

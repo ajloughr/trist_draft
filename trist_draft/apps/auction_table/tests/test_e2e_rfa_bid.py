@@ -18,9 +18,12 @@ def test_two_user_rfa_bidding(browser: Browser):
     expect(s_page.locator("body")).to_contain_text("Sentinels")
     
     # Sentinels (as admin) starts RFA round on user 1
-    s_page.locator("label[for='admin_auction_type_selected_rfa']").click()
-    s_page.fill("#new_bid_start_num", "1")
-    s_page.click("#start_new_bid_button")
+    s_page.goto("http://localhost:8000/draft-admin")
+    s_page.select_option("#select_phase", "rfa")
+    s_page.select_option("#select_start_bidder", "1")
+    s_page.click("#btn_start_phase")
+    s_page.click("#admin_confirm_modal_btn")
+    s_page.goto("http://localhost:8000/auction/")
     
     # Sentinels now sees their RFA list populated via WebSocket
     s_page.wait_for_function('document.querySelectorAll("#rfa_selector option").length > 1 || document.querySelector("#rfa_selector").textContent.includes("|")')
