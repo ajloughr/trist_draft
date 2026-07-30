@@ -24,6 +24,7 @@ class auction_user(models.Model):
     starting_budget     = models.IntegerField(default=0) 
     budget_remaining    = models.IntegerField(default=0)
 
+    initial_rfa_list    = ArrayField( models.IntegerField(), blank=True, default=list )
     current_rfa_list    = ArrayField( models.IntegerField(), blank=True, default=list )
     rfas_remaining      = models.IntegerField(default=0)
     
