@@ -24,11 +24,15 @@ class auction_user(models.Model):
     starting_budget     = models.IntegerField(default=0) 
     budget_remaining    = models.IntegerField(default=0)
 
-    initial_rfa_list    = ArrayField( models.IntegerField(), blank=True, default=list )
     current_rfa_list    = ArrayField( models.IntegerField(), blank=True, default=list )
     rfas_remaining      = models.IntegerField(default=0)
-    rfas_remaining      = models.IntegerField(default=0)
     
+    @property
+    def get_current_rfa_players(self):
+        if not self.current_rfa_list:
+            return []
+        return nfl_player.objects.filter(player_id__in=self.current_rfa_list)
+
     def __str__(self):
         return "{} : {} : {}".format(self.draft_order, self.team_name,self.user)
 

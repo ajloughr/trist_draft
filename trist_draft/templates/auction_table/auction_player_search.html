@@ -230,12 +230,54 @@
             user_rfa_results_data = JSON.parse(data.user_rfa_results_data);
             // console.log("RFA result Data: " + JSON.stringify(user_rfa_results_data));
             if(data.team_name == $("#current_auction_user_team").val()){
-                update_rfa_select(user_rfa_results_data)
+                update_rfa_select(user_rfa_results_data);
             }
-            
+            update_team_rfa_roster_table(data.team_name, user_rfa_results_data);
         }
         
     };
+
+    function update_team_rfa_roster_table(team_name, rfa_data) {
+        var user_draft_order = null;
+        $("#roster_team_tab_contents .tab-pane").each(function() {
+            if ($(this).attr("data-team-name") === team_name) {
+                user_draft_order = $(this).attr("data-draft-order");
+            }
+        });
+
+        if (!user_draft_order) return;
+
+        var tbody = $("#rfa_tbody_" + user_draft_order);
+        if (!tbody.length) return;
+
+        var rows_html = "";
+        if (!rfa_data || rfa_data.length === 0) {
+            rows_html = '<tr><td colspan="5" class="text-center text-muted py-3"><em>No RFAs remaining.</em></td></tr>';
+            $("#rfa_cnt_total_" + user_draft_order).text("0 Remaining");
+        } else {
+            $("#rfa_cnt_total_" + user_draft_order).text(rfa_data.length + " Remaining");
+            for (var i = 0; i < rfa_data.length; i++) {
+                var fields = rfa_data[i].fields || rfa_data[i];
+                var pos = (fields.position || "").toUpperCase();
+                var posBadgeClass = "bg-secondary text-white";
+                if (pos === "QB") posBadgeClass = "bg-primary text-white";
+                else if (pos === "RB") posBadgeClass = "bg-success text-white";
+                else if (pos === "WR") posBadgeClass = "bg-info text-dark";
+                else if (pos === "TE") posBadgeClass = "bg-warning text-dark";
+                else if (pos === "K" || pos === "PK") posBadgeClass = "bg-secondary text-white";
+                else if (pos === "DEF" || pos === "DST" || pos === "D/ST") posBadgeClass = "bg-dark text-white";
+
+                rows_html += '<tr>' +
+                    '<td>' + (i + 1) + '</td>' +
+                    '<td><strong>' + (fields.full_name || '') + '</strong></td>' +
+                    '<td><span class="badge ' + posBadgeClass + '">' + pos + '</span></td>' +
+                    '<td>' + (fields.team || '-') + '</td>' +
+                    '<td>' + (fields.bye || '-') + '</td>' +
+                    '</tr>';
+            }
+        }
+        tbody.html(rows_html);
+    }
 
     function get_rfas_for_user(){
         console.log("Get RFAs request Submitted")

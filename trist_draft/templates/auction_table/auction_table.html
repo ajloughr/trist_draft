@@ -1236,10 +1236,13 @@
 
                 $("#id_new_bid").val(new_auction_manager_data[0].fields.highest_bid + 1);
 
+                var pNameForAuction = (new_auction_manager_data[0].fields.player_for_auction_name || "").trim();
+                var isPlayerUpForAuction = pNameForAuction !== "" && pNameForAuction !== "None";
+
                 //disable or enable bid buttons                                     
                 if (
                     $("#admin_bid_override").is(":checked") || //if admin override is enabled or
-                    ($('#nfl_player_for_auction_name').text() && //if a player is selected
+                    (isPlayerUpForAuction && //if a player is selected and up for auction
                         this_user_object.fields.still_in_auction == true && // and if the user is still in the auction 
                         parseInt(this_user_object.fields.draft_order) == parseInt(new_auction_manager_data[0].fields.active_bidder)) //and if it is the users turn
                 ) {
@@ -1348,9 +1351,15 @@
                     }
 
                 } else {
-                    console.log("Enabling contract years for not RFA")
-                    $(this_contract_year_selected_radio).show();
-                    $(this_contract_year_selected_radio_disabled).hide();
+                    if (isPlayerUpForAuction) {
+                        console.log("Enabling contract years for active player")
+                        $(this_contract_year_selected_radio).show();
+                        $(this_contract_year_selected_radio_disabled).hide();
+                    } else {
+                        console.log("Disabling contract years (no player up for auction)")
+                        $(this_contract_year_selected_radio).hide();
+                        $(this_contract_year_selected_radio_disabled).show();
+                    }
                 }
 
                 //hide the search bar if RFA
@@ -1393,7 +1402,7 @@
 
                 //hide the search submit unless this user is initiating the auction (or bid override is enabled) and there is no player selected
                 if (($("#admin_bid_override").is(":checked") || parseInt(this_user_object.fields.draft_order) == parseInt(new_auction_manager_data[0].fields.initiated_auction)) &&
-                    (current_auction_type_value == "rookie" || !($('#nfl_player_for_auction_name').text()))) {
+                    (current_auction_type_value == "rookie" || !isPlayerUpForAuction)) {
                     $(this_user_submit_player_button).prop("disabled", false);
                     $('#player_name_search_spinner').show();
                     $('#manual_player_spinner').show();
