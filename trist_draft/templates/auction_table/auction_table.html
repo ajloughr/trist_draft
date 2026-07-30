@@ -19,52 +19,51 @@
     value="{{ current_auction_user.rfas_remaining }}">
 
 
-<div class="container">
-    <div class="row mt-3 justify-content-center">
-        <div class="col-6">
-            <div class="card bg-light">
-                <div class="text-center">
-                    {% if current_auction_user.team_name %}
-                    <h1 class="py-0">{{ current_auction_user.team_name }}</h1>
-                    {% else %}
-                    <h1 class="py-0" style="color:red">ADMIN: {{ request.user.username }}</h1>
-                    {% endif %}
-                </div>
+<!-- Team Banner -->
+<div class="container-fluid px-4">
+    <div class="team-banner mt-3">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                {% if current_auction_user.team_name %}
+                <h1>{{ current_auction_user.team_name }}</h1>
+                {% else %}
+                <h1 style="color:#ef4444">ADMIN: {{ request.user.username }}</h1>
+                {% endif %}
+            </div>
+            <div>
+                <span class="badge bg-info text-uppercase" id="banner_auction_type_badge">Draft</span>
             </div>
         </div>
     </div>
 </div>
 
-
-<div class="container">
-    <div class="d-flex flex-row mt-3 justify-content-center flex-wrap">
-        <div class="mx-2 align-items-start mb-2 {% if not current_auction_manager.player_for_auction_name or current_auction_manager.player_for_auction_name == '' or current_auction_manager.player_for_auction_name == 'None' or current_auction_manager.auction_type|lower == 'rookie' %}d-none{% else %}d-flex{% endif %}"
+<!-- Summary Cards Row -->
+<div class="container-fluid px-4 mt-3">
+    <div class="row g-3">
+        <!-- Current Player Card -->
+        <div class="col-xl-4 col-md-4 {% if not current_auction_manager.player_for_auction_name or current_auction_manager.player_for_auction_name == '' or current_auction_manager.player_for_auction_name == 'None' or current_auction_manager.auction_type|lower == 'rookie' %}d-none{% else %}d-flex{% endif %}"
             id="current_player_card_container">
-            <div class="card">
+            <div class="card summary-card-teal w-100">
                 <div class="card-header">
-                    <span><strong>Current Player for Auction</strong></span>
+                    <span><strong>Now Auctioning</strong></span>
                 </div>
                 <table class="table mb-0">
                     <thead>
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row"></th>
                             <td><strong>Name</strong></td>
                             <td id="nfl_player_for_auction_name"></td>
                         </tr>
                         <tr>
-                            <th scope="row"></th>
                             <td><strong>Team</strong></td>
                             <td id="nfl_player_for_auction_team"></td>
                         </tr>
                         <tr>
-                            <th scope="row"></th>
                             <td><strong>Position</strong></td>
                             <td id="nfl_player_for_auction_position"></td>
                         </tr>
                         <tr>
-                            <th scope="row"></th>
                             <td><strong>Bye</strong></td>
                             <td id="nfl_player_for_auction_bye"></td>
                         </tr>
@@ -72,46 +71,43 @@
                 </table>
             </div>
         </div>
-        <div class="d-flex mx-2 align-items-start mb-2">
-            <div class="card">
+        <!-- Auction Info Card -->
+        <div class="col-xl-4 col-md-4 d-flex">
+            <div class="card summary-card-indigo w-100">
                 <div class="card-header">
-                    <span><strong>Auction Info</strong></span>
+                    <span><strong>Auction Status</strong></span>
                 </div>
                 <table class="table mb-0">
                     <thead>
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row"></th>
                             <td><strong>Auction Type</strong></td>
                             <td id="current_auction_type"></td>
                         </tr>
                         <tr>
-                            <th scope="row"></th>
                             <td><strong>Currently Bidding</strong></td>
                             <td id="current_bidder_team"></td>
                         </tr>
                         <tr>
-                            <th scope="row"></th>
-                            <td><strong>Currently Winning Bid</strong></td>
+                            <td><strong>Winning Bid</strong></td>
                             <td id="current_winning_bid_team"></td>
                         </tr>
                         <tr>
-                            <th scope="row"></th>
-                            <td><strong>Current Highest Bid</strong></td>
+                            <td><strong>Highest Bid</strong></td>
                             <td id="current_highest_bid"></td>
                         </tr>
                         <tr>
-                            <th scope="row"></th>
-                            <td><strong>Current Contract Years</strong></td>
+                            <td><strong>Contract Years</strong></td>
                             <td id="current_contract_years"></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        <div class="d-flex mx-2 align-items-start mb-2" id="last_player_sold_card_container">
-            <div class="card">
+        <!-- Last Player Sold Card -->
+        <div class="col-xl-4 col-md-4 d-flex" id="last_player_sold_card_container">
+            <div class="card summary-card-amber w-100">
                 <div class="card-header">
                     <span><strong>Last Player Sold</strong></span>
                 </div>
@@ -120,22 +116,18 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row"></th>
                             <td><strong>Name</strong></td>
                             <td id="last_sold_name">{% if last_drafted %}{{ last_drafted.full_name }}{% else %}-{% endif %}</td>
                         </tr>
                         <tr>
-                            <th scope="row"></th>
                             <td><strong>Team / Pos</strong></td>
                             <td id="last_sold_team_pos">{% if last_drafted %}{{ last_drafted.team }} - {{ last_drafted.position }}{% else %}-{% endif %}</td>
                         </tr>
                         <tr>
-                            <th scope="row"></th>
                             <td><strong>Winning Team</strong></td>
                             <td id="last_sold_winning_team">{% if last_drafted %}{{ last_drafted.team_drafted_by }}{% else %}-{% endif %}</td>
                         </tr>
                         <tr>
-                            <th scope="row"></th>
                             <td><strong>Winning Bid</strong></td>
                             <td id="last_sold_price">{% if last_drafted %}${{ last_drafted.contract_price }} ({{ last_drafted.years_drafted }} yrs){% else %}-{% endif %}</td>
                         </tr>
@@ -147,20 +139,13 @@
 </div>
 
 
-
-<!-- <div class="container">
-    
-    <span class="float-end py-3">
-        <button type="button" id="refresh_button" class="col btn btn-light btn-sm">
-            <i class="bi-arrow-clockwise"></i>
-        </button>
-    </span>
-</div> -->
-
-<div class="container">
-    <div class="row my-3">
-        <div class="col-12">
-            <div class="card">
+<!-- Main Content: 2-Column Layout -->
+<div class="container-fluid px-4 mt-3">
+    <div class="row g-3">
+        <!-- Left Column: Table + Bid Controls -->
+        <div class="col-xl-8 col-lg-7">
+            <!-- Auction Table -->
+            <div class="card mb-3">
                 <span class="card-header">
                     <div class="d-flex justify-content-between">
                         <span><strong>Auction Table</strong></span>
@@ -197,27 +182,21 @@
                                     </div>
                                 </div>
                                 ">
-                                    <!-- for later maybe? -->
-                                    <!-- <tr style='opacity:0.8'>
-                                    <td class='table-secondary text-center' style='background-color:rgb(139, 69, 19)'><strong>In the Bathroom</strong></td>
-                                </tr> -->
                                     <i class="fa-solid fa-circle-question fa-lg" style="color:rgb(243, 156, 18)"></i>
                                 </span>
                             </span>
                         </span>
                     </div>
-
                 </span>
-                <div class="card-body">
-                    <div class="container my-3">
-                        <table class="table table-bordered" id="auction_table"
-                            style="border-radius: 5px;overflow: hidden;">
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-bordered mb-0" id="auction_table"
+                            style="border-radius: 0;overflow: hidden;">
                             <thead class="table-secondary">
                                 <tr class="text-center">
                                     <th>Draft Order</th>
                                     <th>Team Name</th>
                                     <th>Budget Remaining (-RFAs)</th>
-                                    <th>Roster Size</th>
                                     <th>Bid $</th>
                                     <th>Bid Years</th>
                                     <!-- <th>Still In</th> -->
@@ -230,27 +209,31 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Bid Menu -->
+            <div class="mb-3">
+                {% include 'auction_table/bid_menu.html' %}
+            </div>
+        </div>
+
+        <!-- Right Column: Player Search -->
+        <div class="col-xl-4 col-lg-5">
+            {% include 'auction_table/auction_player_search.html' %}
         </div>
     </div>
 </div>
 
-<div class="container">
-    {% include 'auction_table/bid_menu.html' %}
-</div>
-
-<div class="container">
-    {% include 'auction_table/auction_player_search.html' %}
-</div>
-
-<div class="container">
+<!-- Roster Section (full width, bottom) -->
+<div class="container-fluid px-4">
     {% include 'auction_table/roster_section.html' %}
 </div>
 
 {% if request.user.is_staff %}
-<div class="container" id="old_admin_panel_container" style="display: none !important;">
+<div class="container-fluid px-4" id="old_admin_panel_container" style="display: none !important;">
     {% include 'auction_table/auction_admin.html' %}
 </div>
 {% endif %}
+
 
 <div class="toast-container position-fixed top-0 start-0 p-3 my-5" style="z-index: 98 !important;">
     <div class="toast" id="rfa_owner_match_request_1_toast" role="alert" aria-live="assertive" aria-atomic="true"
@@ -1238,10 +1221,13 @@
 
             if (current_auction_type_value == 'rookie') {
                 current_auction_type_display.innerText = "Rookie";
+                $("#banner_auction_type_badge").text("Rookie Draft");
             } else if (current_auction_type_value == 'rfa') {
                 current_auction_type_display.innerText = "Restricted Free Agent";
+                $("#banner_auction_type_badge").text("RFA Draft");
             } else if (current_auction_type_value == 'ufa') {
                 current_auction_type_display.innerText = "Unrestricted Free Agent";
+                $("#banner_auction_type_badge").text("UFA Draft");
             }
 
 
@@ -1531,7 +1517,7 @@
                 }
             }
 
-            table_columns_array = ["draft_order", "team_name", "budget_remaining", "current_roster_size", "current_bid", "contract_years_bid", "pass_available"]
+            table_columns_array = ["draft_order", "team_name", "budget_remaining", "current_bid", "contract_years_bid", "pass_available"]
 
             //console.log("Rebuilding Table Total Teams: " + new_table_data.length)
 
