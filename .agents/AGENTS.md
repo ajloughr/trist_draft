@@ -12,7 +12,7 @@
 
 ## Auction Table UI & Card Display Rules
 - **Bootstrap `.d-flex` Specificity**: Bootstrap's `.d-flex` class applies `display: flex !important;`. To hide elements with `.d-flex` (e.g. `#current_player_card_container`), toggle `.d-none` vs `.d-flex` classes rather than setting inline `style="display: none;"`.
-- **Current Player Card Visibility**: `#current_player_card_container` is hidden during Rookie draft phase and whenever no player is up for auction.
+- **Current & Auction Status Card Visibility**: `#current_player_card_container` and `#auction_status_card_container` are hidden during the Rookie draft phase. In RFA and UFA draft phases, both cards remain visible even when no player is currently up for auction (displaying fallback 'None'/'-' text).
 - **Last Player Sold Card**: `#last_player_sold_card_container` displays the most recently drafted player's name, position, winning team, price, and contract years.
 
 ## Team Roster Table Rules

@@ -1,174 +1,143 @@
-    <div class="card mx-auto mb-3">
-        <div class="card-header d-flex justify-content-between align-items-center flex-wrap">
-            <div class="d-flex align-items-center me-auto">
-                <span class="me-3"><strong>Player Selection</strong></span>
-                <span id="rfa_header_title" class="fw-bold me-3" style="display: none;">(RFA)</span>
-                <!-- Bootstrap Tabs for UFA & Rookie Drafts -->
-                <ul class="nav nav-tabs card-header-tabs" id="player_selection_tab_list" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active fw-bold text-dark" id="tab_search_db" data-bs-toggle="tab" data-bs-target="#pane_search_db" type="button" role="tab" aria-controls="pane_search_db" aria-selected="true">
-                            <i class="fa-solid fa-magnifying-glass me-1"></i> Search Database
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link fw-bold text-dark" id="tab_manual_entry" data-bs-toggle="tab" data-bs-target="#pane_manual_entry" type="button" role="tab" aria-controls="pane_manual_entry" aria-selected="false">
-                            <i class="fa-solid fa-pen-to-square me-1"></i> Manual Entry
-                        </button>
-                    </li>
-                </ul>
-            </div>
-            
-            <div class="mt-2 mt-sm-0">
-                <button id="pass_player_selection" class="btn btn-warning man-tooltip btn-sm" type="button" data-bs-toggle="man-tooltip" data-bs-placement="top" title="Pass on player selection. Selection will move to the next team. Unlimited selection passes may be used.">Pass Player Selection</button>
-                <button id="drop_out_player_selection" class="btn btn-danger man-tooltip btn-sm" type="button" data-bs-toggle="man-tooltip" data-bs-placement="top" title="Drop out of player selection. If selected, you will will no longer be able to put players up for auction">
-                    <span data-bs-toggle="modal" data-bs-target="#drop_out_of_selection_confirmation_modal">Drop Out of Player Selection</span>
-                </button>
-            </div>
-        </div>
+<div class="card mb-3 p-3 border-0 shadow-sm" style="border-radius: 12px; background: #ffffff;">
+    <!-- Title Bar -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <span class="summary-card-title">Player Selection</span>
+        <span id="rfa_header_title" class="badge bg-info text-dark fw-bold" style="display: none;">RFA Mode</span>
+    </div>
 
-        <div class="card-body p-0">
-            <div class="tab-content" id="player_search_tab_content">
-                <!-- Pane 1: Search Database -->
-                <div class="tab-pane fade show active" id="pane_search_db" role="tabpanel" aria-labelledby="tab_search_db">
-                    <div class="container px-5 py-3" id="player_search_value_div" style="display: none;">
-                        <div class="container data-rookie_help" style="display: none;">
-                            <span class="fa-layers fa-fw man-tooltip" data-bs-toggle="man-tooltip" data-bs-placement="top" title="First, enter the name of the desired player.">
-                                <i class="fa-solid fa-circle fa-lg" style="color:rgb(243, 156, 18)"></i>
-                                <i class="fa-inverse fa-solid fa-1 fa-lg" data-fa-transform="shrink-6"></i>
-                            </span>
-                        </div>
-                        <div class="container data-ufa_help" style="display: none;">
-                            <span class="fa-layers fa-fw man-tooltip" data-bs-toggle="man-tooltip" data-bs-placement="top" title="First, enter the name of the desired player.">
-                                <i class="fa-solid fa-circle fa-lg" style="color:rgb(243, 156, 18)"></i>
-                                <i class="fa-inverse fa-solid fa-1 fa-lg" data-fa-transform="shrink-6"></i>
-                            </span>
-                        </div>
-                        <form>
-                            <div class="row justify-content-start pb-2">
-                                <div class="col-12 text-left">
-                                    <label>
-                                        <span class="spinner-grow spinner-grow-sm text-success" id="player_name_search_spinner" aria-hidden="true"></span>
-                                        <span role="status"><strong>Player Name Search</strong></span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="input-group">
-                                        <input type="text" id="player_search_value" class="form-control col-6 player-search-field" placeholder="Player Name">
-                                        <input type="text" id="player_search_value_team" class="form-control col-2 player-search-field" placeholder="Team Name">
-                                        <input type="text" id="player_search_value_pos" class="form-control col-2 player-search-field" placeholder="Position">
-                                        <input type="text" id="player_search_value_bye" class="form-control col-2 player-search-field" placeholder="Bye">
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+    <!-- Bootstrap Nav Tabs for Search DB vs Manual Entry -->
+    <ul class="nav nav-tabs border-bottom mb-3" id="player_selection_tab_list" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active fw-bold small text-dark" id="tab_search_db" data-bs-toggle="tab" data-bs-target="#pane_search_db" type="button" role="tab" aria-controls="pane_search_db" aria-selected="true">
+                <i class="fa-solid fa-magnifying-glass me-1"></i> Search Database
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link fw-bold small text-dark" id="tab_manual_entry" data-bs-toggle="tab" data-bs-target="#pane_manual_entry" type="button" role="tab" aria-controls="pane_manual_entry" aria-selected="false">
+                <i class="fa-solid fa-pen-to-square me-1"></i> Manual Entry
+            </button>
+        </li>
+    </ul>
 
-                    <div class="container px-5 py-3" id="search_results_table_div" style="display: none;">
-                        <div class="container data-ufa_help" style="display: none;">
-                            <span class="fa-layers fa-fw man-tooltip" data-bs-toggle="man-tooltip" data-bs-placement="top" title="Next, click the + icon next to the desired player. If the desired player does not appear in the list, switch to the Manual Entry tab.">
-                                <i class="fa-solid fa-circle fa-lg" style="color:rgb(243, 156, 18)"></i>
-                                <i class="fa-inverse fa-solid fa-2 fa-lg" data-fa-transform="shrink-6"></i>
-                            </span>
-                        </div>
-                        <div class="container data-rookie_help" style="display: none;">
-                            <span class="fa-layers fa-fw man-tooltip" data-bs-toggle="man-tooltip" data-bs-placement="top" title="Next, click the + icon next to the desired player. If the desired player does not appear in the list, switch to the Manual Entry tab.">
-                                <i class="fa-solid fa-circle fa-lg" style="color:rgb(243, 156, 18)"></i>
-                                <i class="fa-inverse fa-solid fa-2 fa-lg" data-fa-transform="shrink-6"></i>
-                            </span>
-                        </div>
-                        <table class="table table-bordered" id="search_results_table">
-                            <thead class="table-secondary">
-                                <tr class="text-center">
-                                    <th>Player Name</th>
-                                    <th>Team Name</th>
-                                    <th>Position</th>
-                                    <th>Bye</th>
-                                    <th>Drafted By</th>
-                                    <th>Select</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                        <div class="container text-center pb-3" id="no_players_found">
-                            <h3>No Players found...</h3>
-                        </div>
-                    </div>
-                </div>
+    <!-- UFA Action Buttons (Pass & Drop Out - Full Width) -->
+    <div class="d-flex gap-2 mb-3 w-100" id="ufa_action_buttons_div">
+        <button id="pass_player_selection" class="btn btn-warning flex-fill fw-bold py-2 man-tooltip" type="button" data-bs-toggle="man-tooltip" data-bs-placement="top" title="Pass on player selection. Selection will move to the next team." style="border-radius: 8px;">Pass Selection</button>
+        <button id="drop_out_player_selection" class="btn btn-outline-danger flex-fill fw-bold py-2 man-tooltip" type="button" data-bs-toggle="man-tooltip" data-bs-placement="top" title="Drop out of player selection." style="border-radius: 8px;">
+            <span data-bs-toggle="modal" data-bs-target="#drop_out_of_selection_confirmation_modal">Drop Out of Selection</span>
+        </button>
+    </div>
 
-                <!-- Pane 2: Manual Entry -->
-                <div class="tab-pane fade" id="pane_manual_entry" role="tabpanel" aria-labelledby="tab_manual_entry">
-                    <div class="container px-5 py-3" id="selected_player_div" style="display: none;">
-                        <form class="pb-3">
-                            <div class="container data-rookie_help" style="display: none;">
-                                <span class="fa-layers fa-fw man-tooltip" data-bs-toggle="man-tooltip" data-bs-placement="top" title="The selected player details will be populated here. Enter or edit details here and click Submit to draft the player.">
-                                    <i class="fa-solid fa-circle fa-lg" style="color:rgb(243, 156, 18)"></i>
-                                    <i class="fa-inverse fa-solid fa-3 fa-lg" data-fa-transform="shrink-6"></i>
-                                </span>
-                            </div>
-                            <div class="container data-ufa_help" style="display: none;">
-                                <span class="fa-layers fa-fw man-tooltip" data-bs-toggle="man-tooltip" data-bs-placement="top" title="The selected player details will be populated here. Enter or edit details here and click Submit to select that player for auction.">
-                                    <i class="fa-solid fa-circle fa-lg" style="color:rgb(243, 156, 18)"></i>
-                                    <i class="fa-inverse fa-solid fa-3 fa-lg" data-fa-transform="shrink-6"></i>
-                                </span>
-                            </div>
-                            <div class="row justify-content-start pb-2">
-                                <div class="col-12 text-left">
-                                    <span class="spinner-grow spinner-grow-sm text-success" id="manual_player_spinner" aria-hidden="true"></span>
-                                    <span role="status"><strong>Manual Player Entry</strong></span>
-                                </div>
-                            </div>
-                            <div class="row justify-content-between">
-                                <div class="col-8">
-                                    <div class="input-group">
-                                        <input type="text" id="selected_player_name" class="form-control" placeholder="Player Name">
-                                        <input type="text" id="selected_player_team" class="form-control" placeholder="Team Name">
-                                        <input type="text" id="selected_player_position" class="form-control" placeholder="Position">
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="btn-toolbar d-flex justify-content-between">
-                                        <button id="submit_selected_player" class="btn btn-success man-tooltip" type="button" data-bs-toggle="man-tooltip" data-bs-placement="top" title="Submit the entered manual player for auction. If in Rookie Draft, then player will be immediately drafted.">Submit</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <!-- RFA Selector Div (outside tabs for RFA mode) -->
-            <div class="container px-5 py-3" id="rfa_selector_div" style="display: none;">
-                <div class="container data-rfa_help" style="display: none;">
-                    <span class="fa-layers fa-fw man-tooltip" data-bs-toggle="man-tooltip" data-bs-placement="top" title="First, select a RFA from the dropdown and click Submit.">
+    <div class="tab-content mt-1" id="player_search_tab_content">
+        <!-- Pane 1: Search Database -->
+        <div class="tab-pane fade show active" id="pane_search_db" role="tabpanel" aria-labelledby="tab_search_db">
+            <div id="player_search_value_div" style="display: none;">
+                <div class="data-rookie_help mb-2" style="display: none;">
+                    <span class="fa-layers fa-fw man-tooltip" data-bs-toggle="man-tooltip" data-bs-placement="top" title="First, enter the name of the desired player.">
                         <i class="fa-solid fa-circle fa-lg" style="color:rgb(243, 156, 18)"></i>
                         <i class="fa-inverse fa-solid fa-1 fa-lg" data-fa-transform="shrink-6"></i>
                     </span>
                 </div>
-                <div class="row justify-content-start pb-2">
-                    <div class="col-10 text-left">
-                        <label><strong>RFA List</strong></label>
-                    </div>
+                <div class="data-ufa_help mb-2" style="display: none;">
+                    <span class="fa-layers fa-fw man-tooltip" data-bs-toggle="man-tooltip" data-bs-placement="top" title="First, enter the name of the desired player.">
+                        <i class="fa-solid fa-circle fa-lg" style="color:rgb(243, 156, 18)"></i>
+                        <i class="fa-inverse fa-solid fa-1 fa-lg" data-fa-transform="shrink-6"></i>
+                    </span>
                 </div>
-                <form>
-                    <div class="row">
-                        <div class="col-9">
-                            <select class="form-select" id="rfa_selector" aria-label="Default select example">
-                            </select>
+                <form onsubmit="return false;">
+                    <!-- Player Name (Primary Search Input) -->
+                    <div class="mb-2">
+                        <label class="form-label small fw-bold text-dark mb-1">Player Name</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-white border-end-0"><i class="fa-solid fa-magnifying-glass text-muted"></i></span>
+                            <input type="text" id="player_search_value" class="form-control border-start-0 player-search-field" placeholder="Player Name">
                         </div>
-                        <div class="col d-flex justify-content-center">
-                            <button id="select_rfa_player" class="btn btn-success" type="button" onclick="rfa_player_selected()">
-                                <span class="spinner-grow spinner-grow-sm" id="select_rfa_player_spinner" aria-hidden="true"></span>
-                                <span role="status">Submit Player</span>
-                            </button>
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label small fw-bold text-dark mb-1">Team</label>
+                        <input type="text" id="player_search_value_team" class="form-control player-search-field" placeholder="NFL Team">
+                    </div>
+                    <div class="row g-2 mb-3">
+                        <div class="col-6">
+                            <label class="form-label small fw-bold text-dark mb-1">Position</label>
+                            <input type="text" id="player_search_value_pos" class="form-control player-search-field" placeholder="Position">
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label small fw-bold text-dark mb-1">Bye</label>
+                            <input type="text" id="player_search_value_bye" class="form-control player-search-field" placeholder="Bye">
                         </div>
                     </div>
                 </form>
             </div>
+
+            <!-- Search Results -->
+            <div id="search_results_table_div" class="mt-2">
+                <label class="form-label small fw-bold text-dark mb-1">Results</label>
+                <div style="border-radius: 10px; border: 1px solid #e2e8f0; overflow-y: auto; max-height: 420px; min-height: 250px; background: #ffffff;">
+                    <table class="table table-hover align-middle mb-0" id="search_results_table" style="display: none;">
+                        <thead class="d-none">
+                            <tr>
+                                <th>Player</th>
+                                <th>Team</th>
+                                <th>Pos</th>
+                                <th>Bye</th>
+                                <th>Drafted By</th>
+                                <th>Select</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                    <div class="text-center py-4 text-muted" id="no_players_found">
+                        <p class="mb-0 fw-semibold text-secondary" id="no_players_found_text" style="font-size: 0.85rem;">Enter search criteria above...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pane 2: Manual Entry -->
+        <div class="tab-pane fade" id="pane_manual_entry" role="tabpanel" aria-labelledby="tab_manual_entry">
+            <div id="selected_player_div" style="display: none;">
+                <form class="py-1">
+                    <div class="mb-2">
+                        <label class="form-label small fw-bold text-dark mb-1">Player Name</label>
+                        <input type="text" id="selected_player_name" class="form-control" placeholder="Player Name">
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label small fw-bold text-dark mb-1">Team</label>
+                        <input type="text" id="selected_player_team" class="form-control" placeholder="NFL Team">
+                    </div>
+                    <div class="row g-2 mb-3">
+                        <div class="col-6">
+                            <label class="form-label small fw-bold text-dark mb-1">Position</label>
+                            <input type="text" id="selected_player_position" class="form-control" placeholder="Position">
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label small fw-bold text-dark mb-1">Bye</label>
+                            <input type="text" id="selected_player_bye" class="form-control" placeholder="Bye">
+                        </div>
+                    </div>
+                    <button id="submit_selected_player" class="btn btn-success w-100 fw-bold py-2 man-tooltip" type="button" data-bs-toggle="man-tooltip" data-bs-placement="top" title="Submit the entered manual player for auction." style="border-radius: 8px;">
+                        <span class="spinner-grow spinner-grow-sm me-1" id="manual_player_spinner" aria-hidden="true" style="display: none;"></span>
+                        Submit Player
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
+
+    <!-- RFA Selector Div (outside tabs for RFA mode) -->
+    <div id="rfa_selector_div" class="mt-3" style="display: none;">
+        <label class="form-label small fw-bold text-dark mb-2">Select Restricted Free Agent (RFA)</label>
+        <form onsubmit="return false;">
+            <select class="form-select mb-3" id="rfa_selector" aria-label="RFA Selection">
+            </select>
+            <button id="select_rfa_player" class="btn btn-success w-100 fw-bold py-2" type="button" onclick="rfa_player_selected()" style="border-radius: 8px;">
+                <span class="spinner-grow spinner-grow-sm me-1" id="select_rfa_player_spinner" aria-hidden="true" style="display: none;"></span>
+                Submit Player
+            </button>
+        </form>
+    </div>
+</div>
 
     <div class="modal fade" id="drop_out_of_selection_confirmation_modal" tabindex="-1" aria-labelledby="drop_out_of_selection_confirmation_modal_Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -322,7 +291,17 @@
             $("#rfa_selector").append(new_row_html)
 
         }
+    }
 
+    function getPositionBadgeClass(pos) {
+        var p = (pos || "").toUpperCase().trim();
+        if (p === "QB") return "bg-primary text-white";
+        if (p === "RB") return "bg-success text-white";
+        if (p === "WR") return "bg-info text-dark";
+        if (p === "TE") return "bg-warning text-dark";
+        if (p === "K" || p === "PK") return "bg-secondary text-white";
+        if (p === "DEF" || p === "DST" || p === "D/ST") return "bg-dark text-white";
+        return "bg-primary text-white";
     }
 
     function update_search_results_table(player_search_results,searching_team,aution_manager_data_parsed) {
@@ -345,56 +324,59 @@
             document.getElementById("search_results_table_div").style.display = "block";
         }
 
+        var allSearchFieldsEmpty = !($('#player_search_value').val() || '').trim() &&
+                                   !($('#player_search_value_team').val() || '').trim() &&
+                                   !($('#player_search_value_pos').val() || '').trim() &&
+                                   !($('#player_search_value_bye').val() || '').trim();
+
         if (player_search_results.length == 0) {
-            console.log("No players found")
-            document.getElementById("no_players_found").style.display = "block";
+            if (allSearchFieldsEmpty) {
+                $("#no_players_found_text").text("Enter search criteria above...");
+            } else {
+                $("#no_players_found_text").text("No Players found...");
+            }
+            $("#no_players_found").show();
             $("#search_results_table").hide();
         } else {
-            document.getElementById("no_players_found").style.display = "none";
+            $("#no_players_found").hide();
             $("#search_results_table").show();
-            console.log("Hiding no players found")
         }
 
         for (var i = 0; i < player_search_results.length; i++) {
-            //iterate through rows
-            //console.log("Draft Order: " + new_table_data[i].fields.draft_order )
+            var fields = player_search_results[i].fields;
+            var pName = fields["full_name"] || "";
+            var pTeam = fields["team"] || "";
+            var pPos = fields["position"] || "";
+            var pBye = fields["bye"] || "";
+            var pDraftedBy = fields["drafted_by"] || "";
 
-            var new_row_html = '<tr class="text-center">'
-
-            for (var j = 0; j < table_columns_array.length; j++) {
-                //iterate through columns
-                new_col_value = player_search_results[i].fields[table_columns_array[j]]
-                //console.log("    " + table_columns_array[j] + ": " + new_col_value )
-                new_row_html = new_row_html +  "<td>" + new_col_value + "</td>"
-
-            }
-
-            // select_player_button = '<button type="button" class="btn btn-success" onclick="search_player_selected(' + player_search_results[i].pk + ')" >+</button>'
-            
             var isPlayerUpForAuction = aution_manager_data_trimmed.player_for_auction_name && aution_manager_data_trimmed.player_for_auction_name.trim() !== "" && aution_manager_data_trimmed.player_for_auction_name.trim() !== "None";
             var isMyTurnToSelect = (aution_manager_data_trimmed.active_bidder == parseInt($("#current_auction_user_draft_order").val()));
 
-            if (player_search_results[i].fields["drafted_by"] != "Undrafted" || searching_team.length == 0 || isPlayerUpForAuction || !isMyTurnToSelect) {
-                select_player_button = '<button type="button" class="btn btn-success fw-bolder" disabled >+</button>' 
+            var select_player_button = '';
+            if (pDraftedBy && pDraftedBy !== "Undrafted") {
+                select_player_button = '<button type="button" class="btn btn-secondary btn-sm fw-bold px-3 text-truncate d-inline-block opacity-75" disabled style="border-radius: 8px; font-size: 0.75rem; min-height: 31px; line-height: 1.5; max-width: 130px;" title="Drafted by ' + pDraftedBy + '">' + pDraftedBy + '</button>';
+            } else if (searching_team.length == 0 || isPlayerUpForAuction || !isMyTurnToSelect) {
+                select_player_button = '<button type="button" class="btn btn-success btn-sm fw-bold px-3 text-uppercase opacity-50" disabled style="border-radius: 8px; font-size: 0.75rem; min-height: 31px; line-height: 1.5; letter-spacing: 0.5px;">SELECT</button>';
             } else {
-                select_player_button = '<button type="button" class="btn btn-success fw-bolder" onclick="show_player_select_confirmation_modal(' + i + ')" >+</button>' 
+                select_player_button = '<button type="button" class="btn btn-success btn-sm fw-bold px-3 text-uppercase shadow-sm" onclick="show_player_select_confirmation_modal(' + i + ')" style="border-radius: 8px; font-size: 0.75rem; min-height: 31px; line-height: 1.5; letter-spacing: 0.5px;">SELECT</button>';
             }
-            
 
-            new_row_html = new_row_html +  "<td>" + select_player_button + "</td>"
+            var posBadgeClass = getPositionBadgeClass(pPos);
+            var cell0_html = '<td class="align-middle text-start py-2 ps-3">' +
+                '<div class="fw-bold text-dark player-result-name" style="font-size: 0.95rem;">' + pName + '</div>' +
+                '<div class="small text-muted" style="font-size: 0.78rem;">' + pTeam + (pPos ? ' <span class="badge ' + posBadgeClass + ' ms-1 px-1.5 py-0.5" style="font-size: 0.68rem;">' + pPos + '</span>' : '') + (pBye ? ' <span class="ms-1">· Bye ' + pBye + '</span>' : '') + '</div>' +
+            '</td>';
+            var cell1_html = '<td class="d-none">' + pTeam + '</td>';
+            var cell2_html = '<td class="d-none">' + pPos + '</td>';
+            var cell3_html = '<td class="d-none">' + pBye + '</td>';
+            var cell4_html = '<td class="d-none">' + pDraftedBy + '</td>';
+            var cell5_html = '<td class="align-middle text-end py-2 pe-3">' + select_player_button + '</td>';
 
-
-            new_row_html = new_row_html + "</tr>"
-
-            $("#search_results_table tbody").append(new_row_html)
-
+            var new_row_html = '<tr class="align-middle border-bottom">' + cell0_html + cell1_html + cell2_html + cell3_html + cell4_html + cell5_html + '</tr>';
+            $("#search_results_table tbody").append(new_row_html);
         }
-
     }
-
-    //$('#player_search_value').bind('keyup', function(e) {
-    //    send_player_search()
-    //});
 
     $('.player-search-field').bind('keyup', function(e) {
         send_player_search();
@@ -405,16 +387,18 @@
         $('#select_player_confirmation_modal').modal('hide');
         var search_results_table = document.getElementById("search_results_table");
 
-        selected_player_name = search_results_table.rows[player_selected_row + 1].cells[0].textContent
-        selected_player_team = search_results_table.rows[player_selected_row + 1].cells[1].textContent
-        selected_player_position = search_results_table.rows[player_selected_row + 1].cells[2].textContent
-        
-        $("#selected_player_name_confirm").text(selected_player_name)
-        $("#selected_player_team_confirm").text(selected_player_team)
-        $("#selected_player_position_confirm").text(selected_player_position)
+        var row = search_results_table.querySelector("tbody").rows[player_selected_row];
+        if (row) {
+            selected_player_name = $(row.cells[0]).find('.player-result-name').text().trim();
+            selected_player_team = row.cells[1].textContent.trim();
+            selected_player_position = row.cells[2].textContent.trim();
+            
+            $("#selected_player_name_confirm").text(selected_player_name);
+            $("#selected_player_team_confirm").text(selected_player_team);
+            $("#selected_player_position_confirm").text(selected_player_position);
+        }
 
         $('#select_player_confirmation_modal').modal('show');
-        
     }
 
     function send_player_search() {
