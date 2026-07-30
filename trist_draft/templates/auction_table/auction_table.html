@@ -22,17 +22,30 @@
 <!-- Team Banner -->
 <div class="container-fluid px-4">
     <div class="team-banner mt-3">
-        <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex flex-column justify-content-center">
             <div>
                 {% if current_auction_user.team_name %}
-                <h1>{{ current_auction_user.team_name }}</h1>
+                <h1 class="team-banner-title m-0">{{ current_auction_user.team_name }}</h1>
                 {% else %}
-                <h1 style="color:#ef4444">ADMIN: {{ request.user.username }}</h1>
+                <h1 class="team-banner-title m-0" style="color:#ef4444">ADMIN: {{ request.user.username }}</h1>
                 {% endif %}
             </div>
-            <div>
-                <span class="badge bg-info text-uppercase" id="banner_auction_type_badge">Draft</span>
+            {% if current_auction_user.draft_order %}
+            <div class="mt-2">
+                <span class="team-banner-badge"><i class="fa-solid fa-hashtag me-1"></i>Draft Order #{{ current_auction_user.draft_order }}</span>
             </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Auction Phase Strip -->
+<div class="container-fluid px-4 mt-3">
+    <div class="auction-phase-strip d-flex align-items-center justify-content-between px-3 py-2">
+        <div class="d-flex align-items-center gap-2">
+            <span class="live-pulse-dot me-1"></span>
+            <span class="small text-uppercase fw-bold text-muted tracking-wider">Current Phase:</span>
+            <span class="fw-bold text-dark" id="current_auction_type" style="font-size: 1rem;"></span>
         </div>
     </div>
 </div>
@@ -44,95 +57,71 @@
         <div class="col-xl-4 col-md-4 {% if not current_auction_manager.player_for_auction_name or current_auction_manager.player_for_auction_name == '' or current_auction_manager.player_for_auction_name == 'None' or current_auction_manager.auction_type|lower == 'rookie' %}d-none{% else %}d-flex{% endif %}"
             id="current_player_card_container">
             <div class="card summary-card-teal w-100">
-                <div class="card-header">
-                    <span><strong>Now Auctioning</strong></span>
+                <div class="card-header border-0 bg-transparent">
+                    <span class="summary-card-title">Now Auctioning</span>
                 </div>
-                <table class="table mb-0">
-                    <thead>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Name</strong></td>
-                            <td id="nfl_player_for_auction_name"></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Team</strong></td>
-                            <td id="nfl_player_for_auction_team"></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Position</strong></td>
-                            <td id="nfl_player_for_auction_position"></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Bye</strong></td>
-                            <td id="nfl_player_for_auction_bye"></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="card-body pt-1 pb-3 px-3">
+                    <h3 class="fw-bold text-dark mb-3" id="nfl_player_for_auction_name" style="font-size: 1.5rem;"></h3>
+                    <div class="d-flex align-items-center">
+                        <div class="pe-3">
+                            <span class="badge bg-primary rounded-pill px-2.5 py-1 text-uppercase fw-semibold" id="nfl_player_for_auction_position" style="font-size: 0.8rem;"></span>
+                            <div class="fw-bold text-dark mt-1" id="nfl_player_for_auction_team"></div>
+                        </div>
+                        <div class="border-start ps-3">
+                            <div class="small text-muted" style="font-size: 0.75rem;">Bye</div>
+                            <div class="fw-bold text-dark" id="nfl_player_for_auction_bye"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- Auction Info Card -->
         <div class="col-xl-4 col-md-4 d-flex">
             <div class="card summary-card-indigo w-100">
-                <div class="card-header">
-                    <span><strong>Auction Status</strong></span>
+                <div class="card-header border-0 bg-transparent">
+                    <span class="summary-card-title">Auction Status</span>
                 </div>
-                <table class="table mb-0">
-                    <thead>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Auction Type</strong></td>
-                            <td id="current_auction_type"></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Currently Bidding</strong></td>
-                            <td id="current_bidder_team"></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Winning Bid</strong></td>
-                            <td id="current_winning_bid_team"></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Highest Bid</strong></td>
-                            <td id="current_highest_bid"></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Contract Years</strong></td>
-                            <td id="current_contract_years"></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="card-body pt-1 pb-3 px-3">
+                    <div class="row g-0 border-bottom pb-2 mb-2">
+                        <div class="col-6 border-end pe-2">
+                            <div class="small text-muted" style="font-size: 0.75rem;">Bidder</div>
+                            <div class="fw-bold text-dark text-truncate" id="current_bidder_team"></div>
+                        </div>
+                        <div class="col-6 ps-3">
+                            <div class="small text-muted" style="font-size: 0.75rem;">Winning Team</div>
+                            <div class="fw-bold text-dark text-truncate" id="current_winning_bid_team"></div>
+                        </div>
+                    </div>
+                    <div class="row g-0">
+                        <div class="col-6 border-end pe-2">
+                            <div class="small text-muted" style="font-size: 0.75rem;">Bid</div>
+                            <div class="fw-bold text-dark fs-4">$<span id="current_highest_bid"></span></div>
+                        </div>
+                        <div class="col-6 ps-3">
+                            <div class="small text-muted" style="font-size: 0.75rem;">Years</div>
+                            <div class="fw-bold text-dark fs-4" id="current_contract_years"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- Last Player Sold Card -->
         <div class="col-xl-4 col-md-4 d-flex" id="last_player_sold_card_container">
             <div class="card summary-card-amber w-100">
-                <div class="card-header">
-                    <span><strong>Last Player Sold</strong></span>
+                <div class="card-header border-0 bg-transparent">
+                    <span class="summary-card-title">Last Sold</span>
                 </div>
-                <table class="table mb-0">
-                    <thead>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Name</strong></td>
-                            <td id="last_sold_name">{% if last_drafted %}{{ last_drafted.full_name }}{% else %}-{% endif %}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Team / Pos</strong></td>
-                            <td id="last_sold_team_pos">{% if last_drafted %}{{ last_drafted.team }} - {{ last_drafted.position }}{% else %}-{% endif %}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Winning Team</strong></td>
-                            <td id="last_sold_winning_team">{% if last_drafted %}{{ last_drafted.team_drafted_by }}{% else %}-{% endif %}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Winning Bid</strong></td>
-                            <td id="last_sold_price">{% if last_drafted %}${{ last_drafted.contract_price }} ({{ last_drafted.years_drafted }} yrs){% else %}-{% endif %}</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="card-body pt-1 pb-3 px-3">
+                    <div class="d-flex align-items-baseline gap-2 mb-2 flex-wrap">
+                        <h3 class="fw-bold text-dark m-0" id="last_sold_name" style="font-size: 1.4rem;">{% if last_drafted %}{{ last_drafted.full_name }}{% else %}-{% endif %}</h3>
+                        <span class="text-muted fw-semibold" id="last_sold_team_pos" style="font-size: 0.95rem;">{% if last_drafted %}{{ last_drafted.team }} - {{ last_drafted.position }}{% else %}-{% endif %}</span>
+                    </div>
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="fa-solid fa-arrow-right me-2 text-muted"></i>
+                        <span class="fw-bold text-dark" id="last_sold_winning_team" style="font-size: 1.25rem;">{% if last_drafted %}{{ last_drafted.team_drafted_by }}{% else %}-{% endif %}</span>
+                    </div>
+                    <div class="fw-bold text-dark fs-4" id="last_sold_price">{% if last_drafted %}${{ last_drafted.contract_price }} for {{ last_drafted.years_drafted }} yrs{% else %}-{% endif %}</div>
+                </div>
             </div>
         </div>
     </div>
@@ -573,8 +562,8 @@
                     </div>
                 </div>
                 <div class="modal-footer justify-content-center border-0 pb-4">
-                    <button type="button" id="winner_celebration_close_btn" class="btn btn-warning btn-lg fw-bold px-4 shadow-sm"
-                        data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="winner_celebration_close_btn"
+                        class="btn btn-warning btn-lg fw-bold px-4 shadow-sm" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -746,7 +735,7 @@
                             $("#last_sold_name").text(f.full_name);
                             $("#last_sold_team_pos").text(f.team + " - " + f.position);
                             $("#last_sold_winning_team").text(f.team_drafted_by);
-                            $("#last_sold_price").text("$" + f.contract_price + " (" + f.years_drafted + " yrs)");
+                            $("#last_sold_price").text("$" + f.contract_price + " for " + f.years_drafted + " yrs");
 
                             if (window.last_seen_drafted_pk_initialized) {
                                 if (current_pk > window.last_seen_drafted_pk) {
@@ -1221,13 +1210,10 @@
 
             if (current_auction_type_value == 'rookie') {
                 current_auction_type_display.innerText = "Rookie";
-                $("#banner_auction_type_badge").text("Rookie Draft");
             } else if (current_auction_type_value == 'rfa') {
                 current_auction_type_display.innerText = "Restricted Free Agent";
-                $("#banner_auction_type_badge").text("RFA Draft");
             } else if (current_auction_type_value == 'ufa') {
                 current_auction_type_display.innerText = "Unrestricted Free Agent";
-                $("#banner_auction_type_badge").text("UFA Draft");
             }
 
 

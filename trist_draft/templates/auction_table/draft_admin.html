@@ -12,7 +12,8 @@
             <div class="card bg-dark text-white mb-4">
                 <div class="card-body text-center">
                     <h2>TRIST Draft Administration Panel</h2>
-                    <p class="mb-0">Control draft turns, fix state desyncs, update budgets, and initiate draft phases.</p>
+                    <p class="mb-0">Control draft turns, fix state desyncs, update budgets, and initiate draft phases.
+                    </p>
                 </div>
             </div>
         </div>
@@ -28,22 +29,46 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <p><strong>Draft Phase:</strong> <span id="admin_current_phase" class="badge bg-info text-dark">{{ current_auction_manager.auction_type|upper }}</span></p>
-                            <p><strong>Active Bidder (Draft Order #):</strong> <span id="admin_active_bidder">{{ current_auction_manager.active_bidder }}</span></p>
-                            <p><strong>Player for Auction:</strong> <span id="admin_current_player">{% if current_auction_manager.player_for_auction_name %}{{ current_auction_manager.player_for_auction_name }} ({{ current_auction_manager.player_for_auction_team }} - {{ current_auction_manager.player_for_auction_position }}){% else %}None{% endif %}</span></p>
-                            <p><strong>Highest Bid:</strong> $<span id="admin_highest_bid">{{ current_auction_manager.highest_bid }}</span> (<span id="admin_highest_years">{{ current_auction_manager.highest_contract_years }}</span> yrs)</p>
+                            <p><strong>Draft Phase:</strong> <span id="admin_current_phase"
+                                    class="badge bg-info text-dark">{{ current_auction_manager.auction_type|upper
+                                    }}</span></p>
+                            <p><strong>Active Bidder (Draft Order #):</strong> <span id="admin_active_bidder">{{
+                                    current_auction_manager.active_bidder }}</span></p>
+                            <p><strong>Player for Auction:</strong> <span id="admin_current_player">{% if
+                                    current_auction_manager.player_for_auction_name %}{{
+                                    current_auction_manager.player_for_auction_name }} ({{
+                                    current_auction_manager.player_for_auction_team }} - {{
+                                    current_auction_manager.player_for_auction_position }}){% else %}None{% endif
+                                    %}</span></p>
+                            <p><strong>Highest Bid:</strong> $<span id="admin_highest_bid">{{
+                                    current_auction_manager.highest_bid }}</span> (<span id="admin_highest_years">{{
+                                    current_auction_manager.highest_contract_years }}</span> yrs)</p>
                         </div>
                         <div class="col-md-6">
                             <h6>Force Action for Active Bidder</h6>
                             <div class="mb-2"><strong>Bidding Phase:</strong></div>
                             <div class="d-flex gap-2 mb-3">
-                                <button class="btn btn-warning btn-sm text-dark fw-bold" id="btn_force_pass_active" onclick="forcePassActive()" {% if not current_auction_manager.player_for_auction_name or current_auction_manager.highest_bid == 0 %}disabled{% endif %}>Force Pass Active Bidder</button>
-                                <button class="btn btn-danger btn-sm fw-bold" id="btn_force_dropout_active" onclick="forceDropoutActive()" {% if not current_auction_manager.player_for_auction_name or current_auction_manager.highest_bid == 0 %}disabled{% endif %}>Force Drop Out Active Bidder</button>
+                                <button class="btn btn-warning btn-sm text-dark fw-bold" id="btn_force_pass_active"
+                                    onclick="forcePassActive()" {% if not
+                                    current_auction_manager.player_for_auction_name or
+                                    current_auction_manager.highest_bid == 0 %}disabled{% endif %}>Force Pass Active
+                                    Bidder</button>
+                                <button class="btn btn-danger btn-sm fw-bold" id="btn_force_dropout_active"
+                                    onclick="forceDropoutActive()" {% if not
+                                    current_auction_manager.player_for_auction_name or
+                                    current_auction_manager.highest_bid == 0 %}disabled{% endif %}>Force Drop Out Active
+                                    Bidder</button>
                             </div>
                             <div class="mb-2"><strong>Player Selection Phase (UFA Only):</strong></div>
                             <div class="d-flex gap-2">
-                                <button class="btn btn-info btn-sm text-dark fw-bold" id="btn_force_pass_selection" onclick="forcePassSelection()" {% if current_auction_manager.auction_type != 'ufa' or current_auction_manager.player_for_auction_name %}disabled{% endif %}>Force Pass Player Selection</button>
-                                <button class="btn btn-secondary btn-sm fw-bold" id="btn_force_dropout_selection" onclick="forceDropoutSelection()" {% if current_auction_manager.auction_type != 'ufa' or current_auction_manager.player_for_auction_name %}disabled{% endif %}>Force Drop Out of Selection</button>
+                                <button class="btn btn-info btn-sm text-dark fw-bold" id="btn_force_pass_selection"
+                                    onclick="forcePassSelection()" {% if current_auction_manager.auction_type != 'ufa' or
+                                    current_auction_manager.player_for_auction_name %}disabled{% endif %}>Force Pass
+                                    Player Selection</button>
+                                <button class="btn btn-secondary btn-sm fw-bold" id="btn_force_dropout_selection"
+                                    onclick="forceDropoutSelection()" {% if current_auction_manager.auction_type != 'ufa'
+                                    or current_auction_manager.player_for_auction_name %}disabled{% endif %}>Force Drop
+                                    Out of Selection</button>
                             </div>
 
                         </div>
@@ -64,20 +89,25 @@
                     <div class="mb-3">
                         <label for="select_phase" class="form-label">Draft Phase:</label>
                         <select id="select_phase" class="form-select">
-                            <option value="rookie" {% if current_auction_manager.auction_type == 'rookie' %}selected{% endif %}>Rookie Draft</option>
-                            <option value="rfa" {% if current_auction_manager.auction_type == 'rfa' %}selected{% endif %}>Restricted Free Agent (RFA)</option>
-                            <option value="ufa" {% if current_auction_manager.auction_type == 'ufa' %}selected{% endif %}>Unrestricted Free Agent (UFA)</option>
+                            <option value="rookie" {% if current_auction_manager.auction_type == 'rookie' %}selected{%
+                                endif %}>Rookie Draft</option>
+                            <option value="rfa" {% if current_auction_manager.auction_type == 'rfa' %}selected{% endif %}>
+                                Restricted Free Agent (RFA)</option>
+                            <option value="ufa" {% if current_auction_manager.auction_type == 'ufa' %}selected{% endif %}>
+                                Unrestricted Free Agent (UFA)</option>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="select_start_bidder" class="form-label">Starting Draft Position (#):</label>
                         <select id="select_start_bidder" class="form-select">
                             {% for user in auction_users_list %}
-                                <option value="{{ user.draft_order }}">Order #{{ user.draft_order }} - {{ user.team_name }}</option>
+                            <option value="{{ user.draft_order }}">Order #{{ user.draft_order }} - {{ user.team_name }}
+                            </option>
                             {% endfor %}
                         </select>
                     </div>
-                    <button class="btn btn-success" id="btn_start_phase" onclick="startPhase()">Set Draft Phase & Start</button>
+                    <button class="btn btn-success" id="btn_start_phase" onclick="startPhase()">Set Draft Phase &
+                        Start</button>
                 </div>
             </div>
         </div>
@@ -91,17 +121,23 @@
                     <p><strong>Last Drafted Player:</strong></p>
                     <div id="last_drafted_info" class="alert alert-light border">
                         {% if last_drafted %}
-                            <strong>{{ last_drafted.full_name }}</strong> ({{ last_drafted.team }} - {{ last_drafted.position }})<br>
-                            Drafted by: {{ last_drafted.team_drafted_by }} for ${{ last_drafted.contract_price }} ({{ last_drafted.years_drafted }} yrs) [{{ last_drafted.draft_type|upper }}]
+                        <strong>{{ last_drafted.full_name }}</strong> ({{ last_drafted.team }} - {{
+                        last_drafted.position }})<br>
+                        Drafted by: {{ last_drafted.team_drafted_by }} for ${{ last_drafted.contract_price }} ({{
+                        last_drafted.years_drafted }} yrs) [{{ last_drafted.draft_type|upper }}]
                         {% else %}
-                            <em>No players drafted yet.</em>
+                        <em>No players drafted yet.</em>
                         {% endif %}
                     </div>
                     <div class="d-flex flex-wrap gap-2">
-                        <button class="btn btn-danger" id="btn_undo_draft" onclick="undoLastDraft()">Undo Last Drafted Player</button>
-                        <button class="btn btn-secondary" id="btn_resync_rosters" onclick="resyncRosters()">Resync All Rosters & RFAs</button>
-                        <button class="btn btn-info text-white" id="btn_refresh_table_all" onclick="refreshTableAll()">Refresh Table (All Users)</button>
-                        <button class="btn btn-warning" id="btn_force_reload_all" onclick="forceReloadAll()">Force Page Reload (All Users)</button>
+                        <button class="btn btn-danger" id="btn_undo_draft" onclick="undoLastDraft()">Undo Last Drafted
+                            Player</button>
+                        <button class="btn btn-secondary" id="btn_resync_rosters" onclick="resyncRosters()">Resync All
+                            Rosters & RFAs</button>
+                        <button class="btn btn-info text-white" id="btn_refresh_table_all"
+                            onclick="refreshTableAll()">Refresh Table (All Users)</button>
+                        <button class="btn btn-warning" id="btn_force_reload_all" onclick="forceReloadAll()">Force Page
+                            Reload (All Users)</button>
                     </div>
                 </div>
             </div>
@@ -139,41 +175,53 @@
                                     <td>{{ user.team_name }}</td>
                                     <td id="roster_size_{{ user.draft_order }}">{{ user.current_roster_size }}</td>
                                     <td id="rfas_remaining_{{ user.draft_order }}">{{ user.rfas_remaining }}</td>
-                                    <td id="budget_remaining_{{ user.draft_order }}"><strong>${{ user.budget_remaining }}</strong></td>
+                                    <td id="budget_remaining_{{ user.draft_order }}"><strong>${{ user.budget_remaining
+                                            }}</strong></td>
                                     <td>
                                         <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="pass_available_toggle_{{ user.draft_order }}" 
-                                                {% if user.pass_available %}checked{% endif %} 
+                                            <input class="form-check-input" type="checkbox" role="switch"
+                                                id="pass_available_toggle_{{ user.draft_order }}" {% if
+                                                user.pass_available %}checked{% endif %}
                                                 onchange="togglePassAvailable('{{ user.team_name|escapejs }}', this.checked)">
                                         </div>
                                     </td>
                                     <td id="bidding_status_col_{{ user.draft_order }}">
                                         {% if not user.still_in_auction or user.dropped_out_of_bid_early %}
-                                            <span class="badge bg-danger mb-1">Dropped Out</span><br>
-                                            <button class="btn btn-xs btn-outline-success py-0 px-1" style="font-size: 0.75rem;" onclick="undropoutBidding('{{ user.team_name|escapejs }}')">Un-drop Out</button>
+                                        <span class="badge bg-danger mb-1">Dropped Out</span><br>
+                                        <button class="btn btn-xs btn-outline-success py-0 px-1"
+                                            style="font-size: 0.75rem;"
+                                            onclick="undropoutBidding('{{ user.team_name|escapejs }}')">Un-drop
+                                            Out</button>
                                         {% else %}
-                                            <span class="badge bg-success">Active</span>
+                                        <span class="badge bg-success">Active</span>
                                         {% endif %}
                                     </td>
                                     <td id="selection_status_col_{{ user.draft_order }}">
                                         {% if user.dropped_out_of_selection %}
-                                            <span class="badge bg-danger mb-1">Dropped Out</span><br>
-                                            <button class="btn btn-xs btn-outline-success py-0 px-1" style="font-size: 0.75rem;" onclick="undropoutSelection('{{ user.team_name|escapejs }}')">Un-drop Out</button>
+                                        <span class="badge bg-danger mb-1">Dropped Out</span><br>
+                                        <button class="btn btn-xs btn-outline-success py-0 px-1"
+                                            style="font-size: 0.75rem;"
+                                            onclick="undropoutSelection('{{ user.team_name|escapejs }}')">Un-drop
+                                            Out</button>
                                         {% else %}
-                                            <span class="badge bg-success">Active</span>
+                                        <span class="badge bg-success">Active</span>
                                         {% endif %}
                                     </td>
                                     <td>
                                         <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="bm_toggle_{{ user.draft_order }}" 
-                                                {% if user.bathroom_mode_enabled %}checked{% endif %} 
+                                            <input class="form-check-input" type="checkbox" role="switch"
+                                                id="bm_toggle_{{ user.draft_order }}" {% if user.bathroom_mode_enabled
+                                                %}checked{% endif %}
                                                 onchange="toggleBathroomMode('{{ user.team_name|escapejs }}', this.checked)">
                                         </div>
                                     </td>
                                     <td>
                                         <div class="input-group input-group-sm" style="max-width: 180px;">
-                                            <input type="number" class="form-control" id="input_budget_{{ user.draft_order }}" value="{{ user.budget_remaining }}">
-                                            <button class="btn btn-outline-primary" type="button" onclick="updateBudget('{{ user.team_name|escapejs }}', '{{ user.draft_order }}')">Save</button>
+                                            <input type="number" class="form-control"
+                                                id="input_budget_{{ user.draft_order }}"
+                                                value="{{ user.budget_remaining }}">
+                                            <button class="btn btn-outline-primary" type="button"
+                                                onclick="updateBudget('{{ user.team_name|escapejs }}', '{{ user.draft_order }}')">Save</button>
                                         </div>
                                     </td>
                                 </tr>
@@ -189,12 +237,14 @@
 </div>
 
 <!-- Admin Action Confirmation Modal -->
-<div class="modal fade" id="admin_confirm_modal" tabindex="-1" aria-labelledby="adminConfirmModalLabel" aria-hidden="true">
+<div class="modal fade" id="admin_confirm_modal" tabindex="-1" aria-labelledby="adminConfirmModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-dark text-white">
                 <h5 class="modal-title" id="adminConfirmModalLabel">Confirm Action</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
             </div>
             <div class="modal-body" id="admin_confirm_modal_body">
                 Are you sure you want to perform this action?
@@ -224,8 +274,8 @@
         bsModal.show();
     }
 
-    $(document).ready(function() {
-        $("#admin_confirm_modal_btn").on("click", function() {
+    $(document).ready(function () {
+        $("#admin_confirm_modal_btn").on("click", function () {
             if (document.activeElement) {
                 document.activeElement.blur();
             }
@@ -241,11 +291,11 @@
         });
     });
 
-    socket.onopen = function(e) {
+    socket.onopen = function (e) {
         console.log("Admin WebSocket connection established");
     };
 
-    socket.onmessage = function(e) {
+    socket.onmessage = function (e) {
         var data = JSON.parse(e.data);
         console.log("Admin WebSocket message received:", data);
 
@@ -267,7 +317,7 @@
                 } else {
                     $("#last_drafted_info").html("<em>No players drafted yet.</em>");
                 }
-            } catch(err) {
+            } catch (err) {
                 console.error("Error parsing last drafted data:", err);
             }
         }
@@ -280,7 +330,7 @@
 
             $("#admin_current_phase").text(phase.toUpperCase());
             $("#admin_active_bidder").text(manager.active_bidder);
-            
+
             if (hasPlayer) {
                 $("#admin_current_player").text(manager.player_for_auction_name + " (" + manager.player_for_auction_team + " - " + manager.player_for_auction_position + ")");
             } else {
@@ -296,12 +346,12 @@
             var canSelectionAction = (phase === 'ufa') && (!hasPlayer);
             $("#btn_force_pass_selection").prop("disabled", !canSelectionAction);
             $("#btn_force_dropout_selection").prop("disabled", !canSelectionAction);
-            
+
             $("#admin_highest_bid").text(manager.highest_bid);
             $("#admin_highest_years").text(manager.highest_contract_years);
 
             var users = JSON.parse(data.auction_table_data);
-            users.forEach(function(u) {
+            users.forEach(function (u) {
                 var fields = u.fields;
                 $("#budget_remaining_" + fields.draft_order).html("<strong>$" + fields.budget_remaining + "</strong>");
                 $("#roster_size_" + fields.draft_order).text(fields.current_roster_size);
@@ -331,40 +381,40 @@
         }
     };
 
-    socket.onclose = function(e) {
+    socket.onclose = function (e) {
         console.log("Admin WebSocket connection closed");
     };
 
     function forcePassActive() {
-        socket.send(JSON.stringify({'admin_force_pass': true}));
+        socket.send(JSON.stringify({ 'admin_force_pass': true }));
     }
 
     function forceDropoutActive() {
-        socket.send(JSON.stringify({'admin_force_dropout': true}));
+        socket.send(JSON.stringify({ 'admin_force_dropout': true }));
     }
 
     function forcePassSelection() {
-        socket.send(JSON.stringify({'admin_pass_player_selection': true}));
+        socket.send(JSON.stringify({ 'admin_pass_player_selection': true }));
     }
 
     function forceDropoutSelection() {
-        socket.send(JSON.stringify({'admin_dropout_player_selection': true}));
+        socket.send(JSON.stringify({ 'admin_dropout_player_selection': true }));
     }
 
     function toggleBathroomMode(teamName, isChecked) {
-        socket.send(JSON.stringify({'admin_toggle_bathroom_mode': true, 'target_team': teamName, 'state': isChecked}));
+        socket.send(JSON.stringify({ 'admin_toggle_bathroom_mode': true, 'target_team': teamName, 'state': isChecked }));
     }
 
     function togglePassAvailable(teamName, isChecked) {
-        socket.send(JSON.stringify({'admin_toggle_pass_available': true, 'target_team': teamName, 'state': isChecked}));
+        socket.send(JSON.stringify({ 'admin_toggle_pass_available': true, 'target_team': teamName, 'state': isChecked }));
     }
 
     function undropoutBidding(teamName) {
-        socket.send(JSON.stringify({'admin_undropout_bidding': true, 'target_team': teamName}));
+        socket.send(JSON.stringify({ 'admin_undropout_bidding': true, 'target_team': teamName }));
     }
 
     function undropoutSelection(teamName) {
-        socket.send(JSON.stringify({'admin_undropout_selection': true, 'target_team': teamName}));
+        socket.send(JSON.stringify({ 'admin_undropout_selection': true, 'target_team': teamName }));
     }
 
     function startPhase() {
@@ -373,8 +423,8 @@
         showAdminConfirmModal(
             "Confirm Draft Phase Change",
             "Are you sure you want to change/initiate the draft phase to " + phase.toUpperCase() + " starting at bidder #" + startBidder + "?",
-            function() {
-                socket.send(JSON.stringify({'admin_start_phase': true, 'phase': phase, 'start_bidder': startBidder}));
+            function () {
+                socket.send(JSON.stringify({ 'admin_start_phase': true, 'phase': phase, 'start_bidder': startBidder }));
             }
         );
     }
@@ -383,33 +433,33 @@
         showAdminConfirmModal(
             "Confirm Undo Draft",
             "Are you sure you want to undo the last drafted player? This will refund their budget and restore player status.",
-            function() {
-                socket.send(JSON.stringify({'admin_undo_draft': true}));
+            function () {
+                socket.send(JSON.stringify({ 'admin_undo_draft': true }));
             }
         );
     }
 
     function resyncRosters() {
-        socket.send(JSON.stringify({'admin_resync_roster': true}));
+        socket.send(JSON.stringify({ 'admin_resync_roster': true }));
     }
 
     function refreshTableAll() {
-        socket.send(JSON.stringify({'refresh': true, 'target': 'all'}));
+        socket.send(JSON.stringify({ 'refresh': true, 'target': 'all' }));
     }
 
     function forceReloadAll() {
         showAdminConfirmModal(
             "Confirm Force Reload",
             "Are you sure you want to force ALL connected users to reload their webpage?",
-            function() {
-                socket.send(JSON.stringify({'admin_force_reload': true}));
+            function () {
+                socket.send(JSON.stringify({ 'admin_force_reload': true }));
             }
         );
     }
 
     function updateBudget(teamName, draftOrder) {
         var newBudget = $("#input_budget_" + draftOrder).val();
-        socket.send(JSON.stringify({'admin_update_budget': true, 'target_team': teamName, 'new_budget': newBudget}));
+        socket.send(JSON.stringify({ 'admin_update_budget': true, 'target_team': teamName, 'new_budget': newBudget }));
     }
 </script>
 {% endblock javascript %}
