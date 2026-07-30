@@ -63,50 +63,31 @@
     
     
 
-    {% block javascript %}
+    <!-- Global Tooltips & Popovers JS -->
     <script>
         $(document).ready(function(){
-            
-            // Showing and hiding tooltip with different speed
-            $(".tooltip-delay").tooltip({
-                //delay: {show: 1000, hide: 200}
-                
-            }); 
-
-            $(".tooltip-html").tooltip({
-                sanitize: false 
-                //filter: alpha(opacity=100)
-                //tooltip-opacity: 1 
+            // Event delegation for Bootstrap 5 popovers
+            $(document).on('mouseenter focus', '[data-bs-toggle="popover"]', function() {
+                try {
+                    var p = bootstrap.Popover.getOrCreateInstance(this, {
+                        html: true,
+                        sanitize: false,
+                        container: 'body'
+                    });
+                    p.show();
+                } catch(e) {}
             });
-            
-            $(".man-tooltip").tooltip({
-                sanitize: false 
-                //filter: alpha(opacity=100)
-                //tooltip-opacity: 1 
+            $(document).on('mouseleave blur', '[data-bs-toggle="popover"]', function() {
+                try {
+                    var p = bootstrap.Popover.getInstance(this);
+                    if (p) p.hide();
+                } catch(e) {}
             });
-
-
-            $('.man-tooltip').mouseenter(function(){
-
-                var this_tooltip = $(this)
-                this_tooltip.tooltip('show');
-                setTimeout(function(){
-                    this_tooltip.tooltip('hide');
-                }, 10000);
-            });
-            
-            $('.man-tooltip').mouseleave(function(){
-                $(this).tooltip('hide');
-            });
-
-            $(document).ready(function() {
-                $('[data-bs-toggle=tooltip]').tooltip();
-                $('[data-bs-toggle=man-tooltip]').tooltip();
-            }); 
         });
     </script>
-    
 
+    {% block javascript %}
+    
     {% endblock javascript %}
     
     </main>
