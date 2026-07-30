@@ -4,26 +4,30 @@
 {% include 'nav.html' %}
 
 {% endblock navbar %}
-{% if request.user.is_authenticated %}
 
 {% block content %}
+{% if request.user.is_authenticated %}
 
 
-<input type="hidden" id="current_auction_user_team" name="current_auction_user_team" value="{{ current_auction_user.team_name }}">
-<input type="hidden" id="current_auction_user_draft_order" name="current_auction_user_draft_order" value="{{ current_auction_user.draft_order }}">
-<input type="hidden" id="current_auction_user_budget_remaining" name="current_auction_user_budget_remaining" value="{{ current_auction_user.budget_remaining }}">
-<input type="hidden" id="current_auction_user_rfas_remaining" name="current_auction_user_rfas_remaining" value="{{ current_auction_user.rfas_remaining }}">
+<input type="hidden" id="current_auction_user_team" name="current_auction_user_team"
+    value="{{ current_auction_user.team_name }}">
+<input type="hidden" id="current_auction_user_draft_order" name="current_auction_user_draft_order"
+    value="{{ current_auction_user.draft_order }}">
+<input type="hidden" id="current_auction_user_budget_remaining" name="current_auction_user_budget_remaining"
+    value="{{ current_auction_user.budget_remaining }}">
+<input type="hidden" id="current_auction_user_rfas_remaining" name="current_auction_user_rfas_remaining"
+    value="{{ current_auction_user.rfas_remaining }}">
 
 
 <div class="container">
     <div class="row mt-3 justify-content-center">
         <div class="col-6">
-            <div class="card bg-light" >
+            <div class="card bg-light">
                 <div class="text-center">
                     {% if current_auction_user.team_name %}
-                        <h1 class="py-0">{{ current_auction_user.team_name }}</h1>
+                    <h1 class="py-0">{{ current_auction_user.team_name }}</h1>
                     {% else %}
-                        <h1 class="py-0" style="color:red">ADMIN: {{ request.user.username }}</h1>
+                    <h1 class="py-0" style="color:red">ADMIN: {{ request.user.username }}</h1>
                     {% endif %}
                 </div>
             </div>
@@ -34,7 +38,8 @@
 
 <div class="container">
     <div class="d-flex flex-row mt-3 justify-content-center flex-wrap">
-        <div class="mx-2 align-items-start mb-2 {% if not current_auction_manager.player_for_auction_name or current_auction_manager.player_for_auction_name == '' or current_auction_manager.player_for_auction_name == 'None' or current_auction_manager.auction_type|lower == 'rookie' %}d-none{% else %}d-flex{% endif %}" id="current_player_card_container">
+        <div class="mx-2 align-items-start mb-2 {% if not current_auction_manager.player_for_auction_name or current_auction_manager.player_for_auction_name == '' or current_auction_manager.player_for_auction_name == 'None' or current_auction_manager.auction_type|lower == 'rookie' %}d-none{% else %}d-flex{% endif %}"
+            id="current_player_card_container">
             <div class="card">
                 <div class="card-header">
                     <span><strong>Current Player for Auction</strong></span>
@@ -161,7 +166,8 @@
                         <span><strong>Auction Table</strong></span>
                         <span>
                             <span class="container">
-                                <span  class="fa-layers fa-fw man-tooltip" data-bs-toggle="man-tooltip" data-bs-html="true" title="
+                                <span class="fa-layers fa-fw man-tooltip" data-bs-toggle="man-tooltip"
+                                    data-bs-html="true" title="
                                 <div class='container mt-2'>
                                     <div class='row'>
                                         <div>
@@ -191,20 +197,21 @@
                                     </div>
                                 </div>
                                 ">
-                                <!-- for later maybe? -->
-                                <!-- <tr style='opacity:0.8'>
+                                    <!-- for later maybe? -->
+                                    <!-- <tr style='opacity:0.8'>
                                     <td class='table-secondary text-center' style='background-color:rgb(139, 69, 19)'><strong>In the Bathroom</strong></td>
                                 </tr> -->
-                                <i  class="fa-solid fa-circle-question fa-lg" style="color:rgb(243, 156, 18)"></i>
+                                    <i class="fa-solid fa-circle-question fa-lg" style="color:rgb(243, 156, 18)"></i>
                                 </span>
                             </span>
                         </span>
                     </div>
-                    
+
                 </span>
                 <div class="card-body">
                     <div class="container my-3">
-                        <table class="table table-bordered" id="auction_table" style="border-radius: 5px;overflow: hidden;">
+                        <table class="table table-bordered" id="auction_table"
+                            style="border-radius: 5px;overflow: hidden;">
                             <thead class="table-secondary">
                                 <tr class="text-center">
                                     <th>Draft Order</th>
@@ -235,6 +242,10 @@
     {% include 'auction_table/auction_player_search.html' %}
 </div>
 
+<div class="container">
+    {% include 'auction_table/roster_section.html' %}
+</div>
+
 {% if request.user.is_staff %}
 <div class="container" id="old_admin_panel_container" style="display: none !important;">
     {% include 'auction_table/auction_admin.html' %}
@@ -242,77 +253,89 @@
 {% endif %}
 
 <div class="toast-container position-fixed top-0 start-0 p-3 my-5" style="z-index: 98 !important;">
-    <div class="toast" id="rfa_owner_match_request_1_toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+    <div class="toast" id="rfa_owner_match_request_1_toast" role="alert" aria-live="assertive" aria-atomic="true"
+        data-bs-autohide="false">
         <div class="toast-header">
             <strong class="me-auto">RFA Match</strong>
-          </div>
+        </div>
         <div class="toast-body">
             <div class="justify-content-center my-2">
-            <div class="card" >
-                <div class="card-header">
-                    <span><strong>Auction Info</strong></span>
+                <div class="card">
+                    <div class="card-header">
+                        <span><strong>Auction Info</strong></span>
+                    </div>
+                    <table class="table mb-0">
+                        <thead>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row"></th>
+                                <td><strong>Currently Winning Bid</strong></td>
+                                <td class="current_winning_bid_team_toast"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row"></th>
+                                <td><strong>Current Highest Bid</strong></td>
+                                <td class="current_highest_bid_toast"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row"></th>
+                                <td><strong>Current Contract Years</strong></td>
+                                <td class="current_contract_years_toast"></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <table class="table mb-0">
-                    <thead>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row"></th>
-                            <td><strong>Currently Winning Bid</strong></td>
-                            <td class="current_winning_bid_team_toast"></td>
-                        </tr>
-                        <tr>
-                            <th scope="row"></th>
-                            <td><strong>Current Highest Bid</strong></td>
-                            <td class="current_highest_bid_toast"></td>
-                        </tr>
-                        <tr>
-                            <th scope="row"></th>
-                            <td><strong>Current Contract Years</strong></td>
-                            <td class="current_contract_years_toast"></td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
-        </div>
-        The RFA auction bidding has finished. Would you like to match the highest bid?
-        <div class="mt-2 pt-2 border-top d-flex justify-content-between">
-            <button type="button" class="btn btn-primary btn-sm" id="rfa_owner_confirm_match_1_match" onclick="send_auction_results_response('rfa_owner_match_1_matched')" data-bs-dismiss="toast">Match</button>
-            <button type="button" class="btn btn-secondary btn-sm" id="rfa_owner_confirm_match_1_reject" onclick="send_auction_results_response('rfa_owner_match_1_rejected')" data-bs-dismiss="toast">Reject</button>
-        </div>
+            The RFA auction bidding has finished. Would you like to match the highest bid?
+            <div class="mt-2 pt-2 border-top d-flex justify-content-between">
+                <button type="button" class="btn btn-primary btn-sm" id="rfa_owner_confirm_match_1_match"
+                    onclick="send_auction_results_response('rfa_owner_match_1_matched')"
+                    data-bs-dismiss="toast">Match</button>
+                <button type="button" class="btn btn-secondary btn-sm" id="rfa_owner_confirm_match_1_reject"
+                    onclick="send_auction_results_response('rfa_owner_match_1_rejected')"
+                    data-bs-dismiss="toast">Reject</button>
+            </div>
         </div>
     </div>
 </div>
 
 <div class="toast-container position-fixed top-0 start-0 p-3 my-5" style="z-index: 98 !important;">
-    <div class="toast" id="no_bid_last_auction_user_toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+    <div class="toast" id="no_bid_last_auction_user_toast" role="alert" aria-live="assertive" aria-atomic="true"
+        data-bs-autohide="false">
         <div class="toast-header">
             <strong class="me-auto">Stay in Auction?</strong>
-          </div>
+        </div>
         <div class="toast-body">
-        You are the last team in the auction and no one has bid. Would you like to make a bid?
-        <div class="row justify-content-center">  
-            <div class="input-group my-4" role="group" style="width: 7rem;"> 
-                <input type="number" min="1" step="1" id="no_bid_raise_bid" class="form-control" placeholder="Raise Bid" >
-                <!-- <button id="submit_rfa_raise" class="btn btn-success" type="button" >Submit</button> -->
+            You are the last team in the auction and no one has bid. Would you like to make a bid?
+            <div class="row justify-content-center">
+                <div class="input-group my-4" role="group" style="width: 7rem;">
+                    <input type="number" min="1" step="1" id="no_bid_raise_bid" class="form-control"
+                        placeholder="Raise Bid">
+                    <!-- <button id="submit_rfa_raise" class="btn btn-success" type="button" >Submit</button> -->
+                </div>
             </div>
-        </div>
-        <div class="mt-2 pt-2 border-top d-flex justify-content-between">
-            <button type="button" class="btn btn-success btn-sm" id="no_bid_winner_raise" onclick="send_auction_results_response('rfa_no_bid_winner_raised')" data-bs-dismiss="toast">Raise</button>
-            <button type="button" class="btn btn-danger btn-sm" id="no_bid_winner_drop_out" onclick="send_auction_results_response('rfa_bid_winner_dropped_out')" data-bs-dismiss="toast">Drop Out</button>
-        </div>
+            <div class="mt-2 pt-2 border-top d-flex justify-content-between">
+                <button type="button" class="btn btn-success btn-sm" id="no_bid_winner_raise"
+                    onclick="send_auction_results_response('rfa_no_bid_winner_raised')"
+                    data-bs-dismiss="toast">Raise</button>
+                <button type="button" class="btn btn-danger btn-sm" id="no_bid_winner_drop_out"
+                    onclick="send_auction_results_response('rfa_bid_winner_dropped_out')" data-bs-dismiss="toast">Drop
+                    Out</button>
+            </div>
         </div>
     </div>
 </div>
 
 <div class="toast-container position-fixed top-0 start-0 p-3 my-5" style="z-index: 98 !important;">
-    <div class="toast" id="rfa_owner_match_request_2_toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+    <div class="toast" id="rfa_owner_match_request_2_toast" role="alert" aria-live="assertive" aria-atomic="true"
+        data-bs-autohide="false">
         <div class="toast-header">
             <strong class="me-auto">RFA Raise Match</strong>
-          </div>
+        </div>
         <div class="toast-body">
             <div class="justify-content-center my-2">
-                <div class="card" >
+                <div class="card">
                     <div class="card-header">
                         <span><strong>Auction Info</strong></span>
                     </div>
@@ -339,23 +362,28 @@
                     </table>
                 </div>
             </div>
-        The RFA auction winner has raised. Do you match?
-        <div class="mt-2 pt-2 border-top d-flex justify-content-between">
-            <button type="button" class="btn btn-primary btn-sm" id="rfa_owner_confirm_match_2_match" onclick="send_auction_results_response('rfa_owner_match_2_matched')" data-bs-dismiss="toast">Match</button>
-            <button type="button" class="btn btn-secondary btn-sm" id="rfa_owner_confirm_match_2_reject" onclick="send_auction_results_response('rfa_owner_match_2_rejected')" data-bs-dismiss="toast">Reject</button>
-        </div>
+            The RFA auction winner has raised. Do you match?
+            <div class="mt-2 pt-2 border-top d-flex justify-content-between">
+                <button type="button" class="btn btn-primary btn-sm" id="rfa_owner_confirm_match_2_match"
+                    onclick="send_auction_results_response('rfa_owner_match_2_matched')"
+                    data-bs-dismiss="toast">Match</button>
+                <button type="button" class="btn btn-secondary btn-sm" id="rfa_owner_confirm_match_2_reject"
+                    onclick="send_auction_results_response('rfa_owner_match_2_rejected')"
+                    data-bs-dismiss="toast">Reject</button>
+            </div>
         </div>
     </div>
 </div>
 
 <div class="toast-container position-fixed top-0 start-0 p-3 my-5" style="z-index: 98 !important;">
-    <div class="toast" id="rfa_bid_winner_offer_raise_toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+    <div class="toast" id="rfa_bid_winner_offer_raise_toast" role="alert" aria-live="assertive" aria-atomic="true"
+        data-bs-autohide="false">
         <div class="toast-header">
             <strong class="me-auto">RFA Raise</strong>
-          </div>
+        </div>
         <div class="toast-body">
             <div class="justify-content-center my-2">
-                <div class="card" >
+                <div class="card">
                     <div class="card-header">
                         <span><strong>Auction Info</strong></span>
                     </div>
@@ -382,29 +410,35 @@
                     </table>
                 </div>
             </div>
-        <span>The RFA owner has matched. Would you like to raise your bid?</span>
-        <div class="row justify-content-center">  
-            <div class="input-group my-4" role="group" style="width: 7rem;"> 
-                <input type="number" min="1" step="1" id="rfa_raise_bid" class="form-control" placeholder="Raise Bid" >
-                <!-- <button id="submit_rfa_raise" class="btn btn-success" type="button" >Submit</button> -->
+            <span>The RFA owner has matched. Would you like to raise your bid?</span>
+            <div class="row justify-content-center">
+                <div class="input-group my-4" role="group" style="width: 7rem;">
+                    <input type="number" min="1" step="1" id="rfa_raise_bid" class="form-control"
+                        placeholder="Raise Bid">
+                    <!-- <button id="submit_rfa_raise" class="btn btn-success" type="button" >Submit</button> -->
+                </div>
             </div>
-        </div>
-        <div class="mt-2 pt-2 border-top d-flex justify-content-between">
-            <button type="button" class="btn btn-success btn-sm" id="rfa_winner_raise" onclick="send_auction_results_response('rfa_bid_winner_raised')" data-bs-dismiss="toast">Raise</button>
-            <button type="button" class="btn btn-danger btn-sm" id="rfa_winner_drop_out" onclick="send_auction_results_response('rfa_bid_winner_dropped_out')" data-bs-dismiss="toast">Drop Out</button>
-        </div>
+            <div class="mt-2 pt-2 border-top d-flex justify-content-between">
+                <button type="button" class="btn btn-success btn-sm" id="rfa_winner_raise"
+                    onclick="send_auction_results_response('rfa_bid_winner_raised')"
+                    data-bs-dismiss="toast">Raise</button>
+                <button type="button" class="btn btn-danger btn-sm" id="rfa_winner_drop_out"
+                    onclick="send_auction_results_response('rfa_bid_winner_dropped_out')" data-bs-dismiss="toast">Drop
+                    Out</button>
+            </div>
         </div>
     </div>
 </div>
 
-<div class="toast-container position-fixed top-0 start-0 p-3 my-5" style="z-index: 98 !important;" >
-    <div class="toast" id="rfa_end_waiting_toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+<div class="toast-container position-fixed top-0 start-0 p-3 my-5" style="z-index: 98 !important;">
+    <div class="toast" id="rfa_end_waiting_toast" role="alert" aria-live="assertive" aria-atomic="true"
+        data-bs-autohide="false">
         <div class="toast-header">
             <!-- <img src="..." class="rounded me-2" alt="..."> -->
             <strong class="me-auto">Waiting for RFA Action</strong>
             <!-- <small>11 mins ago</small> -->
             <!-- <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button> -->
-          </div>
+        </div>
         <div class="toast-body">
             <span id="rfa_end_waiting_toast_text">Waiting for winning team to comfirm the auction results...</span>
         </div>
@@ -412,54 +446,58 @@
 </div>
 
 <div class="toast-container position-fixed top-0 start-0 p-3 my-5" style="z-index: 98 !important;">
-    <div class="toast" id="ufa_end_confirm_toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+    <div class="toast" id="ufa_end_confirm_toast" role="alert" aria-live="assertive" aria-atomic="true"
+        data-bs-autohide="false">
         <div class="toast-header">
             <!-- <img src="..." class="rounded me-2" alt="..."> -->
             <strong class="me-auto">UFA Confirmation</strong>
             <!-- <small>11 mins ago</small> -->
             <!-- <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button> -->
-          </div>
-        <div class="toast-body">
-        <span>Congratulations! You won the UFA auction. Please confirm the results:</span>
-        <table class="table mt-2">
-            <thead>
-                <tr class="text-center">
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="table-light">
-                    <th scope="row"></th>
-                    <td><strong>Player Name</strong></td>
-                    <td id="winning_player_name"></td>
-                </tr>
-                <tr class="table-light">
-                    <th scope="row"></th>
-                    <td><strong>Contract Years</strong></td>
-                    <td id="winning_contract_years"></td>
-                </tr>
-                <tr class="table-light">
-                    <th scope="row"></th>
-                    <td><strong>Contract Cost</strong></td>
-                    <td id="winning_contract_cost"></td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="mt-2 pt-2 border-top d-flex justify-content-between">
-            <button type="button" class="btn btn-primary btn-sm" id="ufa_confirm_button" onclick="send_auction_results_response('ufa_confirmed')" data-bs-dismiss="toast">Confirm</button>
-            <button type="button" class="btn btn-secondary btn-sm" id="ufa_reject_button" onclick="send_auction_results_response('ufa_disputed')" data-bs-dismiss="toast" >Dispute</button>
         </div>
+        <div class="toast-body">
+            <span>Congratulations! You won the UFA auction. Please confirm the results:</span>
+            <table class="table mt-2">
+                <thead>
+                    <tr class="text-center">
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-light">
+                        <th scope="row"></th>
+                        <td><strong>Player Name</strong></td>
+                        <td id="winning_player_name"></td>
+                    </tr>
+                    <tr class="table-light">
+                        <th scope="row"></th>
+                        <td><strong>Contract Years</strong></td>
+                        <td id="winning_contract_years"></td>
+                    </tr>
+                    <tr class="table-light">
+                        <th scope="row"></th>
+                        <td><strong>Contract Cost</strong></td>
+                        <td id="winning_contract_cost"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="mt-2 pt-2 border-top d-flex justify-content-between">
+                <button type="button" class="btn btn-primary btn-sm" id="ufa_confirm_button"
+                    onclick="send_auction_results_response('ufa_confirmed')" data-bs-dismiss="toast">Confirm</button>
+                <button type="button" class="btn btn-secondary btn-sm" id="ufa_reject_button"
+                    onclick="send_auction_results_response('ufa_disputed')" data-bs-dismiss="toast">Dispute</button>
+            </div>
         </div>
     </div>
 </div>
 
 <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3 my-5" style="z-index: 98 !important;">
-    <div class="toast" id="ufa_end_waiting_toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+    <div class="toast" id="ufa_end_waiting_toast" role="alert" aria-live="assertive" aria-atomic="true"
+        data-bs-autohide="false">
         <div class="toast-header">
             <!-- <img src="..." class="rounded me-2" alt="..."> -->
             <strong class="me-auto">Waiting for Confirmation</strong>
             <!-- <small>11 mins ago</small> -->
             <!-- <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button> -->
-          </div>
+        </div>
         <div class="toast-body">
             <span id="ufa_end_waiting_toast_text">Waiting for winning team to comfirm the auction results...</span>
         </div>
@@ -477,7 +515,7 @@
     left:0;
     width: 100%;
     height: 100%;
-    background:rgba(255,255,255,0.5);" >
+    background:rgba(255,255,255,0.5);">
 </div>
 
 <div class="card blink-red-bg" id="disconnected_banner" style="
@@ -486,7 +524,7 @@
     position:fixed;
     top:50%;
     left:50%;
-    transform:translate(-50%, -50%);" >
+    transform:translate(-50%, -50%);">
     <div class="text-center">
         <h3 class="px-5">SERVER DISCONNECTED...REFRESHING...</h3>
     </div>
@@ -495,17 +533,19 @@
 
 
 
-<div class="offcanvas offcanvas-bottom" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="drafted_list_offcanvas" aria-labelledby="drafted_list_offcanvas_label">
+<div class="offcanvas offcanvas-bottom" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
+    id="drafted_list_offcanvas" aria-labelledby="drafted_list_offcanvas_label">
     <div class="offcanvas-header" style='background-color:rgb(220, 220, 220)'>
-      <h5 class="offcanvas-title" id="drafted_list_offcanvas_label"><strong>Draft History</strong></h5>
-      <button type="button" class="btn-close text-reset" onclick="close_draft_history()" aria-label="Close"></button>
+        <h5 class="offcanvas-title" id="drafted_list_offcanvas_label"><strong>Draft History</strong></h5>
+        <button type="button" class="btn-close text-reset" onclick="close_draft_history()" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="container">
-                        <table class="table table-bordered" id="drafted_list_table" style="border-radius: 5px;overflow: hidden;">
+                        <table class="table table-bordered" id="drafted_list_table"
+                            style="border-radius: 5px;overflow: hidden;">
                             <thead class="table-secondary">
                                 <tr class="text-center">
                                     <th>Player Name</th>
@@ -525,1182 +565,1301 @@
             </div>
         </div>
     </div>
-<!-- Winner Celebration Modal -->
-<div class="modal fade" id="winner_celebration_modal" tabindex="-1" aria-labelledby="winnerCelebrationModalLabel" aria-hidden="true" style="z-index: 1060 !important;">
-    <div class="modal-dialog modal-dialog-centered" style="z-index: 1065 !important;">
-        <div class="modal-content border-warning shadow-lg text-center" style="border-width: 3px; background: linear-gradient(135deg, #ffffff 0%, #fffde7 100%);">
-            <div class="modal-header bg-warning text-dark justify-content-center border-0 py-3">
-                <h2 class="modal-title fw-bold m-0" id="winnerCelebrationModalLabel">🏆 WINNER! 🏆</h2>
-            </div>
-            <div class="modal-body py-4">
-                <h3 class="fw-bold text-primary mb-2" id="winner_modal_player_name"></h3>
-                <p class="text-muted fs-5 mb-3" id="winner_modal_team_pos"></p>
-                <hr class="my-3">
-                <div class="row text-center my-3">
-                    <div class="col-6 border-end">
-                        <small class="text-uppercase text-muted fw-bold d-block">Winning Team</small>
-                        <span class="fs-4 fw-bolder text-dark" id="winner_modal_winning_team"></span>
-                    </div>
-                    <div class="col-6">
-                        <small class="text-uppercase text-muted fw-bold d-block">Winning Bid</small>
-                        <span class="fs-4 fw-bolder text-success" id="winner_modal_bid_details"></span>
+    <!-- Winner Celebration Modal -->
+    <div class="modal fade" id="winner_celebration_modal" tabindex="-1" aria-labelledby="winnerCelebrationModalLabel"
+        aria-hidden="true" style="z-index: 1060 !important;">
+        <div class="modal-dialog modal-dialog-centered" style="z-index: 1065 !important;">
+            <div class="modal-content border-warning shadow-lg text-center"
+                style="border-width: 3px; background: linear-gradient(135deg, #ffffff 0%, #fffde7 100%);">
+                <div class="modal-header bg-warning text-dark justify-content-center border-0 py-3">
+                    <h2 class="modal-title fw-bold m-0" id="winnerCelebrationModalLabel">🏆 WINNER! 🏆</h2>
+                </div>
+                <div class="modal-body py-4">
+                    <h3 class="fw-bold text-primary mb-2" id="winner_modal_player_name"></h3>
+                    <p class="text-muted fs-5 mb-3" id="winner_modal_team_pos"></p>
+                    <hr class="my-3">
+                    <div class="row text-center my-3">
+                        <div class="col-6 border-end">
+                            <small class="text-uppercase text-muted fw-bold d-block">Winning Team</small>
+                            <span class="fs-4 fw-bolder text-dark" id="winner_modal_winning_team"></span>
+                        </div>
+                        <div class="col-6">
+                            <small class="text-uppercase text-muted fw-bold d-block">Winning Bid</small>
+                            <span class="fs-4 fw-bolder text-success" id="winner_modal_bid_details"></span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer justify-content-center border-0 pb-4">
-                <button type="button" class="btn btn-warning btn-lg fw-bold px-4 shadow-sm" data-bs-dismiss="modal">Close</button>
+                <div class="modal-footer justify-content-center border-0 pb-4">
+                    <button type="button" id="winner_celebration_close_btn" class="btn btn-warning btn-lg fw-bold px-4 shadow-sm"
+                        data-bs-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-{% endblock %}
+    {% else %}
+    <div class="container my-5 text-center">
+        <h3>Please <a href="/login">log in</a> to access the auction table.</h3>
+    </div>
+    {% endif %}
+    {% endblock %}
 
-{% block javascript %}
-<script>
-    window.last_seen_drafted_pk = parseInt("{{ last_drafted.pk|default:'0' }}") || 0;
-    window.last_seen_drafted_pk_initialized = false;
-    
-    //console.log("Current User: " + $("#current_auction_user_team").val())
-    
-    var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
-    var ws_url = ws_scheme + '://' + window.location.host + '/ws/auction_table/';
-    var socket = new WebSocket(ws_url);
-  
-    socket.onerror = function(error) {
-        console.error("Websocket error occurred: ", error);
-    };
+    {% block javascript %}
+    {% if request.user.is_authenticated %}
+    <script id="initial_rostered_players_json" type="application/json">
+[
+    {% for p in rostered_players %}
+    {
+        "fields": {
+            "full_name": "{{ p.full_name|escapejs }}",
+            "position": "{{ p.position|escapejs }}",
+            "team": "{{ p.team|escapejs }}",
+            "bye": "{{ p.bye|default:'' }}",
+            "salary": {% if p.salary %}{{ p.salary }}{% else %}0{% endif %},
+            "final_year": {% if p.final_year %}{{ p.final_year }}{% else %}1{% endif %},
+            "drafted_by": "{{ p.drafted_by|escapejs }}"
+        }
+    }{% if not forloop.last %},{% endif %}
+    {% endfor %}
+]
+</script>
 
-    socket.onopen = function() {
-        console.log("Websocket connection done!");
-        socket.send(JSON.stringify({
-            'refresh': true,
-            'target': $("#current_auction_user_team").val()
-        }));
-    };
+    <script>
+        window.last_seen_drafted_pk = parseInt("{{ last_drafted.pk|default:'0' }}") || 0;
+        window.last_seen_drafted_pk_initialized = false;
 
-    function connect_websocket() {
-        //console.log("Attempting to connect to websocket: " + window.location.host)
-        //socket = new WebSocket('wss://' + window.location.host + '/ws/auction_table/');
-        console.log("Refreshing page to reconnect websocket")
-        location.reload()
-    }
+        $(document).ready(function () {
+            try {
+                var rawInitData = $("#initial_rostered_players_json").text();
+                if (rawInitData) {
+                    var initRostered = JSON.parse(rawInitData);
+                    update_team_rosters(initRostered);
+                }
+            } catch (err) {
+                console.error("Error loading initial rostered players:", err);
+            }
+        });
 
-    socket.onclose = function(e) {
-        console.error('Websocket closed unexpectedly');
-        console.error(e)
+        //console.log("Current User: " + $("#current_auction_user_team").val())
 
-        var this_user_cover_auction = document.getElementById('cover_auction');
-        $(this_user_cover_auction).show();
+        var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
+        var ws_url = ws_scheme + '://' + window.location.host + '/ws/auction_table/';
+        var socket = new WebSocket(ws_url);
 
-        var disconnected_banner = document.getElementById('disconnected_banner');
-        $(disconnected_banner).show();
+        socket.onerror = function (error) {
+            console.error("Websocket error occurred: ", error);
+        };
 
-        setTimeout(connect_websocket,3000)
+        socket.onopen = function () {
+            console.log("Websocket connection done!");
+            socket.send(JSON.stringify({
+                'refresh': true,
+                'target': $("#current_auction_user_team").val()
+            }));
+        };
 
-    //   if (socket.readyState == WebSocket.OPEN) {
-    //     setInterval(function() {
-    //       socket.send('Websocket Connected!!!');
-    //     }, 10000);
-    //   }
-    };
-    
-    $("#id_new_bid").focus();
+        function connect_websocket() {
+            //console.log("Attempting to connect to websocket: " + window.location.host)
+            //socket = new WebSocket('wss://' + window.location.host + '/ws/auction_table/');
+            console.log("Refreshing page to reconnect websocket")
+            location.reload()
+        }
 
-    function triggerThreeConfettiBursts() {
-        if (typeof confetti === 'function') {
-            confetti({
-                particleCount: 65,
-                angle: 60 + Math.floor(Math.random() * 30),
-                spread: 60,
-                origin: { x: 0.25, y: 0.5 },
-                zIndex: 2000
-            });
+        socket.onclose = function (e) {
+            console.error('Websocket closed unexpectedly');
+            console.error(e)
 
-            confetti({
-                particleCount: 65,
-                angle: 120 - Math.floor(Math.random() * 30),
-                spread: 60,
-                origin: { x: 0.75, y: 0.5 },
-                zIndex: 2000
-            });
+            var this_user_cover_auction = document.getElementById('cover_auction');
+            $(this_user_cover_auction).show();
 
-            setTimeout(function() {
+            var disconnected_banner = document.getElementById('disconnected_banner');
+            $(disconnected_banner).show();
+
+            setTimeout(connect_websocket, 3000)
+
+            //   if (socket.readyState == WebSocket.OPEN) {
+            //     setInterval(function() {
+            //       socket.send('Websocket Connected!!!');
+            //     }, 10000);
+            //   }
+        };
+
+        $("#id_new_bid").focus();
+
+        function triggerThreeConfettiBursts() {
+            if (typeof confetti === 'function') {
                 confetti({
-                    particleCount: 100,
-                    angle: 90,
-                    spread: 100,
-                    origin: { x: 0.5, y: 0.4 },
+                    particleCount: 65,
+                    angle: 60 + Math.floor(Math.random() * 30),
+                    spread: 60,
+                    origin: { x: 0.25, y: 0.5 },
                     zIndex: 2000
                 });
-            }, 200);
-        }
-    }
 
-    function showWinnerCelebrationModal(f) {
-        $("#winner_modal_player_name").text(f.full_name);
-        $("#winner_modal_team_pos").text(f.team + " - " + f.position);
-        $("#winner_modal_winning_team").text(f.team_drafted_by);
-        $("#winner_modal_bid_details").text("$" + f.contract_price + " (" + f.years_drafted + " yrs)");
+                confetti({
+                    particleCount: 65,
+                    angle: 120 - Math.floor(Math.random() * 30),
+                    spread: 60,
+                    origin: { x: 0.75, y: 0.5 },
+                    zIndex: 2000
+                });
 
-        var $modal = $("#winner_celebration_modal");
-        if ($modal.length) {
-            $modal.appendTo("body");
-            var winnerModal = bootstrap.Modal.getOrCreateInstance($modal[0]);
-            winnerModal.show();
-
-            triggerThreeConfettiBursts();
-
-            setTimeout(function() {
-                winnerModal.hide();
-            }, 10000);
-        }
-    }
-
-    socket.onmessage = function(e) {
-        var data = JSON.parse(e.data);
-
-        if (data.type == "force_page_reload") {
-            console.log("Force page reload received from admin");
-            location.reload();
-            return;
+                setTimeout(function () {
+                    confetti({
+                        particleCount: 100,
+                        angle: 90,
+                        spread: 100,
+                        origin: { x: 0.5, y: 0.4 },
+                        zIndex: 2000
+                    });
+                }, 200);
+            }
         }
 
-        console.log("WS Data Received: " + data.type)
-        if (data.type == "active_bidder_update") {
-            auction_table_data = JSON.parse(data.auction_table_data)
-            
-            //console.log("Auction Manager: ")
-            // console.log(data.auction_manager_data)
-            auction_manager_data = JSON.parse(data.auction_manager_data)
+        function showWinnerCelebrationModal(f) {
+            $("#winner_modal_player_name").text(f.full_name);
+            $("#winner_modal_team_pos").text(f.team + " - " + f.position);
+            $("#winner_modal_winning_team").text(f.team_drafted_by);
+            $("#winner_modal_bid_details").text("$" + f.contract_price + " (" + f.years_drafted + " yrs)");
 
-            if (data.last_drafted_data) {
-                try {
-                    var last_dp_list = JSON.parse(data.last_drafted_data);
-                    if (last_dp_list && last_dp_list.length > 0) {
-                        var f = last_dp_list[0].fields;
-                        var current_pk = last_dp_list[0].pk;
+            var $modal = $("#winner_celebration_modal");
+            if ($modal.length) {
+                $modal.appendTo("body");
+                var winnerModal = bootstrap.Modal.getOrCreateInstance($modal[0]);
+                winnerModal.show();
 
-                        $("#last_sold_name").text(f.full_name);
-                        $("#last_sold_team_pos").text(f.team + " - " + f.position);
-                        $("#last_sold_winning_team").text(f.team_drafted_by);
-                        $("#last_sold_price").text("$" + f.contract_price + " (" + f.years_drafted + " yrs)");
+                triggerThreeConfettiBursts();
 
-                        if (window.last_seen_drafted_pk_initialized) {
-                            if (current_pk > window.last_seen_drafted_pk) {
-                                showWinnerCelebrationModal(f);
+                setTimeout(function () {
+                    winnerModal.hide();
+                }, 10000);
+            }
+        }
+
+        socket.onmessage = function (e) {
+            var data = JSON.parse(e.data);
+
+            if (data.type == "force_page_reload") {
+                console.log("Force page reload received from admin");
+                location.reload();
+                return;
+            }
+
+            console.log("WS Data Received: " + data.type)
+            if (data.type == "active_bidder_update") {
+                auction_table_data = JSON.parse(data.auction_table_data)
+
+                //console.log("Auction Manager: ")
+                // console.log(data.auction_manager_data)
+                auction_manager_data = JSON.parse(data.auction_manager_data)
+
+                if (data.last_drafted_data) {
+                    try {
+                        var last_dp_list = JSON.parse(data.last_drafted_data);
+                        if (last_dp_list && last_dp_list.length > 0) {
+                            var f = last_dp_list[0].fields;
+                            var current_pk = last_dp_list[0].pk;
+
+                            $("#last_sold_name").text(f.full_name);
+                            $("#last_sold_team_pos").text(f.team + " - " + f.position);
+                            $("#last_sold_winning_team").text(f.team_drafted_by);
+                            $("#last_sold_price").text("$" + f.contract_price + " (" + f.years_drafted + " yrs)");
+
+                            if (window.last_seen_drafted_pk_initialized) {
+                                if (current_pk > window.last_seen_drafted_pk) {
+                                    showWinnerCelebrationModal(f);
+                                }
+                            } else {
+                                if (window.last_seen_drafted_pk !== 0 && current_pk > window.last_seen_drafted_pk) {
+                                    showWinnerCelebrationModal(f);
+                                } else if (window.last_seen_drafted_pk === 0 && current_pk > 0) {
+                                    showWinnerCelebrationModal(f);
+                                }
+                                window.last_seen_drafted_pk_initialized = true;
                             }
-                        } else {
-                            if (window.last_seen_drafted_pk !== 0 && current_pk > window.last_seen_drafted_pk) {
-                                showWinnerCelebrationModal(f);
-                            } else if (window.last_seen_drafted_pk === 0 && current_pk > 0) {
-                                showWinnerCelebrationModal(f);
-                            }
-                            window.last_seen_drafted_pk_initialized = true;
+                            window.last_seen_drafted_pk = current_pk;
                         }
-                        window.last_seen_drafted_pk = current_pk;
-                    } else {
-                        $("#last_sold_name").text("-");
-                        $("#last_sold_team_pos").text("-");
-                        $("#last_sold_winning_team").text("-");
-                        $("#last_sold_price").text("-");
-                        window.last_seen_drafted_pk = 0;
+                    } catch (err) {
+                        console.log("Error parsing last_drafted_data:", err);
                     }
-                } catch(err) {
-                    console.log("Error parsing last_drafted_data:", err);
+                }
+
+                if (data.all_rostered_players_data) {
+                    try {
+                        var rosteredPlayersArr = JSON.parse(data.all_rostered_players_data);
+                        update_team_rosters(rosteredPlayersArr);
+                    } catch (err) {
+                        console.log("Error parsing all_rostered_players_data:", err);
+                    }
+                }
+
+                try {
+                    user_data = JSON.parse(data.user_list)
+                } catch (err) {
+                    user_data = {}
+                    console.log(data.user_list)
+                }
+
+
+                if (data.update_target == $("#current_auction_user_team").val() || data.update_target == 'all') {
+                    update_auction_table(auction_table_data, auction_manager_data, user_data)
+                    request_draft_history()
+                }
+
+            } else if (data.type == "auction_end_confirmation") {
+                console.log("Received auction end confirmation: " + data.confirmation_step)
+                handle_auction_end_confirmations(data.confirmation_step, data.initiated_auction, data.auction_winner, data.winning_player_name, data.winning_contract_years, data.winning_contract_cost);
+
+            } else if (data.type == "draft_history_response") {
+                draft_history_data = JSON.parse(data.draft_history_data)
+                console.log("Received draft history response: " + data.team_requested)
+                if (data.team_requested == $("#current_auction_user_team").val()) {
+                    update_draft_history_table(draft_history_data, data.team_requested);
+                }
+
+
+            }
+        };
+
+        function close_draft_history() {
+            console.log("Closing draft history")
+            document.getElementById('draft_history_toggle').checked = false;
+            draft_history_toggled();
+        }
+
+        function handle_auction_end_confirmations(confirmation_type, initiated_auction, auction_winner, winning_player_name, winning_contract_years, winning_contract_cost) {
+            console.log("Handling auction end type: " + confirmation_type);
+            console.log("initiated_auction: " + initiated_auction)
+            console.log("auction_winner: " + auction_winner)
+
+            dispose_all_toasts();
+
+            if (confirmation_type == 'ufa_confirmation_request') {
+                show_ufa_end_confirmation_toast(auction_winner, winning_player_name, winning_contract_years, winning_contract_cost)
+            } else if (confirmation_type == 'ufa_auction_end') {
+                //hide_toast('ufa_end_waiting_toast')
+
+            } else if (confirmation_type == 'rfa_owner_match_request_1') {
+                show_rfa_owner_match_request_1_toast(initiated_auction)
+
+            } else if (confirmation_type == 'no_bid_last_auction_user') {
+                show_no_bid_last_auction_user_toast(initiated_auction, auction_winner)
+
+            } else if (confirmation_type == 'rfa_bid_winner_offer_raise') {
+                show_rfa_bid_winner_offer_raise_toast(initiated_auction, auction_winner)
+
+            } else if (confirmation_type == 'rfa_owner_match_request_2') {
+                show_rfa_owner_match_request_2_toast(initiated_auction)
+
+            } else if (confirmation_type == 'rfa_auction_end') {
+                //hide_toast('rfa_end_waiting_toast')
+            }
+
+        }
+
+        function show_ufa_end_confirmation_toast(auction_winner, winning_player_name, winning_contract_years, winning_contract_cost) {
+            console.log("Ending UFA showing toast")
+
+            if (auction_winner == $("#current_auction_user_team").val()) {
+                console.log(winning_player_name + "," + winning_contract_years + "," + winning_contract_cost);
+                $("#winning_player_name").text(winning_player_name)
+                $("#winning_contract_years").text(winning_contract_years)
+                $("#winning_contract_cost").text(winning_contract_cost)
+
+                var ufa_end_confirmation_toast = document.getElementById("ufa_end_confirm_toast");
+
+                var toast = new bootstrap.Toast(ufa_end_confirmation_toast)
+
+                //var winning_player_name_toast_field = document.getElementById('winning_player_name');
+
+                //winning_player_name_toast_field.innerText = current_bidder_object.fields.team_name
+
+                toast.show()
+            } else {
+                var ufa_end_waiting_toast = document.getElementById("ufa_end_waiting_toast");
+                var toast = new bootstrap.Toast(ufa_end_waiting_toast)
+
+                toast.show()
+            }
+
+        }
+
+        function populate_toast_fields(toastId) {
+            const toast = document.getElementById(toastId);
+            if (!toast) return;
+
+            toast.querySelector('.current_winning_bid_team_toast').innerText =
+                document.getElementById('current_winning_bid_team').innerText;
+
+            toast.querySelector('.current_highest_bid_toast').innerText =
+                document.getElementById('current_highest_bid').innerText;
+
+            toast.querySelector('.current_contract_years_toast').innerText =
+                document.getElementById('current_contract_years').innerText;
+        }
+
+        function show_rfa_bid_winner_offer_raise_toast(initiated_auction, auction_winner) {
+            console.log("Showing RFA bid winner raise toast")
+            //console.log("Initiated Auction: " + initiated_auction)
+            if (auction_winner == $("#current_auction_user_team").val()) {
+
+                //hide_toast("rfa_end_waiting_toast")
+
+                var rfa_bid_winner_offer_raise_toast = document.getElementById("rfa_bid_winner_offer_raise_toast");
+                populate_toast_fields('rfa_bid_winner_offer_raise_toast');
+                var toast = new bootstrap.Toast(rfa_bid_winner_offer_raise_toast)
+                toast.show()
+                $("#rfa_raise_bid").val(parseInt($("#current_highest_bid").text()) + 1);
+
+            } else if (initiated_auction == $("#current_auction_user_team").val()) {
+                $("#rfa_end_waiting_toast_text").text("Waiting for RFA bid winner to raise or drop out...")
+
+                var rfa_end_waiting_toast = document.getElementById("rfa_end_waiting_toast");
+                var toast = new bootstrap.Toast(rfa_end_waiting_toast)
+                toast.show()
+            } else {
+                $("#rfa_end_waiting_toast_text").text("Waiting for RFA bid winner to raise or drop out...")
+                var rfa_end_waiting_toast = document.getElementById("rfa_end_waiting_toast");
+                var toast = new bootstrap.Toast(rfa_end_waiting_toast)
+
+                toast.show()
+            }
+
+        }
+
+        function show_rfa_owner_match_request_1_toast(initiated_auction) {
+            console.log("Showing first RFA match toast")
+            console.log("Initiated Auction: " + initiated_auction)
+            if (initiated_auction == $("#current_auction_user_team").val()) {
+                hide_toast('rfa_end_waiting_toast')
+                var rfa_end_confirmation_toast = document.getElementById("rfa_owner_match_request_1_toast");
+                populate_toast_fields('rfa_owner_match_request_1_toast');
+                var toast = new bootstrap.Toast(rfa_end_confirmation_toast)
+                toast.show()
+            } else {
+                $("#rfa_end_waiting_toast_text").text("Waiting for RFA owner to match or reject the highest bid...")
+                var rfa_end_waiting_toast = document.getElementById("rfa_end_waiting_toast");
+                var toast = new bootstrap.Toast(rfa_end_waiting_toast)
+                toast.show()
+            }
+
+        }
+
+        function show_no_bid_last_auction_user_toast(initiated_auction, auction_winner) {
+            console.log("Showing no bid last user toast")
+            console.log("Initiated Auction: " + initiated_auction)
+            if (auction_winner == $("#current_auction_user_team").val()) {
+                var no_bid_last_auction_user_toast = document.getElementById("no_bid_last_auction_user_toast");
+                var toast = new bootstrap.Toast(no_bid_last_auction_user_toast)
+                toast.show()
+                $("#no_bid_raise_bid").val(parseInt($("#current_highest_bid").text()) + 1);
+            } else {
+                $("#rfa_end_waiting_toast_text").text("Waiting to see if last remaining team wants to bid...")
+
+                var rfa_end_waiting_toast = document.getElementById("rfa_end_waiting_toast");
+                var toast = new bootstrap.Toast(rfa_end_waiting_toast)
+
+                toast.show()
+            }
+
+        }
+
+        function show_rfa_owner_match_request_2_toast(initiated_auction) {
+            console.log("Showing second RFA match toast")
+            console.log("Initiated Auction: " + initiated_auction)
+            if (initiated_auction == $("#current_auction_user_team").val()) {
+
+                hide_toast("rfa_end_waiting_toast")
+
+                var rfa_end_confirmation_toast = document.getElementById("rfa_owner_match_request_2_toast");
+                populate_toast_fields('rfa_owner_match_request_2_toast');
+                var toast = new bootstrap.Toast(rfa_end_confirmation_toast)
+                toast.show()
+            } else {
+                $("#rfa_end_waiting_toast_text").text("Waiting for RFA owner to match or reject the raised bid...")
+                var rfa_end_waiting_toast = document.getElementById("rfa_end_waiting_toast");
+                var toast = new bootstrap.Toast(rfa_end_waiting_toast)
+
+                toast.show()
+            }
+
+        }
+
+        function hide_toast(toast_id) {
+            var toast_element = document.getElementById(toast_id);
+            if (toast_element) {
+                var toast = bootstrap.Toast.getInstance(toast_element);
+                if (toast) {
+                    toast.hide();
+                } else {
+                    $(toast_element).removeClass('show');
+                }
+            }
+        }
+
+        function send_auction_results_response(confirmation_type) {
+            console.log("Auction Results Confirmed")
+
+            confirmation_data = {
+                'results_response': confirmation_type
+            };
+
+
+            if (confirmation_type == 'rfa_bid_winner_raised') {
+                confirmation_data["raise_bid"] = $("#rfa_raise_bid").val()
+            } else if (confirmation_type == 'rfa_no_bid_winner_raised') {
+                confirmation_data["raise_bid"] = $("#no_bid_raise_bid").val()
+                confirmation_data["bid_draft_order"] = $("#current_auction_user_draft_order").val()
+            }
+
+            socket.send(JSON.stringify(
+                confirmation_data
+            ));
+        }
+
+        function request_draft_history() {
+
+            // if this user doesnt have the draft history open, no need to request the data
+            if (!$("#draft_history_toggle").is(":checked")) {
+                return;
+            }
+
+            console.log("Requesting draft history")
+            socket.send(JSON.stringify({
+                'draft_history_request': true,
+                'team_requested': $("#current_auction_user_team").val()
+            }));
+
+        }
+
+        function update_draft_history_table(draft_history_data, team_requested) {
+
+            // if this user doesnt have the draft history open, no need to update the table
+            if (!$("#draft_history_toggle").is(":checked")) {
+                return;
+            }
+
+            var drafted_list_table = document.getElementById("drafted_list_table");
+
+            var num_rows = $("#drafted_list_table tr").length
+            //console.log("Current Table Rows: " + numAuctionRows)
+            //prevent attempt to delete data if only header is showing
+            if (num_rows > 1) {
+                for (var row_index = 1; row_index <= num_rows - 1; row_index++) {
+                    //console.log("Removing old row: " + row_index)
+                    drafted_list_table.deleteRow(1)
                 }
             }
 
-            try{
-                user_data = JSON.parse(data.user_list)
-            } catch (err) {
-                user_data = {}
-                console.log(data.user_list)
-            }
-            
+            table_columns_array = ["full_name", "position", "team", "team_drafted_by", "years_drafted", "contract_price", "draft_type"]
 
-            if(data.update_target == $("#current_auction_user_team").val() || data.update_target == 'all'){
-                update_auction_table(auction_table_data,auction_manager_data,user_data)
-                request_draft_history()
-            }
-            
-        } else if (data.type == "auction_end_confirmation"){ 
-            console.log("Received auction end confirmation: " + data.confirmation_step)
-            handle_auction_end_confirmations(data.confirmation_step,data.initiated_auction,data.auction_winner,data.winning_player_name,data.winning_contract_years,data.winning_contract_cost);
-                
-        } else if (data.type == "draft_history_response"){ 
-            draft_history_data = JSON.parse(data.draft_history_data)
-            console.log("Received draft history response: " + data.team_requested)
-            if(data.team_requested == $("#current_auction_user_team").val()){
-                update_draft_history_table(draft_history_data,data.team_requested);
-            }
-            
-                
-        }
-    };
+            console.log("Building draft history: " + draft_history_data.length)
 
-    function close_draft_history() {
-        console.log("Closing draft history")
-        document.getElementById('draft_history_toggle').checked = false;
-        draft_history_toggled();
-    }
+            //TODO: remove all rows and redraw with display name headers
 
-    function handle_auction_end_confirmations(confirmation_type,initiated_auction,auction_winner,winning_player_name,winning_contract_years,winning_contract_cost){
-        console.log("Handling auction end type: " + confirmation_type);
-        console.log("initiated_auction: " + initiated_auction)
-        console.log("auction_winner: " + auction_winner)
+            for (var i = 0; i < draft_history_data.length; i++) {
+                //iterate through rows
+                //console.log("Draft Order: " + draft_history_data[i].fields.draft_order )
+                var new_row_html = '<tr class="text-center">'
 
-        dispose_all_toasts();
+                for (var j = 0; j < table_columns_array.length; j++) {
+                    //iterate through columns
+                    var new_col_value = draft_history_data[i].fields[table_columns_array[j]]
+                    //console.log("    " + table_columns_array[j] + ": " + new_col_value )
 
-        if (confirmation_type == 'ufa_confirmation_request' ){
-            show_ufa_end_confirmation_toast(auction_winner,winning_player_name,winning_contract_years,winning_contract_cost)
-        } else if (confirmation_type == 'ufa_auction_end' ){
-            //hide_toast('ufa_end_waiting_toast')
+                    //add check and x for true and false things like pass available
+                    //if (new_col_value === true){
+                    //    new_col_value = '<i class="fa-solid fa-circle-check fa-xl" size="10x" style="color:rgb(0,176,29)"></i>'
+                    //} else if (new_col_value === false){
+                    //    new_col_value = '<i class="fa-solid fa-circle-xmark fa-xl" size="10x" style="color:rgb(207,20,43)"></i>'
+                    //} else if (table_columns_array[j] == "budget_remaining"){
+                    //    budget_including_rfas = new_col_value - draft_history_data[i].fields["rfas_remaining"]
+                    //    new_col_value = new_col_value + " (" + budget_including_rfas + ")"
+                    //} else if (table_columns_array[j] == "draft_order" && draft_history_data[i].fields["bathroom_mode_enabled"]){
+                    //    new_col_value = '<i class="fa-solid fa-toilet fa-lg me-2" style="color:rgb(13, 110, 253)" ></i>'
+                    //}
 
-        } else if (confirmation_type == 'rfa_owner_match_request_1' ){
-            show_rfa_owner_match_request_1_toast(initiated_auction)
+                    new_row_html = new_row_html + "<td>" + new_col_value + "</td>"
 
-        } else if (confirmation_type == 'no_bid_last_auction_user' ){
-            show_no_bid_last_auction_user_toast(initiated_auction,auction_winner)
+                }
+                new_row_html = new_row_html + "</tr>"
 
-        } else if (confirmation_type == 'rfa_bid_winner_offer_raise' ){
-            show_rfa_bid_winner_offer_raise_toast(initiated_auction,auction_winner)
-
-        } else if (confirmation_type == 'rfa_owner_match_request_2' ){
-            show_rfa_owner_match_request_2_toast(initiated_auction)
-
-        } else if (confirmation_type == 'rfa_auction_end' ){
-            //hide_toast('rfa_end_waiting_toast')
-        } 
-
-    }
-
-    function show_ufa_end_confirmation_toast(auction_winner,winning_player_name,winning_contract_years,winning_contract_cost) {
-        console.log("Ending UFA showing toast")
-
-        if(auction_winner == $("#current_auction_user_team").val()){
-            console.log(winning_player_name + ","+ winning_contract_years + "," + winning_contract_cost);
-            $("#winning_player_name").text(winning_player_name)
-            $("#winning_contract_years").text(winning_contract_years)
-            $("#winning_contract_cost").text(winning_contract_cost)
-            
-            var ufa_end_confirmation_toast = document.getElementById("ufa_end_confirm_toast");
-            
-            var toast = new bootstrap.Toast(ufa_end_confirmation_toast)
-            
-            //var winning_player_name_toast_field = document.getElementById('winning_player_name');
-
-            //winning_player_name_toast_field.innerText = current_bidder_object.fields.team_name
-
-            toast.show()
-        } else {
-            var ufa_end_waiting_toast = document.getElementById("ufa_end_waiting_toast");
-            var toast = new bootstrap.Toast(ufa_end_waiting_toast)
-
-            toast.show()
-        }
-        
-    }
-    
-    function populate_toast_fields(toastId) {
-        const toast = document.getElementById(toastId);
-        if (!toast) return;
-
-        toast.querySelector('.current_winning_bid_team_toast').innerText =
-            document.getElementById('current_winning_bid_team').innerText;
-
-        toast.querySelector('.current_highest_bid_toast').innerText =
-            document.getElementById('current_highest_bid').innerText;
-
-        toast.querySelector('.current_contract_years_toast').innerText =
-            document.getElementById('current_contract_years').innerText;
-    }
-
-    function show_rfa_bid_winner_offer_raise_toast(initiated_auction,auction_winner) {
-        console.log("Showing RFA bid winner raise toast")
-        //console.log("Initiated Auction: " + initiated_auction)
-        if(auction_winner == $("#current_auction_user_team").val()){
-            
-            //hide_toast("rfa_end_waiting_toast")
-
-            var rfa_bid_winner_offer_raise_toast = document.getElementById("rfa_bid_winner_offer_raise_toast");
-            populate_toast_fields('rfa_bid_winner_offer_raise_toast');
-            var toast = new bootstrap.Toast(rfa_bid_winner_offer_raise_toast)
-            toast.show()
-            $("#rfa_raise_bid").val( parseInt($("#current_highest_bid").text()) + 1 );
-            
-        } else if(initiated_auction == $("#current_auction_user_team").val()){
-            $("#rfa_end_waiting_toast_text").text("Waiting for RFA bid winner to raise or drop out...")
-
-            var rfa_end_waiting_toast = document.getElementById("rfa_end_waiting_toast");
-            var toast = new bootstrap.Toast(rfa_end_waiting_toast)
-            toast.show()
-        } else {
-            $("#rfa_end_waiting_toast_text").text("Waiting for RFA bid winner to raise or drop out...")
-            var rfa_end_waiting_toast = document.getElementById("rfa_end_waiting_toast");
-            var toast = new bootstrap.Toast(rfa_end_waiting_toast)
-
-            toast.show()
-        }
-        
-    }
-
-    function show_rfa_owner_match_request_1_toast(initiated_auction) {
-        console.log("Showing first RFA match toast")
-        console.log("Initiated Auction: " + initiated_auction)
-        if(initiated_auction == $("#current_auction_user_team").val()){
-            hide_toast('rfa_end_waiting_toast')
-            var rfa_end_confirmation_toast = document.getElementById("rfa_owner_match_request_1_toast");
-            populate_toast_fields('rfa_owner_match_request_1_toast');
-            var toast = new bootstrap.Toast(rfa_end_confirmation_toast)
-            toast.show()
-        } else {
-            $("#rfa_end_waiting_toast_text").text("Waiting for RFA owner to match or reject the highest bid...")
-            var rfa_end_waiting_toast = document.getElementById("rfa_end_waiting_toast");
-            var toast = new bootstrap.Toast(rfa_end_waiting_toast)
-            toast.show()
-        }
-        
-    }
-
-    function show_no_bid_last_auction_user_toast(initiated_auction,auction_winner) {
-        console.log("Showing no bid last user toast")
-        console.log("Initiated Auction: " + initiated_auction)
-        if(auction_winner == $("#current_auction_user_team").val()){
-            var no_bid_last_auction_user_toast = document.getElementById("no_bid_last_auction_user_toast");
-            var toast = new bootstrap.Toast(no_bid_last_auction_user_toast)
-            toast.show()
-            $("#no_bid_raise_bid").val( parseInt($("#current_highest_bid").text()) + 1 );
-        } else {
-            $("#rfa_end_waiting_toast_text").text("Waiting to see if last remaining team wants to bid...")
-            
-            var rfa_end_waiting_toast = document.getElementById("rfa_end_waiting_toast");
-            var toast = new bootstrap.Toast(rfa_end_waiting_toast)
-
-            toast.show()
-        }
-        
-    }
-
-    function show_rfa_owner_match_request_2_toast(initiated_auction) {
-        console.log("Showing second RFA match toast")
-        console.log("Initiated Auction: " + initiated_auction)
-        if(initiated_auction == $("#current_auction_user_team").val()){
-            
-            hide_toast("rfa_end_waiting_toast")
-            
-            var rfa_end_confirmation_toast = document.getElementById("rfa_owner_match_request_2_toast");
-            populate_toast_fields('rfa_owner_match_request_2_toast');
-            var toast = new bootstrap.Toast(rfa_end_confirmation_toast)
-            toast.show()
-        } else {
-            $("#rfa_end_waiting_toast_text").text("Waiting for RFA owner to match or reject the raised bid...")
-            var rfa_end_waiting_toast = document.getElementById("rfa_end_waiting_toast");
-            var toast = new bootstrap.Toast(rfa_end_waiting_toast)
-
-            toast.show()
-        }
-        
-    }
-
-    function hide_toast(toast_id) {
-        var toast_element = document.getElementById(toast_id);
-        if (toast_element) {
-            var toast = bootstrap.Toast.getInstance(toast_element);
-            if (toast) {
-                toast.hide();
-            } else {
-                $(toast_element).removeClass('show');
-            }
-        }
-    }
-
-    function send_auction_results_response(confirmation_type) {
-        console.log("Auction Results Confirmed")
-        
-        confirmation_data = {
-            'results_response' : confirmation_type
-        };
-
-        
-        if (confirmation_type == 'rfa_bid_winner_raised'){
-            confirmation_data["raise_bid"] = $("#rfa_raise_bid").val()
-        } else if (confirmation_type == 'rfa_no_bid_winner_raised'){
-            confirmation_data["raise_bid"] = $("#no_bid_raise_bid").val()
-            confirmation_data["bid_draft_order"] = $("#current_auction_user_draft_order").val()
-        }
-        
-        socket.send(JSON.stringify(
-            confirmation_data
-        ));
-    }
-
-    function request_draft_history() {
-
-        // if this user doesnt have the draft history open, no need to request the data
-        if ( ! $("#draft_history_toggle").is(":checked")){
-            return;
-        }
-
-        console.log("Requesting draft history")
-        socket.send(JSON.stringify({
-            'draft_history_request': true,
-            'team_requested':$("#current_auction_user_team").val()
-        }));
-
-    }
-
-    function update_draft_history_table(draft_history_data,team_requested) {
-
-        // if this user doesnt have the draft history open, no need to update the table
-        if ( ! $("#draft_history_toggle").is(":checked")){
-            return;
-        }
-
-        var drafted_list_table = document.getElementById("drafted_list_table");
-
-        var num_rows =  $("#drafted_list_table tr").length
-        //console.log("Current Table Rows: " + numAuctionRows)
-        //prevent attempt to delete data if only header is showing
-        if(num_rows > 1) {
-            for (var row_index = 1; row_index <= num_rows-1; row_index++) {
-                //console.log("Removing old row: " + row_index)
-                drafted_list_table.deleteRow(1)
-            }
-        }
-
-        table_columns_array = ["full_name", "position","team", "team_drafted_by", "years_drafted","contract_price", "draft_type"]
-
-        console.log("Building draft history: " + draft_history_data.length)
-
-        //TODO: remove all rows and redraw with display name headers
-
-        for (var i = 0; i < draft_history_data.length; i++) {
-            //iterate through rows
-            //console.log("Draft Order: " + draft_history_data[i].fields.draft_order )
-            var new_row_html = '<tr class="text-center">'
-
-            for (var j = 0; j < table_columns_array.length; j++) {
-                //iterate through columns
-                var new_col_value = draft_history_data[i].fields[table_columns_array[j]]
-                //console.log("    " + table_columns_array[j] + ": " + new_col_value )
-                
-                //add check and x for true and false things like pass available
-                //if (new_col_value === true){
-                //    new_col_value = '<i class="fa-solid fa-circle-check fa-xl" size="10x" style="color:rgb(0,176,29)"></i>'
-                //} else if (new_col_value === false){
-                //    new_col_value = '<i class="fa-solid fa-circle-xmark fa-xl" size="10x" style="color:rgb(207,20,43)"></i>'
-                //} else if (table_columns_array[j] == "budget_remaining"){
-                //    budget_including_rfas = new_col_value - draft_history_data[i].fields["rfas_remaining"]
-                //    new_col_value = new_col_value + " (" + budget_including_rfas + ")"
-                //} else if (table_columns_array[j] == "draft_order" && draft_history_data[i].fields["bathroom_mode_enabled"]){
-                //    new_col_value = '<i class="fa-solid fa-toilet fa-lg me-2" style="color:rgb(13, 110, 253)" ></i>'
-                //}
-
-                new_row_html = new_row_html +  "<td>" + new_col_value + "</td>"
+                $("#drafted_list_table tbody").append(new_row_html)
 
             }
-            new_row_html = new_row_html + "</tr>"
-
-            $("#drafted_list_table tbody").append(new_row_html)
-
-        }
-    }
-
-    function dispose_all_toasts() {
-        $(".toast.show").each(function() {
-            var toastInstance = bootstrap.Toast.getInstance(this);
-            if (toastInstance) {
-                console.log("Hiding toast:", toastInstance);
-                toastInstance.hide();
-            }
-            $(this).removeClass('show');
-        });
-    }
-
-    function update_auction_table(new_table_data,new_auction_manager_data,user_data) {
-        $(".man-tooltip").tooltip("hide");
-        
-        var auction_table = document.getElementById("auction_table");
-
-        var this_user_object = find_object_by_value(new_table_data,"team_name",$("#current_auction_user_team").val(),true);
-
-        if (this_user_object) {
-            //update the users current budget remaining
-            document.getElementById("current_auction_user_budget_remaining").value = (parseInt(this_user_object.fields.budget_remaining))
-            document.getElementById("current_auction_user_rfas_remaining").value = (parseInt(this_user_object.fields.rfas_remaining))
-        }
-        //update current bidder team display
-        var current_bidder_display = document.getElementById('current_bidder_team');
-        //console.log("current bidder index: " + new_auction_manager_data[0].fields.active_bidder)
-        var current_bidder_object = find_object_by_value(new_table_data,"draft_order",new_auction_manager_data[0].fields.active_bidder,true);
-        if (current_bidder_object){
-            current_bidder_display.innerText = current_bidder_object.fields.team_name
-        } else {
-            current_bidder_display.innerText = "Waiting for next auction..."
         }
 
-        //update current bidder team display
-        var current_winner_display = document.getElementById('current_winning_bid_team');
-        console.log("current winner index: " + new_auction_manager_data[0].fields.team_with_highest_bid)
-        var current_winner_object = find_object_by_value(new_table_data,"draft_order",new_auction_manager_data[0].fields.team_with_highest_bid,true);
-        //console.log("current winner object: " + current_winner_object.fields.team_name)
-        if (current_winner_object){
-            current_winner_display.innerText = current_winner_object.fields.team_name
-        } else {
-            current_winner_display.innerText = "Waiting for next auction..."
-        }
+        function update_team_rosters(rostered_players) {
+            if (!rostered_players) return;
 
-
-        //updated current highest bid display
-        var current_highest_bid_display = document.getElementById('current_highest_bid');
-        current_highest_bid_display.innerText = new_auction_manager_data[0].fields.highest_bid
-
-        var current_contract_years_display = document.getElementById('current_contract_years');
-        current_contract_years_display.innerText = new_auction_manager_data[0].fields.highest_contract_years;
-
-        var current_auction_type_display = document.getElementById('current_auction_type');
-        var current_auction_type_value = new_auction_manager_data[0].fields.auction_type;
-
-        document.getElementById("nfl_player_for_auction_name").innerText = new_auction_manager_data[0].fields.player_for_auction_name
-        document.getElementById("nfl_player_for_auction_team").innerText = new_auction_manager_data[0].fields.player_for_auction_team
-        document.getElementById("nfl_player_for_auction_position").innerText = new_auction_manager_data[0].fields.player_for_auction_position
-        document.getElementById("nfl_player_for_auction_bye").innerText = new_auction_manager_data[0].fields.player_for_auction_bye
-
-        var pName = new_auction_manager_data[0].fields.player_for_auction_name;
-        var pType = (current_auction_type_value || "").toLowerCase();
-
-        if (!pName || pName.trim() === "" || pName.trim() === "None" || pType === 'rookie') {
-            $("#current_player_card_container").addClass("d-none").removeClass("d-flex");
-        } else {
-            $("#current_player_card_container").removeClass("d-none").addClass("d-flex");
-        }
-
-        if (current_auction_type_value == 'rookie') {
-            current_auction_type_display.innerText = "Rookie";
-        } else if (current_auction_type_value == 'rfa') {
-            current_auction_type_display.innerText = "Restricted Free Agent";
-        } else if (current_auction_type_value == 'ufa') {
-            current_auction_type_display.innerText = "Unrestricted Free Agent";
-        }
-
-        
-        if ($("#player_search_value").val().trim() !== "") {
-            send_player_search();
-        }
-
-
-        ///This section enableds and disables bidding and selecting buttons but only needs to update if we have a team
-        if (this_user_object) {
-
-            var this_user_bid_button = document.getElementById('submit_new_bid_button');
-            var this_user_pass_button = document.getElementById('pass_button');
-            var this_user_drop_out_button = document.getElementById('drop_out_confirmation_button');
-            
-            var this_user_bid_input = document.getElementById('id_new_bid');
-            var this_user_submit_player_button = document.getElementById('submit_selected_player');
-            var this_user_submit_rfa_player_button = document.getElementById('select_rfa_player');
-            var this_user_drop_out_player_selection = document.getElementById('drop_out_player_selection');
-            var this_user_pass_player_selection = document.getElementById('pass_player_selection');
-            var this_contract_year_selected_radio = document.getElementById('contract_year_selected_radio');
-            var this_contract_year_selected_radio_disabled = document.getElementById('contract_year_selected_radio_disabled');
-
-            // console.log("Pass Available: " + this_user_object.fields.pass_available)
-            // console.log("Still In: " + this_user_object.fields.still_in_auction)
-            // console.log("Your Turn: " + this_user_object.fields.draft_order + " = " + new_auction_manager_data[0].fields.active_bidder)
-            
-            $("#id_new_bid").val(new_auction_manager_data[0].fields.highest_bid + 1);
-            
-            //disable or enable bid buttons                                     
-            if (    
-                    $("#admin_bid_override").is(":checked") || //if admin override is enabled or
-                    (   $('#nfl_player_for_auction_name').text() && //if a player is selected
-                        this_user_object.fields.still_in_auction == true && // and if the user is still in the auction 
-                        parseInt(this_user_object.fields.draft_order) == parseInt(new_auction_manager_data[0].fields.active_bidder) ) //and if it is the users turn
-                ) {
-                
-                //disable certain buttons for initiation of draft
-                if( 
-                    (new_auction_manager_data[0].fields.auction_type == "rfa" || new_auction_manager_data[0].fields.auction_type == "ufa") && //if rfa or ufa
-                    parseInt(this_user_object.fields.draft_order) == parseInt(new_auction_manager_data[0].fields.initiated_auction) && //if this user initiated the auction
-                    parseInt(new_auction_manager_data[0].fields.highest_bid) == 0 //and the highest bid is 0 (meaning no one has bid)
-                ){
-                    
-                    if (new_auction_manager_data[0].fields.auction_type == "rfa"){
-                        $(this_user_bid_button).prop("disabled", false);
-                        $('#submit_new_bid_button_spinner').show();
-                        this_user_bid_button.classList.remove("data-disabled_from_update");
-                        $(this_user_pass_button).prop("disabled", true);
-                        $(this_user_drop_out_button).prop("disabled", true);
-                        $("#id_new_bid").val(1);
-                        $(this_user_bid_input).prop("disabled", true);
-                    } else if (new_auction_manager_data[0].fields.auction_type == "ufa"){
-                        $(this_user_bid_button).prop("disabled", false);
-                        $('#submit_new_bid_button_spinner').show();
-                        this_user_bid_button.classList.remove("data-disabled_from_update");
-                        $(this_user_pass_button).prop("disabled", true);
-                        $(this_user_drop_out_button).prop("disabled", true);
-                        $("#id_new_bid").val(1);
-                        $(this_user_bid_input).prop("disabled", false);
+            var players_by_team = {};
+            for (var i = 0; i < rostered_players.length; i++) {
+                var f = rostered_players[i].fields;
+                var team = f.drafted_by;
+                if (team && team !== "Undrafted") {
+                    if (!players_by_team[team]) {
+                        players_by_team[team] = [];
                     }
-                    
-                    
-                    
-                    
+                    players_by_team[team].push(f);
+                }
+            }
+
+            $("#roster_team_tab_contents .tab-pane").each(function () {
+                var draftOrder = $(this).data("draft-order");
+                var teamName = $(this).data("team-name");
+                var teamPlayers = players_by_team[teamName] || [];
+
+                var qb_cnt = 0, rb_cnt = 0, wr_cnt = 0, te_cnt = 0, k_cnt = 0, def_cnt = 0;
+                var rows_html = "";
+
+                if (teamPlayers.length === 0) {
+                    rows_html = '<tr><td colspan="7" class="text-center text-muted py-3"><em>No players on roster.</em></td></tr>';
                 } else {
-                    //this is the "normal" function of the bid menu
-                    $(this_user_bid_button).prop("disabled", false);
-                    $('#submit_new_bid_button_spinner').show();
-                    this_user_bid_button.classList.remove("data-disabled_from_update");
-                    $(this_user_bid_input).prop("disabled", false);
-                    $(this_user_drop_out_button).prop("disabled", false);
-                    
-                    num_teams_remaining = 0;
-                    for (var i=0; i < new_table_data.length; i++){
-                        if (new_table_data[i].fields.still_in_auction == true){
-                            num_teams_remaining++;
+                    for (var j = 0; j < teamPlayers.length; j++) {
+                        var p = teamPlayers[j];
+                        var pos = (p.position || "").toUpperCase();
+                        var posBadgeClass = "bg-secondary";
+                        if (pos === "QB") {
+                            qb_cnt++;
+                            posBadgeClass = "bg-primary";
+                        } else if (pos === "RB") {
+                            rb_cnt++;
+                            posBadgeClass = "bg-success";
+                        } else if (pos === "WR") {
+                            wr_cnt++;
+                            posBadgeClass = "bg-info text-dark";
+                        } else if (pos === "TE") {
+                            te_cnt++;
+                            posBadgeClass = "bg-warning text-dark";
+                        } else if (pos === "K") {
+                            k_cnt++;
+                            posBadgeClass = "bg-secondary";
+                        } else if (pos === "DEF" || pos === "DST") {
+                            def_cnt++;
+                            posBadgeClass = "bg-dark";
                         }
+
+                        var price = (p.contract_price !== undefined && p.contract_price !== null) ? p.contract_price : ((p.salary !== undefined && p.salary !== null) ? p.salary : 0);
+                        var finalYear = (p.final_year !== undefined && p.final_year !== null && p.final_year !== "") ? p.final_year : "-";
+                        var byeVal = (p.bye !== undefined && p.bye !== null && p.bye !== "") ? p.bye : "-";
+
+                        rows_html += '<tr>' +
+                            '<td>' + (j + 1) + '</td>' +
+                            '<td><strong>' + (p.full_name || '') + '</strong></td>' +
+                            '<td><span class="badge ' + posBadgeClass + '">' + pos + '</span></td>' +
+                            '<td>' + (p.team || '-') + '</td>' +
+                            '<td>' + byeVal + '</td>' +
+                            '<td>$' + price + '</td>' +
+                            '<td>' + finalYear + '</td>' +
+                            '</tr>';
                     }
+                }
+
+                $("#pos_cnt_qb_" + draftOrder).text(qb_cnt);
+                $("#pos_cnt_rb_" + draftOrder).text(rb_cnt);
+                $("#pos_cnt_wr_" + draftOrder).text(wr_cnt);
+                $("#pos_cnt_te_" + draftOrder).text(te_cnt);
+                $("#pos_cnt_k_" + draftOrder).text(k_cnt);
+                $("#pos_cnt_def_" + draftOrder).text(def_cnt);
+                $("#pos_cnt_total_" + draftOrder).text(teamPlayers.length);
+
+                $("#roster_tbody_" + draftOrder).html(rows_html);
+            });
+        }
+
+        function dispose_all_toasts() {
+            $(".toast.show").each(function () {
+                var toastInstance = bootstrap.Toast.getInstance(this);
+                if (toastInstance) {
+                    console.log("Hiding toast:", toastInstance);
+                    toastInstance.hide();
+                }
+                $(this).removeClass('show');
+            });
+        }
+
+        function update_auction_table(new_table_data, new_auction_manager_data, user_data) {
+            $(".man-tooltip").tooltip("hide");
+
+            var auction_table = document.getElementById("auction_table");
+
+            var this_user_object = find_object_by_value(new_table_data, "team_name", $("#current_auction_user_team").val(), true);
+
+            if (this_user_object) {
+                //update the users current budget remaining
+                document.getElementById("current_auction_user_budget_remaining").value = (parseInt(this_user_object.fields.budget_remaining))
+                document.getElementById("current_auction_user_rfas_remaining").value = (parseInt(this_user_object.fields.rfas_remaining))
+            }
+            //update current bidder team display
+            var current_bidder_display = document.getElementById('current_bidder_team');
+            //console.log("current bidder index: " + new_auction_manager_data[0].fields.active_bidder)
+            var current_bidder_object = find_object_by_value(new_table_data, "draft_order", new_auction_manager_data[0].fields.active_bidder, true);
+            if (current_bidder_object) {
+                current_bidder_display.innerText = current_bidder_object.fields.team_name
+            } else {
+                current_bidder_display.innerText = "Waiting for next auction..."
+            }
+
+            //update current bidder team display
+            var current_winner_display = document.getElementById('current_winning_bid_team');
+            console.log("current winner index: " + new_auction_manager_data[0].fields.team_with_highest_bid)
+            var current_winner_object = find_object_by_value(new_table_data, "draft_order", new_auction_manager_data[0].fields.team_with_highest_bid, true);
+            //console.log("current winner object: " + current_winner_object.fields.team_name)
+            if (current_winner_object) {
+                current_winner_display.innerText = current_winner_object.fields.team_name
+            } else {
+                current_winner_display.innerText = "Waiting for next auction..."
+            }
 
 
-                    //disable pass if only 2 bidders left (3 for rfa to include rfa owner)
-                    if ( (current_auction_type_value == 'rfa' && num_teams_remaining > 3) || (current_auction_type_value == 'ufa' && num_teams_remaining > 2) ) {
-                        //only show pass if pass is available
-                        if (this_user_object.fields.pass_available == true) {
-                            $(this_user_pass_button).prop("disabled", false);
+            //updated current highest bid display
+            var current_highest_bid_display = document.getElementById('current_highest_bid');
+            current_highest_bid_display.innerText = new_auction_manager_data[0].fields.highest_bid
+
+            var current_contract_years_display = document.getElementById('current_contract_years');
+            current_contract_years_display.innerText = new_auction_manager_data[0].fields.highest_contract_years;
+
+            var current_auction_type_display = document.getElementById('current_auction_type');
+            var current_auction_type_value = new_auction_manager_data[0].fields.auction_type;
+
+            document.getElementById("nfl_player_for_auction_name").innerText = new_auction_manager_data[0].fields.player_for_auction_name
+            document.getElementById("nfl_player_for_auction_team").innerText = new_auction_manager_data[0].fields.player_for_auction_team
+            document.getElementById("nfl_player_for_auction_position").innerText = new_auction_manager_data[0].fields.player_for_auction_position
+            document.getElementById("nfl_player_for_auction_bye").innerText = new_auction_manager_data[0].fields.player_for_auction_bye
+
+            var pName = new_auction_manager_data[0].fields.player_for_auction_name;
+            var pType = (current_auction_type_value || "").toLowerCase();
+
+            if (!pName || pName.trim() === "" || pName.trim() === "None" || pType === 'rookie') {
+                $("#current_player_card_container").addClass("d-none").removeClass("d-flex");
+            } else {
+                $("#current_player_card_container").removeClass("d-none").addClass("d-flex");
+            }
+
+            if (current_auction_type_value == 'rookie') {
+                current_auction_type_display.innerText = "Rookie";
+            } else if (current_auction_type_value == 'rfa') {
+                current_auction_type_display.innerText = "Restricted Free Agent";
+            } else if (current_auction_type_value == 'ufa') {
+                current_auction_type_display.innerText = "Unrestricted Free Agent";
+            }
+
+
+            if ($("#player_search_value").val().trim() !== "") {
+                send_player_search();
+            }
+
+
+            ///This section enableds and disables bidding and selecting buttons but only needs to update if we have a team
+            if (this_user_object) {
+
+                var this_user_bid_button = document.getElementById('submit_new_bid_button');
+                var this_user_pass_button = document.getElementById('pass_button');
+                var this_user_drop_out_button = document.getElementById('drop_out_confirmation_button');
+
+                var this_user_bid_input = document.getElementById('id_new_bid');
+                var this_user_submit_player_button = document.getElementById('submit_selected_player');
+                var this_user_submit_rfa_player_button = document.getElementById('select_rfa_player');
+                var this_user_drop_out_player_selection = document.getElementById('drop_out_player_selection');
+                var this_user_pass_player_selection = document.getElementById('pass_player_selection');
+                var this_contract_year_selected_radio = document.getElementById('contract_year_selected_radio');
+                var this_contract_year_selected_radio_disabled = document.getElementById('contract_year_selected_radio_disabled');
+
+                // console.log("Pass Available: " + this_user_object.fields.pass_available)
+                // console.log("Still In: " + this_user_object.fields.still_in_auction)
+                // console.log("Your Turn: " + this_user_object.fields.draft_order + " = " + new_auction_manager_data[0].fields.active_bidder)
+
+                $("#id_new_bid").val(new_auction_manager_data[0].fields.highest_bid + 1);
+
+                //disable or enable bid buttons                                     
+                if (
+                    $("#admin_bid_override").is(":checked") || //if admin override is enabled or
+                    ($('#nfl_player_for_auction_name').text() && //if a player is selected
+                        this_user_object.fields.still_in_auction == true && // and if the user is still in the auction 
+                        parseInt(this_user_object.fields.draft_order) == parseInt(new_auction_manager_data[0].fields.active_bidder)) //and if it is the users turn
+                ) {
+
+                    //disable certain buttons for initiation of draft
+                    if (
+                        (new_auction_manager_data[0].fields.auction_type == "rfa" || new_auction_manager_data[0].fields.auction_type == "ufa") && //if rfa or ufa
+                        parseInt(this_user_object.fields.draft_order) == parseInt(new_auction_manager_data[0].fields.initiated_auction) && //if this user initiated the auction
+                        parseInt(new_auction_manager_data[0].fields.highest_bid) == 0 //and the highest bid is 0 (meaning no one has bid)
+                    ) {
+
+                        if (new_auction_manager_data[0].fields.auction_type == "rfa") {
+                            $(this_user_bid_button).prop("disabled", false);
+                            $('#submit_new_bid_button_spinner').show();
+                            this_user_bid_button.classList.remove("data-disabled_from_update");
+                            $(this_user_pass_button).prop("disabled", true);
+                            $(this_user_drop_out_button).prop("disabled", true);
+                            $("#id_new_bid").val(1);
+                            $(this_user_bid_input).prop("disabled", true);
+                        } else if (new_auction_manager_data[0].fields.auction_type == "ufa") {
+                            $(this_user_bid_button).prop("disabled", false);
+                            $('#submit_new_bid_button_spinner').show();
+                            this_user_bid_button.classList.remove("data-disabled_from_update");
+                            $(this_user_pass_button).prop("disabled", true);
+                            $(this_user_drop_out_button).prop("disabled", true);
+                            $("#id_new_bid").val(1);
+                            $(this_user_bid_input).prop("disabled", false);
+                        }
+
+
+
+
+                    } else {
+                        //this is the "normal" function of the bid menu
+                        $(this_user_bid_button).prop("disabled", false);
+                        $('#submit_new_bid_button_spinner').show();
+                        this_user_bid_button.classList.remove("data-disabled_from_update");
+                        $(this_user_bid_input).prop("disabled", false);
+                        $(this_user_drop_out_button).prop("disabled", false);
+
+                        num_teams_remaining = 0;
+                        for (var i = 0; i < new_table_data.length; i++) {
+                            if (new_table_data[i].fields.still_in_auction == true) {
+                                num_teams_remaining++;
+                            }
+                        }
+
+
+                        //disable pass if only 2 bidders left (3 for rfa to include rfa owner)
+                        if ((current_auction_type_value == 'rfa' && num_teams_remaining > 3) || (current_auction_type_value == 'ufa' && num_teams_remaining > 2)) {
+                            //only show pass if pass is available
+                            if (this_user_object.fields.pass_available == true) {
+                                $(this_user_pass_button).prop("disabled", false);
+                            } else {
+                                $(this_user_pass_button).prop("disabled", true);
+                            }
                         } else {
                             $(this_user_pass_button).prop("disabled", true);
                         }
-                    } else {
-                        $(this_user_pass_button).prop("disabled", true);
                     }
-                }
 
-                
 
-            } else {
-                // console.log("I am not in or its not my turn")
-                $(this_user_bid_button).prop("disabled", true);
-                $('#submit_new_bid_button_spinner').hide();
-                this_user_bid_button.classList.add("data-disabled_from_update");
-                $(this_user_bid_input).prop("disabled", true);
-                $(this_user_pass_button).prop("disabled", true);
-                
-                // this new logic shows the button for people when they want to drop out early
-                if (
-                        ! ( new_auction_manager_data[0].fields.auction_type == 'rfa' && parseInt(this_user_object.fields.draft_order) == parseInt(new_auction_manager_data[0].fields.initiated_auction) ) && //if this is rfa and this user did not initiate the auction (cant drop out of your own rfa auction)
+
+                } else {
+                    // console.log("I am not in or its not my turn")
+                    $(this_user_bid_button).prop("disabled", true);
+                    $('#submit_new_bid_button_spinner').hide();
+                    this_user_bid_button.classList.add("data-disabled_from_update");
+                    $(this_user_bid_input).prop("disabled", true);
+                    $(this_user_pass_button).prop("disabled", true);
+
+                    // this new logic shows the button for people when they want to drop out early
+                    if (
+                        !(new_auction_manager_data[0].fields.auction_type == 'rfa' && parseInt(this_user_object.fields.draft_order) == parseInt(new_auction_manager_data[0].fields.initiated_auction)) && //if this is rfa and this user did not initiate the auction (cant drop out of your own rfa auction)
                         this_user_object.fields.still_in_auction && // and are still in (cant drop out twice)
-                        ! this_user_object.fields.dropped_out_of_bid_early && // and have not dropped out early already
+                        !this_user_object.fields.dropped_out_of_bid_early && // and have not dropped out early already
                         this_user_object.fields.draft_order != new_auction_manager_data[0].fields.team_with_highest_bid && // cant drop out if you have the highest bid
                         new_auction_manager_data[0].fields.highest_bid > 0 //and bid > 0 means auction has started (cant drop out before initiator selects player and initial bid)
-                ) {
-                    $(this_user_drop_out_button).prop("disabled", false);
-                } else {
-                    $(this_user_drop_out_button).prop("disabled", true);
-                }
-
-                $(this_user_submit_player_button).prop("disabled", true);
-                $('#player_name_search_spinner').hide();
-                $('#manual_player_spinner').hide();
-                $(this_user_submit_rfa_player_button).prop("disabled", true);
-                $('#select_rfa_player_spinner').hide();
-                $(this_user_drop_out_player_selection).prop("disabled", true);
-                $(this_user_pass_player_selection).prop("disabled", true);
-            }
-
-            if ( new_auction_manager_data[0].fields.auction_type == "rfa" ) {
-                
-                if (    parseInt(this_user_object.fields.draft_order) == parseInt(new_auction_manager_data[0].fields.initiated_auction) && //if this user initiated the auction
-                        parseInt(this_user_object.fields.draft_order) == parseInt(new_auction_manager_data[0].fields.active_bidder) && //if this user is the current bidder
-                        parseInt(new_auction_manager_data[0].fields.highest_bid) == 0 ){
-                    console.log("Enabling contract years for RFA initial selection")
-                    $(this_contract_year_selected_radio).show();
-                    $(this_contract_year_selected_radio_disabled).hide();
-                } else {
-                    console.log("Disabling contract years for RFA")
-                    $(this_contract_year_selected_radio).hide();
-                    $(this_contract_year_selected_radio_disabled).show();
-                }
-                
-            } else {
-                console.log("Enabling contract years for not RFA")
-                $(this_contract_year_selected_radio).show();
-                $(this_contract_year_selected_radio_disabled).hide();
-            }
-
-            //hide the search bar if RFA
-            if (current_auction_type_value == "rfa") {
-                if (document.getElementById("player_selection_tab_list")) {
-                    document.getElementById("player_selection_tab_list").style.display = "none";
-                }
-                if (document.getElementById("player_search_tab_content")) {
-                    document.getElementById("player_search_tab_content").style.display = "none";
-                }
-                if (document.getElementById("rfa_header_title")) {
-                    document.getElementById("rfa_header_title").style.display = "inline-block";
-                }
-                document.getElementById("rfa_selector_div").style.display = "block";
-            } else {
-                if (document.getElementById("player_selection_tab_list")) {
-                    document.getElementById("player_selection_tab_list").style.display = "flex";
-                }
-                if (document.getElementById("player_search_tab_content")) {
-                    document.getElementById("player_search_tab_content").style.display = "block";
-                }
-                if (document.getElementById("rfa_header_title")) {
-                    document.getElementById("rfa_header_title").style.display = "none";
-                }
-                document.getElementById("player_search_value_div").style.display = "block";
-                document.getElementById("selected_player_div").style.display = "block";
-                document.getElementById("rfa_selector_div").style.display = "none";
-            }
-
-
-            //we only need the pass selection and drop out selection for ufa draft
-            if (current_auction_type_value == "ufa") {
-                $(this_user_drop_out_player_selection).show();
-                $(this_user_pass_player_selection).show();
-            } else {
-                $(this_user_drop_out_player_selection).hide();
-                $(this_user_pass_player_selection).hide();
-
-            }
-
-            //hide the search submit unless this user is initiating the auction (or bid override is enabled) and there is no player selected
-            if( ( $("#admin_bid_override").is(":checked") || parseInt(this_user_object.fields.draft_order) == parseInt(new_auction_manager_data[0].fields.initiated_auction) ) && 
-                ( current_auction_type_value == "rookie" || !($('#nfl_player_for_auction_name').text()) ) ){
-                $(this_user_submit_player_button).prop("disabled", false);
-                $('#player_name_search_spinner').show();
-                $('#manual_player_spinner').show();
-                $(this_user_submit_rfa_player_button).prop("disabled", false);
-                $('#select_rfa_player_spinner').show();
-                $(this_user_drop_out_player_selection).prop("disabled", false);
-                $(this_user_pass_player_selection).prop("disabled", false);
-            } else {
-                $(this_user_submit_player_button).prop("disabled", true);
-                $('#player_name_search_spinner').hide();
-                $('#manual_player_spinner').hide();
-                $(this_user_submit_rfa_player_button).prop("disabled", true);
-                $('#select_rfa_player_spinner').hide();
-                $(this_user_drop_out_player_selection).prop("disabled", true);
-                $(this_user_pass_player_selection).prop("disabled", true);
-            }
-
-            var highest_contract_years = parseInt(new_auction_manager_data[0].fields.highest_contract_years);
-
-            if (highest_contract_years == 2){
-                document.getElementById('contract_year_selected_1').disabled = true;
-                document.getElementById('contract_year_selected_2').disabled = false;
-                document.getElementById('contract_year_selected_3').disabled = false;
-
-                document.getElementById('contract_year_selected_2').checked = true;
-
-                document.getElementById('contract_year_selected_2_disabled').checked = true;
-            } else if (highest_contract_years == 3){
-                document.getElementById('contract_year_selected_1').disabled = true;
-                document.getElementById('contract_year_selected_2').disabled = true;
-                document.getElementById('contract_year_selected_3').disabled = false;
-
-                document.getElementById('contract_year_selected_3').checked = true;
-                document.getElementById('contract_year_selected_3_disabled').checked = true;
-            } else { 
-                document.getElementById('contract_year_selected_1').disabled = false;
-                document.getElementById('contract_year_selected_2').disabled = false;
-                document.getElementById('contract_year_selected_3').disabled = false;
-                console.log("contract years else")
-                document.getElementById('contract_year_selected_1').checked = true;
-                document.getElementById('contract_year_selected_1_disabled').checked = true;
-            }
-
-            if (new_auction_manager_data[0].fields.auction_type == "rookie") {
-                console.log("Hiding bid menu")
-                document.getElementById("bid_menu_card").style.display = "none";
-            } else {
-                console.log("Un-Hiding bid menu")
-                document.getElementById("bid_menu_card").style.display = "block";
-            }
-
-            //check for bathroom toggle
-            var this_user_cover_auction = document.getElementById('cover_auction');
-            if (this_user_object.fields.bathroom_mode_enabled == true){
-                console.log("Bathroom mode enabled")
-                $(this_user_cover_auction).show();
-                document.getElementById('bathroom_mode_toggle').checked = true;
-            } else {
-                console.log("Bathroom mode not enabled")
-                $(this_user_cover_auction).hide();
-                document.getElementById('bathroom_mode_toggle').checked = false;
-                
-                
-            }
-
-            //check to see if it is your turn to bid
-            var this_user_your_turn_banner = document.getElementById('your_turn_to_bid_banner');
-            console.log(this_user_your_turn_banner)
-            console.log("new_auction_manager_data[0].fields.active_bidder: " + new_auction_manager_data[0].fields.active_bidder)
-            console.log("this_user_object.fields.draft_order: " + this_user_object.fields.draft_order)
-            if (new_auction_manager_data[0].fields.active_bidder == this_user_object.fields.draft_order) {
-                console.log("Showing your turn banner");
-                $(this_user_your_turn_banner).show();
-            } else {
-                console.log("Hiding your turn banner");
-                $(this_user_your_turn_banner).hide();
-            }
-
-            get_rfas_for_user()
-        
-            $("#id_new_bid").trigger('keyup');
-
-        } else {
-            //if we dont have a team, disable all the selection and submit button
-            //keep the search just for fun and reference
-            document.getElementById("bid_menu_card").style.display = "none";
-            document.getElementById("selected_player_div").style.display = "none";
-            document.getElementById("rfa_selector_div").style.display = "none";
-            document.getElementById("search_results_table_div").style.display = "table";
-            document.getElementById("player_search_value_div").style.display = "block";
-        }
-
-        var numAuctionRows =  $("#auction_table tr").length
-        //console.log("Current Table Rows: " + numAuctionRows)
-        //prevent attempt to delete data if only header is showing
-        if(numAuctionRows > 1) {
-            for (var row_index = 1; row_index <= numAuctionRows-1; row_index++) {
-                //console.log("Removing old row: " + row_index)
-                auction_table.deleteRow(1)
-            }
-        }
-        
-        table_columns_array = ["draft_order", "team_name","budget_remaining", "current_roster_size", "current_bid","contract_years_bid", "pass_available"]
-
-        //console.log("Rebuilding Table Total Teams: " + new_table_data.length)
-
-        //TODO: remove all rows and redraw with display name headers
-
-        for (var i = 0; i < new_table_data.length; i++) {
-            //iterate through rows
-            //console.log("Draft Order: " + new_table_data[i].fields.draft_order )
-            if(new_table_data[i].fields.draft_order == new_auction_manager_data[0].fields.active_bidder) {
-                var new_row_html = '<tr class="table-primary text-center">'
-            }else if(new_table_data[i].fields.still_in_auction == false) {
-                var new_row_html = '<tr class="table-danger text-center">'
-            
-            }else if(new_table_data[i].fields.dropped_out_of_selection == true) {
-                var new_row_html = '<tr class="table-secondary text-center">'
-            
-            }else if(new_table_data[i].fields.bathroom_mode_enabled == true) {
-                var new_row_html = '<tr class="table-dark text-center">'
-            
-            }else if(current_auction_type_value == 'rfa' && new_auction_manager_data[0].fields.initiated_auction == new_table_data[i].fields.draft_order) {
-                var new_row_html = '<tr class="table-success text-center">'
-                    current_auction_type_value
-            } else {
-                var new_row_html = '<tr class="text-center">'
-            }
-
-            for (var j = 0; j < table_columns_array.length; j++) {
-                //iterate through columns
-                var new_col_value = new_table_data[i].fields[table_columns_array[j]]
-                //console.log("    " + table_columns_array[j] + ": " + new_col_value )
-                
-                //add check and x for true and false things like pass available
-                if (new_col_value === true){
-                    new_col_value = '<i class="fa-solid fa-circle-check fa-xl" size="10x" style="color:rgb(0,176,29)"></i>'
-                } else if (new_col_value === false){
-                    new_col_value = '<i class="fa-solid fa-circle-xmark fa-xl" size="10x" style="color:rgb(207,20,43)"></i>'
-                } else if (table_columns_array[j] == "team_name22"){
-                    try{
-                        user_index = new_table_data[i].fields["user"]
-                        first_name = user_data[user_index].fields["first_name"]
-                        new_col_value = new_col_value + " (" + first_name + ")"
-                    } catch (err){
-                        console.log(new_table_data[i].fields["user"])
-                        console.log(user_data)
+                    ) {
+                        $(this_user_drop_out_button).prop("disabled", false);
+                    } else {
+                        $(this_user_drop_out_button).prop("disabled", true);
                     }
 
-                } else if (table_columns_array[j] == "budget_remaining"){
-                    budget_including_rfas = new_col_value - new_table_data[i].fields["rfas_remaining"]
-                    new_col_value = new_col_value + " (" + budget_including_rfas + ")"
-                } else if (table_columns_array[j] == "draft_order" && new_table_data[i].fields["bathroom_mode_enabled"]){
-                    new_col_value = '<i class="fa-solid fa-toilet fa-lg me-2" style="color:rgb(13, 110, 253)" ></i>'
+                    $(this_user_submit_player_button).prop("disabled", true);
+                    $('#player_name_search_spinner').hide();
+                    $('#manual_player_spinner').hide();
+                    $(this_user_submit_rfa_player_button).prop("disabled", true);
+                    $('#select_rfa_player_spinner').hide();
+                    $(this_user_drop_out_player_selection).prop("disabled", true);
+                    $(this_user_pass_player_selection).prop("disabled", true);
                 }
 
-                new_row_html = new_row_html +  "<td>" + new_col_value + "</td>"
+                if (new_auction_manager_data[0].fields.auction_type == "rfa") {
 
+                    if (parseInt(this_user_object.fields.draft_order) == parseInt(new_auction_manager_data[0].fields.initiated_auction) && //if this user initiated the auction
+                        parseInt(this_user_object.fields.draft_order) == parseInt(new_auction_manager_data[0].fields.active_bidder) && //if this user is the current bidder
+                        parseInt(new_auction_manager_data[0].fields.highest_bid) == 0) {
+                        console.log("Enabling contract years for RFA initial selection")
+                        $(this_contract_year_selected_radio).show();
+                        $(this_contract_year_selected_radio_disabled).hide();
+                    } else {
+                        console.log("Disabling contract years for RFA")
+                        $(this_contract_year_selected_radio).hide();
+                        $(this_contract_year_selected_radio_disabled).show();
+                    }
+
+                } else {
+                    console.log("Enabling contract years for not RFA")
+                    $(this_contract_year_selected_radio).show();
+                    $(this_contract_year_selected_radio_disabled).hide();
+                }
+
+                //hide the search bar if RFA
+                if (current_auction_type_value == "rfa") {
+                    if (document.getElementById("player_selection_tab_list")) {
+                        document.getElementById("player_selection_tab_list").style.display = "none";
+                    }
+                    if (document.getElementById("player_search_tab_content")) {
+                        document.getElementById("player_search_tab_content").style.display = "none";
+                    }
+                    if (document.getElementById("rfa_header_title")) {
+                        document.getElementById("rfa_header_title").style.display = "inline-block";
+                    }
+                    document.getElementById("rfa_selector_div").style.display = "block";
+                } else {
+                    if (document.getElementById("player_selection_tab_list")) {
+                        document.getElementById("player_selection_tab_list").style.display = "flex";
+                    }
+                    if (document.getElementById("player_search_tab_content")) {
+                        document.getElementById("player_search_tab_content").style.display = "block";
+                    }
+                    if (document.getElementById("rfa_header_title")) {
+                        document.getElementById("rfa_header_title").style.display = "none";
+                    }
+                    document.getElementById("player_search_value_div").style.display = "block";
+                    document.getElementById("selected_player_div").style.display = "block";
+                    document.getElementById("rfa_selector_div").style.display = "none";
+                }
+
+
+                //we only need the pass selection and drop out selection for ufa draft
+                if (current_auction_type_value == "ufa") {
+                    $(this_user_drop_out_player_selection).show();
+                    $(this_user_pass_player_selection).show();
+                } else {
+                    $(this_user_drop_out_player_selection).hide();
+                    $(this_user_pass_player_selection).hide();
+
+                }
+
+                //hide the search submit unless this user is initiating the auction (or bid override is enabled) and there is no player selected
+                if (($("#admin_bid_override").is(":checked") || parseInt(this_user_object.fields.draft_order) == parseInt(new_auction_manager_data[0].fields.initiated_auction)) &&
+                    (current_auction_type_value == "rookie" || !($('#nfl_player_for_auction_name').text()))) {
+                    $(this_user_submit_player_button).prop("disabled", false);
+                    $('#player_name_search_spinner').show();
+                    $('#manual_player_spinner').show();
+                    $(this_user_submit_rfa_player_button).prop("disabled", false);
+                    $('#select_rfa_player_spinner').show();
+                    $(this_user_drop_out_player_selection).prop("disabled", false);
+                    $(this_user_pass_player_selection).prop("disabled", false);
+                } else {
+                    $(this_user_submit_player_button).prop("disabled", true);
+                    $('#player_name_search_spinner').hide();
+                    $('#manual_player_spinner').hide();
+                    $(this_user_submit_rfa_player_button).prop("disabled", true);
+                    $('#select_rfa_player_spinner').hide();
+                    $(this_user_drop_out_player_selection).prop("disabled", true);
+                    $(this_user_pass_player_selection).prop("disabled", true);
+                }
+
+                var highest_contract_years = parseInt(new_auction_manager_data[0].fields.highest_contract_years);
+
+                if (highest_contract_years == 2) {
+                    document.getElementById('contract_year_selected_1').disabled = true;
+                    document.getElementById('contract_year_selected_2').disabled = false;
+                    document.getElementById('contract_year_selected_3').disabled = false;
+
+                    document.getElementById('contract_year_selected_2').checked = true;
+
+                    document.getElementById('contract_year_selected_2_disabled').checked = true;
+                } else if (highest_contract_years == 3) {
+                    document.getElementById('contract_year_selected_1').disabled = true;
+                    document.getElementById('contract_year_selected_2').disabled = true;
+                    document.getElementById('contract_year_selected_3').disabled = false;
+
+                    document.getElementById('contract_year_selected_3').checked = true;
+                    document.getElementById('contract_year_selected_3_disabled').checked = true;
+                } else {
+                    document.getElementById('contract_year_selected_1').disabled = false;
+                    document.getElementById('contract_year_selected_2').disabled = false;
+                    document.getElementById('contract_year_selected_3').disabled = false;
+                    console.log("contract years else")
+                    document.getElementById('contract_year_selected_1').checked = true;
+                    document.getElementById('contract_year_selected_1_disabled').checked = true;
+                }
+
+                if (new_auction_manager_data[0].fields.auction_type == "rookie") {
+                    console.log("Hiding bid menu")
+                    document.getElementById("bid_menu_card").style.display = "none";
+                } else {
+                    console.log("Un-Hiding bid menu")
+                    document.getElementById("bid_menu_card").style.display = "block";
+                }
+
+                //check for bathroom toggle
+                var this_user_cover_auction = document.getElementById('cover_auction');
+                if (this_user_object.fields.bathroom_mode_enabled == true) {
+                    console.log("Bathroom mode enabled")
+                    $(this_user_cover_auction).show();
+                    document.getElementById('bathroom_mode_toggle').checked = true;
+                } else {
+                    console.log("Bathroom mode not enabled")
+                    $(this_user_cover_auction).hide();
+                    document.getElementById('bathroom_mode_toggle').checked = false;
+
+
+                }
+
+                //check to see if it is your turn to bid
+                var this_user_your_turn_banner = document.getElementById('your_turn_to_bid_banner');
+                console.log(this_user_your_turn_banner)
+                console.log("new_auction_manager_data[0].fields.active_bidder: " + new_auction_manager_data[0].fields.active_bidder)
+                console.log("this_user_object.fields.draft_order: " + this_user_object.fields.draft_order)
+                if (parseInt(new_auction_manager_data[0].fields.active_bidder) == parseInt(this_user_object.fields.draft_order)) {
+                    console.log("Showing your turn banner");
+                    $(this_user_your_turn_banner).show();
+                } else {
+                    console.log("Hiding your turn banner");
+                    $(this_user_your_turn_banner).hide();
+                }
+
+                get_rfas_for_user()
+
+                $("#id_new_bid").trigger('keyup');
+
+            } else {
+                //if we dont have a team, disable all the selection and submit button
+                //keep the search just for fun and reference
+                document.getElementById("bid_menu_card").style.display = "none";
+                document.getElementById("selected_player_div").style.display = "none";
+                document.getElementById("rfa_selector_div").style.display = "none";
+                document.getElementById("search_results_table_div").style.display = "table";
+                document.getElementById("player_search_value_div").style.display = "block";
             }
-            new_row_html = new_row_html + "</tr>"
 
-            $("#auction_table tbody").append(new_row_html)
+            var numAuctionRows = $("#auction_table tr").length
+            //console.log("Current Table Rows: " + numAuctionRows)
+            //prevent attempt to delete data if only header is showing
+            if (numAuctionRows > 1) {
+                for (var row_index = 1; row_index <= numAuctionRows - 1; row_index++) {
+                    //console.log("Removing old row: " + row_index)
+                    auction_table.deleteRow(1)
+                }
+            }
 
-        }
-        
-        // dispose of all toast intances
-        dispose_all_toasts();
+            table_columns_array = ["draft_order", "team_name", "budget_remaining", "current_roster_size", "current_bid", "contract_years_bid", "pass_available"]
 
-        //check for confirmation toasts
-        if(new_auction_manager_data[0].fields.auction_state != 'bidding' ){
-            
-            // this is not ideal, i am writing the logic twice here. Need to find a way to reuse the backend logic
-            var teams_still_in = []
+            //console.log("Rebuilding Table Total Teams: " + new_table_data.length)
+
+            //TODO: remove all rows and redraw with display name headers
 
             for (var i = 0; i < new_table_data.length; i++) {
-                if(new_table_data[i].fields.draft_order == new_auction_manager_data[0].fields.initiated_auction) {
-                    var team_initiated_auction = new_table_data[i].fields.team_name;
-                } 
-                if (parseInt(new_table_data[i].fields.draft_order) == parseInt(new_auction_manager_data[0].fields.team_with_highest_bid)) {
-                    var team_auction_winner = new_table_data[i].fields.team_name;
-                }
-                if(new_table_data[i].fields.still_in_auction == true && new_table_data[i].fields.bathroom_mode_enabled == false){
-                    teams_still_in.push(new_table_data[i])
+                //iterate through rows
+                //console.log("Draft Order: " + new_table_data[i].fields.draft_order )
+                if (new_table_data[i].fields.draft_order == new_auction_manager_data[0].fields.active_bidder) {
+                    var new_row_html = '<tr class="table-primary text-center">'
+                } else if (new_table_data[i].fields.still_in_auction == false) {
+                    var new_row_html = '<tr class="table-danger text-center">'
+
+                } else if (new_table_data[i].fields.dropped_out_of_selection == true) {
+                    var new_row_html = '<tr class="table-secondary text-center">'
+
+                } else if (new_table_data[i].fields.bathroom_mode_enabled == true) {
+                    var new_row_html = '<tr class="table-dark text-center">'
+
+                } else if (current_auction_type_value == 'rfa' && new_auction_manager_data[0].fields.initiated_auction == new_table_data[i].fields.draft_order) {
+                    var new_row_html = '<tr class="table-success text-center">'
+                    current_auction_type_value
+                } else {
+                    var new_row_html = '<tr class="text-center">'
                 }
 
+                for (var j = 0; j < table_columns_array.length; j++) {
+                    //iterate through columns
+                    var new_col_value = new_table_data[i].fields[table_columns_array[j]]
+                    //console.log("    " + table_columns_array[j] + ": " + new_col_value )
+
+                    //add check and x for true and false things like pass available
+                    if (new_col_value === true) {
+                        new_col_value = '<i class="fa-solid fa-circle-check fa-xl" size="10x" style="color:rgb(0,176,29)"></i>'
+                    } else if (new_col_value === false) {
+                        new_col_value = '<i class="fa-solid fa-circle-xmark fa-xl" size="10x" style="color:rgb(207,20,43)"></i>'
+                    } else if (table_columns_array[j] == "team_name22") {
+                        try {
+                            user_index = new_table_data[i].fields["user"]
+                            first_name = user_data[user_index].fields["first_name"]
+                            new_col_value = new_col_value + " (" + first_name + ")"
+                        } catch (err) {
+                            console.log(new_table_data[i].fields["user"])
+                            console.log(user_data)
+                        }
+
+                    } else if (table_columns_array[j] == "budget_remaining") {
+                        budget_including_rfas = new_col_value - new_table_data[i].fields["rfas_remaining"]
+                        new_col_value = new_col_value + " (" + budget_including_rfas + ")"
+                    } else if (table_columns_array[j] == "draft_order" && new_table_data[i].fields["bathroom_mode_enabled"]) {
+                        new_col_value = '<i class="fa-solid fa-toilet fa-lg me-2" style="color:rgb(13, 110, 253)" ></i>'
+                    }
+
+                    new_row_html = new_row_html + "<td>" + new_col_value + "</td>"
+
+                }
+                new_row_html = new_row_html + "</tr>"
+
+                $("#auction_table tbody").append(new_row_html)
+
             }
-            
-            console.log(teams_still_in)
-            if (
-                new_auction_manager_data[0].fields.auction_type == "rfa" && 
-                teams_still_in.length == 2 && 
-                new_auction_manager_data[0].fields.highest_bid == 1
+
+            // dispose of all toast intances
+            dispose_all_toasts();
+
+            //check for confirmation toasts
+            if (new_auction_manager_data[0].fields.auction_state != 'bidding') {
+
+                // this is not ideal, i am writing the logic twice here. Need to find a way to reuse the backend logic
+                var teams_still_in = []
+
+                for (var i = 0; i < new_table_data.length; i++) {
+                    if (new_table_data[i].fields.draft_order == new_auction_manager_data[0].fields.initiated_auction) {
+                        var team_initiated_auction = new_table_data[i].fields.team_name;
+                    }
+                    if (parseInt(new_table_data[i].fields.draft_order) == parseInt(new_auction_manager_data[0].fields.team_with_highest_bid)) {
+                        var team_auction_winner = new_table_data[i].fields.team_name;
+                    }
+                    if (new_table_data[i].fields.still_in_auction == true && new_table_data[i].fields.bathroom_mode_enabled == false) {
+                        teams_still_in.push(new_table_data[i])
+                    }
+
+                }
+
+                console.log(teams_still_in)
+                if (
+                    new_auction_manager_data[0].fields.auction_type == "rfa" &&
+                    teams_still_in.length == 2 &&
+                    new_auction_manager_data[0].fields.highest_bid == 1
                 ) {
-                    if (teams_still_in[0].fields.draft_order == new_auction_manager_data[0].fields.initiated_auction){
+                    if (teams_still_in[0].fields.draft_order == new_auction_manager_data[0].fields.initiated_auction) {
                         team_auction_winner = teams_still_in[1].fields.team_name;
                     } else {
                         //if 0 not the same as initiated auction, must be 0
                         team_auction_winner = teams_still_in[0].fields.team_name;
                     }
+                }
+
+                handle_auction_end_confirmations(new_auction_manager_data[0].fields.auction_state, team_initiated_auction, team_auction_winner, new_auction_manager_data[0].fields.player_for_auction_name, new_auction_manager_data[0].fields.highest_contract_years, new_auction_manager_data[0].fields.highest_bid)
             }
 
-            handle_auction_end_confirmations(new_auction_manager_data[0].fields.auction_state,team_initiated_auction,team_auction_winner,new_auction_manager_data[0].fields.player_for_auction_name,new_auction_manager_data[0].fields.highest_contract_years,new_auction_manager_data[0].fields.highest_bid)
-        }
 
-
-        var help_mode_state = $("#help_mode_toggle").is(":checked")
-        //console.log("help_mode_state: " + help_mode_state)
-        if (help_mode_state == true){
-            //console.log("Help mode enabled")
-            if(new_auction_manager_data[0].fields.auction_type == "rookie"){
-                $(".data-rookie_help").show();
+            var help_mode_state = $("#help_mode_toggle").is(":checked")
+            //console.log("help_mode_state: " + help_mode_state)
+            if (help_mode_state == true) {
+                //console.log("Help mode enabled")
+                if (new_auction_manager_data[0].fields.auction_type == "rookie") {
+                    $(".data-rookie_help").show();
+                    $(".data-rfa_help").hide();
+                    $(".data-ufa_help").hide();
+                } else if (new_auction_manager_data[0].fields.auction_type == "rfa") {
+                    $(".data-rookie_help").hide();
+                    $(".data-rfa_help").show();
+                    $(".data-ufa_help").hide();
+                } else if (new_auction_manager_data[0].fields.auction_type == "ufa") {
+                    $(".data-rookie_help").hide();
+                    $(".data-rfa_help").hide();
+                    $(".data-ufa_help").show();
+                }
+            } else {
+                //console.log("Help mode not enabled")
+                $(".data-rookie_help").hide();
                 $(".data-rfa_help").hide();
                 $(".data-ufa_help").hide();
-            } else if(new_auction_manager_data[0].fields.auction_type == "rfa"){
-                $(".data-rookie_help").hide();
-                $(".data-rfa_help").show();
-                $(".data-ufa_help").hide();
-            } else if(new_auction_manager_data[0].fields.auction_type == "ufa"){
-                $(".data-rookie_help").hide();
-                $(".data-rfa_help").hide();
-                $(".data-ufa_help").show();
             }
-        } else {
-            //console.log("Help mode not enabled")
-            $(".data-rookie_help").hide();
-            $(".data-rfa_help").hide();
-            $(".data-ufa_help").hide();
+
+
+
         }
 
+        $('#rfa_raise_bid').bind('keyup', function (e) {
+
+            //console.log("bid change: " + $('#id_new_bid').val())
+            //console.log("highest bid: " + $('#current_highest_bid').text())
+
+            if (parseInt($('#rfa_raise_bid').val()) > parseInt($('#current_highest_bid').text())) {
+
+                //console.log("Entered bid is higher than highest bid")
+                var new_bid_input = document.getElementById('rfa_raise_bid');
+                new_bid_input.classList.remove("is-invalid");
+                new_bid_input.classList.add("is-valid");
+
+                var rfa_winner_raise_button = document.getElementById('rfa_winner_raise');
+                $(rfa_winner_raise_button).prop("disabled", false);
 
 
-    } 
-    
-    $('#rfa_raise_bid').bind('keyup', function(e) {
-        
-        //console.log("bid change: " + $('#id_new_bid').val())
-        //console.log("highest bid: " + $('#current_highest_bid').text())
+            } else {
+                //console.log("Entered bid is lower than highest bid")
+                var new_bid_input = document.getElementById('rfa_raise_bid');
+                new_bid_input.classList.remove("is-valid");
+                new_bid_input.classList.add("is-invalid");
 
-        if (parseInt($('#rfa_raise_bid').val()) > parseInt($('#current_highest_bid').text())) {
-            
-            //console.log("Entered bid is higher than highest bid")
-            var new_bid_input = document.getElementById('rfa_raise_bid');
-            new_bid_input.classList.remove("is-invalid");
-            new_bid_input.classList.add("is-valid");
-            
-            var rfa_winner_raise_button = document.getElementById('rfa_winner_raise');
-            $(rfa_winner_raise_button).prop("disabled", false);
-            
-            
-        } else {
-            //console.log("Entered bid is lower than highest bid")
-            var new_bid_input = document.getElementById('rfa_raise_bid');
-            new_bid_input.classList.remove("is-valid");
-            new_bid_input.classList.add("is-invalid");
+                var rfa_winner_raise_button = document.getElementById('rfa_winner_raise');
+                $(rfa_winner_raise_button).prop("disabled", true);
+            }
 
-            var rfa_winner_raise_button = document.getElementById('rfa_winner_raise');
-            $(rfa_winner_raise_button).prop("disabled", true);
-        }
-        
-    });
+        });
 
-    $('#no_bid_raise_bid').bind('keyup', function(e) {
-        
-        //console.log("bid change: " + $('#id_new_bid').val())
-        //console.log("highest bid: " + $('#current_highest_bid').text())
+        $('#no_bid_raise_bid').bind('keyup', function (e) {
 
-        if (parseInt($('#no_bid_raise_bid').val()) > parseInt($('#current_highest_bid').text())) {
-            
-            //console.log("Entered bid is higher than highest bid")
-            var new_bid_input = document.getElementById('no_bid_raise_bid');
-            new_bid_input.classList.remove("is-invalid");
-            new_bid_input.classList.add("is-valid");
-            
-            var rfa_winner_raise_button = document.getElementById('no_bid_winner_raise');
-            $(rfa_winner_raise_button).prop("disabled", false);
-            
-            
-        } else {
-            //console.log("Entered bid is lower than highest bid")
-            var new_bid_input = document.getElementById('no_bid_raise_bid');
-            new_bid_input.classList.remove("is-valid");
-            new_bid_input.classList.add("is-invalid");
+            //console.log("bid change: " + $('#id_new_bid').val())
+            //console.log("highest bid: " + $('#current_highest_bid').text())
 
-            var rfa_winner_raise_button = document.getElementById('no_bid_winner_raise');
-            $(rfa_winner_raise_button).prop("disabled", true);
-        }
-        
-    });
-    
-    
-    $('#id_new_bid').bind('keyup', function(e) {
-        
-        
+            if (parseInt($('#no_bid_raise_bid').val()) > parseInt($('#current_highest_bid').text())) {
 
-        new_bid_value = parseInt($('#id_new_bid').val())
-        current_highest_bid = parseInt($('#current_highest_bid').text())
-        current_auction_user_budget_remaining = parseInt($('#current_auction_user_budget_remaining').val())
-        current_auction_user_rfas_remaining = parseInt($('#current_auction_user_rfas_remaining').val())
+                //console.log("Entered bid is higher than highest bid")
+                var new_bid_input = document.getElementById('no_bid_raise_bid');
+                new_bid_input.classList.remove("is-invalid");
+                new_bid_input.classList.add("is-valid");
 
-        //console.log("bid change: " + new_bid_value)
-        //console.log("highest bid: " + current_highest_bid)
-        //console.log("current_auction_user_budget_remaining: " + current_auction_user_budget_remaining)
-        //console.log("current_auction_user_rfas_remaining: " + current_auction_user_rfas_remaining)
+                var rfa_winner_raise_button = document.getElementById('no_bid_winner_raise');
+                $(rfa_winner_raise_button).prop("disabled", false);
 
 
-        if (    
+            } else {
+                //console.log("Entered bid is lower than highest bid")
+                var new_bid_input = document.getElementById('no_bid_raise_bid');
+                new_bid_input.classList.remove("is-valid");
+                new_bid_input.classList.add("is-invalid");
+
+                var rfa_winner_raise_button = document.getElementById('no_bid_winner_raise');
+                $(rfa_winner_raise_button).prop("disabled", true);
+            }
+
+        });
+
+
+        $('#id_new_bid').bind('keyup', function (e) {
+
+
+
+            new_bid_value = parseInt($('#id_new_bid').val())
+            current_highest_bid = parseInt($('#current_highest_bid').text())
+            current_auction_user_budget_remaining = parseInt($('#current_auction_user_budget_remaining').val())
+            current_auction_user_rfas_remaining = parseInt($('#current_auction_user_rfas_remaining').val())
+
+            //console.log("bid change: " + new_bid_value)
+            //console.log("highest bid: " + current_highest_bid)
+            //console.log("current_auction_user_budget_remaining: " + current_auction_user_budget_remaining)
+            //console.log("current_auction_user_rfas_remaining: " + current_auction_user_rfas_remaining)
+
+
+            if (
                 //check that new bid is higher than current highest bid and used has enough money (budged = $1 x rfas remaining)
-                ( new_bid_value > current_highest_bid && new_bid_value <= current_auction_user_budget_remaining - current_auction_user_rfas_remaining ) ||
-                (   
+                (new_bid_value > current_highest_bid && new_bid_value <= current_auction_user_budget_remaining - current_auction_user_rfas_remaining) ||
+                (
                     $('#current_auction_type').text() == "Restricted Free Agent" &&
                     //TODO: need to add a way to add (if user initiated auction) to prevent initial zero bids 
                     //but we do not have access to what team initiated the auction natively.....
                     //dont think we care about this anymore since all bids start at 1 with initiated auction 
                     new_bid_value == 1
                 )
-            ) 
-        {
-            
-            //console.log("Entered bid is higher than highest bid")
-            var new_bid_input = document.getElementById('id_new_bid');
-            new_bid_input.classList.remove("is-invalid");
-            new_bid_input.classList.add("is-valid");
+            ) {
 
-            var submit_new_bid_button = document.getElementById('submit_new_bid_button');
-            
-            //if submit new bid button isnt disabled from the update table script, we can enable it
-            //this helps handle controling the visibility of the button between two sets of logic
-            if (submit_new_bid_button.classList.contains("data-disabled_from_update") ){
-                //$(submit_new_bid_button).prop("disabled", true);
+                //console.log("Entered bid is higher than highest bid")
+                var new_bid_input = document.getElementById('id_new_bid');
+                new_bid_input.classList.remove("is-invalid");
+                new_bid_input.classList.add("is-valid");
+
+                var submit_new_bid_button = document.getElementById('submit_new_bid_button');
+
+                //if submit new bid button isnt disabled from the update table script, we can enable it
+                //this helps handle controling the visibility of the button between two sets of logic
+                if (submit_new_bid_button.classList.contains("data-disabled_from_update")) {
+                    //$(submit_new_bid_button).prop("disabled", true);
+                } else {
+                    $(submit_new_bid_button).prop("disabled", false);
+                    $('#submit_new_bid_button_spinner').show();
+                }
+
+
             } else {
-                $(submit_new_bid_button).prop("disabled", false);
-                $('#submit_new_bid_button_spinner').show();
+                //console.log("Entered bid is lower than highest bid")
+                var new_bid_input = document.getElementById('id_new_bid');
+                new_bid_input.classList.remove("is-valid");
+                new_bid_input.classList.add("is-invalid");
+
+                var submit_new_bid_button = document.getElementById('submit_new_bid_button');
+                $(submit_new_bid_button).prop("disabled", true);
+                $('#submit_new_bid_button_spinner').hide();
             }
 
-            
-        } else {
-            //console.log("Entered bid is lower than highest bid")
-            var new_bid_input = document.getElementById('id_new_bid');
-            new_bid_input.classList.remove("is-valid");
-            new_bid_input.classList.add("is-invalid");
+        });
 
-            var submit_new_bid_button = document.getElementById('submit_new_bid_button');
-            $(submit_new_bid_button).prop("disabled", true);
-            $('#submit_new_bid_button_spinner').hide();
+        document.querySelector('#submit_new_bid_button').onclick = function (e) {
+            const new_bid_input = document.querySelector('#id_new_bid');
+            const new_bid = new_bid_input.value;
+
+            const new_bid_contract_years = $('input[name=contract_year_selected]:checked').val()
+
+            console.log("New Bid Submitted: " + new_bid)
+            socket.send(JSON.stringify({
+                'new_bid': new_bid,
+                'new_bid_contract_years': new_bid_contract_years,
+                'team_name': $("#current_auction_user_team").val(),
+                'admin_bid_override': $("#admin_bid_override").is(":checked")
+            }));
+
+        };
+
+        function get_player_info(player_data) {
+            console.log("Get player info requested")
+            socket.send(JSON.stringify({
+                'get_player_info': true,
+                'player_data': player_data
+            }));
         }
-        
-    });
 
-    document.querySelector('#submit_new_bid_button').onclick = function(e) {
-        const new_bid_input = document.querySelector('#id_new_bid');
-        const new_bid = new_bid_input.value;
-
-        const new_bid_contract_years = $('input[name=contract_year_selected]:checked').val()
-
-        console.log("New Bid Submitted: " + new_bid)
-        socket.send(JSON.stringify({
-            'new_bid': new_bid,
-            'new_bid_contract_years': new_bid_contract_years,
-            'team_name': $("#current_auction_user_team").val(),
-            'admin_bid_override': $("#admin_bid_override").is(":checked")
-        }));
-
-    };
-
-    function get_player_info(player_data){
-        console.log("Get player info requested")
-        socket.send(JSON.stringify({
-            'get_player_info': true,
-            'player_data':player_data
-        }));
-    }
-
-    function request_table_refresh(refresh_target){
-        console.log("Refresh Submitted")
-        socket.send(JSON.stringify({
-            'refresh': true,
-            'target':refresh_target
-        }));
-    }
-
-    //document.querySelector('#refresh_button').onclick = function(e) {
-    //    request_table_refresh();
-    //    
-    //};
-
-    document.querySelector('#drop_out_button').onclick = function(e) {
-        console.log("Drop Out Submitted")
-        socket.send(JSON.stringify({
-            'drop_out': true,
-            'team_name': $("#current_auction_user_team").val(),
-            'admin_bid_override': $("#admin_bid_override").is(":checked")
-        }));
-    };
-
-    document.querySelector('#pass_button').onclick = function(e) {
-        console.log("Pass Submitted")
-        socket.send(JSON.stringify({
-            'pass': true,
-            'team_name': $("#current_auction_user_team").val(),
-            'admin_bid_override': $("#admin_bid_override").is(":checked")
-        }));
-    };
-
-    
-
-    function find_object_by_value(object_array,key_name,value_to_find,fields){
-        // console.log("Searching In: " + object_array)
-        // console.log("Searching Key: " + key_name)
-        // console.log("Looking for Value: " + value_to_find)
-        if (fields) {
-            // console.log("Number of Objects in Array: " + object_array.length)
-            for (var i=0, iLen=object_array.length; i<iLen; i++) {
-                // console.log("Looking in: " + object_array[i].fields)
-                // console.log("Is it: " + object_array[i].fields[key_name])
-                if (object_array[i].fields[key_name] == value_to_find) return object_array[i];
-
-            }
-        } else {
-            for (var i=0, iLen=object_array.length; i<iLen; i++) {
-
-                if (object_array[i][key_name] == value_to_find) return object_array[i];
-
-            }
+        function request_table_refresh(refresh_target) {
+            console.log("Refresh Submitted")
+            socket.send(JSON.stringify({
+                'refresh': true,
+                'target': refresh_target
+            }));
         }
-        
 
-    }
+        //document.querySelector('#refresh_button').onclick = function(e) {
+        //    request_table_refresh();
+        //    
+        //};
 
-</script>
+        document.querySelector('#drop_out_button').onclick = function (e) {
+            console.log("Drop Out Submitted")
+            socket.send(JSON.stringify({
+                'drop_out': true,
+                'team_name': $("#current_auction_user_team").val(),
+                'admin_bid_override': $("#admin_bid_override").is(":checked")
+            }));
+        };
+
+        document.querySelector('#pass_button').onclick = function (e) {
+            console.log("Pass Submitted")
+            socket.send(JSON.stringify({
+                'pass': true,
+                'team_name': $("#current_auction_user_team").val(),
+                'admin_bid_override': $("#admin_bid_override").is(":checked")
+            }));
+        };
 
 
-<!-- <script language="javascript">
+
+        function find_object_by_value(object_array, key_name, value_to_find, fields) {
+            // console.log("Searching In: " + object_array)
+            // console.log("Searching Key: " + key_name)
+            // console.log("Looking for Value: " + value_to_find)
+            if (fields) {
+                // console.log("Number of Objects in Array: " + object_array.length)
+                for (var i = 0, iLen = object_array.length; i < iLen; i++) {
+                    // console.log("Looking in: " + object_array[i].fields)
+                    // console.log("Is it: " + object_array[i].fields[key_name])
+                    if (object_array[i].fields[key_name] == value_to_find) return object_array[i];
+
+                }
+            } else {
+                for (var i = 0, iLen = object_array.length; i < iLen; i++) {
+
+                    if (object_array[i][key_name] == value_to_find) return object_array[i];
+
+                }
+            }
+
+
+        }
+
+    </script>
+
+
+    <!-- <script language="javascript">
     var ws_url = 'ws://' + window.location.host + '/ws/';
     var ticksSocket = new WebSocket(ws_url);
 
@@ -1711,9 +1870,5 @@
     };
 </script> -->
 
-{% endblock javascript %}
-
-{% else %}
-
-
-{% endif %}
+    {% endif %}
+    {% endblock javascript %}

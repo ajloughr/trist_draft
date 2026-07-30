@@ -12,6 +12,7 @@ from django.core import serializers
 import channels.layers
 from itertools import chain
 import time
+from datetime import datetime
 
 class AuctionConsumer(WebsocketConsumer):
 
@@ -330,6 +331,9 @@ def update_auction_table(refresh_target):
     else:
         last_drafted_data_s = json.dumps([])
 
+    rostered_nfl_players = nfl_player.objects.exclude(drafted_by='Undrafted')
+    all_rostered_players_s = serializers.serialize('json', rostered_nfl_players)
+
     async_to_sync(channel_layer.group_send)(
         group_name,
         {
@@ -338,7 +342,8 @@ def update_auction_table(refresh_target):
             'auction_manager_data' : new_auction_manager_s,
             'user_list' : new_user_list_s,
             'update_target': refresh_target,
-            'last_drafted_data': last_drafted_data_s
+            'last_drafted_data': last_drafted_data_s,
+            'all_rostered_players_data': all_rostered_players_s
         }
     )
     
@@ -418,17 +423,19 @@ def receive_auction_results_response(results_response_data):
         print( results_response_type + ", confirming winning team")
         
         #loop through rfas for user who initiated auction, find the player that was just auctioned and remove them
-        for rfa_index in initiated_auction_user_object.current_rfa_list:
-            
-            current_rfa_object = get_object_or_404(nfl_player,player_id=rfa_index)
+        for rfa_index in list(initiated_auction_user_object.current_rfa_list):
+            current_rfa_object = nfl_player.objects.filter(player_id=rfa_index).first()
 
             #make sure we have the correct player and remove them from the users RFA list
-            if  (current_rfa_object.full_name == current_auction_manager.player_for_auction_name and 
+            if (current_rfa_object and 
+                current_rfa_object.full_name == current_auction_manager.player_for_auction_name and 
                 current_rfa_object.team == current_auction_manager.player_for_auction_team and 
                 current_rfa_object.position == current_auction_manager.player_for_auction_position):
 
                 initiated_auction_user_object.current_rfa_list.remove(rfa_index)
+                initiated_auction_user_object.rfas_remaining = len(initiated_auction_user_object.current_rfa_list)
                 initiated_auction_user_object.save()
+                break
 
         save_drafted_player(draft_winner_object.team_name,current_auction_manager.player_for_auction_name,current_auction_manager.player_for_auction_team,current_auction_manager.player_for_auction_position,False)
 
@@ -555,20 +562,18 @@ def receive_auction_results_response(results_response_data):
         print(results_response_type + ", giving player to owner for highest bid")
         
         #loop through rfas for user who initiated auction, find the player that was just auctioned and remove them
-        for rfa_index in initiated_auction_user_object.current_rfa_list:
-            
-            current_rfa_object = get_object_or_404(nfl_player,player_id=rfa_index)
+        for rfa_index in list(initiated_auction_user_object.current_rfa_list):
+            current_rfa_object = nfl_player.objects.filter(player_id=rfa_index).first()
 
-            if  (current_rfa_object.full_name == current_auction_manager.player_for_auction_name and 
+            if (current_rfa_object and 
+                current_rfa_object.full_name == current_auction_manager.player_for_auction_name and 
                 current_rfa_object.team == current_auction_manager.player_for_auction_team and 
                 current_rfa_object.position == current_auction_manager.player_for_auction_position):
 
                 initiated_auction_user_object.current_rfa_list.remove(rfa_index)
-                initiated_auction_user_object.save()
-
-                initiated_auction_user_object = get_object_or_404(auction_user,draft_order=current_auction_manager.initiated_auction)
                 initiated_auction_user_object.rfas_remaining = len(initiated_auction_user_object.current_rfa_list)
                 initiated_auction_user_object.save()
+                break
 
         save_drafted_player(initiated_auction_user_object.team_name,current_auction_manager.player_for_auction_name,current_auction_manager.player_for_auction_team,current_auction_manager.player_for_auction_position,False)
 
@@ -713,12 +718,34 @@ def save_drafted_player(winning_team,drafted_player_full_name,drafted_player_tea
 
     #mark the drafted player in the player database
     try:
-        drafted_player_nfl_player = get_object_or_404(nfl_player,full_name=drafted_player_full_name,position=drafted_player_position,team=drafted_player_team)
+        drafted_player_nfl_player = nfl_player.objects.filter(
+            full_name=drafted_player_full_name,
+            position=drafted_player_position,
+            team=drafted_player_team
+        ).first()
+
+        if not drafted_player_nfl_player:
+            drafted_player_nfl_player = nfl_player.objects.filter(
+                full_name=drafted_player_full_name
+            ).first()
+
+        if not drafted_player_nfl_player:
+            team_short = drafted_player_team[:3].upper() if drafted_player_team else "MAN"
+            drafted_player_nfl_player = nfl_player.objects.create(
+                full_name=drafted_player_full_name,
+                position=drafted_player_position,
+                team=drafted_player_team,
+                team_short_name=team_short
+            )
+
+        current_year = datetime.now().year
         drafted_player_nfl_player.drafted_by = str(winning_team_object.team_name)
-        print("Updated Player Drafted By for: " + drafted_player_nfl_player.full_name)
+        drafted_player_nfl_player.salary = int(winning_bid)
+        drafted_player_nfl_player.final_year = current_year + int(winning_years_drafted) - 1
         drafted_player_nfl_player.save()
-    except:
-        print("Unable to find player: " + drafted_player_full_name + ", " + drafted_player_team + ", " + drafted_player_position)
+        print("Updated Player Drafted By, salary, and final_year for: " + drafted_player_nfl_player.full_name)
+    except Exception as e:
+        print("Unable to update nfl_player for: " + str(drafted_player_full_name) + ", error: " + str(e))
 
     
     #charge drafting team for rookie
@@ -1341,6 +1368,8 @@ def admin_undo_draft():
 
         if nfl_p:
             nfl_p.drafted_by = "Undrafted"
+            nfl_p.salary = None
+            nfl_p.final_year = None
             nfl_p.save()
 
             if last_dp.draft_type == 'rfa':

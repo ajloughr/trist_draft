@@ -1,9 +1,9 @@
 DO NOT MAKE ANY CHANGES AUTOMATICALLY FROM THIS FILE
 
 TODO: 
-    - add functional toggle for pass available, droped out of bidding, and dropped out of player selection to the admin table 
-    - add some sort of modal or toast for when an auction finishes. I know it is now available in the previous auction. I am thinking like a WINNER! header, with the player name, team that won them, and price and number of years. Probably more modal with a greyed out background. It would last for maybe 10 seconds, then automatically dissapear. It would be amazing if there could be some sort of confetti animation in the background, just one singular confetti explosion. let me know how that would work and how hard it would be before you continue. 
-    - I want to add a section on your draft page for Roster. It should contain a list of your players as well as totals for all the positions. It should be tabbed, one tab for each player. 
+    x add functional toggle for pass available, droped out of bidding, and dropped out of player selection to the admin table 
+    x add some sort of modal or toast for when an auction finishes. I know it is now available in the previous auction. I am thinking like a WINNER! header, with the player name, team that won them, and price and number of years. Probably more modal with a greyed out background. It would last for maybe 10 seconds, then automatically dissapear. It would be amazing if there could be some sort of confetti animation in the background, just one singular confetti explosion. let me know how that would work and how hard it would be before you continue. 
+    - I want to add a section on your draft page for Roster. It should be tabbed, one tab for each player, yours either on the far left or highlighted in some way. It should contain a list of the players for that team players as well as totals for all the positions at the top. I was thinking about putting this at the bottom of the page below player selection, but I am open if you think there is a better way to do this, whether its something you click on fora user, something that comes from the left or bottom like the history, etc. come up with a plan.  
     
 
 

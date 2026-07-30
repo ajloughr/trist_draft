@@ -54,7 +54,7 @@ from django.contrib.auth.decorators import login_required
 @login_required(login_url='/login')
 def auction_table_view(request):
     print("Loading Auction Table view")
-    all_auction_users = auction_user.objects.all()
+    all_auction_users = auction_user.objects.all().order_by('draft_order')
     current_auction_manager = get_object_or_404(auction_manager,pk=1)
 
     current_user_id = request.user.id
@@ -70,13 +70,15 @@ def auction_table_view(request):
         
 
     last_drafted = drafted_player.objects.last()
+    rostered_players = nfl_player.objects.exclude(drafted_by='Undrafted')
 
     context = {
         'auction_users_list': all_auction_users,
         'current_auction_manager': current_auction_manager,
-        "current_auction_user":current_auction_user,
-        'is_user_admin':is_user_admin,
+        "current_auction_user": current_auction_user,
+        'is_user_admin': is_user_admin,
         'last_drafted': last_drafted,
+        'rostered_players': rostered_players,
     }
 
     return render(request,"auction_table/auction_table.html",context)
