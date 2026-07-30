@@ -2,8 +2,10 @@
 
 ## Player Selection Rules
 - **Tabbed Interface**: The Player Selection card in UFA and Rookie drafts uses Bootstrap nav tabs (`#tab_search_db` and `#tab_manual_entry`) to separate database search from manual entry.
-- **Search Direct Confirmation**: Selecting a player from the search database results table (`+` button) directly triggers the modal confirmation (`#select_player_confirmation_modal`). It skips manual entry.
-- **Manual Player Entry**: To nominate an unlisted player, users switch to the "Manual Entry" tab (`#tab_manual_entry`), fill in player details, and click Submit (`#submit_selected_player`).
+- **Search Direct Confirmation**: Selecting a player from the search database results table (`SELECT` button) directly triggers the modal confirmation (`#select_player_confirmation_modal`). It skips manual entry.
+- **Manual Player Entry**: To nominate an unlisted player, users switch to the "Manual Entry" tab (`#tab_manual_entry`), fill in player details, and click Submit (`#submit_selected_player`). Form inputs align flush at the top of the tab container.
+- **Search Results & Initial Load**: `#search_results_table_div` displays `"Enter search criteria above..."` on initial page load when search inputs are empty, and `"No Players found..."` when a query yields no results.
+- **Position Badge Color System**: Position badges across Search Results, Now Auctioning, and Rosters use uniform colors: QB (`bg-primary`), RB (`bg-success`), WR (`bg-info text-dark`), TE (`bg-warning text-dark`), K (`bg-secondary`), DEF (`bg-dark`).
 
 ## Draft Admin Panel Rules
 - **Dedicated Admin Route**: Draft administration is managed at `/draft-admin` (accessible to staff users).
@@ -13,10 +15,12 @@
 ## Auction Table UI & Card Display Rules
 - **Bootstrap `.d-flex` Specificity**: Bootstrap's `.d-flex` class applies `display: flex !important;`. To hide elements with `.d-flex` (e.g. `#current_player_card_container`), toggle `.d-none` vs `.d-flex` classes rather than setting inline `style="display: none;"`.
 - **Current & Auction Status Card Visibility**: `#current_player_card_container` and `#auction_status_card_container` are hidden during the Rookie draft phase. In RFA and UFA draft phases, both cards remain visible even when no player is currently up for auction (displaying fallback 'None'/'-' text).
+- **Bid Controls Disabled State**: `isPlayerUpForAuction` logic evaluates whether `player_for_auction_name` is present and not `"None"`. Bid inputs (`#id_new_bid`), Submit Bid buttons, Pass/Drop Out buttons, and Contract Years radio buttons must remain disabled/grayed out until a player is nominated for auction.
 - **Last Player Sold Card**: `#last_player_sold_card_container` displays the most recently drafted player's name, position, winning team, price, and contract years.
 
 ## Team Roster Table Rules
-- **Roster Section Structure**: `#roster_section_container` contains tabbed team rosters (`#roster_team_tabs` and `#pane_roster_<draft_order>`) with position summary total badges (`#pos_cnt_<pos>_<draft_order>`) and 7 columns (`#`, `Player Name`, `Position`, `NFL Team`, `Bye`, `Contract Price`, `Final Year`).
+- **Roster Section Structure**: `#roster_section_container` contains tabbed team rosters (`#roster_team_tabs` and `#pane_roster_<draft_order>`) in standard numerical draft order. The current user's team retains a star badge. Active tabs use solid dark navy styling (`#1e293b`).
+- **Roster Section Tables**: Each team pane contains two tables: `Current Roster` (`#roster_table_<draft_order>`) and `Remaining RFAs` (`#rfa_table_<draft_order>`) backed by `user.get_current_rfa_players` and updated live over WebSockets (`update_team_rfa_roster_table`).
 - **Dynamic Drafted Player Expiration & Salary**: When a player is drafted (`save_drafted_player`), their `salary` and calculated `final_year` (`datetime.now().year + winning_years_drafted - 1`) are saved directly to `nfl_player` so that team rosters update dynamically over WebSockets (`update_team_rosters`).
 
 ## Winner Celebration Modal & Confetti Rules
