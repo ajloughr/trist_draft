@@ -56,7 +56,7 @@ with open(csv_file, 'r', encoding='utf-8') as f:
 # Also ensure auction_manager exists
 manager, m_created = auction_manager.objects.get_or_create(pk=1)
 # Generate a standard 1-10 snake draft order (3 rounds)
-draft_order = [1,2,3,4,5,6,7,8,9,10, 10,9,8,7,6,5,4,3,2,1, 1,2,3,4,5,6,7,8,9,10]
+draft_order = [1,2,1,4,5,6,7,8,9,10,1,2,3,4,5,6,1,8,9,10]
 manager.rookie_draft_order = draft_order
 manager.save()
 

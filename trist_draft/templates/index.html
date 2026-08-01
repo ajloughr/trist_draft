@@ -10,22 +10,31 @@
 
 {% block content %}
 
-<div class="card mx-auto m-5" style="width: 40rem;">
-    <h5 class="card-header text-center">Welcome to the 2025 TRIST Draft!</h5>
-    <div class="card-body">
-      <p class="card-text">
-        {% comment %} <p><a href="https://join.freeconferencecall.com/jtoddrist">Web Link: https://join.freeconferencecall.com/jtoddrist</a></p> {% endcomment %}
-
+<div class="container py-4">
+  <div class="card shadow-lg border-0 mx-auto my-4" style="max-width: 44rem; border-radius: 1rem; overflow: hidden;">
+    <div class="card-header text-white text-center py-3" style="background: #1e293b;">
+        <h4 class="mb-0 fw-bold"><i class="fa-solid fa-trophy me-2 text-warning"></i>Welcome to the TRIST Draft!</h4>
+    </div>
+    <div class="card-body p-4 text-center">
+        <p class="text-secondary small fw-semibold text-uppercase mb-3">Remote Draft Conference Details</p>
         
-        <div style="text-align:center" class="d-grid gap-2 mx-auto">
-          <p><a> <strong>IF YOU ARE NOT AT TODD'S HOUSE - CALL IN VIA PHONE OR WEB:</strong> </a></p>
-          <p><a><strong>URL: </strong>https://join.freeconferencecall.com/jtoddrist</a></p>
-          <p><a><strong>Phone: </strong>(605) 313-5650 <strong>Code: </strong>3231107</a></p>
-          <a type="button" role="button" href="/auction" class="btn btn-success btn-lg">CONTINUE TO DRAFT</a>
+        <div class="bg-light border rounded-3 p-3 mb-3">
+          <div class="small text-muted fw-bold mb-1"><i class="fa-solid fa-globe me-1 text-primary"></i> Web Link</div>
+          <a href="https://join.freeconferencecall.com/jtoddrist" target="_blank" class="fw-bold text-decoration-none" style="color: #2563eb;">https://join.freeconferencecall.com/jtoddrist</a>
         </div>
-      </p>
+
+        <div class="bg-light border rounded-3 p-3 mb-4">
+          <div class="small text-muted fw-bold mb-1"><i class="fa-solid fa-phone me-1 text-success"></i> Phone Bridge</div>
+          <span class="fw-bold text-dark me-2">(605) 313-5650</span>
+          <span class="badge bg-secondary">Code: 3231107</span>
+        </div>
+
+        <a role="button" href="/auction" class="btn btn-success btn-lg w-100 fw-bold shadow-sm py-3 rounded-3" style="font-size: 1.1rem;">
+          CONTINUE TO DRAFT <i class="fa-solid fa-arrow-right ms-2"></i>
+        </a>
     </div>
   </div>
+</div>
 
 {% endblock %}
 

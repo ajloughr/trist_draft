@@ -72,6 +72,14 @@ class AuctionConsumer(WebsocketConsumer):
             # 'source_user_id': source_user_id
         }))
 
+    # Receive admin player search results
+    def admin_player_search_results(self, event):
+        self.send(text_data=json.dumps({
+            'type': 'admin_player_search_results',
+            'search_result_data': event['search_result_data'],
+            'query': event.get('query', '')
+        }))
+
     # Receive rfa results
     def user_rfa_results(self, event):
         self.send(text_data=json.dumps({
@@ -202,6 +210,10 @@ class AuctionConsumer(WebsocketConsumer):
             if self.scope.get('user') and self.scope['user'].is_staff:
                 print("Admin received update budget")
                 admin_update_budget(text_data_json)
+        elif "admin_update_rfas" in text_data_json:
+            if self.scope.get('user') and self.scope['user'].is_staff:
+                print("Admin received update rfas")
+                admin_update_rfas(text_data_json)
         elif "admin_resync_roster" in text_data_json:
             if self.scope.get('user') and self.scope['user'].is_staff:
                 print("Admin received resync roster")
@@ -210,6 +222,10 @@ class AuctionConsumer(WebsocketConsumer):
             if self.scope.get('user') and self.scope['user'].is_staff:
                 print("Admin received start phase")
                 admin_start_phase(text_data_json)
+        elif "admin_set_active_bidder" in text_data_json:
+            if self.scope.get('user') and self.scope['user'].is_staff:
+                print("Admin received set active bidder")
+                admin_set_active_bidder(text_data_json)
         elif "admin_force_reload" in text_data_json:
             if self.scope.get('user') and self.scope['user'].is_staff:
                 print("Admin received force reload")
@@ -234,6 +250,18 @@ class AuctionConsumer(WebsocketConsumer):
             if self.scope.get('user') and self.scope['user'].is_staff:
                 print("Admin received undropout selection")
                 admin_undropout_selection(text_data_json)
+        elif "admin_update_rookie_draft_order" in text_data_json:
+            if self.scope.get('user') and self.scope['user'].is_staff:
+                print("Admin received update rookie draft order")
+                admin_update_rookie_draft_order(text_data_json)
+        elif "admin_player_search" in text_data_json:
+            if self.scope.get('user') and self.scope['user'].is_staff:
+                print("Admin received player search")
+                admin_player_search(text_data_json)
+        elif "admin_modify_player_team" in text_data_json:
+            if self.scope.get('user') and self.scope['user'].is_staff:
+                print("Admin received modify player team")
+                admin_modify_player_team(text_data_json)
 
 
 
@@ -537,8 +565,8 @@ def receive_auction_results_response(results_response_data):
         current_auction_manager.save()
 
         winning_player_name = current_auction_manager.player_for_auction_name
-        winning_contract_years = current_auction_manager.highest_bid
-        winning_contract_cost = current_auction_manager.highest_contract_years
+        winning_contract_years = current_auction_manager.highest_contract_years
+        winning_contract_cost = current_auction_manager.highest_bid
 
         channel_layer = channels.layers.get_channel_layer()
         group_name = settings.AUCTION_UPDATE_GROUP
@@ -801,6 +829,14 @@ def submit_auction_player(submitted_player_data):
 
 
     current_auction_manager = get_object_or_404(auction_manager,pk=1)
+
+    # For rookie drafts, selection is instant ($1 / 1 yr) with no bidding phase.
+    # Reset player_for_auction fields so client-side UI (isPlayerUpForAuction) enables SELECT buttons for the next rookie picker.
+    if current_auction_manager.auction_type == "rookie":
+        current_auction_manager.player_for_auction_name = ""
+        current_auction_manager.player_for_auction_team = ""
+        current_auction_manager.player_for_auction_position = ""
+        current_auction_manager.player_for_auction_bye = None
 
     current_auction_manager.active_bidder = new_bid_start
     current_auction_manager.initiated_auction = new_bid_start
@@ -1403,6 +1439,94 @@ def admin_update_budget(data):
             print("Error updating budget:", e)
 
 
+def _parse_int_list(val):
+    if isinstance(val, list):
+        res = []
+        for x in val:
+            try:
+                res.append(int(x))
+            except (ValueError, TypeError):
+                pass
+        return res
+    if not val or not str(val).strip():
+        return []
+    res = []
+    for item in str(val).split(','):
+        item = item.strip()
+        if item:
+            try:
+                res.append(int(item))
+            except (ValueError, TypeError):
+                pass
+    return res
+
+
+def admin_update_rfas(data):
+    target_team = data.get('target_team')
+    if target_team:
+        try:
+            target_user = auction_user.objects.get(team_name=target_team)
+            if 'initial_rfas' in data:
+                target_user.initial_rfa_list = _parse_int_list(data.get('initial_rfas'))
+            if 'current_rfas' in data:
+                target_user.current_rfa_list = _parse_int_list(data.get('current_rfas'))
+            target_user.rfas_remaining = len(target_user.current_rfa_list)
+            target_user.save()
+            update_auction_table('all')
+        except Exception as e:
+            print("Error updating RFAs:", e)
+
+
+def admin_player_search(data):
+    query = data.get('query', '').strip()
+    if query:
+        players = nfl_player.objects.filter(full_name__icontains=query)[:15]
+        players_s = serializers.serialize('json', players)
+    else:
+        players_s = serializers.serialize('json', [])
+
+    channel_layer = channels.layers.get_channel_layer()
+    async_to_sync(channel_layer.group_send)(
+        settings.PLAYER_SEARCH_GROUP,
+        {
+            'type': 'admin_player_search_results',
+            'search_result_data': players_s,
+            'query': query
+        }
+    )
+
+
+def admin_modify_player_team(data):
+    player_id = data.get('player_id')
+    new_team = data.get('new_team')
+    query = data.get('query', '')
+    if player_id is not None and new_team is not None:
+        try:
+            player = nfl_player.objects.filter(player_id=player_id).first()
+            if player:
+                player.drafted_by = str(new_team)
+                player.save()
+                update_aution_user_current_roster_size()
+                update_auction_table('all')
+                if query:
+                    admin_player_search({'query': query})
+        except Exception as e:
+            print("Error modifying player team:", e)
+
+
+def admin_update_rookie_draft_order(data):
+    raw_order = data.get('rookie_draft_order')
+    if raw_order is not None:
+        try:
+            current_auction_manager = get_object_or_404(auction_manager, pk=1)
+            parsed_order = _parse_int_list(raw_order)
+            current_auction_manager.rookie_draft_order = parsed_order
+            current_auction_manager.save()
+            update_auction_table('all')
+        except Exception as e:
+            print("Error updating rookie draft order:", e)
+
+
 def admin_resync_roster():
     update_aution_user_current_roster_size()
     update_rfas_remaining()
@@ -1416,6 +1540,14 @@ def admin_start_phase(data):
         'new_bid_start': start_bidder,
         'new_bid_type': phase
     }, is_manual=True)
+
+
+def admin_set_active_bidder(data):
+    target_bidder = int(data.get('target_bidder', 1))
+    current_auction_manager = get_object_or_404(auction_manager, pk=1)
+    current_auction_manager.active_bidder = target_bidder
+    current_auction_manager.save()
+    update_auction_table('all')
 
 
 def admin_force_reload():

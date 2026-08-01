@@ -139,65 +139,7 @@
     </div>
 </div>
 
-    <div class="modal fade" id="drop_out_of_selection_confirmation_modal" tabindex="-1" aria-labelledby="drop_out_of_selection_confirmation_modal_Label" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="drop_out_of_selection_confirmation_modal_Label">Drop Out Confirmation</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Are you sure you want to drop out of player selection? If you click yes, you will will no longer be able to put players up for auction.
-            </div>
-            <div class="modal-footer d-flex justify-content-between">
-                <button type="button" class="btn btn-success" id="drop_out_of_selection_confirm" data-bs-dismiss="modal">Yes</button>
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
-            </div>
-        </div>
-        </div>
-    </div>
 
-    <div class="modal fade" id="select_player_confirmation_modal" tabindex="-1" aria-labelledby="select_player_confirmation_modal_Label" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="select_player_confirmation_modal_Label">Select Player Confirmation</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Are you sure you would like to select this player?
-            </div>
-            <table class="table mt-2">
-                <thead>
-                    <tr class="text-center">
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="table-light">
-                        <th scope="row"></th>
-                        <td><strong>Player Name</strong></td>
-                        <td id="selected_player_name_confirm">A</td>
-                    </tr>
-                    <tr class="table-light">
-                        <th scope="row"></th>
-                        <td><strong>Team</strong></td>
-                        <td id="selected_player_team_confirm">B</td>
-                    </tr>
-                    <tr class="table-light">
-                        <th scope="row"></th>
-                        <td><strong>Position</strong></td>
-                        <td id="selected_player_position_confirm">C</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div class="modal-footer d-flex justify-content-between">
-                <button type="button" class="btn btn-success" id="select_player_confirmed" data-bs-dismiss="modal">Yes</button>
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
-            </div>
-        </div>
-        </div>
-    </div>
 <script>
     //fix me?
     //var current_auction_type_display = $('#current_auction_type').val();
@@ -426,7 +368,6 @@
 
     function show_player_select_confirmation_modal(player_selected_row) {
         console.log("Showing player select confirm modal")
-        $('#select_player_confirmation_modal').modal('hide');
         var search_results_table = document.getElementById("search_results_table");
 
         var row = search_results_table.querySelector("tbody").rows[player_selected_row];
@@ -440,7 +381,11 @@
             $("#selected_player_position_confirm").text(selected_player_position);
         }
 
-        $('#select_player_confirmation_modal').modal('show');
+        var modalEl = document.getElementById('select_player_confirmation_modal');
+        if (modalEl) {
+            var modalInst = bootstrap.Modal.getOrCreateInstance(modalEl);
+            modalInst.show();
+        }
     }
 
     function send_player_search() {
@@ -492,14 +437,18 @@
         $("#selected_player_position").val(search_results_table.rows[player_selected_row + 1].cells[2].textContent)
     };
     
-    document.querySelector('#select_player_confirmed').onclick = function(e) {
+    $(document).on('click', '#select_player_confirmed', function(e) {
         var submitted_player_name = $('#selected_player_name_confirm').text();
         var submitted_player_team = $('#selected_player_team_confirm').text();
         var submitted_player_position = $('#selected_player_position_confirm').text();
     
-        submit_selected_player(submitted_player_name,submitted_player_team,submitted_player_position)
-
-    };
+        var modalEl = document.getElementById('select_player_confirmation_modal');
+        if (modalEl) {
+            var modalInst = bootstrap.Modal.getOrCreateInstance(modalEl);
+            modalInst.hide();
+        }
+        submit_selected_player(submitted_player_name,submitted_player_team,submitted_player_position);
+    });
 
     function submit_selected_player(submitted_player_name,submitted_player_team,submitted_player_position) {
         console.log("Submitted New Player for Auction: " + submitted_player_name)
@@ -525,20 +474,15 @@
 
     }
 
-    document.querySelector('#submit_selected_player').onclick = function(e) {
+    $(document).on('click', '#submit_selected_player', function(e) {
         var submitted_player_name = $('#selected_player_name').val();
         var submitted_player_team = $('#selected_player_team').val();
         var submitted_player_position = $('#selected_player_position').val();
 
-        submit_selected_player(submitted_player_name,submitted_player_team,submitted_player_position)
-        
-    
+        submit_selected_player(submitted_player_name,submitted_player_team,submitted_player_position);
+    });
 
-
-    };
-
-    document.querySelector('#drop_out_of_selection_confirm').onclick = function(e) {
-
+    $(document).on('click', '#drop_out_of_selection_confirm', function(e) {
         console.log("Team Dropped out of Player Selection: " + $("#current_auction_user_team").val())
 
         socket.send(JSON.stringify({
@@ -546,11 +490,9 @@
             'team_name': $("#current_auction_user_team").val(),
             'admin_bid_override': $("#admin_bid_override").is(":checked")
         }));
+    });
 
-    };
-
-    document.querySelector('#pass_player_selection').onclick = function(e) {
-
+    $(document).on('click', '#pass_player_selection', function(e) {
         console.log("Team Passed Player Selection: " + $("#current_auction_user_team").val())
 
         socket.send(JSON.stringify({
@@ -558,7 +500,5 @@
             'team_name': $("#current_auction_user_team").val(),
             'admin_bid_override': $("#admin_bid_override").is(":checked")
         }));
-
-    };
-
+    });
 </script>

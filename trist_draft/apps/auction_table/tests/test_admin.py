@@ -7,8 +7,13 @@ from trist_draft.apps.auction_table.consumers import (
     admin_toggle_bathroom_mode,
     admin_undo_draft,
     admin_update_budget,
+    admin_update_rfas,
+    admin_player_search,
+    admin_modify_player_team,
+    admin_update_rookie_draft_order,
     admin_resync_roster,
     admin_start_phase,
+    admin_set_active_bidder,
     admin_pass_player_selection,
     admin_dropout_player_selection,
     admin_toggle_pass_available,
@@ -17,6 +22,17 @@ from trist_draft.apps.auction_table.consumers import (
 )
 
 pytestmark = pytest.mark.django_db
+
+
+@patch('trist_draft.apps.auction_table.consumers.update_auction_table')
+def test_admin_set_active_bidder(mock_update, ten_team_league):
+    """Test admin can explicitly set active bidder turn."""
+    manager = ten_team_league['manager']
+    assert manager.active_bidder == 1
+
+    admin_set_active_bidder({'target_bidder': 4})
+    manager.refresh_from_db()
+    assert manager.active_bidder == 4
 
 
 @patch('trist_draft.apps.auction_table.consumers.update_auction_table')
@@ -138,6 +154,91 @@ def test_admin_update_budget(mock_update, ten_team_league):
     admin_update_budget({'target_team': team_1.team_name, 'new_budget': 150})
     team_1.refresh_from_db()
     assert team_1.budget_remaining == 150
+
+
+@patch('trist_draft.apps.auction_table.consumers.update_auction_table')
+def test_admin_update_rfas(mock_update, ten_team_league):
+    """Test admin can update initial and current RFAs via comma-separated integer string."""
+    team_1 = ten_team_league['users'][0]
+    team_1.initial_rfa_list = [1, 2]
+    team_1.current_rfa_list = [1]
+    team_1.rfas_remaining = 1
+    team_1.save()
+
+    admin_update_rfas({
+        'target_team': team_1.team_name,
+        'initial_rfas': '1, 2, 5, 10',
+        'current_rfas': '1, 5, 10'
+    })
+    team_1.refresh_from_db()
+    assert team_1.initial_rfa_list == [1, 2, 5, 10]
+    assert team_1.current_rfa_list == [1, 5, 10]
+    assert team_1.rfas_remaining == 3
+
+
+@patch('trist_draft.apps.auction_table.consumers.update_auction_table')
+def test_admin_modify_player_team(mock_update, ten_team_league, dummy_player):
+    """Test admin can modify an NFL player's drafted team and reset to Undrafted."""
+    team_1 = ten_team_league['users'][0]
+
+    # Assign player to Team 1
+    admin_modify_player_team({
+        'player_id': dummy_player.player_id,
+        'new_team': team_1.team_name
+    })
+    dummy_player.refresh_from_db()
+    team_1.refresh_from_db()
+    assert dummy_player.drafted_by == team_1.team_name
+    assert team_1.current_roster_size == 1
+
+    # Reset player back to Undrafted
+    admin_modify_player_team({
+        'player_id': dummy_player.player_id,
+        'new_team': 'Undrafted'
+    })
+    dummy_player.refresh_from_db()
+    team_1.refresh_from_db()
+    assert dummy_player.drafted_by == 'Undrafted'
+    assert team_1.current_roster_size == 0
+
+
+def test_export_draft_csv_view(client, ten_team_league, dummy_player):
+    """Test authenticated user can download drafted players CSV."""
+    team_1 = ten_team_league['users'][0]
+
+    drafted_player.objects.create(
+        team=dummy_player.team,
+        position=dummy_player.position,
+        full_name=dummy_player.full_name,
+        team_drafted_by=team_1.team_name,
+        years_drafted=2,
+        contract_price=25,
+        is_rookie=False,
+        is_manual=False,
+        draft_type='ufa'
+    )
+
+    client.force_login(team_1.user)
+    response = client.get('/export-draft-csv/')
+
+    assert response.status_code == 200
+    assert response['Content-Type'] == 'text/csv'
+    assert 'attachment; filename="trist_drafted_players.csv"' in response['Content-Disposition']
+
+    content = response.content.decode('utf-8')
+    assert 'Player Name,Position,NFL Team,Drafted By,Years,Contract Price ($),Draft Type,Is Rookie,Is Manual' in content
+    assert dummy_player.full_name in content
+    assert team_1.team_name in content
+
+
+@patch('trist_draft.apps.auction_table.consumers.update_auction_table')
+def test_admin_update_rookie_draft_order(mock_update, ten_team_league):
+    """Test admin can update the rookie draft order sequence."""
+    manager = ten_team_league['manager']
+
+    admin_update_rookie_draft_order({'rookie_draft_order': '1, 3, 5, 7, 9, 2, 4, 6, 8, 10'})
+    manager.refresh_from_db()
+    assert manager.rookie_draft_order == [1, 3, 5, 7, 9, 2, 4, 6, 8, 10]
 
 
 @patch('trist_draft.apps.auction_table.consumers.update_auction_table')

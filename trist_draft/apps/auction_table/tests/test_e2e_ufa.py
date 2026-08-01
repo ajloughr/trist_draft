@@ -17,6 +17,11 @@ def test_ufa_bidding(browser: Browser):
     s_page.wait_for_selector("#search_results_table tbody tr button.btn-success:not([disabled])", timeout=10000)
     s_page.click("#search_results_table tbody tr button.btn-success:not([disabled])")
     s_page.click("#select_player_confirmed")
+    s_page.wait_for_selector("#select_player_confirmation_modal", state="hidden", timeout=10000)
+    try:
+        s_page.wait_for_selector(".modal-backdrop", state="detached", timeout=3000)
+    except Exception:
+        pass
     
     # Everyone should see the bidding UI enabled
     expect(s_page.locator("#id_new_bid")).to_be_visible(timeout=10000)

@@ -190,253 +190,227 @@
 
 
 <div class="toast-container position-fixed top-0 start-0 p-3 my-5" style="z-index: 98 !important;">
-    <div class="toast" id="rfa_owner_match_request_1_toast" role="alert" aria-live="assertive" aria-atomic="true"
-        data-bs-autohide="false">
-        <div class="toast-header">
-            <strong class="me-auto">RFA Match</strong>
+    <div class="toast shadow-lg" id="rfa_owner_match_request_1_toast" role="alert" aria-live="assertive" aria-atomic="true"
+        data-bs-autohide="false" style="border-radius: 12px; overflow: hidden; border: 1px solid #1e293b;">
+        <div class="toast-header text-white px-3 py-2.5" style="background-color: #1e293b;">
+            <i class="fa-solid fa-gavel me-2 text-warning"></i>
+            <strong class="me-auto text-white">RFA Match Request</strong>
         </div>
-        <div class="toast-body">
-            <div class="justify-content-center my-2">
-                <div class="card">
-                    <div class="card-header">
-                        <span><strong>Auction Info</strong></span>
-                    </div>
-                    <table class="table mb-0">
-                        <thead>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row"></th>
-                                <td><strong>Currently Winning Bid</strong></td>
-                                <td class="current_winning_bid_team_toast"></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"></th>
-                                <td><strong>Current Highest Bid</strong></td>
-                                <td class="current_highest_bid_toast"></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"></th>
-                                <td><strong>Current Contract Years</strong></td>
-                                <td class="current_contract_years_toast"></td>
-                            </tr>
-                        </tbody>
-                    </table>
+        <div class="toast-body p-3">
+            <div class="card mb-3 border-0 shadow-sm" style="border-radius: 8px; overflow: hidden;">
+                <div class="card-header text-white py-1.5 px-3" style="background-color: #0f172a; font-size: 0.85rem;">
+                    <span><i class="fa-solid fa-info-circle me-1 text-info"></i><strong>Auction Info</strong></span>
                 </div>
+                <table class="table table-sm align-middle mb-0" style="font-size: 0.85rem;">
+                    <tbody>
+                        <tr>
+                            <td class="text-muted ps-3">Currently Winning</td>
+                            <td class="fw-bold current_winning_bid_team_toast"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-muted ps-3">Highest Bid</td>
+                            <td class="fw-bold text-success current_highest_bid_toast"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-muted ps-3">Contract Years</td>
+                            <td class="fw-bold current_contract_years_toast"></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            The RFA auction bidding has finished. Would you like to match the highest bid?
-            <div class="mt-2 pt-2 border-top d-flex justify-content-between">
-                <button type="button" class="btn btn-primary btn-sm" id="rfa_owner_confirm_match_1_match"
+            <p class="mb-2 text-secondary" style="font-size: 0.875rem;">The RFA auction bidding has finished. Would you like to match the highest bid?</p>
+            <div class="pt-2 border-top d-flex gap-2 justify-content-end">
+                <button type="button" class="btn btn-sm btn-success px-3 fw-semibold rounded-pill" id="rfa_owner_confirm_match_1_match"
                     onclick="send_auction_results_response('rfa_owner_match_1_matched')"
-                    data-bs-dismiss="toast">Match</button>
-                <button type="button" class="btn btn-secondary btn-sm" id="rfa_owner_confirm_match_1_reject"
+                    data-bs-dismiss="toast"><i class="fa-solid fa-check me-1"></i>Match</button>
+                <button type="button" class="btn btn-sm btn-outline-danger px-3 fw-semibold rounded-pill" id="rfa_owner_confirm_match_1_reject"
                     onclick="send_auction_results_response('rfa_owner_match_1_rejected')"
-                    data-bs-dismiss="toast">Reject</button>
+                    data-bs-dismiss="toast"><i class="fa-solid fa-xmark me-1"></i>Reject</button>
             </div>
         </div>
     </div>
 </div>
 
 <div class="toast-container position-fixed top-0 start-0 p-3 my-5" style="z-index: 98 !important;">
-    <div class="toast" id="no_bid_last_auction_user_toast" role="alert" aria-live="assertive" aria-atomic="true"
-        data-bs-autohide="false">
-        <div class="toast-header">
-            <strong class="me-auto">Stay in Auction?</strong>
+    <div class="toast shadow-lg" id="no_bid_last_auction_user_toast" role="alert" aria-live="assertive" aria-atomic="true"
+        data-bs-autohide="false" style="border-radius: 12px; overflow: hidden; border: 1px solid #1e293b;">
+        <div class="toast-header text-white px-3 py-2.5" style="background-color: #1e293b;">
+            <i class="fa-solid fa-handshake-simple me-2 text-warning"></i>
+            <strong class="me-auto text-white">Stay in Auction?</strong>
         </div>
-        <div class="toast-body">
-            You are the last team in the auction and no one has bid. Would you like to make a bid?
-            <div class="row justify-content-center">
-                <div class="input-group my-4" role="group" style="width: 7rem;">
-                    <input type="number" min="1" step="1" id="no_bid_raise_bid" class="form-control"
-                        placeholder="Raise Bid">
-                    <!-- <button id="submit_rfa_raise" class="btn btn-success" type="button" >Submit</button> -->
+        <div class="toast-body p-3">
+            <p class="mb-3 text-secondary" style="font-size: 0.875rem;">You are the last team in the auction and no one has bid. Would you like to make a bid?</p>
+            <div class="d-flex justify-content-center mb-3">
+                <div class="input-group input-group-sm" style="max-width: 140px;">
+                    <span class="input-group-text bg-dark text-white fw-bold">$</span>
+                    <input type="number" min="1" step="1" id="no_bid_raise_bid" class="form-control text-center fw-bold"
+                        placeholder="Raise">
                 </div>
             </div>
-            <div class="mt-2 pt-2 border-top d-flex justify-content-between">
-                <button type="button" class="btn btn-success btn-sm" id="no_bid_winner_raise"
+            <div class="pt-2 border-top d-flex gap-2 justify-content-end">
+                <button type="button" class="btn btn-sm btn-success px-3 fw-semibold rounded-pill" id="no_bid_winner_raise"
                     onclick="send_auction_results_response('rfa_no_bid_winner_raised')"
-                    data-bs-dismiss="toast">Raise</button>
-                <button type="button" class="btn btn-danger btn-sm" id="no_bid_winner_drop_out"
-                    onclick="send_auction_results_response('rfa_bid_winner_dropped_out')" data-bs-dismiss="toast">Drop
-                    Out</button>
+                    data-bs-dismiss="toast"><i class="fa-solid fa-arrow-up me-1"></i>Raise</button>
+                <button type="button" class="btn btn-sm btn-outline-danger px-3 fw-semibold rounded-pill" id="no_bid_winner_drop_out"
+                    onclick="send_auction_results_response('rfa_bid_winner_dropped_out')" data-bs-dismiss="toast">
+                    <i class="fa-solid fa-arrow-right-from-bracket me-1"></i>Drop Out</button>
             </div>
         </div>
     </div>
 </div>
 
 <div class="toast-container position-fixed top-0 start-0 p-3 my-5" style="z-index: 98 !important;">
-    <div class="toast" id="rfa_owner_match_request_2_toast" role="alert" aria-live="assertive" aria-atomic="true"
-        data-bs-autohide="false">
-        <div class="toast-header">
-            <strong class="me-auto">RFA Raise Match</strong>
+    <div class="toast shadow-lg" id="rfa_owner_match_request_2_toast" role="alert" aria-live="assertive" aria-atomic="true"
+        data-bs-autohide="false" style="border-radius: 12px; overflow: hidden; border: 1px solid #1e293b;">
+        <div class="toast-header text-white px-3 py-2.5" style="background-color: #1e293b;">
+            <i class="fa-solid fa-gavel me-2 text-warning"></i>
+            <strong class="me-auto text-white">RFA Raise Match</strong>
         </div>
-        <div class="toast-body">
-            <div class="justify-content-center my-2">
-                <div class="card">
-                    <div class="card-header">
-                        <span><strong>Auction Info</strong></span>
-                    </div>
-                    <table class="table mb-0">
-                        <thead>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row"></th>
-                                <td><strong>Currently Winning Bid</strong></td>
-                                <td class="current_winning_bid_team_toast"></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"></th>
-                                <td><strong>Current Highest Bid</strong></td>
-                                <td class="current_highest_bid_toast"></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"></th>
-                                <td><strong>Current Contract Years</strong></td>
-                                <td class="current_contract_years_toast"></td>
-                            </tr>
-                        </tbody>
-                    </table>
+        <div class="toast-body p-3">
+            <div class="card mb-3 border-0 shadow-sm" style="border-radius: 8px; overflow: hidden;">
+                <div class="card-header text-white py-1.5 px-3" style="background-color: #0f172a; font-size: 0.85rem;">
+                    <span><i class="fa-solid fa-info-circle me-1 text-info"></i><strong>Auction Info</strong></span>
                 </div>
+                <table class="table table-sm align-middle mb-0" style="font-size: 0.85rem;">
+                    <tbody>
+                        <tr>
+                            <td class="text-muted ps-3">Currently Winning</td>
+                            <td class="fw-bold current_winning_bid_team_toast"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-muted ps-3">Current Highest Bid</td>
+                            <td class="fw-bold text-success current_highest_bid_toast"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-muted ps-3">Contract Years</td>
+                            <td class="fw-bold current_contract_years_toast"></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            The RFA auction winner has raised. Do you match?
-            <div class="mt-2 pt-2 border-top d-flex justify-content-between">
-                <button type="button" class="btn btn-primary btn-sm" id="rfa_owner_confirm_match_2_match"
+            <p class="mb-2 text-secondary" style="font-size: 0.875rem;">The RFA auction winner has raised. Do you match?</p>
+            <div class="pt-2 border-top d-flex gap-2 justify-content-end">
+                <button type="button" class="btn btn-sm btn-success px-3 fw-semibold rounded-pill" id="rfa_owner_confirm_match_2_match"
                     onclick="send_auction_results_response('rfa_owner_match_2_matched')"
-                    data-bs-dismiss="toast">Match</button>
-                <button type="button" class="btn btn-secondary btn-sm" id="rfa_owner_confirm_match_2_reject"
+                    data-bs-dismiss="toast"><i class="fa-solid fa-check me-1"></i>Match</button>
+                <button type="button" class="btn btn-sm btn-outline-danger px-3 fw-semibold rounded-pill" id="rfa_owner_confirm_match_2_reject"
                     onclick="send_auction_results_response('rfa_owner_match_2_rejected')"
-                    data-bs-dismiss="toast">Reject</button>
+                    data-bs-dismiss="toast"><i class="fa-solid fa-xmark me-1"></i>Reject</button>
             </div>
         </div>
     </div>
 </div>
 
 <div class="toast-container position-fixed top-0 start-0 p-3 my-5" style="z-index: 98 !important;">
-    <div class="toast" id="rfa_bid_winner_offer_raise_toast" role="alert" aria-live="assertive" aria-atomic="true"
-        data-bs-autohide="false">
-        <div class="toast-header">
-            <strong class="me-auto">RFA Raise</strong>
+    <div class="toast shadow-lg" id="rfa_bid_winner_offer_raise_toast" role="alert" aria-live="assertive" aria-atomic="true"
+        data-bs-autohide="false" style="border-radius: 12px; overflow: hidden; border: 1px solid #1e293b;">
+        <div class="toast-header text-white px-3 py-2.5" style="background-color: #1e293b;">
+            <i class="fa-solid fa-arrow-trend-up me-2 text-warning"></i>
+            <strong class="me-auto text-white">RFA Raise Opportunity</strong>
         </div>
-        <div class="toast-body">
-            <div class="justify-content-center my-2">
-                <div class="card">
-                    <div class="card-header">
-                        <span><strong>Auction Info</strong></span>
-                    </div>
-                    <table class="table mb-0">
-                        <thead>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row"></th>
-                                <td><strong>Currently Winning Bid</strong></td>
-                                <td class="current_winning_bid_team_toast"></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"></th>
-                                <td><strong>Current Highest Bid</strong></td>
-                                <td class="current_highest_bid_toast"></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"></th>
-                                <td><strong>Current Contract Years</strong></td>
-                                <td class="current_contract_years_toast"></td>
-                            </tr>
-                        </tbody>
-                    </table>
+        <div class="toast-body p-3">
+            <div class="card mb-3 border-0 shadow-sm" style="border-radius: 8px; overflow: hidden;">
+                <div class="card-header text-white py-1.5 px-3" style="background-color: #0f172a; font-size: 0.85rem;">
+                    <span><i class="fa-solid fa-info-circle me-1 text-info"></i><strong>Auction Info</strong></span>
+                </div>
+                <table class="table table-sm align-middle mb-0" style="font-size: 0.85rem;">
+                    <tbody>
+                        <tr>
+                            <td class="text-muted ps-3">Currently Winning</td>
+                            <td class="fw-bold current_winning_bid_team_toast"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-muted ps-3">Current Highest Bid</td>
+                            <td class="fw-bold text-success current_highest_bid_toast"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-muted ps-3">Contract Years</td>
+                            <td class="fw-bold current_contract_years_toast"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="mb-2 text-secondary" style="font-size: 0.875rem;">The RFA owner has matched. Would you like to raise your bid?</p>
+            <div class="d-flex justify-content-center mb-3">
+                <div class="input-group input-group-sm" style="max-width: 140px;">
+                    <span class="input-group-text bg-dark text-white fw-bold">$</span>
+                    <input type="number" min="1" step="1" id="rfa_raise_bid" class="form-control text-center fw-bold"
+                        placeholder="Raise">
                 </div>
             </div>
-            <span>The RFA owner has matched. Would you like to raise your bid?</span>
-            <div class="row justify-content-center">
-                <div class="input-group my-4" role="group" style="width: 7rem;">
-                    <input type="number" min="1" step="1" id="rfa_raise_bid" class="form-control"
-                        placeholder="Raise Bid">
-                    <!-- <button id="submit_rfa_raise" class="btn btn-success" type="button" >Submit</button> -->
-                </div>
-            </div>
-            <div class="mt-2 pt-2 border-top d-flex justify-content-between">
-                <button type="button" class="btn btn-success btn-sm" id="rfa_winner_raise"
+            <div class="pt-2 border-top d-flex gap-2 justify-content-end">
+                <button type="button" class="btn btn-sm btn-success px-3 fw-semibold rounded-pill" id="rfa_winner_raise"
                     onclick="send_auction_results_response('rfa_bid_winner_raised')"
-                    data-bs-dismiss="toast">Raise</button>
-                <button type="button" class="btn btn-danger btn-sm" id="rfa_winner_drop_out"
-                    onclick="send_auction_results_response('rfa_bid_winner_dropped_out')" data-bs-dismiss="toast">Drop
-                    Out</button>
+                    data-bs-dismiss="toast"><i class="fa-solid fa-arrow-up me-1"></i>Raise</button>
+                <button type="button" class="btn btn-sm btn-outline-danger px-3 fw-semibold rounded-pill" id="rfa_winner_drop_out"
+                    onclick="send_auction_results_response('rfa_bid_winner_dropped_out')" data-bs-dismiss="toast">
+                    <i class="fa-solid fa-arrow-right-from-bracket me-1"></i>Drop Out</button>
             </div>
         </div>
     </div>
 </div>
 
 <div class="toast-container position-fixed top-0 start-0 p-3 my-5" style="z-index: 98 !important;">
-    <div class="toast" id="rfa_end_waiting_toast" role="alert" aria-live="assertive" aria-atomic="true"
-        data-bs-autohide="false">
-        <div class="toast-header">
-            <!-- <img src="..." class="rounded me-2" alt="..."> -->
-            <strong class="me-auto">Waiting for RFA Action</strong>
-            <!-- <small>11 mins ago</small> -->
-            <!-- <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button> -->
+    <div class="toast shadow-lg" id="rfa_end_waiting_toast" role="alert" aria-live="assertive" aria-atomic="true"
+        data-bs-autohide="false" style="border-radius: 12px; overflow: hidden; border: 1px solid #1e293b;">
+        <div class="toast-header text-white px-3 py-2.5" style="background-color: #1e293b;">
+            <i class="fa-solid fa-hourglass-half me-2 text-warning"></i>
+            <strong class="me-auto text-white">Waiting for RFA Action</strong>
         </div>
-        <div class="toast-body">
-            <span id="rfa_end_waiting_toast_text">Waiting for winning team to comfirm the auction results...</span>
+        <div class="toast-body p-3">
+            <span id="rfa_end_waiting_toast_text" class="text-secondary" style="font-size: 0.875rem;">Waiting for winning team to confirm the auction results...</span>
         </div>
     </div>
 </div>
 
 <div class="toast-container position-fixed top-0 start-0 p-3 my-5" style="z-index: 98 !important;">
-    <div class="toast" id="ufa_end_confirm_toast" role="alert" aria-live="assertive" aria-atomic="true"
-        data-bs-autohide="false">
-        <div class="toast-header">
-            <!-- <img src="..." class="rounded me-2" alt="..."> -->
-            <strong class="me-auto">UFA Confirmation</strong>
-            <!-- <small>11 mins ago</small> -->
-            <!-- <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button> -->
+    <div class="toast shadow-lg" id="ufa_end_confirm_toast" role="alert" aria-live="assertive" aria-atomic="true"
+        data-bs-autohide="false" style="border-radius: 12px; overflow: hidden; border: 1px solid #1e293b;">
+        <div class="toast-header text-white px-3 py-2.5" style="background-color: #1e293b;">
+            <i class="fa-solid fa-trophy me-2 text-warning"></i>
+            <strong class="me-auto text-white">UFA Confirmation</strong>
         </div>
-        <div class="toast-body">
-            <span>Congratulations! You won the UFA auction. Please confirm the results:</span>
-            <table class="table mt-2">
-                <thead>
-                    <tr class="text-center">
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="table-light">
-                        <th scope="row"></th>
-                        <td><strong>Player Name</strong></td>
-                        <td id="winning_player_name"></td>
-                    </tr>
-                    <tr class="table-light">
-                        <th scope="row"></th>
-                        <td><strong>Contract Years</strong></td>
-                        <td id="winning_contract_years"></td>
-                    </tr>
-                    <tr class="table-light">
-                        <th scope="row"></th>
-                        <td><strong>Contract Cost</strong></td>
-                        <td id="winning_contract_cost"></td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="mt-2 pt-2 border-top d-flex justify-content-between">
-                <button type="button" class="btn btn-primary btn-sm" id="ufa_confirm_button"
-                    onclick="send_auction_results_response('ufa_confirmed')" data-bs-dismiss="toast">Confirm</button>
-                <button type="button" class="btn btn-secondary btn-sm" id="ufa_reject_button"
-                    onclick="send_auction_results_response('ufa_disputed')" data-bs-dismiss="toast">Dispute</button>
+        <div class="toast-body p-3">
+            <p class="mb-2 text-secondary" style="font-size: 0.875rem;">Congratulations! You won the UFA auction. Please confirm the results:</p>
+            <div class="card mb-3 border-0 shadow-sm" style="border-radius: 8px; overflow: hidden;">
+                <table class="table table-sm align-middle mb-0" style="font-size: 0.85rem;">
+                    <tbody>
+                        <tr>
+                            <td class="text-muted ps-3">Player Name</td>
+                            <td class="fw-bold" id="winning_player_name"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-muted ps-3">Contract Years</td>
+                            <td class="fw-bold" id="winning_contract_years"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-muted ps-3">Contract Cost</td>
+                            <td class="fw-bold text-success" id="winning_contract_cost"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pt-2 border-top d-flex gap-2 justify-content-end">
+                <button type="button" class="btn btn-sm btn-success px-3 fw-semibold rounded-pill" id="ufa_confirm_button"
+                    onclick="send_auction_results_response('ufa_confirmed')" data-bs-dismiss="toast">
+                    <i class="fa-solid fa-check me-1"></i>Confirm</button>
+                <button type="button" class="btn btn-sm btn-outline-danger px-3 fw-semibold rounded-pill" id="ufa_reject_button"
+                    onclick="send_auction_results_response('ufa_disputed')" data-bs-dismiss="toast">
+                    <i class="fa-solid fa-triangle-exclamation me-1"></i>Dispute</button>
             </div>
         </div>
     </div>
 </div>
 
 <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3 my-5" style="z-index: 98 !important;">
-    <div class="toast" id="ufa_end_waiting_toast" role="alert" aria-live="assertive" aria-atomic="true"
-        data-bs-autohide="false">
-        <div class="toast-header">
-            <!-- <img src="..." class="rounded me-2" alt="..."> -->
-            <strong class="me-auto">Waiting for Confirmation</strong>
-            <!-- <small>11 mins ago</small> -->
-            <!-- <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button> -->
+    <div class="toast shadow-lg" id="ufa_end_waiting_toast" role="alert" aria-live="assertive" aria-atomic="true"
+        data-bs-autohide="false" style="border-radius: 12px; overflow: hidden; border: 1px solid #1e293b;">
+        <div class="toast-header text-white px-3 py-2.5" style="background-color: #1e293b;">
+            <i class="fa-solid fa-hourglass-half me-2 text-warning"></i>
+            <strong class="me-auto text-white">Waiting for Confirmation</strong>
         </div>
-        <div class="toast-body">
-            <span id="ufa_end_waiting_toast_text">Waiting for winning team to comfirm the auction results...</span>
+        <div class="toast-body p-3">
+            <span id="ufa_end_waiting_toast_text" class="text-secondary" style="font-size: 0.875rem;">Waiting for winning team to confirm the auction results...</span>
         </div>
     </div>
 </div>
@@ -471,37 +445,97 @@
 
 
 <div class="offcanvas offcanvas-bottom" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
-    id="drafted_list_offcanvas" aria-labelledby="drafted_list_offcanvas_label">
-    <div class="offcanvas-header" style='background-color:rgb(220, 220, 220)'>
-        <h5 class="offcanvas-title" id="drafted_list_offcanvas_label"><strong>Draft History</strong></h5>
-        <button type="button" class="btn-close text-reset" onclick="close_draft_history()" aria-label="Close"></button>
+    id="drafted_list_offcanvas" aria-labelledby="drafted_list_offcanvas_label"
+    style="height: 32vh; max-height: 35vh; border-top-left-radius: 16px; border-top-right-radius: 16px; border-top: 3px solid #1e293b; box-shadow: 0 -10px 30px rgba(0,0,0,0.15);">
+    <div class="offcanvas-header text-white py-2.5 px-4" style="background-color: #1e293b;">
+        <div class="d-flex align-items-center gap-3">
+            <h5 class="offcanvas-title mb-0 fw-bold" id="drafted_list_offcanvas_label">
+                <i class="fa-solid fa-clock-rotate-left me-2" style="color: #10b981;"></i>Draft History
+            </h5>
+            <a href="/export-draft-csv/" class="btn btn-sm btn-outline-light rounded-pill px-3 fw-semibold text-decoration-none">
+                <i class="fa-solid fa-file-csv me-1 text-success"></i> Download CSV
+            </a>
+        </div>
+        <button type="button" class="btn-close btn-close-white" onclick="close_draft_history()" aria-label="Close"></button>
     </div>
-    <div class="offcanvas-body">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="container">
-                        <table class="table table-bordered" id="drafted_list_table"
-                            style="border-radius: 5px;overflow: hidden;">
-                            <thead class="table-secondary">
-                                <tr class="text-center">
-                                    <th>Player Name</th>
-                                    <th>Position</th>
-                                    <th>NFL Team</th>
-                                    <th>Drafted By</th>
-                                    <th>Years</th>
-                                    <th>Price</th>
-                                    <th>Draft Type</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+    <div class="offcanvas-body p-0">
+        <div class="table-responsive h-100">
+            <table class="table table-hover align-middle mb-0" id="drafted_list_table">
+                <thead class="sticky-top" style="background-color: #0f172a; color: #ffffff; z-index: 5;">
+                    <tr class="text-uppercase text-muted" style="font-size: 0.75rem; letter-spacing: 0.5px;">
+                        <th class="text-center ps-3 py-3" style="width: 50px;">#</th>
+                        <th class="py-3">Player</th>
+                        <th class="py-3">Position</th>
+                        <th class="py-3">NFL Team</th>
+                        <th class="py-3">Drafted By</th>
+                        <th class="text-center py-3">Years</th>
+                        <th class="text-center py-3">Price</th>
+                        <th class="text-center pe-3 py-3">Draft Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <div id="draft_history_empty_state" class="text-center py-5 text-muted" style="display: none;">
+                <i class="fa-solid fa-folder-open fa-2x mb-2 text-secondary opacity-50"></i>
+                <p class="mb-0 fw-semibold">No players drafted yet...</p>
             </div>
         </div>
     </div>
+</div>
+
+<!-- Drop Out of Selection Confirmation Modal -->
+    <div class="modal fade" id="drop_out_of_selection_confirmation_modal" tabindex="-1" aria-labelledby="drop_out_of_selection_confirmation_modal_Label" aria-hidden="true" style="z-index: 1060 !important;">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg" style="border-radius: 1rem; overflow: hidden;">
+            <div class="modal-header bg-danger text-white py-3">
+                <h5 class="modal-title fw-bold" id="drop_out_of_selection_confirmation_modal_Label"><i class="fa-solid fa-triangle-exclamation me-2"></i>Drop Out Confirmation</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4 text-secondary">
+                Are you sure you want to drop out of player selection? If you click <strong>Yes</strong>, you will no longer be able to put players up for auction for the rest of this phase.
+            </div>
+            <div class="modal-footer bg-light border-top-0 d-flex justify-content-between p-3">
+                <button type="button" class="btn btn-outline-secondary px-4 fw-semibold" data-bs-dismiss="modal">No, Cancel</button>
+                <button type="button" class="btn btn-danger px-4 fw-bold shadow-sm" id="drop_out_of_selection_confirm" data-bs-dismiss="modal">Yes, Drop Out</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Select Player Confirmation Modal -->
+    <div class="modal fade" id="select_player_confirmation_modal" tabindex="-1" aria-labelledby="select_player_confirmation_modal_Label" aria-hidden="true" style="z-index: 1060 !important;">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg" style="border-radius: 1rem; overflow: hidden;">
+            <div class="modal-header text-white py-3" style="background-color: #1e293b;">
+                <h5 class="modal-title fw-bold" id="select_player_confirmation_modal_Label"><i class="fa-solid fa-circle-check me-2 text-success"></i>Nominate Player Confirmation</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <p class="text-secondary small fw-semibold mb-3">Are you sure you would like to put this player up for auction?</p>
+                <div class="card border rounded-3 p-3 bg-light">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="text-muted small fw-bold text-uppercase">Player</span>
+                        <span class="fw-bold text-dark fs-6" id="selected_player_name_confirm">A</span>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="text-muted small fw-bold text-uppercase">NFL Team</span>
+                        <span class="fw-semibold text-secondary" id="selected_player_team_confirm">B</span>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-muted small fw-bold text-uppercase">Position</span>
+                        <span class="badge bg-primary px-2.5 py-1" id="selected_player_position_confirm">C</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer bg-light border-top-0 d-flex justify-content-between p-3">
+                <button type="button" class="btn btn-outline-secondary px-4 fw-semibold" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-success px-4 fw-bold shadow-sm" id="select_player_confirmed" data-bs-dismiss="modal">Confirm & Nominate</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
     <!-- Winner Celebration Modal -->
     <div class="modal fade" id="winner_celebration_modal" tabindex="-1" aria-labelledby="winnerCelebrationModalLabel"
         aria-hidden="true" style="z-index: 1060 !important;">
@@ -770,12 +804,10 @@
             console.log("initiated_auction: " + initiated_auction)
             console.log("auction_winner: " + auction_winner)
 
-            dispose_all_toasts();
-
             if (confirmation_type == 'ufa_confirmation_request') {
                 show_ufa_end_confirmation_toast(auction_winner, winning_player_name, winning_contract_years, winning_contract_cost)
             } else if (confirmation_type == 'ufa_auction_end') {
-                //hide_toast('ufa_end_waiting_toast')
+                dispose_all_toasts();
 
             } else if (confirmation_type == 'rfa_owner_match_request_1') {
                 show_rfa_owner_match_request_1_toast(initiated_auction)
@@ -790,34 +822,49 @@
                 show_rfa_owner_match_request_2_toast(initiated_auction)
 
             } else if (confirmation_type == 'rfa_auction_end') {
-                //hide_toast('rfa_end_waiting_toast')
+                dispose_all_toasts();
             }
 
+        }
+
+        function checkIsOwner(initiated_auction) {
+            if (!initiated_auction && initiated_auction !== 0) return false;
+            var currentTeamName = ($("#current_auction_user_team").val() || "").toString().trim().toLowerCase();
+            var currentDraftOrder = ($("#current_auction_user_draft_order").val() || "").toString().trim().toLowerCase();
+            var initStr = initiated_auction.toString().trim().toLowerCase();
+            return initStr === currentTeamName || initStr === currentDraftOrder;
+        }
+
+        function checkIsWinner(auction_winner) {
+            if (!auction_winner && auction_winner !== 0) return false;
+            var currentTeamName = ($("#current_auction_user_team").val() || "").toString().trim().toLowerCase();
+            var currentDraftOrder = ($("#current_auction_user_draft_order").val() || "").toString().trim().toLowerCase();
+            var winnerStr = auction_winner.toString().trim().toLowerCase();
+            return winnerStr === currentTeamName || winnerStr === currentDraftOrder;
         }
 
         function show_ufa_end_confirmation_toast(auction_winner, winning_player_name, winning_contract_years, winning_contract_cost) {
             console.log("Ending UFA showing toast")
 
-            if (auction_winner == $("#current_auction_user_team").val()) {
+            if (checkIsWinner(auction_winner)) {
+                var targetId = "ufa_end_confirm_toast";
+                dispose_all_toasts(targetId);
+
                 console.log(winning_player_name + "," + winning_contract_years + "," + winning_contract_cost);
                 $("#winning_player_name").text(winning_player_name)
                 $("#winning_contract_years").text(winning_contract_years)
                 $("#winning_contract_cost").text(winning_contract_cost)
 
-                var ufa_end_confirmation_toast = document.getElementById("ufa_end_confirm_toast");
-
-                var toast = new bootstrap.Toast(ufa_end_confirmation_toast)
-
-                //var winning_player_name_toast_field = document.getElementById('winning_player_name');
-
-                //winning_player_name_toast_field.innerText = current_bidder_object.fields.team_name
-
-                toast.show()
+                var ufa_end_confirmation_toast = document.getElementById(targetId);
+                var toast = bootstrap.Toast.getOrCreateInstance(ufa_end_confirmation_toast);
+                toast.show();
             } else {
-                var ufa_end_waiting_toast = document.getElementById("ufa_end_waiting_toast");
-                var toast = new bootstrap.Toast(ufa_end_waiting_toast)
+                var targetId = "ufa_end_waiting_toast";
+                dispose_all_toasts(targetId);
 
-                toast.show()
+                var ufa_end_waiting_toast = document.getElementById(targetId);
+                var toast = bootstrap.Toast.getOrCreateInstance(ufa_end_waiting_toast);
+                toast.show();
             }
 
         }
@@ -838,29 +885,24 @@
 
         function show_rfa_bid_winner_offer_raise_toast(initiated_auction, auction_winner) {
             console.log("Showing RFA bid winner raise toast")
-            //console.log("Initiated Auction: " + initiated_auction)
-            if (auction_winner == $("#current_auction_user_team").val()) {
+            if (checkIsWinner(auction_winner)) {
+                var targetId = "rfa_bid_winner_offer_raise_toast";
+                dispose_all_toasts(targetId);
 
-                //hide_toast("rfa_end_waiting_toast")
-
-                var rfa_bid_winner_offer_raise_toast = document.getElementById("rfa_bid_winner_offer_raise_toast");
-                populate_toast_fields('rfa_bid_winner_offer_raise_toast');
-                var toast = new bootstrap.Toast(rfa_bid_winner_offer_raise_toast)
-                toast.show()
+                var rfa_bid_winner_offer_raise_toast = document.getElementById(targetId);
+                populate_toast_fields(targetId);
+                var toast = bootstrap.Toast.getOrCreateInstance(rfa_bid_winner_offer_raise_toast);
+                toast.show();
                 $("#rfa_raise_bid").val(parseInt($("#current_highest_bid").text()) + 1);
 
-            } else if (initiated_auction == $("#current_auction_user_team").val()) {
-                $("#rfa_end_waiting_toast_text").text("Waiting for RFA bid winner to raise or drop out...")
-
-                var rfa_end_waiting_toast = document.getElementById("rfa_end_waiting_toast");
-                var toast = new bootstrap.Toast(rfa_end_waiting_toast)
-                toast.show()
             } else {
-                $("#rfa_end_waiting_toast_text").text("Waiting for RFA bid winner to raise or drop out...")
-                var rfa_end_waiting_toast = document.getElementById("rfa_end_waiting_toast");
-                var toast = new bootstrap.Toast(rfa_end_waiting_toast)
+                var targetId = "rfa_end_waiting_toast";
+                dispose_all_toasts(targetId);
 
-                toast.show()
+                $("#rfa_end_waiting_toast_text").text("Waiting for RFA bid winner to raise or drop out...")
+                var rfa_end_waiting_toast = document.getElementById(targetId);
+                var toast = bootstrap.Toast.getOrCreateInstance(rfa_end_waiting_toast);
+                toast.show();
             }
 
         }
@@ -868,17 +910,22 @@
         function show_rfa_owner_match_request_1_toast(initiated_auction) {
             console.log("Showing first RFA match toast")
             console.log("Initiated Auction: " + initiated_auction)
-            if (initiated_auction == $("#current_auction_user_team").val()) {
-                hide_toast('rfa_end_waiting_toast')
-                var rfa_end_confirmation_toast = document.getElementById("rfa_owner_match_request_1_toast");
-                populate_toast_fields('rfa_owner_match_request_1_toast');
-                var toast = new bootstrap.Toast(rfa_end_confirmation_toast)
-                toast.show()
+            if (checkIsOwner(initiated_auction)) {
+                var targetId = "rfa_owner_match_request_1_toast";
+                dispose_all_toasts(targetId);
+
+                var rfa_end_confirmation_toast = document.getElementById(targetId);
+                populate_toast_fields(targetId);
+                var toast = bootstrap.Toast.getOrCreateInstance(rfa_end_confirmation_toast);
+                toast.show();
             } else {
+                var targetId = "rfa_end_waiting_toast";
+                dispose_all_toasts(targetId);
+
                 $("#rfa_end_waiting_toast_text").text("Waiting for RFA owner to match or reject the highest bid...")
-                var rfa_end_waiting_toast = document.getElementById("rfa_end_waiting_toast");
-                var toast = new bootstrap.Toast(rfa_end_waiting_toast)
-                toast.show()
+                var rfa_end_waiting_toast = document.getElementById(targetId);
+                var toast = bootstrap.Toast.getOrCreateInstance(rfa_end_waiting_toast);
+                toast.show();
             }
 
         }
@@ -886,18 +933,23 @@
         function show_no_bid_last_auction_user_toast(initiated_auction, auction_winner) {
             console.log("Showing no bid last user toast")
             console.log("Initiated Auction: " + initiated_auction)
-            if (auction_winner == $("#current_auction_user_team").val()) {
-                var no_bid_last_auction_user_toast = document.getElementById("no_bid_last_auction_user_toast");
-                var toast = new bootstrap.Toast(no_bid_last_auction_user_toast)
-                toast.show()
+            if (checkIsWinner(auction_winner)) {
+                var targetId = "no_bid_last_auction_user_toast";
+                dispose_all_toasts(targetId);
+
+                var no_bid_last_auction_user_toast = document.getElementById(targetId);
+                var toast = bootstrap.Toast.getOrCreateInstance(no_bid_last_auction_user_toast);
+                toast.show();
                 $("#no_bid_raise_bid").val(parseInt($("#current_highest_bid").text()) + 1);
             } else {
+                var targetId = "rfa_end_waiting_toast";
+                dispose_all_toasts(targetId);
+
                 $("#rfa_end_waiting_toast_text").text("Waiting to see if last remaining team wants to bid...")
 
-                var rfa_end_waiting_toast = document.getElementById("rfa_end_waiting_toast");
-                var toast = new bootstrap.Toast(rfa_end_waiting_toast)
-
-                toast.show()
+                var rfa_end_waiting_toast = document.getElementById(targetId);
+                var toast = bootstrap.Toast.getOrCreateInstance(rfa_end_waiting_toast);
+                toast.show();
             }
 
         }
@@ -905,20 +957,22 @@
         function show_rfa_owner_match_request_2_toast(initiated_auction) {
             console.log("Showing second RFA match toast")
             console.log("Initiated Auction: " + initiated_auction)
-            if (initiated_auction == $("#current_auction_user_team").val()) {
+            if (checkIsOwner(initiated_auction)) {
+                var targetId = "rfa_owner_match_request_2_toast";
+                dispose_all_toasts(targetId);
 
-                hide_toast("rfa_end_waiting_toast")
-
-                var rfa_end_confirmation_toast = document.getElementById("rfa_owner_match_request_2_toast");
-                populate_toast_fields('rfa_owner_match_request_2_toast');
-                var toast = new bootstrap.Toast(rfa_end_confirmation_toast)
-                toast.show()
+                var rfa_end_confirmation_toast = document.getElementById(targetId);
+                populate_toast_fields(targetId);
+                var toast = bootstrap.Toast.getOrCreateInstance(rfa_end_confirmation_toast);
+                toast.show();
             } else {
-                $("#rfa_end_waiting_toast_text").text("Waiting for RFA owner to match or reject the raised bid...")
-                var rfa_end_waiting_toast = document.getElementById("rfa_end_waiting_toast");
-                var toast = new bootstrap.Toast(rfa_end_waiting_toast)
+                var targetId = "rfa_end_waiting_toast";
+                dispose_all_toasts(targetId);
 
-                toast.show()
+                $("#rfa_end_waiting_toast_text").text("Waiting for RFA owner to match or reject the raised bid...")
+                var rfa_end_waiting_toast = document.getElementById(targetId);
+                var toast = bootstrap.Toast.getOrCreateInstance(rfa_end_waiting_toast);
+                toast.show();
             }
 
         }
@@ -971,59 +1025,49 @@
         }
 
         function update_draft_history_table(draft_history_data, team_requested) {
-
-            // if this user doesnt have the draft history open, no need to update the table
             if (!$("#draft_history_toggle").is(":checked")) {
                 return;
             }
 
-            var drafted_list_table = document.getElementById("drafted_list_table");
+            $("#drafted_list_table tbody").empty();
 
-            var num_rows = $("#drafted_list_table tr").length
-            //console.log("Current Table Rows: " + numAuctionRows)
-            //prevent attempt to delete data if only header is showing
-            if (num_rows > 1) {
-                for (var row_index = 1; row_index <= num_rows - 1; row_index++) {
-                    //console.log("Removing old row: " + row_index)
-                    drafted_list_table.deleteRow(1)
-                }
+            if (!draft_history_data || draft_history_data.length === 0) {
+                $("#draft_history_empty_state").show();
+                $("#drafted_list_table").hide();
+                return;
             }
 
-            table_columns_array = ["full_name", "position", "team", "team_drafted_by", "years_drafted", "contract_price", "draft_type"]
-
-            console.log("Building draft history: " + draft_history_data.length)
-
-            //TODO: remove all rows and redraw with display name headers
+            $("#draft_history_empty_state").hide();
+            $("#drafted_list_table").show();
 
             for (var i = 0; i < draft_history_data.length; i++) {
-                //iterate through rows
-                //console.log("Draft Order: " + draft_history_data[i].fields.draft_order )
-                var new_row_html = '<tr class="text-center">'
+                var f = draft_history_data[i].fields;
+                var pName = f.full_name || "-";
+                var pPos = (f.position || "").toUpperCase().trim();
+                var pTeam = f.team || "-";
+                var pDraftedBy = f.team_drafted_by || "-";
+                var pYears = f.years_drafted || 1;
+                var pPrice = f.contract_price !== undefined ? f.contract_price : 0;
+                var pType = (f.draft_type || "ufa").toUpperCase();
 
-                for (var j = 0; j < table_columns_array.length; j++) {
-                    //iterate through columns
-                    var new_col_value = draft_history_data[i].fields[table_columns_array[j]]
-                    //console.log("    " + table_columns_array[j] + ": " + new_col_value )
+                var posBadgeClass = getPositionBadgeClass(pPos);
 
-                    //add check and x for true and false things like pass available
-                    //if (new_col_value === true){
-                    //    new_col_value = '<i class="fa-solid fa-circle-check fa-xl" size="10x" style="color:rgb(0,176,29)"></i>'
-                    //} else if (new_col_value === false){
-                    //    new_col_value = '<i class="fa-solid fa-circle-xmark fa-xl" size="10x" style="color:rgb(207,20,43)"></i>'
-                    //} else if (table_columns_array[j] == "budget_remaining"){
-                    //    budget_including_rfas = new_col_value - draft_history_data[i].fields["rfas_remaining"]
-                    //    new_col_value = new_col_value + " (" + budget_including_rfas + ")"
-                    //} else if (table_columns_array[j] == "draft_order" && draft_history_data[i].fields["bathroom_mode_enabled"]){
-                    //    new_col_value = '<i class="fa-solid fa-toilet fa-lg me-2" style="color:rgb(13, 110, 253)" ></i>'
-                    //}
+                var typeBadgeClass = "bg-primary text-white";
+                if (pType === "ROOKIE") typeBadgeClass = "bg-success text-white";
+                else if (pType === "RFA") typeBadgeClass = "bg-warning text-dark";
 
-                    new_row_html = new_row_html + "<td>" + new_col_value + "</td>"
+                var new_row_html = '<tr class="align-middle border-bottom">' +
+                    '<td class="text-center text-muted fw-semibold ps-3 py-2" style="font-size: 0.85rem;">' + (i + 1) + '</td>' +
+                    '<td class="py-2"><strong class="text-dark">' + pName + '</strong></td>' +
+                    '<td class="py-2"><span class="badge ' + posBadgeClass + '">' + (pPos || '-') + '</span></td>' +
+                    '<td class="py-2 text-secondary fw-semibold">' + pTeam + '</td>' +
+                    '<td class="py-2"><span class="badge bg-dark text-white px-2 py-1">' + pDraftedBy + '</span></td>' +
+                    '<td class="text-center py-2 fw-semibold text-secondary">' + pYears + (pYears == 1 ? ' yr' : ' yrs') + '</td>' +
+                    '<td class="text-center py-2 fw-bold text-success" style="font-size: 0.95rem;">$' + pPrice + '</td>' +
+                    '<td class="text-center pe-3 py-2"><span class="badge ' + typeBadgeClass + ' px-2 py-1">' + pType + '</span></td>' +
+                    '</tr>';
 
-                }
-                new_row_html = new_row_html + "</tr>"
-
-                $("#drafted_list_table tbody").append(new_row_html)
-
+                $("#drafted_list_table tbody").append(new_row_html);
             }
         }
 
@@ -1105,8 +1149,11 @@
             });
         }
 
-        function dispose_all_toasts() {
-            $(".toast.show").each(function () {
+        function dispose_all_toasts(exceptId) {
+            $(".toast").each(function () {
+                if (exceptId && this.id === exceptId) {
+                    return;
+                }
                 var toastInstance = bootstrap.Toast.getInstance(this);
                 if (toastInstance) {
                     console.log("Hiding toast:", toastInstance);
@@ -1568,9 +1615,6 @@
 
             }
 
-            // dispose of all toast intances
-            dispose_all_toasts();
-
             //check for confirmation toasts
             if (new_auction_manager_data[0].fields.auction_state != 'bidding') {
 
@@ -1578,10 +1622,10 @@
                 var teams_still_in = []
 
                 for (var i = 0; i < new_table_data.length; i++) {
-                    if (new_table_data[i].fields.draft_order == new_auction_manager_data[0].fields.initiated_auction) {
+                    if (parseInt(new_table_data[i].fields.draft_order) === parseInt(new_auction_manager_data[0].fields.initiated_auction)) {
                         var team_initiated_auction = new_table_data[i].fields.team_name;
                     }
-                    if (parseInt(new_table_data[i].fields.draft_order) == parseInt(new_auction_manager_data[0].fields.team_with_highest_bid)) {
+                    if (parseInt(new_table_data[i].fields.draft_order) === parseInt(new_auction_manager_data[0].fields.team_with_highest_bid)) {
                         var team_auction_winner = new_table_data[i].fields.team_name;
                     }
                     if (new_table_data[i].fields.still_in_auction == true && new_table_data[i].fields.bathroom_mode_enabled == false) {
@@ -1596,7 +1640,7 @@
                     teams_still_in.length == 2 &&
                     new_auction_manager_data[0].fields.highest_bid == 1
                 ) {
-                    if (teams_still_in[0].fields.draft_order == new_auction_manager_data[0].fields.initiated_auction) {
+                    if (parseInt(teams_still_in[0].fields.draft_order) === parseInt(new_auction_manager_data[0].fields.initiated_auction)) {
                         team_auction_winner = teams_still_in[1].fields.team_name;
                     } else {
                         //if 0 not the same as initiated auction, must be 0
@@ -1605,6 +1649,8 @@
                 }
 
                 handle_auction_end_confirmations(new_auction_manager_data[0].fields.auction_state, team_initiated_auction, team_auction_winner, new_auction_manager_data[0].fields.player_for_auction_name, new_auction_manager_data[0].fields.highest_contract_years, new_auction_manager_data[0].fields.highest_bid)
+            } else {
+                dispose_all_toasts();
             }
 
 

@@ -30,3 +30,4 @@ draft_data
 data_to_combine/*.csv
 django_postgres/pg_stat
 django_postgres_test/pg_stat
+scripts/logs/

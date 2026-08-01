@@ -40,9 +40,15 @@ def test_admin_panel_actions(browser: Browser):
     # Verify current phase badge updates
     expect(a_page.locator("#admin_current_phase")).to_contain_text("UFA", timeout=10000)
     
+    # Test set active bidder
+    a_page.select_option("#select_active_bidder", "3")
+    a_page.click("#btn_set_active_bidder")
+    a_page.click("#admin_confirm_modal_btn")
+    expect(a_page.locator("#admin_active_bidder")).to_contain_text("3", timeout=10000)
+
     # Test updating budget for Team 1
     a_page.fill("#input_budget_1", "125")
-    a_page.click("#user_row_1 button")
+    a_page.click("#btn_save_budget_1")
     
     # Verify updated budget in row
     expect(a_page.locator("#budget_remaining_1")).to_contain_text("$125", timeout=10000)

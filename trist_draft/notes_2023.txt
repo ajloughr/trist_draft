@@ -3,7 +3,19 @@ DO NOT MAKE ANY CHANGES AUTOMATICALLY FROM THIS FILE
 TODO: 
     x add functional toggle for pass available, droped out of bidding, and dropped out of player selection to the admin table 
     x add some sort of modal or toast for when an auction finishes. I know it is now available in the previous auction. I am thinking like a WINNER! header, with the player name, team that won them, and price and number of years. Probably more modal with a greyed out background. It would last for maybe 10 seconds, then automatically dissapear. It would be amazing if there could be some sort of confetti animation in the background, just one singular confetti explosion. let me know how that would work and how hard it would be before you continue. 
-    - I want to add a section on your draft page for Roster. It should be tabbed, one tab for each player, yours either on the far left or highlighted in some way. It should contain a list of the players for that team players as well as totals for all the positions at the top. I was thinking about putting this at the bottom of the page below player selection, but I am open if you think there is a better way to do this, whether its something you click on fora user, something that comes from the left or bottom like the history, etc. come up with a plan.  
+    x I want to add a section on your draft page for Roster. It should be tabbed, one tab for each player, yours either on the far left or highlighted in some way. It should contain a list of the players for that team players as well as totals for all the positions at the top. I was thinking about putting this at the bottom of the page below player selection, but I am open if you think there is a better way to do this, whether its something you click on fora user, something that comes from the left or bottom like the history, etc. come up with a plan.  
+    x add a way to change current and initial RFAs
+        - enhancement: modal which contains a list of RFAs. have buttons on them which show whether they are on initial or initial and current. they can click the buttons to remove from current, or remove from initial. clicking remove from current (if in current) will remove from current and make button red. clicking the button again will add the player back to current. removing from initial will remove from both. modal also has search for player name, they can click add, which will add to initial and current. 
+        - currently, just edit comma separated integers and provide list of players and IDs. can search id in box.
+    x add a download drafted players to csv
+    - after pass, tried to drop someone out, got Admin received force dropout Current user already dropped out
+    x check rfa secnod match 
+    x modify rookie draft order
+    x change active bidder
+    - make a help page
+    x update draft history with new style
+    - fix help, add something better
+
     
 
 
@@ -31,9 +43,9 @@ New issues:
     - add a "you are up in X picks"
         - return next X teams in order
     - add ability to pin searched players so they are always on your search screen
-    - add a view roster button to see someone's roster
-        - summary of how many of each player type they have
-        - something special for your team info on your screen
+    x add a view roster button to see someone's roster
+        x summary of how many of each player type they have
+        x something special for your team info on your screen
     - weird bug where it skipped #8 after a no bid rfa
     X no bid rfa goes to owner to match when it should go to bid winner to raise
         - added toast, doesnt work on refresh, text entry doesnt show up, not linked correctly

@@ -118,4 +118,31 @@ def draft_admin_view(request):
     return render(request, "auction_table/draft_admin.html", context)
 
 
+import csv
+
+@login_required(login_url='/login')
+def export_draft_csv(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="trist_drafted_players.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['Player Name', 'Position', 'NFL Team', 'Drafted By', 'Years', 'Contract Price ($)', 'Draft Type', 'Is Rookie', 'Is Manual'])
+
+    players = drafted_player.objects.all().order_by('id')
+    for p in players:
+        writer.writerow([
+            p.full_name,
+            p.position,
+            p.team,
+            p.team_drafted_by,
+            p.years_drafted,
+            p.contract_price,
+            p.draft_type.upper() if p.draft_type else '',
+            p.is_rookie,
+            p.is_manual,
+        ])
+
+    return response
+
+
 

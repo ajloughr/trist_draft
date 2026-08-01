@@ -27,6 +27,7 @@ from trist_draft.apps.auction_table.views import (
     # check_ajax_stuff,
     auction_table_view,
     draft_admin_view,
+    export_draft_csv,
 )
 from trist_draft.apps.accounts.views import login_view, logout_view
 
@@ -45,6 +46,7 @@ urlpatterns = [
 
     path('auction/',auction_table_view, name="auction"),
     path('draft-admin/', draft_admin_view, name="draft-admin"),
+    path('export-draft-csv/', export_draft_csv, name="export-draft-csv"),
 
     path('', include('trist_draft.apps.public.urls'))
        
