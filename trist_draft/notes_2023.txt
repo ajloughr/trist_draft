@@ -14,7 +14,8 @@ TODO:
     x change active bidder
     - make a help page
     x update draft history with new style
-    - fix help, add something better
+    x fix help, add something better
+    x seems like you can decrease bid on rfa raise, need to disable in gui
 
     
 

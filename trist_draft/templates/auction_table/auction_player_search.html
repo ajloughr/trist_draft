@@ -1,4 +1,4 @@
-<div class="card mb-3 p-3 border-0 shadow-sm" style="border-radius: 12px; background: #ffffff;">
+<div class="card mb-3 p-3 border-0 shadow-sm" id="player_selection_card" style="border-radius: 12px; background: #ffffff; z-index: 1;">
     <!-- Title Bar -->
     <div class="d-flex justify-content-between align-items-center mb-3">
         <span class="summary-card-title">Player Selection</span>
@@ -31,18 +31,6 @@
         <!-- Pane 1: Search Database -->
         <div class="tab-pane fade show active" id="pane_search_db" role="tabpanel" aria-labelledby="tab_search_db">
             <div id="player_search_value_div" style="display: none;">
-                <div class="data-rookie_help mb-2" style="display: none;">
-                    <span class="fa-layers fa-fw man-tooltip" data-bs-toggle="man-tooltip" data-bs-placement="top" title="First, enter the name of the desired player.">
-                        <i class="fa-solid fa-circle fa-lg" style="color:rgb(243, 156, 18)"></i>
-                        <i class="fa-inverse fa-solid fa-1 fa-lg" data-fa-transform="shrink-6"></i>
-                    </span>
-                </div>
-                <div class="data-ufa_help mb-2" style="display: none;">
-                    <span class="fa-layers fa-fw man-tooltip" data-bs-toggle="man-tooltip" data-bs-placement="top" title="First, enter the name of the desired player.">
-                        <i class="fa-solid fa-circle fa-lg" style="color:rgb(243, 156, 18)"></i>
-                        <i class="fa-inverse fa-solid fa-1 fa-lg" data-fa-transform="shrink-6"></i>
-                    </span>
-                </div>
                 <form onsubmit="return false;">
                     <!-- Player Name (Primary Search Input) -->
                     <div class="mb-2">
@@ -117,7 +105,6 @@
                         </div>
                     </div>
                     <button id="submit_selected_player" class="btn btn-success w-100 fw-bold py-2 man-tooltip" type="button" data-bs-toggle="man-tooltip" data-bs-placement="top" title="Submit the entered manual player for auction." style="border-radius: 8px;">
-                        <span class="spinner-grow spinner-grow-sm me-1" id="manual_player_spinner" aria-hidden="true" style="display: none;"></span>
                         Submit Player
                     </button>
                 </form>
@@ -132,7 +119,6 @@
             <select class="form-select mb-3" id="rfa_selector" aria-label="RFA Selection">
             </select>
             <button id="select_rfa_player" class="btn btn-success w-100 fw-bold py-2" type="button" onclick="rfa_player_selected()" style="border-radius: 8px;">
-                <span class="spinner-grow spinner-grow-sm me-1" id="select_rfa_player_spinner" aria-hidden="true" style="display: none;"></span>
                 Submit Player
             </button>
         </form>

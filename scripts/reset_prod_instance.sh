@@ -44,10 +44,10 @@ echo "Running migrations on production instance..."
 docker exec -i django python manage.py migrate
 
 echo "Cleaning 2026 CSV data..."
-docker exec -i django python scripts/clean_csv.py /code/draft_data/TRIST_Database_2026_v3.csv /code/draft_data/TRIST_Database_2026_v3_clean.csv
+docker exec -i django python scripts/clean_csv.py /code/draft_data/TRIST_Database_2026_v4.csv /code/draft_data/TRIST_Database_2026_v4_clean.csv
 
 echo "Importing NFL players into production database..."
-docker exec -i django-postgres psql -U postgres -d postgres -c "COPY auction_table_nfl_player(player_id,full_name,team_short_name,team,bye,position,salary,final_year,drafted_by) FROM '/home/draft_data/TRIST_Database_2026_v3_clean.csv' DELIMITER ',' CSV HEADER;"
+docker exec -i django-postgres psql -U postgres -d postgres -c "COPY auction_table_nfl_player(player_id,full_name,team_short_name,team,bye,position,salary,final_year,drafted_by) FROM '/home/draft_data/TRIST_Database_2026_v4_clean.csv' DELIMITER ',' CSV HEADER;"
 
 echo "Importing users and teams..."
 docker exec -i django python manage.py shell < scripts/import_users.py

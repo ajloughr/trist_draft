@@ -32,7 +32,7 @@
                             <p><strong>Draft Phase:</strong> <span id="admin_current_phase" class="badge bg-info text-dark">{{ current_auction_manager.auction_type|upper }}</span></p>
                             <p><strong>Active Bidder (Draft Order #):</strong> <span id="admin_active_bidder">{{ current_auction_manager.active_bidder }}</span></p>
                             <p><strong>Player for Auction:</strong> <span id="admin_current_player">{% if current_auction_manager.player_for_auction_name %}{{ current_auction_manager.player_for_auction_name }} ({{ current_auction_manager.player_for_auction_team }} - {{ current_auction_manager.player_for_auction_position }}){% else %}None{% endif %}</span></p>
-                            <p><strong>Highest Bid:</strong> $<span id="admin_highest_bid">{{ current_auction_manager.highest_bid }}</span> (<span id="admin_highest_years">{{ current_auction_manager.highest_contract_years }}</span> yrs)</p>
+                            <p><strong>Highest Bid:</strong> $<span id="admin_highest_bid">{{ current_auction_manager.highest_bid }}</span> for <span id="admin_highest_years">{{ current_auction_manager.highest_contract_years }}</span> {% if current_auction_manager.highest_contract_years == 1 %}yr{% else %}yrs{% endif %}</p>
                         </div>
                         <div class="col-md-6">
                             <h6>Force Action for Active Bidder</h6>
@@ -118,8 +118,8 @@
                         {% if last_drafted %}
                         <strong>{{ last_drafted.full_name }}</strong> ({{ last_drafted.team }} - {{
                         last_drafted.position }})<br>
-                        Drafted by: {{ last_drafted.team_drafted_by }} for ${{ last_drafted.contract_price }} ({{
-                        last_drafted.years_drafted }} yrs) [{{ last_drafted.draft_type|upper }}]
+                        Drafted by: {{ last_drafted.team_drafted_by }} for ${{ last_drafted.contract_price }} for {{
+                        last_drafted.years_drafted }} {% if last_drafted.years_drafted == 1 %}yr{% else %}yrs{% endif %} [{{ last_drafted.draft_type|upper }}]
                         {% else %}
                         <em>No players drafted yet.</em>
                         {% endif %}
@@ -401,7 +401,7 @@
                     var lp = lastDraftedArr[0].fields;
                     $("#last_drafted_info").html(
                         "<strong>" + lp.full_name + "</strong> (" + lp.team + " - " + lp.position + ")<br>" +
-                        "Drafted by: " + lp.team_drafted_by + " for $" + lp.contract_price + " (" + lp.years_drafted + " yrs) [" + (lp.draft_type || '').toUpperCase() + "]"
+                        "Drafted by: " + lp.team_drafted_by + " for $" + lp.contract_price + " for " + lp.years_drafted + (parseInt(lp.years_drafted) === 1 ? " yr" : " yrs") + " [" + (lp.draft_type || '').toUpperCase() + "]"
                     );
                 } else {
                     $("#last_drafted_info").html("<em>No players drafted yet.</em>");

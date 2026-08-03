@@ -35,14 +35,7 @@
 
             <div class="d-flex align-items-center ms-auto gap-3">
               {% if '/draft-admin' not in request.path %}
-                <div class="d-flex align-items-center me-1">
-                  <span class="fa-layers fa-fw me-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Toggle help mode. Numbered hints will appear to gude you through the player selection process for the current draft type. Hover over each numbered hint for additional details.">
-                    <i class="fa-solid fa-circle-question fa-lg" style="color: #f59e0b;" ></i>
-                  </span>
-                  <div class="form-check form-switch m-0 me-1">
-                    <input class="form-check-input switch-warning" type="checkbox" role="switch" id="help_mode_toggle" onclick="help_mode_toggled()">
-                  </div>
-                </div>
+
 
                 <div class="d-flex align-items-center me-1">
                   <span class="fa-layers fa-fw me-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Toggle bathroom mode. When enabled, it will skip your bid and player selection until disabled. Remember, if you shake it more than twice, you're playing with it.">
@@ -112,14 +105,7 @@
 
   };
 
-  //document.querySelector('#help_mode_toggle').onclick = function(e) {
-  function help_mode_toggled(){  
-    var bathroom_mode_state = $("#help_mode_toggle").is(":checked")
 
-    console.log("Help mode toggled: " + bathroom_mode_state);
-    request_table_refresh($("#current_auction_user_team").val())
-
-  };
 
   function draft_history_toggled(){  
     var draft_history_state = $("#draft_history_toggle").is(":checked")

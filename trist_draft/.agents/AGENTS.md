@@ -29,3 +29,6 @@ If you are picking up work on infrastructure or refactoring, **please refer to `
 1. **Never run docker commands without explicit user approval.**
 2. When writing Playwright tests, note that Playwright's `.fill()` command does not trigger the necessary JavaScript `keyup` events for the player search bar. You must use `.press("Enter")` to simulate it.
 3. If you need to verify rules about how the draft operates (RFA mechanics, passing rules, etc.), consult the `.agents/skills/league_rules/SKILL.md` file.
+
+## Script Usage Rules
+- **Do not create scripts to make file changes**: Rely strictly on the multi_replace_file_content and replace_file_content tools for making code edits. Do not write python, bash, or other scripts to perform file modifications unless dealing with hidden characters or complex line break issues that the replacement tools cannot handle.
