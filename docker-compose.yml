@@ -28,7 +28,8 @@ services:
     container_name: django
     restart: unless-stopped
     volumes:
-      - /mnt/user/docker/trist_draft:/code
+      - /mnt/user/docker/trist_draft/trist_draft_prod:/code
+      - /mnt/user/docker/trist_draft/draft_data:/code/draft_data
     ports:
       - "8000:8000"
     # environment:
