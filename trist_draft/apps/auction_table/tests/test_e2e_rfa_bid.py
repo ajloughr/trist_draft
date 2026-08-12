@@ -34,7 +34,7 @@ def test_two_user_rfa_bidding(browser: Browser):
     
     # Sentinels submits their opening bid (fixed at $1 for 1 year for RFA opener)
     try:
-        s_page.wait_for_selector("#id_new_bid")
+        s_page.wait_for_selector("#id_new_bid", state="attached")
         s_page.locator("label[for='contract_year_selected_1']").click()
         s_page.click("#submit_new_bid_button")
     except Exception as e:

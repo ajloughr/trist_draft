@@ -10,7 +10,7 @@ def test_rfa_uncontested_bid(browser: Browser):
     select_first_available_rfa(s_page)
     
     # Assert input is disabled for RFA opener and locked at $1
-    s_page.wait_for_selector("#id_new_bid", timeout=2000)
+    s_page.wait_for_selector("#id_new_bid", state="attached", timeout=2000)
     s_page.locator("label[for='contract_year_selected_1']").click()
     expect(s_page.locator("#id_new_bid")).to_be_disabled()
     expect(s_page.locator("#id_new_bid")).to_have_value("1")

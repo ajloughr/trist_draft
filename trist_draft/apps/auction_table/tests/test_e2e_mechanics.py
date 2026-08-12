@@ -1,3 +1,4 @@
+import re
 import pytest
 from playwright.sync_api import Page, expect, Browser
 from .e2e_helpers import login_user, start_auction, drop_out_all_except
@@ -25,11 +26,10 @@ def test_invalid_bids(browser: Browser):
     h_ctx, h_page = login_user(browser, "hokiehigh")
     h_page.locator("label[for='contract_year_selected_2']").click()
     h_page.fill("#id_new_bid", "4")
-    h_page.click("#submit_new_bid_button")
-    
-    # Check that error toast appears
-    # Assuming there's a bid error toast/alert, wait for it
-    # expect(h_page.locator("#bid_error_toast")).to_be_visible()
+    # Check that UI disables submit button and marks input invalid for lower bid
+    expect(h_page.locator("#submit_new_bid_button")).to_be_disabled()
+    expect(h_page.locator("#id_new_bid")).to_have_class(re.compile(r"\bis-invalid\b"))
+
 
 def test_tie_breakers(browser: Browser):
     """TC 4.2 - Tie Breakers
