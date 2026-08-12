@@ -19,8 +19,9 @@ def test_rookie_manual_entry(browser: Browser):
     s_page.fill("#selected_player_team", "KC")
     s_page.fill("#selected_player_position", "QB")
     
-    # Submit player
+    # Submit player & confirm
     s_page.click("#submit_selected_player")
+    s_page.click("#select_player_confirmed")
     
     # Wait for Sentinels' turn to end
     expect(s_page.locator("#your_turn_to_bid_banner")).not_to_be_visible(timeout=10000)

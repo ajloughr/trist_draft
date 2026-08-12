@@ -447,11 +447,13 @@
                 $("#rfas_remaining_" + fields.draft_order).text(fields.rfas_remaining);
                 if (!$("#input_initial_rfas_" + fields.draft_order).is(":focus")) {
                     var initList = fields.initial_rfa_list || [];
-                    $("#input_initial_rfas_" + fields.draft_order).val(initList.join(", "));
+                    var initStr = Array.isArray(initList) ? initList.join(", ") : initList;
+                    $("#input_initial_rfas_" + fields.draft_order).val(initStr);
                 }
                 if (!$("#input_current_rfas_" + fields.draft_order).is(":focus")) {
                     var currList = fields.current_rfa_list || [];
-                    $("#input_current_rfas_" + fields.draft_order).val(currList.join(", "));
+                    var currStr = Array.isArray(currList) ? currList.join(", ") : currList;
+                    $("#input_current_rfas_" + fields.draft_order).val(currStr);
                 }
                 $("#bm_toggle_" + fields.draft_order).prop("checked", fields.bathroom_mode_enabled);
                 $("#pass_available_toggle_" + fields.draft_order).prop("checked", fields.pass_available);

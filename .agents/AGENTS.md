@@ -90,6 +90,14 @@ If you are picking up work on infrastructure or refactoring, **please refer to [
 
 ---
 
+### Interactive Onboarding Tour (Driver.js) Rules
+- **Phase-Specific Tour Workflows**: `startOnboardingTour()` drives distinct step-by-step guides for Rookie, RFA, and UFA draft phases.
+- **Action Button Neutering**: All interactive draft actions (`#submit_new_bid_button`, `#pass_button`, `#drop_out_button`, `#pass_player_selection`, `#drop_out_of_selection_confirm`, `#select_rfa_player`, `#select_player_confirmed`) are guarded with `if (window.is_tour_active) return;` so user clicks during tour steps do not broadcast WebSocket events or alter backend state.
+- **Modal Display Safeguards**: Confirmation modals like `#drop_out_confirmation_modal` and `#select_player_confirmation_modal` include `show.bs.modal` guards checking `window.is_tour_active` to prevent dialog popups during tour steps.
+- **Clean State Restoration**: `onDestroyed()` in the Driver.js configuration calls `update_auction_table(auction_table_data, auction_manager_data, user_data)` upon tour completion or dismissal to instantly reset all DOM element states, form inputs, and button flags directly to active WebSocket data.
+
+---
+
 ## ⚠️ Important Rules & Skill References
 1. **Never run docker commands without explicit user approval.**
 2. When writing Playwright tests, note that Playwright's `.fill()` command does not trigger the necessary JavaScript `keyup` events for the player search bar. You must use `.press("Enter")` to simulate it.

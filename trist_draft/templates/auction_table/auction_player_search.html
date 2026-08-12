@@ -9,7 +9,7 @@
     <ul class="nav nav-tabs border-bottom mb-3" id="player_selection_tab_list" role="tablist">
         <li class="nav-item" role="presentation">
             <button class="nav-link active fw-bold small text-dark" id="tab_search_db" data-bs-toggle="tab" data-bs-target="#pane_search_db" type="button" role="tab" aria-controls="pane_search_db" aria-selected="true">
-                <i class="fa-solid fa-magnifying-glass me-1"></i> Search Database
+                <i class="fa-solid fa-magnifying-glass me-1"></i> Database Search
             </button>
         </li>
         <li class="nav-item" role="presentation">
@@ -391,6 +391,7 @@
     }
 
     function rfa_player_selected() {
+        if (window.is_tour_active) return;
 
         var selected_rfa = $("#rfa_selector").val();
         console.log("Player Selected: " + selected_rfa)
@@ -424,14 +425,23 @@
     };
     
     $(document).on('click', '#select_player_confirmed', function(e) {
+        if (window.is_tour_active) {
+            hideMockConfirmationModal();
+            return;
+        }
         var submitted_player_name = $('#selected_player_name_confirm').text();
         var submitted_player_team = $('#selected_player_team_confirm').text();
         var submitted_player_position = $('#selected_player_position_confirm').text();
     
         var modalEl = document.getElementById('select_player_confirmation_modal');
         if (modalEl) {
-            var modalInst = bootstrap.Modal.getOrCreateInstance(modalEl);
+            var modalInst = bootstrap.Modal.getInstance(modalEl) || bootstrap.Modal.getOrCreateInstance(modalEl);
             modalInst.hide();
+            $(modalEl).removeClass('show').css('display', 'none').attr('aria-hidden', 'true');
+            $('.modal-backdrop').remove();
+            document.body.classList.remove('modal-open');
+            document.body.style.overflow = '';
+            document.body.style.paddingRight = '';
         }
         submit_selected_player(submitted_player_name,submitted_player_team,submitted_player_position);
     });
@@ -461,14 +471,29 @@
     }
 
     $(document).on('click', '#submit_selected_player', function(e) {
-        var submitted_player_name = $('#selected_player_name').val();
-        var submitted_player_team = $('#selected_player_team').val();
-        var submitted_player_position = $('#selected_player_position').val();
+        if (window.is_tour_active) return;
+        var submitted_player_name = ($('#selected_player_name').val() || '').trim();
+        var submitted_player_team = ($('#selected_player_team').val() || '').trim();
+        var submitted_player_position = ($('#selected_player_position').val() || '').trim();
 
-        submit_selected_player(submitted_player_name,submitted_player_team,submitted_player_position);
+        if (!submitted_player_name) {
+            alert("Please enter a player name.");
+            return;
+        }
+
+        $("#selected_player_name_confirm").text(submitted_player_name);
+        $("#selected_player_team_confirm").text(submitted_player_team || "-");
+        $("#selected_player_position_confirm").text(submitted_player_position || "-");
+
+        var modalEl = document.getElementById('select_player_confirmation_modal');
+        if (modalEl) {
+            var modalInst = bootstrap.Modal.getOrCreateInstance(modalEl);
+            modalInst.show();
+        }
     });
 
     $(document).on('click', '#drop_out_of_selection_confirm', function(e) {
+        if (window.is_tour_active) return;
         console.log("Team Dropped out of Player Selection: " + $("#current_auction_user_team").val())
 
         socket.send(JSON.stringify({
@@ -479,6 +504,7 @@
     });
 
     $(document).on('click', '#pass_player_selection', function(e) {
+        if (window.is_tour_active) return;
         console.log("Team Passed Player Selection: " + $("#current_auction_user_team").val())
 
         socket.send(JSON.stringify({

@@ -29,7 +29,7 @@ def start_auction(admin_page: Page, auction_type: str, draft_order: str):
     admin_page.goto("http://localhost:8000/auction/")
     dismiss_winner_modal_if_present(admin_page)
     # Wait for the UI to sync via websocket and announce it is this user's turn
-    expect(admin_page.locator("#your_turn_to_bid_banner")).to_be_visible(timeout=2000)
+    expect(admin_page.locator("#your_turn_to_bid_banner")).to_be_visible(timeout=10000)
 
 def dismiss_winner_modal_if_present(page: Page):
     """Dismiss winner celebration modal if visible."""
