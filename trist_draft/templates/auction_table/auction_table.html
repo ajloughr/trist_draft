@@ -1404,6 +1404,9 @@
                         $(this_user_drop_out_button).prop("disabled", true);
                         $("#id_new_bid").val(1);
                         $(this_user_bid_input).prop("disabled", true);
+                        $("#id_new_bid, #new_bid_input_group .input-group-text").hide();
+                        $("#submit_new_bid_button span[role='status']").text("Set Starting Bid");
+                        $(this_user_bid_button).css("border-radius", "8px");
                     } else if (new_auction_manager_data[0].fields.auction_type == "ufa") {
                         $(this_user_bid_button).prop("disabled", false);
                         this_user_bid_button.classList.remove("data-disabled_from_update");
@@ -1411,6 +1414,9 @@
                         $(this_user_drop_out_button).prop("disabled", true);
                         $("#id_new_bid").val(1);
                         $(this_user_bid_input).prop("disabled", false);
+                        $("#id_new_bid, #new_bid_input_group .input-group-text").show();
+                        $("#submit_new_bid_button span[role='status']").text("Submit Bid");
+                        $(this_user_bid_button).css("border-radius", "");
                     }
 
 
@@ -1422,6 +1428,9 @@
                     this_user_bid_button.classList.remove("data-disabled_from_update");
                     $(this_user_bid_input).prop("disabled", false);
                     $(this_user_drop_out_button).prop("disabled", false);
+                    $("#id_new_bid, #new_bid_input_group .input-group-text").show();
+                    $("#submit_new_bid_button span[role='status']").text("Submit Bid");
+                    $(this_user_bid_button).css("border-radius", "");
 
                     num_teams_remaining = 0;
                     for (var i = 0; i < new_table_data.length; i++) {
@@ -1454,6 +1463,16 @@
                 $(this_user_bid_input).prop("disabled", true);
                 $(this_user_pass_button).prop("disabled", true);
 
+                if (new_auction_manager_data[0].fields.auction_type == "rfa" && parseInt(new_auction_manager_data[0].fields.highest_bid) == 0) {
+                    $("#id_new_bid, #new_bid_input_group .input-group-text").hide();
+                    $("#submit_new_bid_button span[role='status']").text("Set Starting Bid");
+                    $(this_user_bid_button).css("border-radius", "8px");
+                } else {
+                    $("#id_new_bid, #new_bid_input_group .input-group-text").show();
+                    $("#submit_new_bid_button span[role='status']").text("Submit Bid");
+                    $(this_user_bid_button).css("border-radius", "");
+                }
+
                 // this new logic shows the button for people when they want to drop out early
                 if (
                     !(new_auction_manager_data[0].fields.auction_type == 'rfa' && parseInt(this_user_object.fields.draft_order) == parseInt(new_auction_manager_data[0].fields.initiated_auction)) && //if this is rfa and this user did not initiate the auction (cant drop out of your own rfa auction)
@@ -1479,15 +1498,18 @@
                     parseInt(this_user_object.fields.draft_order) == parseInt(new_auction_manager_data[0].fields.active_bidder) && //if this user is the current bidder
                     parseInt(new_auction_manager_data[0].fields.highest_bid) == 0) {
                     console.log("Enabling contract years for RFA initial selection")
+                    $("#contract_years_container").removeClass("d-none");
                     $(this_contract_year_selected_radio).show();
                     $(this_contract_year_selected_radio_disabled).hide();
                 } else {
-                    console.log("Disabling contract years for RFA")
+                    console.log("Hiding contract years for RFA bidding")
+                    $("#contract_years_container").addClass("d-none");
                     $(this_contract_year_selected_radio).hide();
-                    $(this_contract_year_selected_radio_disabled).show();
+                    $(this_contract_year_selected_radio_disabled).hide();
                 }
 
             } else {
+                $("#contract_years_container").removeClass("d-none");
                 if (isPlayerUpForAuction) {
                     console.log("Enabling contract years for active player")
                     $(this_contract_year_selected_radio).show();
@@ -1859,7 +1881,11 @@
         const new_bid_input = document.querySelector('#id_new_bid');
         const new_bid = new_bid_input.value;
 
-        const new_bid_contract_years = $('input[name=contract_year_selected]:checked').val()
+        var selected_years = $('input[name=contract_year_selected]:checked').val();
+        if (!selected_years && new_auction_manager_data && new_auction_manager_data[0]) {
+            selected_years = new_auction_manager_data[0].fields.highest_contract_years || 1;
+        }
+        const new_bid_contract_years = selected_years || 1;
 
         console.log("New Bid Submitted: " + new_bid)
         socket.send(JSON.stringify({

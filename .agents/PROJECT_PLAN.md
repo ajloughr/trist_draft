@@ -3,7 +3,7 @@
 ## Phase 1: Discovery
 
 - **Analyze Existing Models:** Review the `auction_user`, `auction_manager`, `nfl_player`, and `drafted_player` models to understand their current capabilities.
-- **Map Current Flow vs. Required Flow:** Compare the fields in the database to the rules outlined in `league_rules/SKILL.md` (e.g., phases like Rookie, RFA, and UFA; bid resolution; special RFA matching rules).
+- **Map Current Flow vs. Required Flow:** Compare the fields in the database to the rules outlined in `skills/league_rules/SKILL.md` (e.g., phases like Rookie, RFA, and UFA; bid resolution; special RFA matching rules).
 - **Identify Missing State Fields:** Determine which new fields need to be added to track complex states such as RFA owner match phases, nominator tracking, and the differentiation between users who "passed" versus those who explicitly "dropped out".
 
 ## Phase 2: Test Harness Setup

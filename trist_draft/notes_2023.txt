@@ -16,6 +16,7 @@ TODO:
     x update draft history with new style
     x fix help, add something better
     x seems like you can decrease bid on rfa raise, need to disable in gui
+    - add note to UFA drop out saying you will still be able to bid
 
     
 
