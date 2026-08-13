@@ -426,8 +426,9 @@
     
     $(document).on('click', '#select_player_confirmed', function(e) {
         if (window.is_tour_active) {
-            hideMockConfirmationModal();
-            return;
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
         }
         var submitted_player_name = $('#selected_player_name_confirm').text();
         var submitted_player_team = $('#selected_player_team_confirm').text();
@@ -471,7 +472,11 @@
     }
 
     $(document).on('click', '#submit_selected_player', function(e) {
-        if (window.is_tour_active) return;
+        if (window.is_tour_active) {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        }
         var submitted_player_name = ($('#selected_player_name').val() || '').trim();
         var submitted_player_team = ($('#selected_player_team').val() || '').trim();
         var submitted_player_position = ($('#selected_player_position').val() || '').trim();
@@ -493,7 +498,11 @@
     });
 
     $(document).on('click', '#drop_out_of_selection_confirm', function(e) {
-        if (window.is_tour_active) return;
+        if (window.is_tour_active) {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        }
         console.log("Team Dropped out of Player Selection: " + $("#current_auction_user_team").val())
 
         socket.send(JSON.stringify({
@@ -504,7 +513,11 @@
     });
 
     $(document).on('click', '#pass_player_selection', function(e) {
-        if (window.is_tour_active) return;
+        if (window.is_tour_active) {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        }
         console.log("Team Passed Player Selection: " + $("#current_auction_user_team").val())
 
         socket.send(JSON.stringify({

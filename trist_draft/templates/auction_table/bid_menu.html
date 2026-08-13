@@ -1,41 +1,43 @@
 <div class="p-3 mt-2" id="bid_menu_card" style="display:none; background-color: #f1f5f9; border-radius: 10px; border: 1px solid #e2e8f0; z-index: 1;">
     <div class="small fw-bold text-uppercase text-muted tracking-wider mb-2">Bid Controls</div>
     <div class="d-flex flex-wrap align-items-center justify-content-start gap-3">
-        <!-- Contract Years -->
-        <div class="d-flex align-items-center gap-2" id="contract_years_container">
-            <span class="fw-semibold text-dark small me-1">Contract Years</span>
-            <div class="btn-group" role="group" aria-label="Contract years group" id="contract_year_selected_radio" style="display: none;">
-                <input type="radio" class="btn-check" name="contract_year_selected" id="contract_year_selected_1" autocomplete="off" value="1">
-                <label class="btn btn-outline-primary" for="contract_year_selected_1"><strong>1</strong></label>
-            
-                <input type="radio" class="btn-check" name="contract_year_selected" id="contract_year_selected_2" autocomplete="off" value="2">
-                <label class="btn btn-outline-primary" for="contract_year_selected_2"><strong>2</strong></label>
-            
-                <input type="radio" class="btn-check" name="contract_year_selected" id="contract_year_selected_3" autocomplete="off" value="3">
-                <label class="btn btn-outline-primary" for="contract_year_selected_3"><strong>3</strong></label>
-            </div>
+        <div id="years_and_bid_div" class="d-flex flex-wrap align-items-center gap-3">
+            <!-- Contract Years -->
+            <div class="d-flex align-items-center gap-2" id="contract_years_container">
+                <span class="fw-semibold text-dark small me-1">Contract Years</span>
+                <div class="btn-group" role="group" aria-label="Contract years group" id="contract_year_selected_radio" style="display: none;">
+                    <input type="radio" class="btn-check" name="contract_year_selected" id="contract_year_selected_1" autocomplete="off" value="1">
+                    <label class="btn btn-outline-primary" for="contract_year_selected_1"><strong>1</strong></label>
+                
+                    <input type="radio" class="btn-check" name="contract_year_selected" id="contract_year_selected_2" autocomplete="off" value="2">
+                    <label class="btn btn-outline-primary" for="contract_year_selected_2"><strong>2</strong></label>
+                
+                    <input type="radio" class="btn-check" name="contract_year_selected" id="contract_year_selected_3" autocomplete="off" value="3">
+                    <label class="btn btn-outline-primary" for="contract_year_selected_3"><strong>3</strong></label>
+                </div>
 
-            <div class="btn-group" role="group" aria-label="Disabled contract years group" id="contract_year_selected_radio_disabled">
-                <input type="radio" class="btn-check" name="contract_year_selected_disabled" id="contract_year_selected_1_disabled" autocomplete="off" value="1" disabled>
-                <label class="btn btn-outline-primary" for="contract_year_selected_1_disabled"><strong>1</strong></label>
-            
-                <input type="radio" class="btn-check" name="contract_year_selected_disabled" id="contract_year_selected_2_disabled" autocomplete="off" value="2" disabled>
-                <label class="btn btn-outline-primary" for="contract_year_selected_2_disabled"><strong>2</strong></label>
-            
-                <input type="radio" class="btn-check" name="contract_year_selected_disabled" id="contract_year_selected_3_disabled" autocomplete="off" value="3" disabled>
-                <label class="btn btn-outline-primary" for="contract_year_selected_3_disabled"><strong>3</strong></label>
+                <div class="btn-group" role="group" aria-label="Disabled contract years group" id="contract_year_selected_radio_disabled">
+                    <input type="radio" class="btn-check" name="contract_year_selected_disabled" id="contract_year_selected_1_disabled" autocomplete="off" value="1" disabled>
+                    <label class="btn btn-outline-primary" for="contract_year_selected_1_disabled"><strong>1</strong></label>
+                
+                    <input type="radio" class="btn-check" name="contract_year_selected_disabled" id="contract_year_selected_2_disabled" autocomplete="off" value="2" disabled>
+                    <label class="btn btn-outline-primary" for="contract_year_selected_2_disabled"><strong>2</strong></label>
+                
+                    <input type="radio" class="btn-check" name="contract_year_selected_disabled" id="contract_year_selected_3_disabled" autocomplete="off" value="3" disabled>
+                    <label class="btn btn-outline-primary" for="contract_year_selected_3_disabled"><strong>3</strong></label>
+                </div>
+            </div>
+        
+            <!-- Bid Input + Submit Button -->
+            <div class="input-group" id="new_bid_input_group" style="max-width: 250px;"> 
+                <span class="input-group-text">$</span>
+                <input type="number" min="1" step="1" id="id_new_bid" class="form-control" placeholder="New Bid" disabled>
+                <button id="submit_new_bid_button" class="btn btn-success man-tooltip" type="button" disabled data-bs-toggle="man-tooltip" data-bs-placement="top" title="Submit a bid for the currently selected Contract Years and Contract Price">
+                    <span role="status">Submit Bid</span>
+                </button>
             </div>
         </div>
-
-        <!-- Bid Input + Submit Button -->
-        <div class="input-group" id="new_bid_input_group" style="max-width: 250px;"> 
-            <span class="input-group-text">$</span>
-            <input type="number" min="1" step="1" id="id_new_bid" class="form-control" placeholder="New Bid" disabled>
-            <button id="submit_new_bid_button" class="btn btn-success man-tooltip" type="button" disabled data-bs-toggle="man-tooltip" data-bs-placement="top" title="Submit a bid for the currently selected Contract Years and Contract Price">
-                <span role="status">Submit Bid</span>
-            </button>
-        </div>
-
+        
         <!-- Pass & Drop Out Action Buttons -->
         <div class="d-flex align-items-center gap-2 ms-auto" id="bidding_pass_dropout_container">
             <button type="button" id="pass_button" name="pass" class="btn btn-warning man-tooltip" disabled data-bs-toggle="man-tooltip" data-bs-placement="top" title="Pass for the current round of bidding. Each team only gets one pass per player auction.">Pass</button>

@@ -1963,6 +1963,30 @@
         }
     });
 
+    $(document).on('show.bs.modal', '#drop_out_of_selection_confirmation_modal', function (e) {
+        if (window.is_tour_active) {
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    $(document).on('click', '#drop_out_player_selection', function (e) {
+        if (window.is_tour_active) {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        }
+    });
+
+    window.is_hiding_mock_modal = false;
+
+    $(document).on('hide.bs.modal', '#select_player_confirmation_modal', function (e) {
+        if (window.is_tour_active && !window.is_hiding_mock_modal) {
+            e.preventDefault();
+            return false;
+        }
+    });
+
     document.querySelector('#drop_out_button').onclick = function (e) {
         if (window.is_tour_active) return;
         console.log("Drop Out Submitted")
@@ -2097,6 +2121,7 @@
     function hideMockConfirmationModal() {
         var modalEl = document.getElementById('select_player_confirmation_modal');
         if (modalEl) {
+            window.is_hiding_mock_modal = true;
             var modalInst = bootstrap.Modal.getInstance(modalEl);
             if (modalInst) modalInst.hide();
             $(modalEl).removeClass('show').css('display', 'none').attr('aria-hidden', 'true');
@@ -2104,6 +2129,7 @@
             document.body.classList.remove('modal-open');
             document.body.style.overflow = '';
             document.body.style.paddingRight = '';
+            window.is_hiding_mock_modal = false;
         }
     }
 
@@ -2308,7 +2334,7 @@
                         $('#contract_year_selected_radio_disabled').hide();
                     }
                 },
-                                {
+                {
                     element: '#submit_new_bid_button',
                     popover: {
                         title: 'Starting the Auction',
@@ -2472,20 +2498,28 @@
                     }
                 }
             ];
-        } else {
+        } else if (draft_type === 'ufa') {
             tour_steps = [
                 {
                     element: '#current_auction_type_container',
                     popover: {
                         title: 'Unrestricted Free Agent (UFA) Phase',
-                        description: 'Open bidding phase where managers nominate free agents and bid in real time.'
+                        description: 'Open phase where managers nominate free agents.'
                     }
+                },
+                {
+                    element: '#player_selection_card',
+                    popover: {
+                        title: 'Rookie Pick Selection',
+                        description: 'When it is your turn to pick, select a player via Database Search or Manual Entry.'
+                    },
+                    onHighlight: function () { prepareElementForTour('#rookie_draft_card_container'); }
                 },
                 {
                     element: '#pane_search_db',
                     popover: {
                         title: 'Database Search Filters',
-                        description: 'Search available free agents by Name, Team, Position, or Bye.'
+                        description: 'Search for players by Name, Team, Position, or Bye. Note: Results are not automatically filtered to rookies.'
                     },
                     onHighlight: function () {
                         prepareElementForTour('#player_selection_card');
@@ -2499,8 +2533,8 @@
                 {
                     element: '#search_results_table_div',
                     popover: {
-                        title: 'Search Results & Status',
-                        description: 'Select an available player to nominate them for auction.'
+                        title: 'Search Results & Player Status',
+                        description: 'Available players display a green SELECT button. Owned players display their drafting team.'
                     },
                     onHighlight: function () {
                         prepareElementForTour('#player_selection_card');
@@ -2511,7 +2545,7 @@
                     element: '#select_player_confirmation_modal_content',
                     popover: {
                         title: 'Nominate Player Confirmation',
-                        description: 'Verify player details before submitting nomination.',
+                        description: 'Clicking SELECT opens a confirmation prompt to verify player details before submitting.',
                         side: 'right',
                         align: 'center'
                     },
@@ -2526,7 +2560,7 @@
                     element: '#tab_manual_entry',
                     popover: {
                         title: 'Manual Entry Tab',
-                        description: 'Switch to Manual Entry to fill in Player Name, Position, Team, and Bye Week manually.'
+                        description: 'If an eligible player is missing from the database, switch to Manual Entry to submit their Name, Position, Team, and Bye Week.'
                     },
                     onHighlight: function () {
                         hideMockSearchResults();
@@ -2536,60 +2570,158 @@
                     }
                 },
                 {
-                    element: '#id_new_bid',
+                    element: '#submit_selected_player',
+                    popover: {
+                        title: 'Submit Selection',
+                        description: 'Click Submit Player to open the confirmation prompt and finalize your nomination.'
+                    },
+                    onHighlight: function () { 
+                        $('#submit_selected_player').prop('disabled', false);
+                    }
+                },
+                {
+                    element: '#years_and_bid_div',
                     popover: {
                         title: 'Starting Bid & Contract Years',
-                        description: 'Specify starting dollar bid ($1 minimum) and contract length (1 to 4 years).'
+                        description: 'Specify starting dollar bid ($1 minimum) and contract length (1 to 3 years).'
                     },
-                    onHighlight: function () { prepareElementForTour('#bid_menu_card'); }
+                    onHighlight: function () { 
+                        prepareElementForTour('#bid_menu_card');
+                        $("#submit_new_bid_button span[role='status']").text("Set Starting Bid");
+                   }
                 },
                 {
                     element: '#submit_new_bid_button',
                     popover: {
-                        title: 'Submit UFA Nomination',
-                        description: 'Click Submit Bid to place your player up for auction.'
+                        title: 'Starting the Auction',
+                        description: 'Once you select the number of years and contract price, click here to start the auction.'
                     },
-                    onHighlight: function () { prepareElementForTour('#bid_menu_card'); }
+                    onHighlight: function () {
+                        $('#bid_menu_card').show();
+                        $("#contract_years_container").removeClass("d-none").show();
+                        $('#contract_year_selected_radio').show();
+                        $('#contract_year_selected_radio_disabled').hide();
+                        $('#id_new_bid').prop("disabled", true);
+                        $("#submit_new_bid_button span[role='status']").text("Set Starting Bid");
+                        $('#submit_new_bid_button').prop('disabled', false);
+                    }
                 },
                 {
                     element: '#current_player_card_container',
                     popover: {
-                        title: 'Live Bidding Rule',
-                        description: 'Round-robin bidding. Rule: If contract years are increased, the dollar bid amount must also be increased.'
+                        title: 'Active Auction',
+                        description: 'Once started, this panel updates to show the current player nominated for auction.'
                     },
                     onHighlight: function () {
                         prepareElementForTour('#current_player_card_container');
                         prepareElementForTour('#auction_status_card_container');
+                        $('#nfl_player_for_auction_name').text('Joe Football');
+                        $('#nfl_player_for_auction_team').text('Pigskins');
+                        $('#nfl_player_for_auction_position').text('QB');
+                        $('#nfl_player_for_auction_bye').text('1');
+                        $('#highest_bid_val').text('$1');
+                        $('#highest_contract_years_val').text('3 Yrs');
                     }
                 },
                 {
                     element: '#bid_menu_card',
                     popover: {
-                        title: 'Bidding Actions',
-                        description: 'Click Pass to skip your turn. Click Drop Out to exit bidding on this player.'
+                        title: 'Bidding',
+                        description: 'All teams will then begin bidding for that player. NOTE: For UFA, if you want to increase the contract years, you must increase the contract price by at least one dollar.'
                     },
-                    onHighlight: function () { prepareElementForTour('#bid_menu_card'); }
+                    onHighlight: function () {
+                        prepareElementForTour('#bid_menu_card');
+                        $('#id_new_bid, #new_bid_input_group .input-group-text').show();
+                        $('#id_new_bid').val(2).prop('disabled', false);
+                        $('#submit_new_bid_button').prop('disabled', false).css('border-radius', '');
+                        $("#submit_new_bid_button span[role='status']").text('Submit Bid');
+                        $('#pass_button').prop('disabled', true);
+                        $('#drop_out_confirmation_button').prop('disabled', true);
+                    }
                 },
                 {
-                    element: '#ufa_action_buttons_div',
+                    element: '#bidding_pass_dropout_container',
                     popover: {
-                        title: 'Nomination Pass & Drop Out',
-                        description: 'Click Pass Selection to defer your turn. Click Drop Out of Selection when your roster is complete.'
+                        title: 'Pass & Drop Out of Bidding',
+                        description: 'Click Pass to defer your turn (NOTE: you only get one pass per round). Click Drop Out to exit bidding on this player.'
                     },
-                    onHighlight: function () { prepareElementForTour('#player_selection_card'); }
+                    onHighlight: function () {
+                        prepareElementForTour('#bid_menu_card');
+                        prepareElementForTour('#bidding_pass_dropout_container');
+                        $('#pass_button').prop('disabled', false);
+                        $('#drop_out_confirmation_button').prop('disabled', false);
+                    }
+                },
+                {
+                    element: '#auction_status_card_container',
+                    popover: {
+                        title: 'Auction Status',
+                        description: 'As the auction progresses, you can view the current bid, active bidder, and team currently winning the auction from here.'
+                    },
+                    onHighlight: function () {
+                        prepareElementForTour('#auction_status_card_container');
+                        $('#current_bidder_team').text('Hokie High');
+                        $('#current_winning_bid_team').text('Sentinels');
+                        $('#current_highest_bid').text('2');
+                        $('#current_contract_years').text('3');
+                    }
+                },
+                {
+                    element: '#last_player_sold_card_container',
+                    popover: {
+                        title: 'Last Sold Player',
+                        description: 'Once an auction completes, the winning player and contract details appear here.'
+                    },
+                    onHighlight: function () {
+                        hideMockToasts();
+                        prepareElementForTour('#last_player_sold_card_container');
+                        $('#last_sold_name').text('Joe Football');
+                        $('#last_sold_team_pos').text('Pigskins - QB');
+                        $('#last_sold_winning_team').text('Hokie High');
+                        $('#last_sold_price').text('$75 for 3 yrs');
+                    }
+                },
+                {
+                    element: '#pass_player_selection',
+                    popover: {
+                        title: 'Pass Selection',
+                        description: 'If it is your turn to put up a player and you need more time, you can pass your selection opportunity. You will remain in the UFA selection and bidding rotation. You can pass an unlimited number of times.'
+                    },
+                    onHighlight: function () {
+                        $('#pass_player_selection').prop('disabled', false);
+                    }
+                },
+                {
+                    element: '#drop_out_player_selection',
+                    popover: {
+                        title: 'Drop Out of Selection',
+                        description: 'If it is your turn to put up a player and you have decided you no longer want to put up any free agents, you can drop out of player selection. You will no longer be included in the selection rotation BUT you will remain in the bidding rotation for players that other teams put up.'
+                    },
+                    onHighlight: function () {
+                        $('#drop_out_player_selection').prop('disabled', false);
+                    }
                 },
                 {
                     element: '#draft_history_toggle_container',
                     popover: {
                         title: 'Draft History',
-                        description: 'Toggle to open the sticky draft history drawer.'
+                        description: 'Toggle to inspect live draft logs and team pick history.'
                     }
                 },
                 {
                     element: '#bathroom_mode_toggle_container',
                     popover: {
                         title: 'Bathroom Mode',
-                        description: 'Toggle Bathroom Mode to auto-skip your turns while stepping away.'
+                        description: 'Toggle Bathroom Mode to auto-pass your turns while away.'
+                    }
+                },
+                {
+                    element: '#roster_section_container',
+                    popover: {
+                        title: 'Team Rosters',
+                        description: 'Inspect team rosters and remaining draft capital across all 10 teams.',
+                        side: 'top',
+                        align: 'center'
                     }
                 }
             ];

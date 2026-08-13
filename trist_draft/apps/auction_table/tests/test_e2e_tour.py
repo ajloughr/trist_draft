@@ -58,6 +58,14 @@ def test_draft_onboarding_tour_rookie(browser: Browser):
     next_btn.click() # Confirmation modal demo
     expect(s_page.locator("#select_player_confirmation_modal")).to_be_visible()
 
+    # Verify clicking close 'x' during tour is neutered and modal stays visible
+    s_page.locator("#select_player_confirmation_modal .btn-close").click()
+    expect(s_page.locator("#select_player_confirmation_modal")).to_be_visible()
+
+    # Verify clicking confirm & nominate during tour is neutered and modal stays visible
+    s_page.locator("#select_player_confirmed").click()
+    expect(s_page.locator("#select_player_confirmation_modal")).to_be_visible()
+
     next_btn.click() # Manual Entry tab
     expect(s_page.locator("#select_player_confirmation_modal")).to_be_hidden()
 
