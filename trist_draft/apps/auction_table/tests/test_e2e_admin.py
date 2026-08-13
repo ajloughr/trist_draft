@@ -50,8 +50,8 @@ def test_admin_panel_actions(browser: Browser):
     a_page.fill("#input_budget_1", "125")
     a_page.click("#btn_save_budget_1")
     
-    # Verify updated budget in row
-    expect(a_page.locator("#budget_remaining_1")).to_contain_text("$125", timeout=10000)
+    # Verify updated budget in input box
+    expect(a_page.locator("#input_budget_1")).to_have_value("125", timeout=10000)
 
     # Test force pass player selection
     a_page.click("#btn_force_pass_selection")

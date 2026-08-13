@@ -20,7 +20,7 @@ def test_draft_onboarding_tour_rfa(browser: Browser):
 
     # Step through tour steps
     next_btn = s_page.locator(".driver-popover-next-btn")
-    for _ in range(6):
+    for _ in range(9):
         next_btn.click()
         s_page.wait_for_timeout(300)
 
@@ -48,6 +48,7 @@ def test_draft_onboarding_tour_rookie(browser: Browser):
     expect(s_page.locator(".driver-popover-title")).to_contain_text("Rookie Draft Phase")
 
     next_btn = s_page.locator(".driver-popover-next-btn")
+    next_btn.click() # Rookie Draft Order
     next_btn.click() # Pick selection
     next_btn.click() # DB Search filters
     expect(s_page.locator(".driver-popover-title")).to_contain_text("Database Search")
