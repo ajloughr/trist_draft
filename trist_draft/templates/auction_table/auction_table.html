@@ -2175,7 +2175,7 @@
                     element: '#current_auction_type_container',
                     popover: {
                         title: 'Rookie Draft Phase',
-                        description: 'The Rookie Draft follows a fixed pick order. All rookie contracts default to 1 year and $1.'
+                        description: 'The Rookie Draft follows a fixed pick order. All rookie contracts are strictly 1 year and $1.'
                     }
                 },
                 {
@@ -2510,7 +2510,7 @@
                 {
                     element: '#player_selection_card',
                     popover: {
-                        title: 'Rookie Pick Selection',
+                        title: 'Free Agent Pick Selection',
                         description: 'When it is your turn to pick, select a player via Database Search or Manual Entry.'
                     },
                     onHighlight: function () { prepareElementForTour('#rookie_draft_card_container'); }
@@ -2519,7 +2519,7 @@
                     element: '#pane_search_db',
                     popover: {
                         title: 'Database Search Filters',
-                        description: 'Search for players by Name, Team, Position, or Bye. Note: Results are not automatically filtered to rookies.'
+                        description: 'Search for players by Name, Team, Position, and/or Bye. '
                     },
                     onHighlight: function () {
                         prepareElementForTour('#player_selection_card');

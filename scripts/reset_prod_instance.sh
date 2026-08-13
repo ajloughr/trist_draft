@@ -52,6 +52,9 @@ docker exec -i django-postgres psql -U postgres -d postgres -c "COPY auction_tab
 echo "Importing users and teams..."
 docker exec -i django python manage.py shell < scripts/import_users.py
 
+echo "Restarting django container to clear server cache and reconnect WebSockets..."
+docker restart django
+
 echo ""
 echo "================================================================="
 echo "  ✅ PRODUCTION INSTANCE RESET COMPLETE!"
