@@ -1,3 +1,5 @@
+name: trist_draft_dev
+
 services:
   django-postgres-test:
     image: postgres@sha256:f1341c01408dc7278e9d365ed4f860cd3f87dd16b4464ac326fc0f422083a579
