@@ -1450,8 +1450,17 @@ def _parse_int_list(val):
         return res
     if not val or not str(val).strip():
         return []
+    s = str(val).strip()
+    if s.startswith('[') and s.endswith(']'):
+        try:
+            parsed = json.loads(s)
+            if isinstance(parsed, list):
+                return _parse_int_list(parsed)
+        except Exception:
+            pass
+    s = s.replace('[', '').replace(']', '').replace('"', '').replace("'", '')
     res = []
-    for item in str(val).split(','):
+    for item in s.split(','):
         item = item.strip()
         if item:
             try:

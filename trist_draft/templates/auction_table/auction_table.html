@@ -126,6 +126,19 @@
     </div>
 </div>
 
+<!-- Rookie Pick Sequence Strip -->
+<div class="container-fluid px-4 mt-2 {% if current_auction_manager.auction_type|lower != 'rookie' %}d-none{% else %}d-flex{% endif %}" id="rookie_draft_sequence_container">
+    <div class="auction-phase-strip d-flex align-items-center justify-content-start px-3 py-2 w-100">
+        <div class="d-flex align-items-center gap-2 flex-wrap">
+            <i class="fa-solid fa-list-ol text-primary me-1"></i>
+            <span class="small text-uppercase fw-bold text-muted tracking-wider">Rookie Pick Order:</span>
+            <span class="fw-bold text-dark font-monospace" id="rookie_draft_sequence_text" style="font-size: 0.95rem;">
+                {% if current_auction_manager.rookie_draft_order %}{{ current_auction_manager.rookie_draft_order|join:', ' }}{% endif %}
+            </span>
+        </div>
+    </div>
+</div>
+
 <!-- Main Content: 2-Column Layout -->
 <div class="container-fluid px-4 mt-3">
     <div class="row g-3 align-items-stretch">
@@ -724,6 +737,10 @@
     window.last_seen_drafted_pk_initialized = false;
 
     $(document).ready(function () {
+        var rawSeq = $("#rookie_draft_sequence_text").text();
+        if (rawSeq) {
+            $("#rookie_draft_sequence_text").text(rawSeq.replace(/[\[\]"']/g, ''));
+        }
         try {
             var rawInitData = $("#initial_rostered_players_json").text();
             if (rawInitData) {
@@ -1366,10 +1383,27 @@
             $("#current_player_card_container").addClass("d-none").removeClass("d-flex");
             $("#auction_status_card_container").addClass("d-none").removeClass("d-flex");
             $("#last_player_sold_card_container").removeClass("col-xl-4 col-md-4").addClass("col-12");
+            $("#rookie_draft_sequence_container").removeClass("d-none").addClass("d-flex");
         } else {
             $("#current_player_card_container").removeClass("d-none").addClass("d-flex");
             $("#auction_status_card_container").removeClass("d-none").addClass("d-flex");
             $("#last_player_sold_card_container").removeClass("col-12").addClass("col-xl-4 col-md-4");
+            $("#rookie_draft_sequence_container").addClass("d-none").removeClass("d-flex");
+        }
+
+        if (new_auction_manager_data[0].fields.rookie_draft_order) {
+            var rookieOrder = new_auction_manager_data[0].fields.rookie_draft_order;
+            var rookieStr = Array.isArray(rookieOrder) ? rookieOrder.join(", ") : String(rookieOrder);
+            if (typeof rookieStr === 'string' && (rookieStr.startsWith('[') || rookieStr.includes('"') || rookieStr.includes("'"))) {
+                try {
+                    var parsed = JSON.parse(rookieStr);
+                    if (Array.isArray(parsed)) rookieStr = parsed.join(", ");
+                } catch(e) {
+                    rookieStr = rookieStr.replace(/[\[\]"']/g, '');
+                }
+            }
+            rookieStr = rookieStr.replace(/[\[\]"']/g, '');
+            $("#rookie_draft_sequence_text").text(rookieStr);
         }
 
         if (current_auction_type_value == 'rookie') {
@@ -1444,7 +1478,7 @@
                         $("#id_new_bid").val(1);
                         $(this_user_bid_input).prop("disabled", false);
                         $("#id_new_bid, #new_bid_input_group .input-group-text").show();
-                        $("#submit_new_bid_button span[role='status']").text("Submit Bid");
+                        $("#submit_new_bid_button span[role='status']").text("Set Starting Bid");
                         $(this_user_bid_button).css("border-radius", "");
                     }
 
@@ -2175,9 +2209,18 @@
                     element: '#current_auction_type_container',
                     popover: {
                         title: 'Rookie Draft Phase',
-                        description: 'The Rookie Draft follows a fixed pick order. All rookie contracts are strictly 1 year and $1.'
+                        description: 'The Rookie Draft follows a fixed pick order. All rookie contracts are strictly 1 year for $1.'
                     }
                 },
+                {
+                    element: '#rookie_draft_sequence_container',
+                    popover: {
+                        title: 'Rookie Draft Order',
+                        description: 'The Rookie Draft order can be found here. Each number represents a pick for a team with that base draft order number'
+                    }
+                },
+
+                
                 {
                     element: '#player_selection_card',
                     popover: {
@@ -2190,7 +2233,7 @@
                     element: '#pane_search_db',
                     popover: {
                         title: 'Database Search Filters',
-                        description: 'Search for players by Name, Team, Position, or Bye. Note: Results are not automatically filtered to rookies.'
+                        description: 'Search for players by Name, Team, Position, and/or Bye. NOTE: Results are not automatically filtered to rookies.'
                     },
                     onHighlight: function () {
                         prepareElementForTour('#player_selection_card');
@@ -2205,7 +2248,7 @@
                     element: '#search_results_table_div',
                     popover: {
                         title: 'Search Results & Player Status',
-                        description: 'Available players display a green SELECT button. Owned players display their drafting team.'
+                        description: 'Available players will have a green SELECT button. Owned players will have a grey box with the owning team.'
                     },
                     onHighlight: function () {
                         prepareElementForTour('#player_selection_card');
@@ -2231,7 +2274,7 @@
                     element: '#tab_manual_entry',
                     popover: {
                         title: 'Manual Entry Tab',
-                        description: 'If an eligible player is missing from the database, switch to Manual Entry to submit their Name, Position, Team, and Bye Week.'
+                        description: 'If an eligible player is missing from the database, switch to Manual Entry to submit their Name, Position, Team, and Bye.'
                     },
                     onHighlight: function () {
                         hideMockSearchResults();
@@ -2266,7 +2309,7 @@
                     element: '#draft_history_toggle_container',
                     popover: {
                         title: 'Draft History',
-                        description: 'Toggle to open the sticky bottom drawer listing all drafted players, prices, and picks.'
+                        description: 'Toggle to open the sticky bottom drawer listing all drafted players, prices, and picks. There is also a Download CSV button which will allow you to download the draft results at any time.'
                     }
                 },
                 {
@@ -2280,7 +2323,7 @@
                     element: '#roster_section_container',
                     popover: {
                         title: 'Team Rosters',
-                        description: 'Inspect team rosters and remaining draft capital across all 10 teams.',
+                        description: 'This interactive table at the bottom will allow you to inspect team rosters and a position overview for all 10 teams.',
                         side: 'top',
                         align: 'center'
                     }
@@ -2292,7 +2335,7 @@
                     element: '#current_auction_type_container',
                     popover: {
                         title: 'Restricted Free Agent (RFA) Phase',
-                        description: 'RFAs belong to existing teams with matching rights. Opening bids are fixed at $1.'
+                        description: 'The RFA draft is a complex auction process where owners put up players with contracts expiring this year. Opening bids are fixed at $1 and the original owner has last dibs on the players they put up for auction.'
                     }
                 },
                 {
@@ -2322,16 +2365,21 @@
                     }
                 },
                 {
-                    element: '#contract_year_selected_radio',
+                    element: '#contract_years_container',
                     popover: {
                         title: 'Select Contract Years',
-                        description: 'Choose contract length (1 to 3 years). Opening bids start fixed at $1.'
+                        description: 'Choose contract length (1 to 3 years). Opening bids for RFAs are fixed at $1.'
                     },
                     onHighlight: function () {
                         $('#bid_menu_card').show();
                         $("#contract_years_container").removeClass("d-none").show();
                         $('#contract_year_selected_radio').show();
                         $('#contract_year_selected_radio_disabled').hide();
+                        $('#id_new_bid').prop("disabled", true);
+                        $("#id_new_bid, #new_bid_input_group .input-group-text").hide();
+                        $("#submit_new_bid_button span[role='status']").text("Set Starting Bid");
+                        $('#submit_new_bid_button').prop('disabled', false);
+                        $('#submit_new_bid_button').css("border-radius", "8px");
                     }
                 },
                 {
@@ -2469,7 +2517,7 @@
                     element: '#draft_history_toggle_container',
                     popover: {
                         title: 'Draft History',
-                        description: 'Toggle to inspect live draft logs and team pick history.'
+                        description: 'Toggle to open the sticky bottom drawer listing all drafted players, prices, and picks. There is also a Download CSV button which will allow you to download the draft results at any time.'
                     }
                 },
                 {
@@ -2483,7 +2531,7 @@
                     element: '#roster_section_container',
                     popover: {
                         title: 'Team Rosters',
-                        description: 'Inspect team rosters and remaining draft capital across all 10 teams.',
+                        description: 'This interactive table at the bottom will allow you to inspect team rosters and a position overview for all 10 teams.',
                         side: 'top',
                         align: 'center'
                     }
@@ -2492,7 +2540,7 @@
                     element: '#remaining_rfas_table',
                     popover: {
                         title: 'Remaining Team RFAs',
-                        description: 'You can view the list of unassigned RFAs remaining for each team directly inside the Team Rosters section.',
+                        description: 'You can view the list of RFAs remaining for each team directly inside the Team Rosters section.',
                         side: 'top',
                         align: 'center'
                     }
@@ -2504,7 +2552,7 @@
                     element: '#current_auction_type_container',
                     popover: {
                         title: 'Unrestricted Free Agent (UFA) Phase',
-                        description: 'Open phase where managers nominate free agents.'
+                        description: 'The UFA auctuin is where teams nominate free agents for open bidding.'
                     }
                 },
                 {
@@ -2534,7 +2582,7 @@
                     element: '#search_results_table_div',
                     popover: {
                         title: 'Search Results & Player Status',
-                        description: 'Available players display a green SELECT button. Owned players display their drafting team.'
+                        description: 'Available players will have a green SELECT button. Owned players will have a grey box with the owning team.'
                     },
                     onHighlight: function () {
                         prepareElementForTour('#player_selection_card');
@@ -2560,7 +2608,7 @@
                     element: '#tab_manual_entry',
                     popover: {
                         title: 'Manual Entry Tab',
-                        description: 'If an eligible player is missing from the database, switch to Manual Entry to submit their Name, Position, Team, and Bye Week.'
+                        description: 'If an eligible player is missing from the database, switch to Manual Entry to submit their Name, Position, Team, and Bye.'
                     },
                     onHighlight: function () {
                         hideMockSearchResults();
@@ -2695,7 +2743,7 @@
                     element: '#drop_out_player_selection',
                     popover: {
                         title: 'Drop Out of Selection',
-                        description: 'If it is your turn to put up a player and you have decided you no longer want to put up any free agents, you can drop out of player selection. You will no longer be included in the selection rotation BUT you will remain in the bidding rotation for players that other teams put up.'
+                        description: 'If it is your turn to put up a player and you have decided you no longer want to put up any free agents, you can drop out of player selection. You will no longer be included in the selection rotation BUT you will remain in the bidding rotation for players that other teams put up. NOTE: You will still be able to bid on players that other teams put up.'
                     },
                     onHighlight: function () {
                         $('#drop_out_player_selection').prop('disabled', false);
@@ -2705,7 +2753,7 @@
                     element: '#draft_history_toggle_container',
                     popover: {
                         title: 'Draft History',
-                        description: 'Toggle to inspect live draft logs and team pick history.'
+                        description: 'Toggle to open the sticky bottom drawer listing all drafted players, prices, and picks. There is also a Download CSV button which will allow you to download the draft results at any time.'
                     }
                 },
                 {
@@ -2719,7 +2767,7 @@
                     element: '#roster_section_container',
                     popover: {
                         title: 'Team Rosters',
-                        description: 'Inspect team rosters and remaining draft capital across all 10 teams.',
+                        description: 'This interactive table at the bottom will allow you to inspect team rosters and a position overview for all 10 teams.',
                         side: 'top',
                         align: 'center'
                     }

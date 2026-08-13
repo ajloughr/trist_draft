@@ -154,9 +154,6 @@
                                 <tr>
                                     <th>Order</th>
                                     <th>Team Name</th>
-                                    <th>Roster Size</th>
-                                    <th>RFAs Remaining</th>
-                                    <th>Budget Remaining ($)</th>
                                     <th>Initial RFAs</th>
                                     <th>Current RFAs</th>
                                     <th>Pass Available</th>
@@ -171,10 +168,6 @@
                                 <tr id="user_row_{{ user.draft_order }}">
                                     <td><strong>#{{ user.draft_order }}</strong></td>
                                     <td>{{ user.team_name }}</td>
-                                    <td id="roster_size_{{ user.draft_order }}">{{ user.current_roster_size }}</td>
-                                    <td id="rfas_remaining_{{ user.draft_order }}">{{ user.rfas_remaining }}</td>
-                                    <td id="budget_remaining_{{ user.draft_order }}"><strong>${{ user.budget_remaining
-                                            }}</strong></td>
                                     <td>
                                         <div class="input-group input-group-sm" style="min-width: 120px; max-width: 160px;">
                                             <input type="text" class="form-control"
@@ -442,17 +435,33 @@
             var users = JSON.parse(data.auction_table_data);
             users.forEach(function (u) {
                 var fields = u.fields;
-                $("#budget_remaining_" + fields.draft_order).html("<strong>$" + fields.budget_remaining + "</strong>");
-                $("#roster_size_" + fields.draft_order).text(fields.current_roster_size);
-                $("#rfas_remaining_" + fields.draft_order).text(fields.rfas_remaining);
+                if ($("#input_budget_" + fields.draft_order).length && !$("#input_budget_" + fields.draft_order).is(":focus")) {
+                    $("#input_budget_" + fields.draft_order).val(fields.budget_remaining);
+                }
                 if (!$("#input_initial_rfas_" + fields.draft_order).is(":focus")) {
                     var initList = fields.initial_rfa_list || [];
                     var initStr = Array.isArray(initList) ? initList.join(", ") : initList;
+                    if (typeof initStr === 'string' && (initStr.startsWith('[') || initStr.includes('"'))) {
+                        try {
+                            var parsed = JSON.parse(initStr);
+                            if (Array.isArray(parsed)) initStr = parsed.join(", ");
+                        } catch(e) {
+                            initStr = initStr.replace(/[\[\]"']/g, '');
+                        }
+                    }
                     $("#input_initial_rfas_" + fields.draft_order).val(initStr);
                 }
                 if (!$("#input_current_rfas_" + fields.draft_order).is(":focus")) {
                     var currList = fields.current_rfa_list || [];
                     var currStr = Array.isArray(currList) ? currList.join(", ") : currList;
+                    if (typeof currStr === 'string' && (currStr.startsWith('[') || currStr.includes('"'))) {
+                        try {
+                            var parsed = JSON.parse(currStr);
+                            if (Array.isArray(parsed)) currStr = parsed.join(", ");
+                        } catch(e) {
+                            currStr = currStr.replace(/[\[\]"']/g, '');
+                        }
+                    }
                     $("#input_current_rfas_" + fields.draft_order).val(currStr);
                 }
                 $("#bm_toggle_" + fields.draft_order).prop("checked", fields.bathroom_mode_enabled);

@@ -16,10 +16,13 @@ TODO:
     x update draft history with new style
     x fix help, add something better
     x seems like you can decrease bid on rfa raise, need to disable in gui
-    - add note to UFA drop out saying you will still be able to bid
+    x add note to UFA drop out saying you will still be able to bid
 
-    
+    x fix rfa edit save, weird formatting
+    x for ufa, update submmit bid to set initial price or whatever
+    - make tour go away on refresh? probably not a good idea. it will get dismissed all the time. 
 
+    x do something in rookie draft to represent the draft order
 
 
 New issues: 
